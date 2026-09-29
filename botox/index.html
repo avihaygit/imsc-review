@@ -95,15 +95,15 @@ button.primary:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
 <script>
 /* ===================== CONFIG — the only part to edit per review ===================== */
 const CONFIG = {
-  brand: "IMSC · ריל \"בוטולינום טוקסין\" · סרטון 3",                 // top-left label, e.g. 'IMSC · סרטון "איך זה עובד" · גרסה 3'
-  h1: "הסרטון לאישור: גרסה 3",                       // e.g. 'הסרטון לאישור: גרסה 3'
+  brand: "IMSC · ריל \"בוטולינום טוקסין\" · סרטון 4",                 // top-left label, e.g. 'IMSC · סרטון "איך זה עובד" · גרסה 3'
+  h1: "הסרטון לאישור: גרסה 4",                       // e.g. 'הסרטון לאישור: גרסה 4'
   intro: "הסרטון המלא למעלה. מתחת — כל סצנה עם הכפתור ▶ שמריץ את הסרטון ממנה. כתבו רק מה שצריך לשנות — תיבה ריקה = מאושר. בסוף לחצו \"שלח\".",                 // one short paragraph: what this is, how to comment, empty box = approved
-  facts: ["ריל 9:16", "48 שניות", "10 סצנות", "עם סאונד"],                          // chips, e.g. ['ריל 9:16','40 שניות','9 סצנות']
-  video: {src:'video/botox-v3.mp4', poster:'img/poster.jpg'},                        // optional {src:'video/x.mp4', poster:'img/poster.jpg'} → enables per-item "▶" jump by item.at
+  facts: ["ריל 9:16", "50 שניות", "10 סצנות", "עם סאונד"],                          // chips, e.g. ['ריל 9:16','40 שניות','9 סצנות']
+  video: {src:'video/botox-v4.mp4', poster:'img/poster.jpg'},                        // optional {src:'video/x.mp4', poster:'img/poster.jpg'} → enables per-item "▶" jump by item.at
   generalHint: 'על הכול יחד: סגנון, קצב, צבעים, או כל דבר שלא שייך לפריט אחד.',
-  doc: "reviews/botox-video-v3",             // NEW key every round, e.g. 'reviews/video-v3' → boxes start empty
-  ls: "imsc-botox-video-v3",                       // localStorage key, also new every round
-  sendTitle: "הערות לסרטון v3 של ריל בוטולינום טוקסין:",         // first line of the compiled message, e.g. 'הערות לגרסה 3 של "איך זה עובד":'
+  doc: "reviews/botox-video-v4",             // NEW key every round, e.g. 'reviews/video-v3' → boxes start empty
+  ls: "imsc-botox-video-v4",                       // localStorage key, also new every round
+  sendTitle: "הערות לסרטון v4 של ריל בוטולינום טוקסין:",         // first line of the compiled message, e.g. 'הערות לגרסה 3 של "איך זה עובד":'
   itemWord: 'סצנה',                   // how items are called in labels: 'סצנה' / 'שקופית' / 'מקטע' / 'עמוד'
   items: [
  {
@@ -124,8 +124,7 @@ const CONFIG = {
   "at": 4,
   "img": "img/v01b.jpg",
   "quote": "מה קורה בתוך השריר?",
-  "body": "זרוע מאוירת עם השריר באמה מסומן בטורקיז, וסיבי השריר רועדים בתוכו. תגית זהב \"שריר\" מצביעה עליו. אחר כך זום לתוך השריר, והוא הופך לצרור הסיבים של סצנה 02.",
-  "ch": "סצנה חדשה, לפי ההערה שלך שלא ברור שזה שריר. הסרטון התארך ל-48 שנ׳."
+  "body": "זרוע מאוירת עם השריר באמה מסומן בטורקיז, וסיבי השריר רועדים בתוכו. תגית זהב \"שריר\" מצביעה עליו. אחר כך זום לתוך השריר, והוא הופך לצרור הסיבים של סצנה 02."
  },
  {
   "k": "f02",
@@ -181,28 +180,30 @@ const CONFIG = {
   "k": "f07",
   "n": "07",
   "t": "המסר",
-  "sub": "38–40.5 שנ׳",
+  "sub": "38–41.5 שנ׳",
   "at": 38,
   "img": "img/v07.jpg",
   "quote": "ההזרקה מפחיתה את הנוקשות.\nהשיקום בונה את התפקוד.",
-  "body": "המשפט נוחת, הגל מצויר מתחתיו, צליל עדין, עצירה."
+  "body": "המשפט נוחת, הגל מצויר מתחתיו, צליל עדין, עצירה.",
+  "ch": "מוחזקת שנייה אחת יותר, לפי ההערה שלך."
  },
  {
   "k": "f08",
   "n": "08",
   "t": "גשר לסיום",
-  "sub": "40.5–42 שנ׳",
-  "at": 40.5,
+  "sub": "41.5–44 שנ׳",
+  "at": 41.5,
   "img": "img/v08.jpg",
   "quote": "רוצים לדעת אם זה מתאים לכם?\nמתחילים במפגש הערכה רב-צוותי",
-  "body": "השאלה עולה והכפתור קופץ."
+  "body": "השאלה עולה והכפתור קופץ.",
+  "ch": "מוחזקת שנייה אחת יותר, לפי ההערה שלך."
  },
  {
   "k": "f09",
   "n": "09",
   "t": "שקופית סיום",
-  "sub": "42–48 שנ׳",
-  "at": 42,
+  "sub": "44–50 שנ׳",
+  "at": 44,
   "img": "img/v09.jpg",
   "body": "עיגול שמנת מתרחב מהכפתור, ה-V מצויר, הלוגו נחשף, תמונות הצוות, הכפתור 'נלחץ' פעמיים, הוואטסאפ פועם."
  },
