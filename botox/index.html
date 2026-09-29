@@ -95,15 +95,15 @@ button.primary:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
 <script>
 /* ===================== CONFIG — the only part to edit per review ===================== */
 const CONFIG = {
-  brand: "IMSC · ריל \"בוטולינום טוקסין\" · סרטון 1",                 // top-left label, e.g. 'IMSC · סרטון "איך זה עובד" · גרסה 3'
-  h1: "הסרטון לאישור: גרסה 1",                       // e.g. 'הסרטון לאישור: גרסה 3'
+  brand: "IMSC · ריל \"בוטולינום טוקסין\" · סרטון 2",                 // top-left label, e.g. 'IMSC · סרטון "איך זה עובד" · גרסה 3'
+  h1: "הסרטון לאישור: גרסה 2",                       // e.g. 'הסרטון לאישור: גרסה 3'
   intro: "הסרטון המלא למעלה. מתחת — כל סצנה עם הכפתור ▶ שמריץ את הסרטון ממנה. כתבו רק מה שצריך לשנות — תיבה ריקה = מאושר. בסוף לחצו \"שלח\".",                 // one short paragraph: what this is, how to comment, empty box = approved
   facts: ["ריל 9:16", "46 שניות", "9 סצנות", "עם סאונד"],                          // chips, e.g. ['ריל 9:16','40 שניות','9 סצנות']
-  video: {src:'video/botox-v1.mp4', poster:'img/poster.jpg'},                        // optional {src:'video/x.mp4', poster:'img/poster.jpg'} → enables per-item "▶" jump by item.at
+  video: {src:'video/botox-v2.mp4', poster:'img/poster.jpg'},                        // optional {src:'video/x.mp4', poster:'img/poster.jpg'} → enables per-item "▶" jump by item.at
   generalHint: 'על הכול יחד: סגנון, קצב, צבעים, או כל דבר שלא שייך לפריט אחד.',
-  doc: "reviews/botox-video-v1",             // NEW key every round, e.g. 'reviews/video-v3' → boxes start empty
-  ls: "imsc-botox-video-v1",                       // localStorage key, also new every round
-  sendTitle: "הערות לסרטון v1 של ריל בוטולינום טוקסין:",         // first line of the compiled message, e.g. 'הערות לגרסה 3 של "איך זה עובד":'
+  doc: "reviews/botox-video-v2",             // NEW key every round, e.g. 'reviews/video-v3' → boxes start empty
+  ls: "imsc-botox-video-v2",                       // localStorage key, also new every round
+  sendTitle: "הערות לסרטון v2 של ריל בוטולינום טוקסין:",         // first line of the compiled message, e.g. 'הערות לגרסה 3 של "איך זה עובד":'
   itemWord: 'סצנה',                   // how items are called in labels: 'סצנה' / 'שקופית' / 'מקטע' / 'עמוד'
   items: [
  {
@@ -114,8 +114,7 @@ const CONFIG = {
   "at": 0,
   "img": "img/v01.jpg",
   "quote": "שמעתם על הזרקת בוטוקס לספסטיות?",
-  "body": "הכותרת נכנסת שורה-שורה. המרפק והרגל רועדים קלות, טבעות זהב פועמות, הסיב מסתלסל סביב האמה, ואז זום לתוך הזרוע.",
-  "ch": "גם הרגל שמתחת לזרוע מסומנת בטבעת זהב, כמו בריל הקודם."
+  "body": "הכותרת נכנסת שורה-שורה. המרפק והרגל רועדים קלות, טבעות זהב פועמות, הסיב מסתלסל סביב האמה, ואז זום לתוך הזרוע."
  },
  {
   "k": "f02",
@@ -154,8 +153,9 @@ const CONFIG = {
   "sub": "23–29 שנ׳",
   "at": 23,
   "img": "img/v05.jpg",
-  "quote": "אינה מחזקת שרירים חלשים\nאינה מלמדת את המוח איך לשלוט בגפה",
-  "body": "הסיבים נשארים רגועים אבל נעשים דקים וחיוורים. המילה \"לא\" פועמת פעם אחת."
+  "quote": "אינה מחזקת שרירים חלשים\nאינה מלמדת את המוח איך לשלוט בגפיים\nאינה מחזירה תנועות אקטיביות",
+  "body": "הסיבים נשארים רגועים אבל נעשים דקים וחיוורים. המילה \"לא\" פועמת פעם אחת.",
+  "ch": "\"בגפה\" הפך ל\"בגפיים\", ונוספה שורה שלישית: \"אינה מחזירה תנועות אקטיביות\"."
  },
  {
   "k": "f06",
@@ -165,7 +165,8 @@ const CONFIG = {
   "at": 29,
   "img": "img/v06.jpg",
   "quote": "המפתח: השילוב עם פיזיותרפיה וריפוי בעיסוק\nלשיפור תפקודי לטווח ארוך",
-  "body": "הפיזיותרפיסט והמרפאה בעיסוק נכנסים מהצדדים ומתנדנדים בקצב התרגול, והסיבים שבמרכז מתעבים ומאירים בכל פעימה."
+  "body": "הפיזיותרפיסט והמרפאה בעיסוק נכנסים מהצדדים ומתנדנדים בקצב התרגול, והסיבים שבמרכז מתעבים ומאירים בכל פעימה.",
+  "ch": "\"לשיפור תפקודי לטווח ארוך\" הוגדל (74px, לבן, מודגש)."
  },
  {
   "k": "f07",
@@ -200,8 +201,7 @@ const CONFIG = {
   "k": "d01",
   "n": "D",
   "t": "עיצוב ולוגו",
-  "body": "לוגו IMSC (כיתוב לבן, V טורקיז) בפינה השמאלית העליונה בכל הסצנות חוץ מהסיום. שאר העיצוב כמו בסקיצות.",
-  "ch": "נוסף הלוגו בפינה, לפי ההערה שלך."
+  "body": "לוגו IMSC (כיתוב לבן, V טורקיז) בפינה השמאלית העליונה בכל הסצנות חוץ מהסיום. שאר העיצוב כמו בסקיצות."
  },
  {
   "k": "a01",
