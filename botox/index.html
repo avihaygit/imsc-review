@@ -88,13 +88,15 @@ button.primary:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
     <div class="answer"><label for="a-general">ההערה שלי</label><textarea id="a-general" data-key="general" placeholder="כל מה שלא שייך לפריט אחד"></textarea><div class="status" id="st-general"></div></div>
   </section>
   <div class="send" id="sendwrap">
-    <div class="box"><div class="hint" id="sendhint"><label for="who" style="font-weight:700;display:block;margin-bottom:4px">השם שלכם</label><input id="who" type="text" autocomplete="name" style="font:inherit;width:100%;max-width:280px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--field);color:var(--ink)"><div style="margin-top:6px">"שלח" פותח וואטסאפ עם כל ההערות מוכנות לשליחה. תיבה ריקה = מאושר.</div></div><button class="primary" id="sendbtn" type="button">שלח</button></div>
+    <div class="box"><div class="hint" id="sendhint"><label for="who" style="font-weight:700;display:block;margin-bottom:4px">השם שלכם</label><input id="who" type="text" autocomplete="name" style="font:inherit;width:100%;max-width:280px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--field);color:var(--ink)"><div style="margin-top:6px">כשסיימתם, לחצו "שמור" וכל ההערות יישמרו. תיבה ריקה = מאושר.</div></div><button class="primary" id="sendbtn" type="button">שמור</button></div>
   </div>
 </div>
 
 <script>
 /* ===================== CONFIG — the only part to edit per review ===================== */
 const CONFIG = {
+  inbox: 'https://script.google.com/macros/s/AKfycbzEj4lUky1em3ctwa-hol23Hfu5F5paCqut5pzeSTKYG4oaqZSQhPhb5EfFf9ZS16u11w/exec',
+  project: 'botox',
   brand: "IMSC · ריל \"בוטולינום טוקסין\" · סרטון 4",                 // top-left label, e.g. 'IMSC · סרטון "איך זה עובד" · גרסה 3'
   h1: "הסרטון לאישור: גרסה 4",                       // e.g. 'הסרטון לאישור: גרסה 4'
   intro: "הסרטון המלא למעלה. מתחת — כל סצנה עם הכפתור ▶ שמריץ את הסרטון ממנה. כתבו רק מה שצריך לשנות — תיבה ריקה = מאושר. בסוף לחצו \"שלח\".",                 // one short paragraph: what this is, how to comment, empty box = approved
@@ -262,21 +264,22 @@ const CONFIG = {
   ORDER.forEach(k=>areas[k].addEventListener('input',()=>{ progress(); setStatus(k,'שומר...'); clearTimeout(timers[k]); timers[k]=setTimeout(()=>persist(k),800); }));
   const local=lsLoad(); if(local&&local.answers) state=local; fill();
 
-  function compile(){ const who=($('who').value||'').trim(); const L=[C.sendTitle+(who?' ('+who+')':'')]; let any=false;
-    ORDER.forEach(k=>{ const v=(areas[k].value||'').trim(); if(v){ any=true; L.push('', '• '+LABEL[k]+':', v); } });
-    if(!any) L.push('', '(הכול מאושר, בלי הערות)'); return L.join('\n'); }
+  function collect(){ const notes=[]; ORDER.forEach(k=>{ const v=(areas[k].value||'').trim(); if(v) notes.push({item:LABEL[k], note:v}); }); return notes; }
+  function compile(){ const who=($('who').value||'').trim(); const L=[C.sendTitle+(who?' ('+who+')':'')]; const n=collect();
+    n.forEach(x=>L.push('', '• '+x.item+':', x.note)); if(!n.length) L.push('', '(הכול מאושר, בלי הערות)'); return L.join('\n'); }
   try{ const w=localStorage.getItem(C.ls+'-who'); if(w) $('who').value=w; }catch(e){}
   $('who').addEventListener('input',()=>{ try{ localStorage.setItem(C.ls+'-who',$('who').value); }catch(e){} });
-  function send(){
+  async function send(){
+    const b=$('sendbtn')||$('sendbtn2'); if(b){ b.disabled=true; b.textContent='שומר...'; }
     ORDER.forEach(k=>{ state.answers[k]=areas[k].value; }); state.updatedAt=new Date().toISOString(); lsSave();
-    const text=compile();
-    const url='https://wa.me/?text='+encodeURIComponent(text);
+    const who=($('who').value||'').trim();
     const box=document.querySelector('#sendwrap .box');
-    box.innerHTML='<div class="sent">וואטסאפ נפתח עם כל ההערות — בחרו איש קשר ושלחו. לא נפתח? <a id="walink" target="_blank" rel="noopener">לחצו כאן</a>, או העתיקו את הטקסט:</div><textarea id="fallbacktext" readonly></textarea><button class="primary" id="copybtn" type="button">העתק</button><button class="primary" id="sendbtn2" type="button">שלח שוב</button>';
-    $('walink').href=url; $('fallbacktext').value=text;
-    $('copybtn').addEventListener('click',async()=>{ try{ await navigator.clipboard.writeText(text); $('copybtn').textContent='הועתק'; }catch(e){ $('fallbacktext').select(); } });
-    $('sendbtn2').addEventListener('click',send);
-    window.open(url,'_blank');
+    if(!who){ if(b){ b.disabled=false; b.textContent='שמור'; } $('who').focus(); $('who').style.borderColor='var(--warn)'; return; }
+    let ok=false;
+    if(C.inbox){ try{ await fetch(C.inbox,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({project:C.project||'',round:C.doc,name:who,notes:collect()})}); ok=true; }catch(e){} }
+    if(ok){ box.innerHTML='<div class="sent"></div><button class="primary" id="sendbtn2" type="button">שמור שוב</button>'; box.querySelector('.sent').textContent='נשמר, תודה '+who+'. אפשר להמשיך לערוך ולשמור שוב.'; $('sendbtn2').addEventListener('click',send); return; }
+    box.innerHTML='<div class="sent" style="background:var(--warn-soft);color:var(--warn)">השמירה לא הצליחה. העתיקו את הטקסט ושלחו אותו:</div><textarea id="fallbacktext" readonly></textarea><button class="primary" id="sendbtn2" type="button">נסו שוב</button>';
+    $('fallbacktext').value=compile(); $('sendbtn2').addEventListener('click',send);
   }
   $('sendbtn').addEventListener('click',send);
 })();
