@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>ראיון · אביה גיטרמן · IMSC</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap">
+<style>
+:root{--bg:#F3F0E8;--surface:#FFFFFF;--ink:#0A2350;--muted:#4F5E78;--line:#DCD6C8;--accent:#06265A;--accent-ink:#F5F1E8;--hi:#0A7D7D;--hi-soft:#DDF1EF;--ok:#1E7A52;--ok-soft:#DDF1E6;--warn:#A04C0C;--warn-soft:#FBE8D6;--field:#FFFFFF;--shadow:0 12px 30px rgba(6,38,90,.14)}
+@media (prefers-color-scheme:dark){:root{--bg:#071A3A;--surface:#0E2750;--ink:#EEF2FA;--muted:#A8B7D0;--line:#23406E;--accent:#12BCBC;--accent-ink:#06265A;--hi:#12BCBC;--hi-soft:#123E55;--ok:#5DD39E;--ok-soft:#173A2B;--warn:#F0A25E;--warn-soft:#432A12;--field:#0A2045;--shadow:0 12px 30px rgba(0,0,0,.35);color-scheme:dark}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Assistant,system-ui,sans-serif;font-size:17px;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 120px}
+.top{position:sticky;top:0;z-index:5;background:var(--bg);padding:12px 0 8px;border-bottom:1px solid var(--line)}
+.top .row{display:flex;justify-content:space-between;gap:12px;align-items:baseline;font-size:14px;color:var(--muted)}
+.brand{font-weight:700;color:var(--ink)}
+.bar{height:5px;background:var(--line);border-radius:4px;margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--hi);transition:width .3s}
+.intro{padding:24px 0 8px}
+h1{font-size:28px;line-height:1.25;margin:0 0 10px;font-weight:800}
+.intro p{margin:0 0 12px;max-width:62ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.facts span{background:var(--hi-soft);color:var(--ink);border-radius:999px;padding:3px 12px;font-size:14px;font-weight:600}
+.who{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:14px 0}
+.who label{display:block;font-weight:700;margin-bottom:6px}
+.who input{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--field);color:var(--ink)}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 18px 14px;margin:16px 0;box-shadow:var(--shadow)}
+.item .meta{display:flex;gap:10px;align-items:center;font-size:14px;color:var(--muted);margin-bottom:6px}
+.item .num{background:var(--accent);color:var(--accent-ink);border-radius:8px;padding:1px 9px;font-weight:700}
+.item .common{background:var(--hi-soft);color:var(--ink);border-radius:999px;padding:0 10px;font-size:12px;font-weight:600}
+.item h2{font-size:19px;line-height:1.4;margin:0 0 12px;font-weight:700}
+.answer label{display:block;font-size:14px;font-weight:700;color:var(--muted);margin-bottom:4px}
+textarea{width:100%;min-height:96px;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--field);color:var(--ink);resize:vertical}
+textarea:focus,input:focus{outline:3px solid var(--hi);outline-offset:1px}
+.status{font-size:13px;min-height:18px;margin-top:4px;color:var(--muted)}
+.status.ok{color:var(--ok)}.status.warn{color:var(--warn)}
+.general{margin:28px 0 0}
+.general h2{font-size:20px;margin:0 0 4px}
+.send{position:fixed;inset:auto 0 0 0;background:var(--bg);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom))}
+.send .box{max-width:760px;margin:0 auto;display:flex;gap:12px;align-items:center;justify-content:space-between}
+.send .hint{font-size:14px;color:var(--muted)}
+button.primary{font:inherit;font-weight:800;background:var(--accent);color:var(--accent-ink);border:0;border-radius:12px;padding:12px 28px;cursor:pointer;min-height:44px}
+button.primary:disabled{opacity:.6}
+.sent{background:var(--ok-soft);color:var(--ok);padding:10px 14px;border-radius:10px;font-weight:600}
+#fallbacktext{width:100%;min-height:120px;margin-top:8px}
+@media (max-width:560px){.send .box{flex-direction:column;align-items:stretch}h1{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="row"><span class="brand" id="brand"></span><span id="progress"></span></div>
+    <div class="bar"><i id="barfill"></i></div>
+  </header>
+  <section class="intro">
+    <h1 id="h1"></h1>
+    <p id="intro"></p>
+    <div class="facts" id="facts"></div>
+    <div class="who"><label for="who">שם (לא חובה)</label><input id="who" type="text" autocomplete="name" placeholder="אפשר להשאיר ריק"></div>
+  </section>
+  <div id="items"></div>
+  <section class="general">
+    <h2>הערה כללית</h2>
+    <p style="margin:0 0 8px;color:var(--muted)">כל דבר שלא שייך לשאלה אחת: מה חשוב לכם שהאתר יגיד, או מה לא.</p>
+    <div class="answer"><label for="a-general">ההערה שלי</label><textarea id="a-general" data-key="general"></textarea><div class="status" id="st-general"></div></div>
+  </section>
+  <div class="send" id="sendwrap">
+    <div class="box"><div class="hint" id="sendhint">אפשר לכתוב על חלק מהשאלות ולחזור אחר כך. התשובות נשמרות במכשיר, ולחיצה על "שמור" שולחת אותן אלינו. שאלה ריקה = דילוג.</div><button class="primary" id="sendbtn" type="button">שמור</button></div>
+  </div>
+</div>
+<script>
+const CONFIG = {
+  "brand": "IMSC · ראיון · אביה גיטרמן",
+  "h1": "שאלות לראיון: אביה גיטרמן",
+  "intro": "שאלות שיעזרו לנו לכתוב על העבודה שלכם באתר במילים שלכם. אפשר לענות בכתב או לדלג על שאלה. רק מה שתאשרו יעלה לאתר, ובלי פרטים מזהים של מטופלים.",
+  "facts": [
+    "20 שאלות",
+    "סבב 1",
+    "שאלה ריקה = דילוג"
+  ],
+  "itemWord": "שאלה",
+  "doc": "reviews/interview-gitterman-v1",
+  "ls": "imsc-interview-gitterman-v1",
+  "inbox": "https://script.google.com/macros/s/AKfycbzEj4lUky1em3ctwa-hol23Hfu5F5paCqut5pzeSTKYG4oaqZSQhPhb5EfFf9ZS16u11w/exec",
+  "project": "interview-gitterman",
+  "items": [
+    {
+      "k": "q01",
+      "n": "01",
+      "t": "דרך מקצועית",
+      "q": "איך הגעת לתחום הספסטיות, ומה משך אותך אליו?",
+      "common": true
+    },
+    {
+      "k": "q02",
+      "n": "02",
+      "t": "דרך מקצועית",
+      "q": "מה את עושה בפועל ביום טיפול במרכז? תארי בפשטות.",
+      "common": true
+    },
+    {
+      "k": "q03",
+      "n": "03",
+      "t": "מטופל חדש",
+      "q": "מה הדבר הראשון שאת מסבירה למי שמגיע עם ספסטיות בפעם הראשונה?",
+      "common": true
+    },
+    {
+      "k": "q04",
+      "n": "04",
+      "t": "שאלות נפוצות",
+      "q": "מהן השאלות שמטופלים ובני משפחה שואלים הכי הרבה בפגישה הראשונה, ומה התשובה שלך לכל אחת?",
+      "common": true
+    },
+    {
+      "k": "q05",
+      "n": "05",
+      "t": "מושגים",
+      "q": "אילו מילים מבלבלות מטופלים (ספסטיות, היפרטוניה, דיסטוניה), ואיך את מסבירה אותן במילים פשוטות?",
+      "common": true
+    },
+    {
+      "k": "q06",
+      "n": "06",
+      "t": "מיתוסים",
+      "q": "איזה מיתוס על ספסטיות היית רוצה שאנשים יפסיקו להאמין בו, ומה האמת?",
+      "common": true
+    },
+    {
+      "k": "q07",
+      "n": "07",
+      "t": "תוצאות",
+      "q": "מה משתנה ביום-יום אצל מטופל אחרי טיפול מוצלח? תני דוגמה כללית, בלי פרטים מזהים.",
+      "common": true
+    },
+    {
+      "k": "q08",
+      "n": "08",
+      "t": "למי מתאים",
+      "q": "למי המרכז מתאים במיוחד, ומתי כדאי לפנות מוקדם?",
+      "common": true
+    },
+    {
+      "k": "q09",
+      "n": "09",
+      "t": "עבודת צוות",
+      "q": "איך נראה שיתוף הפעולה בין הרופא, המרפאה בעיסוק והפיזיותרפיסטית בהערכה רב-תחומית?",
+      "common": true
+    },
+    {
+      "k": "q10",
+      "n": "10",
+      "t": "בבית",
+      "q": "מה את מבקשת ממטופל ומשפחה לעשות בבית כדי שהטיפול יצליח?",
+      "common": true
+    },
+    {
+      "k": "q11",
+      "n": "11",
+      "t": "למידה",
+      "q": "מה למדת בשנים האחרונות ששינה את הדרך שבה את מטפלת?",
+      "common": true
+    },
+    {
+      "k": "q12",
+      "n": "12",
+      "t": "במשפט אחד",
+      "q": "איך היית מתארת את העבודה שלך למטופל במשפט אחד?",
+      "common": true
+    },
+    {
+      "k": "q13",
+      "n": "13",
+      "t": "פרטים לעמוד",
+      "q": "אילו פרטים מקצועיים חשוב לך שיופיעו באתר: תארים, מוסדות, הכשרות, מחקרים, שפות, שנות ניסיון?",
+      "common": true
+    },
+    {
+      "k": "q14",
+      "n": "14",
+      "t": "קישורים",
+      "q": "אילו קישורים מקצועיים את מאשרת לפרסם (לינקדאין, אוניברסיטה, מאמרים, כתבות)?",
+      "common": true
+    },
+    {
+      "k": "q15",
+      "n": "15",
+      "t": "ציטוט",
+      "q": "יש משפט או ציטוט אישי שמתאים לך לעמוד שלך?",
+      "common": true
+    },
+    {
+      "k": "q21",
+      "n": "16",
+      "t": "אחרי הזרקה",
+      "q": "איך נראית עבודה בריפוי בעיסוק אחרי הזרקת בוטולינום, ולמה התזמון חשוב?",
+      "common": false
+    },
+    {
+      "k": "q22",
+      "n": "17",
+      "t": "פעולות יומיום",
+      "q": "איזו פעולה יומיומית של היד (למשל לאחוז כוס) משתפרת, ואיך מתרגלים אותה?",
+      "common": false
+    },
+    {
+      "k": "q23",
+      "n": "18",
+      "t": "סדים",
+      "q": "מה תפקיד הסדים ואביזרי העזר, ואיך מתבצעת ההתאמה (סדי יד וסדי רגל)?",
+      "common": false
+    },
+    {
+      "k": "q24",
+      "n": "19",
+      "t": "מחקר",
+      "q": "מה השאלה שהמחקר שלך בודק, בשפה פשוטה?",
+      "common": false
+    },
+    {
+      "k": "q25",
+      "n": "20",
+      "t": "ניהול",
+      "q": "מה תפקידך כמנהלת שירותים פרא-רפואיים במרכז?",
+      "common": false
+    }
+  ]
+};
+(function(){
+  const C=CONFIG, $=id=>document.getElementById(id);
+  $('brand').textContent=C.brand; $('h1').textContent=C.h1; $('intro').textContent=C.intro;
+  C.facts.forEach(f=>{ const s=document.createElement('span'); s.textContent=f; $('facts').appendChild(s); });
+  const ORDER=[], LABEL={}, areas={};
+  C.items.forEach(it=>{
+    ORDER.push(it.k); LABEL[it.k]=C.itemWord+' '+it.n+' · '+it.t+': '+it.q;
+    const sec=document.createElement('section'); sec.className='item';
+    const meta=document.createElement('div'); meta.className='meta';
+    const num=document.createElement('span'); num.className='num'; num.textContent=it.n;
+    const top=document.createElement('span'); top.textContent=it.t;
+    meta.appendChild(num); meta.appendChild(top);
+    if(it.common){ const c=document.createElement('span'); c.className='common'; c.textContent='שאלה לכולם'; meta.appendChild(c); }
+    const h=document.createElement('h2'); h.textContent=it.q;
+    const ans=document.createElement('div'); ans.className='answer';
+    const lab=document.createElement('label'); lab.setAttribute('for','a-'+it.k); lab.textContent='התשובה שלי';
+    const ta=document.createElement('textarea'); ta.id='a-'+it.k; ta.dataset.key=it.k;
+    const st=document.createElement('div'); st.className='status'; st.id='st-'+it.k;
+    ans.appendChild(lab); ans.appendChild(ta); ans.appendChild(st);
+    sec.appendChild(meta); sec.appendChild(h); sec.appendChild(ans);
+    $('items').appendChild(sec);
+  });
+  ORDER.push('general'); LABEL.general='הערה כללית';
+  ORDER.forEach(k=>{ areas[k]=$('a-'+k); });
+  let state={answers:{},who:''};
+  try{ const raw=localStorage.getItem(C.ls); if(raw) state=Object.assign(state,JSON.parse(raw)); }catch(e){}
+  ORDER.forEach(k=>{ if(state.answers[k]) areas[k].value=state.answers[k]; });
+  if(state.who) $('who').value=state.who;
+  function lsSave(){ try{ localStorage.setItem(C.ls,JSON.stringify(state)); return true; }catch(e){ return false; } }
+  function setStatus(k,t,cls){ const s=$('st-'+k); s.textContent=t; s.className='status '+(cls||''); }
+  function progress(){ const n=ORDER.filter(k=>k!=='general'&&(areas[k].value||'').trim()).length, m=C.items.length;
+    $('progress').textContent=n+' מתוך '+m+' שאלות עם תשובה'; $('barfill').style.width=(m?Math.round(100*n/m):0)+'%'; }
+  progress();
+  const timers={};
+  ORDER.forEach(k=>{ areas[k].addEventListener('input',()=>{
+    setStatus(k,'');
+    clearTimeout(timers[k]);
+    timers[k]=setTimeout(()=>{ state.answers[k]=areas[k].value; state.updatedAt=new Date().toISOString(); setStatus(k, lsSave()?'נשמר במכשיר הזה':'לא הצלחנו לשמור במכשיר', lsSave()?'ok':'warn'); progress(); },800);
+  }); });
+  $('who').addEventListener('input',()=>{ state.who=$('who').value; lsSave(); });
+  function collect(){ const notes=[]; ORDER.forEach(k=>{ const v=(areas[k].value||'').trim(); if(v) notes.push({item:LABEL[k],note:v}); }); return notes; }
+  async function send(){
+    const b=$('sendbtn2')||$('sendbtn'); if(b){ b.disabled=true; b.textContent='שומר...'; }
+    ORDER.forEach(k=>{ state.answers[k]=areas[k].value; }); state.updatedAt=new Date().toISOString(); lsSave();
+    const who=($('who').value||'').trim();
+    const box=document.querySelector('#sendwrap .box');
+    let ok=false;
+    try{ await fetch(C.inbox,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({project:C.project||'',round:C.doc,name:who||'ללא שם',notes:collect()})}); ok=true; }catch(e){}
+    if(ok){ box.innerHTML='<div class="sent"></div><button class="primary" id="sendbtn2" type="button">שמור שוב</button>'; box.querySelector('.sent').textContent='נשמר'+(who?', תודה '+who:'')+'. אפשר להמשיך לענות ולשמור שוב.'; $('sendbtn2').addEventListener('click',send); return; }
+    box.innerHTML='<div class="sent" style="background:var(--warn-soft);color:var(--warn)">השמירה לא הצליחה. העתיקו את הטקסט ושלחו אותו:</div><textarea id="fallbacktext" readonly></textarea><button class="primary" id="sendbtn2" type="button">נסו שוב</button>';
+    $('fallbacktext').value=(who?who+'\n\n':'')+collect().map(n=>n.item+'\n'+n.note).join('\n\n');
+    $('sendbtn2').addEventListener('click',send);
+  }
+  $('sendbtn').addEventListener('click',send);
+})();
+</script>
+</body>
+</html>
