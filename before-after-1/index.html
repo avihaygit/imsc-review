@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex">
+<title>סטוריבורד IMSC · לפני ואחרי 1</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap">
+<style>
+:root{--bg:#F3F0E8;--surface:#FFFFFF;--ink:#0A2350;--muted:#4F5E78;--line:#DCD6C8;--accent:#06265A;--accent-ink:#F5F1E8;--hi:#0A7D7D;--hi-soft:#DDF1EF;--chg:#8A6614;--chg-soft:#F6ECD2;--field:#FFFFFF;--ok:#1E7A52;--ok-soft:#DDF1E6;--warn:#A04C0C;--warn-soft:#FBE8D6;--shadow:0 12px 30px rgba(6,38,90,.14)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#071A3A;--surface:#0E2750;--ink:#EEF2FA;--muted:#A8B7D0;--line:#23406E;--accent:#12BCBC;--accent-ink:#06265A;--hi:#12BCBC;--hi-soft:#123E55;--chg:#E0BC6A;--chg-soft:#3A2F16;--field:#0A2045;--ok:#5DD39E;--ok-soft:#173A2B;--warn:#F0A25E;--warn-soft:#432A12;--shadow:0 12px 30px rgba(0,0,0,.35);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#071A3A;--surface:#0E2750;--ink:#EEF2FA;--muted:#A8B7D0;--line:#23406E;--accent:#12BCBC;--accent-ink:#06265A;--hi:#12BCBC;--hi-soft:#123E55;--chg:#E0BC6A;--chg-soft:#3A2F16;--field:#0A2045;--ok:#5DD39E;--ok-soft:#173A2B;--warn:#F0A25E;--warn-soft:#432A12;--shadow:0 12px 30px rgba(0,0,0,.35);color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Assistant","Arial Hebrew",Arial,sans-serif;font-size:17px;line-height:1.6}
+.wrap{direction:rtl;max-width:980px;margin:0 auto;padding-inline:16px;padding-block:0 96px}
+h1,h2{font-weight:800;line-height:1.15;margin:0;text-wrap:balance}
+h1{font-size:clamp(1.9rem,4.5vw,2.6rem)}
+p{margin:.5rem 0}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:12px 10px;border-bottom:1px solid var(--line)}
+.top .row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-weight:800;color:var(--hi);letter-spacing:.02em}
+.progress{font-size:.92rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.bar{height:5px;background:var(--line);border-radius:99px;margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--hi);transition:width .3s ease}
+.intro{padding-block:28px 12px;display:grid;gap:10px}
+.intro p{color:var(--muted);max-width:62ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.facts span{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:.9rem;font-weight:600}
+.items{display:grid;gap:28px;margin-top:20px}
+.item{display:grid;grid-template-columns:minmax(0,250px) minmax(0,1fr);gap:24px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.item.noimg{grid-template-columns:1fr}
+.shot img{display:block;width:100%;border-radius:12px;box-shadow:var(--shadow);max-width:100%}
+.meta{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.num{font-weight:800;color:var(--hi);font-size:1.5rem;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);font-size:.9rem;font-variant-numeric:tabular-nums}
+.label{font-size:.8rem;font-weight:800;letter-spacing:.06em;color:var(--muted);margin-top:14px}
+.quote{background:var(--hi-soft);border-radius:10px;padding:8px 12px;font-weight:700;margin-top:4px;white-space:pre-line}
+.body{margin-top:4px;white-space:pre-line}
+.rev{background:var(--chg-soft);color:var(--ink);border-radius:10px;padding:8px 12px;margin-top:4px;white-space:pre-line}
+.rev b{color:var(--chg)}
+.answer{margin-top:16px}
+.answer label{display:block;font-weight:800;margin-bottom:6px}
+textarea,input[type=text]{width:100%;font:inherit;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:10px;padding:10px 12px;direction:rtl}
+textarea{min-height:96px;resize:vertical}
+textarea:focus,input:focus,button:focus-visible{outline:2px solid var(--hi);outline-offset:1px}
+.status{font-size:.85rem;color:var(--muted);margin-top:4px;min-height:1.3em}
+.status.ok{color:var(--ok)}
+.send{margin-top:28px;padding-top:22px;border-top:2px solid var(--hi)}
+.send .box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.send .hint{color:var(--muted);font-size:.95rem;flex:1 1 240px}
+button.primary{font:inherit;font-weight:800;background:var(--accent);color:var(--accent-ink);border:0;border-radius:999px;padding:12px 32px;cursor:pointer;min-height:44px}
+button.primary:disabled{opacity:.55;cursor:default}
+.sent{background:var(--ok-soft);color:var(--ok);border-radius:10px;padding:10px 14px;font-weight:700;flex:1 1 240px}
+.sent.warn{background:var(--warn-soft);color:var(--warn)}
+#fallbacktext{margin-top:8px;min-height:160px}
+@media (max-width:640px){.item{grid-template-columns:1fr;padding:14px}.shot{max-width:280px;margin-inline:auto;width:100%}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head><body>
+<div class="wrap">
+  <header class="top">
+    <div class="row"><span class="brand" id="brand"></span><span class="progress" id="progress"></span></div>
+    <div class="bar"><i id="barfill"></i></div>
+  </header>
+  <section class="intro">
+    <h1 id="h1"></h1>
+    <p id="intro"></p>
+    <div class="facts" id="facts"></div>
+  </section>
+  <section class="items" id="items"></section>
+  <section class="send" id="sendwrap">
+    <div class="box">
+      <div class="hint" id="sendhint"><label for="who" style="font-weight:700;display:block;margin-bottom:4px">השם שלכם <span style="font-weight:400;color:var(--muted)">(לא חובה)</span></label>
+      <input id="who" type="text" autocomplete="name" style="max-width:280px">
+      <div style="margin-top:6px">כשסיימתם, לחצו "שמור" וכל ההערות יישמרו. תיבה ריקה = מאושר.</div></div>
+      <button class="primary" id="sendbtn" type="button">שמור</button>
+    </div>
+  </section>
+</div>
+<script>
+const C = {"project": "before-after-1", "doc": "reviews/before-after-1-storyboard-v1", "ls": "imsc-before-after-1-storyboard-v1", "brand": "IMSC · לפני ואחרי 1 · סטוריבורד v1", "h1": "הסטוריבורד לאישור: גרסה 1", "intro": "שבע סצנות, כל אחת עם הפריים האמיתי מהגרסה הבנויה (הפנים מטושטשות), הטקסט שעל המסך, מה זז, ומה הביקורת מציעה לשנות. כתבו מתחת לכל סצנה רק מה שעוד צריך לשנות, או \"מאושר כולל ההצעה\" אם ההצעה טובה. תיבה ריקה = מאושר כמו שהוא. בסוף לחצו \"שמור\".", "facts": ["ריל 9:16", "35 שניות (31 לפי ההצעה)", "7 סצנות", "פנים מטושטשות"], "itemWord": "סצנה", "sendTitle": "הערות לסטוריבורד v1 של \"לפני ואחרי 1\":", "items": [{"k": "f01", "n": "01", "t": "פתיח: לאכול לבד", "sub": "0.0–3.0 שנ׳", "img": "img/f01.jpg", "quote": "יש דברים שלוקחים כמובנים מאליהם.\nלאכול לבד.", "body": "כרטיס נייבי. השורה העליונה עולה, \"לאכול לבד.\" נוחת בטורקיז ועומד 1.3 שנ׳ בלי תנועה. יוצא ב-blur crossfade אל הפוטג׳.", "rev": "הביקורת מציעה: לבטל את הכרטיס ולשים את ההוק על הפוטג׳ של סצנה 02 (2 שנ׳), ולהוסיף שורת תוצאה: \"לאכול לבד. זה חוזר.\" ברילס מחליטים לגלול ב-1–1.5 שנ׳, וכרטיס טקסט בלי תמונה הוא הקל ביותר לגלול ממנו."}, {"k": "f02", "n": "02", "t": "לפני 1: הכף של מישהו אחר", "sub": "3.0–8.6 שנ׳ · WA0025", "img": "img/f02.jpg", "quote": "לפני: כל כפית עוברת דרך יד אחרת", "body": "מלמעלה, היד של המטפלת אוספת אוכל, היד של המטופל מתחת. אין פנים. גלולה אדומה \"לפני\" נוחתת, לוגו נכנס משמאל, הכיתוב עולה עם קו אדום. גריידינג קריר.", "rev": "הביקורת מציעה: לקצר ל-4 שנ׳ (5.6 על שוט סטטי זה הרבה), כניסה שקטה יותר לגלולה (בלי \"סלאם\"), והמילים המודגשות בלבן במקום ורוד."}, {"k": "f03", "n": "03", "t": "לפני 2: ביס שתלוי במישהו", "sub": "8.6–13.6 שנ׳ · WA0026", "img": "img/f03.jpg", "quote": "כל ביס תלוי במישהו אחר", "body": "המטפלת מגישה כף לפה. פנים מטושטשות. הכיתוב מתחלף (היוצא עולה, הנכנס מימין). יוצא ב-seam wipe: פס טורקיז חוצה מימין לשמאל וחושף את \"אחרי\".", "rev": "הביקורת מציעה: פאנץ׳-אין 1.7× על אזור היד והכף (החלק התחתון של הפריים), כך שהפנים מחוץ לפריים ואין טשטוש בכלל. וכיתוב: \"כל ביס מחכה ליד של מישהו אחר\" במקום \"תלוי\" (נשמע כשיפוט). לקצר ל-4.5 שנ׳."}, {"k": "f04", "n": "04", "t": "אחרי 1: המזלג בידו", "sub": "13.6–18.7 שנ׳ · WA0021", "img": "img/f04.jpg", "quote": "אחרי: המזלג בידו. צעד אחר צעד", "body": "ידיים בלבד, מזלג מותאם, חיתוך בננה. אין פנים. גלולה טורקיז \"אחרי ✓\" נכנסת מימין, ה-✓ קופץ. גריידינג חם.", "rev": "הביקורת מציעה: לקצר את הכיתוב ל\"אחרי: המזלג בידו\" (כיתוב אחד = רעיון אחד; הפוטג׳ כבר מראה את ה\"צעד אחר צעד\"). 4 שנ׳."}, {"k": "f05", "n": "05", "t": "אחרי 2: לבד, מהצלחת עד הפה", "sub": "18.7–22.7 שנ׳ · WA0020", "img": "img/f05.jpg", "quote": "לבד. מהצלחת עד הפה", "body": "מלמעלה, היד שלו מובילה את המזלג לבד. רק 4.3 השניות הראשונות של הקליפ (אחר כך נכנסות פנים). מקביל אחד-לאחד לסצנה 02: אותה זווית, יד אחרת.", "rev": "הביקורת: ללא שינוי. זו סצנת ההוכחה והיא עובדת."}, {"k": "f06", "n": "06", "t": "אחרי 3: ולשתות בלי לבקש", "sub": "22.7–27.4 שנ׳ · WA0019", "img": "img/f06.jpg", "quote": "ולשתות בלי לבקש", "body": "שותה מכוס לבד. פנים מטושטשות (הכוס על הפנים, אין קרופ אפשרי). הכיתוב נכנס בסקייל+בלור. יוצא בדהייה לנייבי.", "rev": "הביקורת מציעה: לקצר ל-4 שנ׳ ולבחור את הרגע של הרמת הכוס, כדי לצמצם את זמן המסך של הטשטוש היחיד שנשאר."}, {"k": "f07", "n": "07", "t": "קלוז: עצמאות מתחילה בביס אחד", "sub": "27.7–35.0 שנ׳", "img": "img/f07.jpg", "quote": "עצמאות מתחילה\nבביס אחד.\nריפוי בעיסוק, פיזיותרפיה והזרקות בוטולינום. כל המומחים לספסטיות תחת קורת גג אחת.\nלתיאום פגישת הערכה · 055-2690670 · imsc.co.il", "body": "כרטיס נייבי עם זוהר. לוגו, כותרת, שורת שירותים, כפתור וואטסאפ, טלפון, אתר נכנסים בזה אחר זה, ואז הכל עומד 4 שנ׳. הכפתור נוגע פעם אחת.", "rev": "הביקורת מציעה: 4 אלמנטים בלבד (לוגו, כותרת, כפתור, טלפון). למחוק את שורת השירותים ואת imsc.co.il: ב-6 שניות הם מתחרים בטלפון, וה-CTA של אינסטגרם כבר מתחת לסרטון. 6 שנ׳."}, {"k": "g01", "n": "08", "t": "לכל הסרטון: הצעות רוחביות", "sub": "מתוך REVIEW.md", "body": "• שני צבעי הדגשה בלבד: אדום ל\"לפני\", טורקיז ל\"אחרי\" (בלי ורוד).\n• כיוון אחיד לכל התפרים: ימין → שמאל. seam wipe אחד מושקע, השאר שקטים.\n• סך הכל ~31 שנ׳ אחרי הקיצורים.\n• מוזיקה: פסנתר שקט 65–80 BPM מספריית Instagram, עלייה בכניסה ל\"אחרי\". לא בקובץ.\n• גרסת 15 שנ׳ לקמפיין ממומן: הוק על 02 → 03 → wipe → 05 → קלוז.\n• שאלות פתוחות: WA0022 (זהה ל-22(1)) לפני או אחרי? WA0023 ו-WA0018 לא ירדו. WA0024 בחוץ (סותר את \"לפני\").", "rev": ""}], "inbox": "https://script.google.com/macros/s/AKfycbzEj4lUky1em3ctwa-hol23Hfu5F5paCqut5pzeSTKYG4oaqZSQhPhb5EfFf9ZS16u11w/exec"};
+const $ = id => document.getElementById(id);
+const ORDER = C.items.map(i => i.k), LABEL = {}, areas = {};
+C.items.forEach(i => { LABEL[i.k] = C.itemWord + ' ' + i.n + ' · ' + i.t; });
+$('brand').textContent = C.brand; $('h1').textContent = C.h1; $('intro').textContent = C.intro;
+C.facts.forEach(f => { const s = document.createElement('span'); s.textContent = f; $('facts').appendChild(s); });
+const list = $('items');
+C.items.forEach(i => {
+  const art = document.createElement('article'); art.className = 'item' + (i.img ? '' : ' noimg'); art.id = 'item-' + i.k;
+  let h = '';
+  if (i.img) h += '<div class="shot"><img src="' + i.img + '" alt="" loading="lazy"></div>';
+  h += '<div><div class="meta"><span class="num">' + i.n + '</span><h2>' + esc(i.t) + '</h2>' + (i.sub ? '<span class="sub">' + esc(i.sub) + '</span>' : '') + '</div>';
+  if (i.quote) h += '<div class="label">הטקסט שעל המסך</div><div class="quote">' + esc(i.quote) + '</div>';
+  if (i.body) h += '<div class="label">מה קורה</div><div class="body">' + esc(i.body) + '</div>';
+  if (i.rev) h += '<div class="label">הביקורת</div><div class="rev">' + esc(i.rev) + '</div>';
+  h += '<div class="answer"><label for="a-' + i.k + '">מה לשנות ב' + C.itemWord + ' הזאת? (ריק = מאושר)</label><textarea id="a-' + i.k + '"></textarea><div class="status" id="s-' + i.k + '"></div></div></div>';
+  art.innerHTML = h; list.appendChild(art);
+  areas[i.k] = $('a-' + i.k);
+});
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function lsKey(k){ return C.ls + '-' + k; }
+ORDER.forEach(k => {
+  try { const v = localStorage.getItem(lsKey(k)); if (v) areas[k].value = v; } catch(e){}
+  let t; areas[k].addEventListener('input', () => { clearTimeout(t); $('s-'+k).textContent = ''; t = setTimeout(() => {
+    try { localStorage.setItem(lsKey(k), areas[k].value); $('s-'+k).textContent = 'נשמר במכשיר הזה'; $('s-'+k).className = 'status ok'; } catch(e){ $('s-'+k).textContent = 'לא נשמר'; }
+    progress(); }, 800); });
+});
+function progress(){ const n = ORDER.filter(k => (areas[k].value||'').trim()).length; $('progress').textContent = n + ' מתוך ' + ORDER.length + ' תיבות עם הערות'; $('barfill').style.width = (100*n/ORDER.length) + '%'; }
+progress();
+try { const w = localStorage.getItem(C.ls + '-who'); if (w) $('who').value = w; } catch(e){}
+$('who').addEventListener('input', () => { try { localStorage.setItem(C.ls + '-who', $('who').value); } catch(e){} });
+function collect(){ const notes = []; ORDER.forEach(k => { const v = (areas[k].value||'').trim(); if (v) notes.push({item: LABEL[k], note: v}); }); return notes; }
+function compile(){ const who = ($('who').value||'').trim(); const L = [C.sendTitle + (who ? ' (' + who + ')' : '')]; const n = collect();
+  n.forEach(x => L.push('', '• ' + x.item + ':', x.note)); if (!n.length) L.push('', '(הכול מאושר, בלי הערות)'); return L.join('\n'); }
+async function send(){
+  const b = $('sendbtn') || $('sendbtn2'); if (b) { b.disabled = true; b.textContent = 'שומר...'; }
+  const who = ($('who').value||'').trim(); const box = document.querySelector('#sendwrap .box'); let ok = false;
+  if (C.inbox) { try { await fetch(C.inbox, {method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify({project: C.project||'', round: C.doc, name: who || 'ללא שם', notes: collect()})}); ok = true; } catch(e){} }
+  if (ok) { box.innerHTML = '<div class="sent"></div><button class="primary" id="sendbtn2" type="button">שמור שוב</button>'; box.querySelector('.sent').textContent = 'נשמר' + (who ? ', תודה ' + who : '') + '. אפשר להמשיך לערוך ולשמור שוב.'; $('sendbtn2').addEventListener('click', send); return; }
+  box.innerHTML = '<div class="sent warn">השמירה לא הצליחה. העתיקו את הטקסט ושלחו אותו:</div><textarea id="fallbacktext" readonly></textarea><button class="primary" id="sendbtn2" type="button">נסו שוב</button>';
+  $('fallbacktext').value = compile(); $('sendbtn2').addEventListener('click', send);
+}
+$('sendbtn').addEventListener('click', send);
+</script>
+</body></html>
