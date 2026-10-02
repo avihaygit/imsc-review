@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex">
+<title>מאמר A5 · קונטרקטורה · IMSC</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap">
+<style>
+/* ===== Brand tokens: swap these per project (light first, then dark) ===== */
+:root{
+  --bg:#F3F0E8; --surface:#FFFFFF; --ink:#0A2350; --muted:#4F5E78; --line:#DCD6C8;
+  --accent:#06265A; --accent-ink:#F5F1E8; --hi:#0A7D7D; --hi-soft:#DDF1EF; --chg:#8A6614; --chg-soft:#F6ECD2;
+  --field:#FFFFFF; --ok:#1E7A52; --ok-soft:#DDF1E6; --warn:#A04C0C; --warn-soft:#FBE8D6; --shadow:0 12px 30px rgba(6,38,90,.14);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#071A3A; --surface:#0E2750; --ink:#EEF2FA; --muted:#A8B7D0; --line:#23406E;
+    --accent:#12BCBC; --accent-ink:#06265A; --hi:#12BCBC; --hi-soft:#123E55; --chg:#E0BC6A; --chg-soft:#3A2F16;
+    --field:#0A2045; --ok:#5DD39E; --ok-soft:#173A2B; --warn:#F0A25E; --warn-soft:#432A12; --shadow:0 12px 30px rgba(0,0,0,.35); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#071A3A; --surface:#0E2750; --ink:#EEF2FA; --muted:#A8B7D0; --line:#23406E;
+  --accent:#12BCBC; --accent-ink:#06265A; --hi:#12BCBC; --hi-soft:#123E55; --chg:#E0BC6A; --chg-soft:#3A2F16;
+  --field:#0A2045; --ok:#5DD39E; --ok-soft:#173A2B; --warn:#F0A25E; --warn-soft:#432A12; --shadow:0 12px 30px rgba(0,0,0,.35); color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Assistant","Arial Hebrew",Arial,sans-serif;font-size:17px;line-height:1.6}
+.wrap{direction:rtl;max-width:980px;margin:0 auto;padding-inline:16px;padding-block:0 96px}
+h1,h2{font-weight:800;line-height:1.15;margin:0;text-wrap:balance}
+h1{font-size:clamp(1.9rem,4.5vw,2.6rem)} h2{font-size:1.45rem}
+p{margin:.5rem 0}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:12px 10px;border-bottom:1px solid var(--line)}
+.top .row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-weight:800;color:var(--hi);letter-spacing:.02em}
+.progress{font-size:.92rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.bar{height:5px;background:var(--line);border-radius:99px;margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--hi);transition:width .3s ease}
+.intro{padding-block:28px 12px;display:grid;gap:10px}
+.intro p{color:var(--muted);max-width:62ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.facts span{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:.9rem;font-weight:600}
+.player{margin-top:14px;max-width:340px}
+.player video{display:block;width:100%;border-radius:14px;background:#000;box-shadow:var(--shadow)}
+.items{display:grid;gap:28px;margin-top:20px}
+.item{display:grid;grid-template-columns:minmax(0,250px) minmax(0,1fr);gap:24px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.item.noimg{grid-template-columns:1fr}
+.shot img{display:block;width:100%;border-radius:12px;box-shadow:var(--shadow);max-width:100%}
+.meta{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.num{font-weight:800;color:var(--hi);font-size:1.5rem;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);font-size:.9rem;font-variant-numeric:tabular-nums}
+.chg{display:inline-block;background:var(--chg-soft);color:var(--chg);font-size:.78rem;font-weight:800;padding:.05em .6em;border-radius:99px;vertical-align:middle}
+.changed{background:var(--chg-soft);border-radius:10px;padding:8px 12px;margin-top:10px;font-size:.95rem}
+.label{font-size:.8rem;font-weight:800;letter-spacing:.06em;color:var(--muted);margin-top:14px}
+.quote{background:var(--hi-soft);border-radius:10px;padding:8px 12px;font-weight:700;margin-top:4px;white-space:pre-line}
+.body{margin-top:4px;white-space:pre-line;overflow-wrap:anywhere}
+.jump{font:inherit;font-weight:700;font-size:.9rem;color:var(--hi);background:var(--hi-soft);border:0;border-radius:999px;padding:6px 14px;margin-top:10px;cursor:pointer;min-height:36px}
+.answer{margin-top:16px}
+.answer label{display:block;font-weight:800;margin-bottom:6px}
+textarea{width:100%;min-height:96px;resize:vertical;font:inherit;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:10px;padding:10px 12px;direction:rtl}
+textarea:focus,.jump:focus-visible{outline:2px solid var(--hi);outline-offset:1px}
+.status{font-size:.85rem;color:var(--muted);margin-top:4px;min-height:1.3em}
+.status.ok{color:var(--ok)} .status.warn{color:var(--warn)}
+.general{margin-top:28px;background:var(--chg-soft);border-radius:18px;padding:18px}
+.send{margin-top:28px;padding-top:22px;border-top:2px solid var(--hi)}
+.send .box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.send .hint{color:var(--muted);font-size:.95rem;flex:1 1 240px}
+button.primary{font:inherit;font-weight:800;background:var(--accent);color:var(--accent-ink);border:0;border-radius:999px;padding:12px 32px;cursor:pointer;min-height:44px}
+button.primary:disabled{opacity:.55;cursor:default}
+button.primary:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.sent{background:var(--ok-soft);color:var(--ok);border-radius:10px;padding:10px 14px;font-weight:700}
+@media (max-width:640px){ .item{grid-template-columns:1fr;padding:14px} .shot{max-width:280px;margin-inline:auto;width:100%} }
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="row"><span class="brand" id="brand"></span><span class="progress" id="progress"></span></div>
+    <div class="bar"><i id="barfill"></i></div>
+  </header>
+  <section class="intro">
+    <h1 id="h1"></h1>
+    <p id="intro"></p>
+    <div class="facts" id="facts"></div>
+    <div class="player" id="player" hidden></div>
+  </section>
+  <div class="items" id="items"></div>
+  <section class="general">
+    <h2>הערה כללית</h2>
+    <p id="general-hint"></p>
+    <div class="answer"><label for="a-general">ההערה שלי</label><textarea id="a-general" data-key="general" placeholder="כל מה שלא שייך לפריט אחד"></textarea><div class="status" id="st-general"></div></div>
+  </section>
+  <div class="send" id="sendwrap">
+    <div class="box"><div class="hint" id="sendhint"><label for="who" style="font-weight:700;display:block;margin-bottom:4px">השם שלכם</label><input id="who" type="text" autocomplete="name" style="font:inherit;width:100%;max-width:280px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--field);color:var(--ink)"><div style="margin-top:6px">כשסיימתם, לחצו "שמור" וכל ההערות יישמרו. תיבה ריקה = מאושר.</div></div><button class="primary" id="sendbtn" type="button">שמור</button></div>
+  </div>
+</div>
+
+<script>
+/* ===================== CONFIG — the only part to edit per review ===================== */
+const CONFIG = {
+ "brand": "IMSC · מאגר המידע · מאמר A5 לאישור · סבב 1",
+ "h1": "קונטרקטורה: למה המפרק מתקבע ואיך מונעים",
+ "intro": "זו טיוטה של מאמר A5 במאגר המידע באתר, מחולקת לפסקאות. מתחת לכל פסקה יש תיבה: כתבו רק מה שצריך לשנות, ותיבה ריקה = מאושר. בסוף יש 8 עובדות לאימות ו-4 שאלות קצרות לראיון. כשמסיימים, כותבים שם ולוחצים \"שמור\". אפשר לחזור ולהמשיך מאוחר יותר.",
+ "facts": [
+  "29 פסקאות",
+  "8 עובדות לאימות",
+  "4 שאלות לראיון",
+  "כ-1,200 מילים"
+ ],
+ "video": null,
+ "generalHint": "על המאמר כולו: הטון, האורך, מה חסר או מה מיותר.",
+ "doc": "reviews/article-a5-v1",
+ "ls": "imsc-article-a5-v1",
+ "sendTitle": "הערות למאמר A5 \"קונטרקטורה\", סבב 1:",
+ "itemWord": "פריט",
+ "items": [
+  {
+   "k": "p01",
+   "n": "01",
+   "t": "בקצרה (תיבה בראש המאמר)",
+   "body": "• קונטרקטורה היא התקצרות קבועה של שריר, גיד או רקמות המפרק. היא מגבילה את התנועה גם כשהשריר רגוע.\n• היא מתפתחת כשהגף נשאר שעות רבות באותה תנוחה, בגלל ספסטיות, חולשה או חוסר תנועה.\n• מניעה מבוססת על שילוב: תנועה בטווח המלא, תנוחה נכונה, סד כשצריך וטיפול בספסטיות.\n• קונטרקטורה קיימת קשה הרבה יותר לתקן, ולכן כדאי לזהות אותה מוקדם."
+  },
+  {
+   "k": "p02",
+   "n": "02",
+   "t": "פתיחה",
+   "body": "מרפק שפעם אפשר היה ליישר עד הסוף, ועכשיו נעצר באמצע, או עקב שלא יורד לרצפה גם כשעומדים עליו. כשזה קורה, הרבה פעמים מדובר בקונטרקטורה: השריר או הרקמות סביב המפרק התקצרו ממש. במאמר הזה תמצאו למה זה קורה, איך מבדילים את זה מספסטיות ומה עושים כדי שזה לא יקרה או לא יחמיר."
+  },
+  {
+   "k": "p03",
+   "n": "03",
+   "t": "מה זו קונטרקטורה?",
+   "body": "קונטרקטורה (התקצרות קבועה) היא מצב שבו אחת הרקמות סביב המפרק איבדה מהאורך שלה. זה יכול להיות השריר, הגיד, הקופסית של המפרק ולפעמים גם העור. לכן, כשמזיזים את המפרק, התנועה נעצרת בנקודה קבועה, בעצירה קשיחה. זה קורה גם כשמזיזים לאט מאוד, גם כשהמטופל רגוע לגמרי וגם כשהוא ישן."
+  },
+  {
+   "k": "p04",
+   "n": "04",
+   "t": "מה זו קונטרקטורה?",
+   "body": "זה ההבדל העיקרי מספסטיות. ספסטיות היא בעיה של האות העצבי: היא משתנה לפי מהירות התנועה, השעה ומצב הרוח. קונטרקטורה, לעומת זאת, היא בעיה של הרקמה עצמה, והיא לא משתנה מרגע לרגע. השוואה מלאה בין ספסטיות, חולשה, קונטרקטורה ונוקשות נמצאת במאמר מה זה ספסטיות."
+  },
+  {
+   "k": "p05",
+   "n": "05",
+   "t": "למה המפרק מתקבע?",
+   "body": "שרירים מסתגלים לאורך שבו הם נמצאים רוב הזמן, ולכן שריר שמוחזק שעות רבות במצב מקוצר מאבד בהדרגה מהאורך שלו, והרקמות סביבו מתקצרות איתו. ספסטיות מושכת את הגף לתנוחה מקוצרת, וחולשה מונעת מהמטופל להזיז אותו לכיוון השני. כאב גורם לשמור על הגף בלי תנועה. וגם שעות ארוכות במיטה או בכיסא גלגלים בתנוחה אחת תורמות."
+  },
+  {
+   "k": "p06",
+   "n": "06",
+   "t": "למה המפרק מתקבע?",
+   "body": "זה קורה מהר יותר ממה שנדמה: במחקר שעקב אחרי 200 מבוגרים שאושפזו אחרי שבץ, כמחצית פיתחו לפחות קונטרקטורה אחת בתוך שישה חודשים, והכתפיים והירכיים נפגעו הכי הרבה. חולשה בשרירים ניבאה חלק מההתקצרויות במרפק, בשורש כף היד ובקרסול, אבל רק במיעוט המקרים. כלומר, קשה לדעת מראש אצל מי זה יקרה, ולכן כדאי לעקוב אחרי כל מי שנמצא בסיכון."
+  },
+  {
+   "k": "p07",
+   "n": "07",
+   "t": "למי יש סיכון גבוה יותר?",
+   "body": "כל מי שחי עם ספסטיות או עם חולשה בגף נמצא בסיכון מסוים. הסיכון גבוה יותר כשהגף כמעט לא זז באופן פעיל, כשהספסטיות חזקה ומושכת כל הזמן לאותו כיוון וכשמטופל מבלה שעות ארוכות במיטה או בכיסא גלגלים. כאב מעלה את הסיכון, כי גף כואב נשאר בלי תנועה. גם קשיי תקשורת או קשב, אחרי פגיעת ראש או אירוע מוחי, מעלים אותו, כי המטופל לא תמיד מזיז את הגף בעצמו או מדווח שמשהו השתנה."
+  },
+  {
+   "k": "p08",
+   "n": "08",
+   "t": "למי יש סיכון גבוה יותר?",
+   "body": "התקופה הראשונה אחרי הפגיעה רגישה במיוחד: היד או הרגל עדיין חלשות, הספסטיות רק מתחילה להופיע וכל תשומת הלב של המשפחה מופנית לדברים אחרים. זה בדיוק הזמן שבו ההתקצרות יכולה להתחיל בשקט."
+  },
+  {
+   "k": "p09",
+   "n": "09",
+   "t": "אילו מפרקים בסיכון, ומה זה עושה ביום-יום?",
+   "body": "בכתף, קונטרקטורה מקשה להרחיק את הזרוע מהגוף ולסובב אותה החוצה. קשה ללבוש חולצה, לרחוץ את בית השחי, והכתף כואבת כשמזיזים אותה. במרפק, בשורש כף היד ובאצבעות, היד נשארת סגורה. העור בכף היד נשאר לח ונפגע, וקשה לגזור ציפורניים."
+  },
+  {
+   "k": "p10",
+   "n": "10",
+   "t": "אילו מפרקים בסיכון, ומה זה עושה ביום-יום?",
+   "body": "בירך ובברך, קונטרקטורה מקשה לשכב ישר, לשבת נכון בכיסא ולעמוד. למשל, כשהברכיים לא מתיישרות, העמידה מעייפת הרבה יותר. בקרסול, כשהעקב לא יורד לרצפה, ההליכה פחות יציבה, וקשה להתאים נעל או סד קרסול-רגל."
+  },
+  {
+   "k": "p11",
+   "n": "11",
+   "t": "אילו מפרקים בסיכון, ומה זה עושה ביום-יום?",
+   "body": "אצל מבוגרים עם שיתוק מוחין (CP), הספסטיות קיימת מגיל צעיר, והשרירים חיים איתה עשרות שנים. אצלם מעקב קבוע אחרי טווחי התנועה חשוב במיוחד, גם כשנראה שדבר לא השתנה."
+  },
+  {
+   "k": "p12",
+   "n": "12",
+   "t": "איך יודעים אם זו ספסטיות או קונטרקטורה?",
+   "body": "בבדיקה מזיזים את המפרק לאט מאוד ומחכים שהשריר יירגע. אם הטווח נפתח בהדרגה, חלק גדול מההגבלה הוא ספסטיות, ואם התנועה נעצרת תמיד באותה זווית, יש התקצרות. עם זאת, ברוב המקרים מוצאים שילוב של שניהם."
+  },
+  {
+   "k": "p13",
+   "n": "13",
+   "t": "איך יודעים אם זו ספסטיות או קונטרקטורה?",
+   "body": "לפעמים ההבחנה לא ברורה בבדיקה, ואז אפשר לעשות חסימה זמנית של העצב בחומר הרדמה מקומית: השריר מפסיק לעבוד לכמה שעות, ומה שנשאר מוגבל הוא ההתקצרות. לפעמים התמונה מתבהרת רק אחרי הזרקת בוטולינום טוקסין, כשרואים כמה טווח חזר."
+  },
+  {
+   "k": "p14",
+   "n": "14",
+   "t": "איך יודעים אם זו ספסטיות או קונטרקטורה?",
+   "body": "זה חשוב כי הטיפולים שונים: הזרקה מרככת את הספסטיות, אבל לא מאריכה רקמה שהתקצרה. מי שמצפה שההזרקה תיישר מרפק מקובע יתאכזב."
+  },
+  {
+   "k": "p15",
+   "n": "15",
+   "t": "איך מונעים קונטרקטורה?",
+   "body": "הרבה משפחות שומעות שהפתרון הוא מתיחות, אבל המחקר מסבך את התמונה. סקירה שיטתית גדולה מצאה שתוכניות מתיחה, כפי שנבדקו במחקרים, לא שינו באופן ממשי את טווח התנועה של המפרקים, גם אצל אנשים עם בעיה נוירולוגית. מצד שני, רוב המחקרים נמשכו שבועות בודדים, ולכן לא ידוע מה קורה אחרי חודשים ושנים של תרגול יומי."
+  },
+  {
+   "k": "p16",
+   "n": "16",
+   "t": "איך מונעים קונטרקטורה?",
+   "body": "המסקנה שלנו: לא בונים על הארכה (מתיחה) לבד, כי כמה דקות ביום לא מתחרות בשעות הארוכות שבהן היד סגורה או הקרסול למטה. מה שעוזר הוא לשנות את מה שקורה לגף ברוב שעות היום. בפועל זה שילוב של כמה דברים:"
+  },
+  {
+   "k": "p17",
+   "n": "17",
+   "t": "איך מונעים קונטרקטורה?",
+   "body": "• להזיז כל יום את כל המפרקים בסיכון בטווח המלא, לאט. איך עושים את זה נכון בבית, במאמר תרגילי הארכה לספסטיות.\n• להשתמש בגף בפעולות אמיתיות ככל שאפשר, כי תנועה פעילה שומרת על אורך השריר.\n• לשים לב לתנוחה במיטה ובכיסא, ולא להשאיר את הגף שעות באותו מצב מקוצר.\n• סד, כשהיד או הקרסול כמעט לא זזים ויש סיכון שיתקבעו. ההנחיות הבריטיות לשיקום אחרי שבץ ממליצות לשקול סד בדיוק במצבים האלה, ולא באופן שגרתי. על סוגי הסדים במאמר סד ליד ספסטית. על ההתאמה אצלנו, בעמוד סדים ואביזרי עזר.\n• טיפול בספסטיות עצמה, כשהיא זו שמושכת את הגף. מניעת קונטרקטורות היא אחת המטרות המוכרות של הזרקות בוטולינום טוקסין."
+  },
+  {
+   "k": "p18",
+   "n": "18",
+   "t": "מה עושים כשהקונטרקטורה כבר קיימת?",
+   "body": "המטרות משתנות, אבל לא נעלמות: גם כשאי אפשר להחזיר את הטווח, אפשר למנוע החמרה, להפחית כאב, לשמור על העור ולהקל על הטיפול היומיומי, כמו ניקוי כף היד או הלבשה."
+  },
+  {
+   "k": "p19",
+   "n": "19",
+   "t": "מה עושים כשהקונטרקטורה כבר קיימת?",
+   "body": "יש גם דרכים להחזיר חלק מהטווח, ואחת מהן היא גיבוס או סד שמותאמים מחדש בהדרגה, כל פעם בזווית מעט פתוחה יותר. כשההתקצרות קשה ומפריעה מאוד, ואין שיפור בדרכים אחרות, שוקלים הפניה לאורתופד להערכה של ניתוח, למשל הארכת גיד."
+  },
+  {
+   "k": "p20",
+   "n": "20",
+   "t": "לאן פונים ומה מביאים?",
+   "body": "ב-IMSC לא צריך הפניה, אבל מומלץ להביא תיעוד רפואי. במפגש ההערכה, של שעה לפחות עם ד״ר צווקר, מרפאה בעיסוק ופיזיותרפיסט, בודקים כל מפרק בסיכון ומבדילים בין ספסטיות להתקצרות. ההערכה נעשית במגדלי ב.ס.ר 2 בבני ברק, וריפוי בעיסוק ופיזיותרפיה ניתנים גם במרכז הספורט של אוניברסיטת תל אביב. IMSC הוא שירות פרטי, וקיימת אפשרות להחזרים מביטוחים פרטיים, הן על התייעצות עם רופא והן על טיפולי שיקום. כדאי לבדוק מול הפוליסה שלכם."
+  },
+  {
+   "k": "p21",
+   "n": "21",
+   "t": "מתי כדאי לפנות לבדיקה?",
+   "body": "• מפרק לא מגיע כבר לטווח שהגיע אליו לפני כמה שבועות.\n• קשה יותר להלביש, לרחוץ או לנקות את כף היד.\n• העקב לא יורד לרצפה, או שהסד כבר לא נכנס כמו קודם.\n• יש כאב כשמזיזים את המפרק עד הסוף.\n• מופיעה אדמומיות או פצע בנקודת לחץ, למשל בכף היד או בין הברכיים."
+  },
+  {
+   "k": "p22",
+   "n": "22",
+   "t": "שאלות שחוזרות",
+   "body": "אפשר להחזיר מפרק שהתקבע?\nלפעמים חלקית: גיבוס או סד שמותאמים בהדרגה יכולים להחזיר חלק מהטווח, ובמקרים מסוימים שוקלים ניתוח. ככל שמזהים מוקדם יותר, יש יותר מה להציל."
+  },
+  {
+   "k": "p23",
+   "n": "23",
+   "t": "שאלות שחוזרות",
+   "body": "בוטוקס יעזור לקונטרקטורה?\nההזרקה מרככת את החלק של הספסטיות, ולכן לפעמים חוזר טווח שנראה אבוד, אבל את הרקמה שכבר התקצרה היא לא מאריכה."
+  },
+  {
+   "k": "p24",
+   "n": "24",
+   "t": "שאלות שחוזרות",
+   "body": "כמה זמן לוקח לקונטרקטורה להתפתח?\nאין מספר אחד. למשל, במחקר על מבוגרים אחרי שבץ, כמחצית פיתחו לפחות קונטרקטורה אחת כבר בחצי השנה הראשונה. לכן המעקב מתחיל מוקדם."
+  },
+  {
+   "k": "p25",
+   "n": "25",
+   "t": "שאלות שחוזרות",
+   "body": "סד בלילה מספיק כדי למנוע קונטרקטורה?\nלא בהכרח. סד שומר על אורך השריר בשעות שהוא על הגף, אבל ההנחיות לא ממליצות עליו לכל אחד, ומחקר לא הראה שסד לבדו מונע התקצרות. הוא עובד טוב יותר כחלק מתוכנית שכוללת תנועה, תנוחה וטיפול בספסטיות."
+  },
+  {
+   "k": "p26",
+   "n": "26",
+   "t": "שאלות שחוזרות",
+   "body": "מתיחה כואבת היא סימן שזה עובד?\nלא. תחושת מתיחה מתונה מקובלת. לעומת זאת, כאב חד, או כאב שנמשך אחרי התרגול, הוא סיבה לעצור ולבדוק עם המטפל."
+  },
+  {
+   "k": "p27",
+   "n": "27",
+   "t": "שאלות שחוזרות",
+   "body": "רוצים לדעת מה קבוע ומה עוד אפשר לשנות?\nבמפגש ההערכה ב-IMSC מבדילים בין ספסטיות להתקצרות בכל מפרק, ומגדירים מטרה שאפשר לבדוק אם הושגה. אפשר להתחיל בשיחת היכרות, ונחזור אליכם בהקדם."
+  },
+  {
+   "k": "p28",
+   "n": "28",
+   "t": "מקורות מידע (באתר: אקורדיון מקופל)",
+   "body": "• Kwah, L. K., Harvey, L. A., Diong, J. H. L., & Herbert, R. D. (2012). Half of the adults who present to hospital with stroke develop at least one contracture within six months: an observational study. Journal of Physiotherapy. https://pubmed.ncbi.nlm.nih.gov/22341381/\n• Harvey, L. A., et al. (2017). Stretch for the treatment and prevention of contractures. Cochrane Database of Systematic Reviews. https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD007455.pub3/full\n• NICE (2023). Stroke rehabilitation in adults (NG236). https://www.nice.org.uk/guidance/ng236\n• Royal College of Physicians (2018). Spasticity in adults: management using botulinum toxin. National guidelines. https://www.rcp.ac.uk/improving-care/resources/spasticity-in-adults-management-using-botulinum-toxin/\n• Deltombe, T., et al. (2017). Assessment and treatment of spastic equinovarus foot after stroke: Guidance from the Mont-Godinne interdisciplinary group. Journal of Rehabilitation Medicine. https://www.medicaljournals.se/jrm/content/html/10.2340/16501977-2226\n• Stroke Association. Spasticity and contractures. https://www.stroke.org.uk/stroke/effects/physical/spasticity-and-contractures"
+  },
+  {
+   "k": "p29",
+   "n": "29",
+   "t": "גילוי נאות",
+   "body": "המידע כללי ואינו מחליף ייעוץ רפואי אישי. התאמת טיפול נעשית על ידי רופא מטפל."
+  },
+  {
+   "k": "v1",
+   "n": "א1",
+   "t": "עובדה לאימות",
+   "body": "מחקר Kwah 2012: כמחצית פיתחו לפחות קונטרקטורה אחת בתוך שישה חודשים; הכתפיים והירכיים הכי נפוצות; חולשה בשרירים ניבאה חלק מההתקצרויות.",
+   "sub": "פסקאות 06, 24"
+  },
+  {
+   "k": "v2",
+   "n": "א2",
+   "t": "עובדה לאימות",
+   "body": "\"מתיחה לא משפרת באופן משמעותי את טווח התנועה\" (סקירת Cochrane 2017), ורוב המחקרים נמשכו שבועות בודדים. הניסוח מאוזן?",
+   "sub": "פסקה 15"
+  },
+  {
+   "k": "v3",
+   "n": "א3",
+   "t": "עובדה לאימות",
+   "body": "חסימת עצב אבחנתית בחומר הרדמה מקומית. האם IMSC מבצע? אם לא, להשאיר כמידע כללי או להוריד?",
+   "sub": "פסקה 13"
+  },
+  {
+   "k": "v4",
+   "n": "א4",
+   "t": "עובדה לאימות",
+   "body": "גיבוס סדרתי. האם IMSC מציע? אם לא, להשאיר כמידע כללי?",
+   "sub": "פסקאות 19, 22"
+  },
+  {
+   "k": "v5",
+   "n": "א5",
+   "t": "עובדה לאימות",
+   "body": "\"מניעת קונטרקטורות היא אחת המטרות המוכרות של הזרקות בוטולינום טוקסין.\"",
+   "sub": "פסקה 17"
+  },
+  {
+   "k": "v6",
+   "n": "א6",
+   "t": "עובדה לאימות",
+   "body": "CP במבוגרים: \"מעקב קבוע אחרי טווחי התנועה חשוב במיוחד\".",
+   "sub": "פסקה 11"
+  },
+  {
+   "k": "v7",
+   "n": "א7",
+   "t": "עובדה לאימות",
+   "body": "גורמי הסיכון: חוסר תנועה פעילה, ספסטיות חזקה, שעות במיטה או בכיסא, כאב, קשיי תקשורת וקשב, והתקופה הראשונה אחרי הפגיעה.",
+   "sub": "פסקה 07"
+  },
+  {
+   "k": "v8",
+   "n": "א8",
+   "t": "עובדה לאימות",
+   "body": "\"מחקר לא הראה שסד לבדו מונע התקצרות.\"",
+   "sub": "פסקה 25"
+  },
+  {
+   "k": "q1",
+   "n": "ש1",
+   "t": "שאלה לראיון: להגיד שזה קבוע",
+   "sub": "משפט או שניים מספיקים",
+   "body": "איך אתה מסביר למשפחה, אחרי הבדיקה, שחלק מהמגבלה כבר קבוע? מה המשפט שאתה אומר בחדר?"
+  },
+  {
+   "k": "q2",
+   "n": "ש2",
+   "t": "שאלה לראיון: סימנים מוקדמים",
+   "sub": "משפט או שניים מספיקים",
+   "body": "מה הסימנים הראשונים שאתה רואה בבדיקה, או שהמשפחה יכולה לשים לב אליהם בבית, לפני שהמפרק כבר התקבע?"
+  },
+  {
+   "k": "q3",
+   "n": "ש3",
+   "t": "שאלה לראיון: תנוחות בבית",
+   "sub": "משפט או שניים מספיקים",
+   "body": "באילו מצבים בבית (שכיבה במיטה, ישיבה בכיסא גלגלים, שינה) אתה רואה שקונטרקטורות מתפתחות הכי מהר? מה אתה מבקש מהמשפחה לשנות קודם?"
+  },
+  {
+   "k": "q4",
+   "n": "ש4",
+   "t": "שאלה לראיון: הפניה לניתוח",
+   "sub": "משפט או שניים מספיקים",
+   "body": "מתי אתה מפנה מטופל עם קונטרקטורה לאורתופד או להערכה כירורגית, ואיך אתה מציג את זה למשפחה?"
+  }
+ ],
+ "inbox": "https://script.google.com/macros/s/AKfycbzEj4lUky1em3ctwa-hol23Hfu5F5paCqut5pzeSTKYG4oaqZSQhPhb5EfFf9ZS16u11w/exec",
+ "project": "article-a5"
+};
+/* ===================================================================================== */
+(function(){
+  document.documentElement.setAttribute('dir','rtl'); document.documentElement.setAttribute('lang','he');
+  const C=CONFIG, $=id=>document.getElementById(id);
+  $('brand').textContent=C.brand; $('h1').textContent=C.h1; $('intro').textContent=C.intro; $('general-hint').textContent=C.generalHint;
+  C.facts.forEach(f=>{ const s=document.createElement('span'); s.textContent=f; $('facts').appendChild(s); });
+  let vid=null;
+  if(C.video){ const p=$('player'); p.hidden=false; vid=document.createElement('video'); vid.src=C.video.src; if(C.video.poster) vid.poster=C.video.poster; vid.controls=true; vid.playsInline=true; vid.preload='metadata'; p.appendChild(vid); }
+  C.items.forEach(it=>{
+    const el=document.createElement('article'); el.className='item'+(it.img?'':' noimg'); el.id='i-'+it.k;
+    el.innerHTML=(it.img?'<div class="shot"><img alt="" loading="lazy"></div>':'')+'<div><div class="meta"><span class="num"></span><h2></h2><span class="sub"></span></div><div class="changed" hidden></div><button class="jump" type="button" hidden>▶ לצפות מכאן</button><div class="label lq" hidden>טקסט</div><div class="quote" hidden></div><div class="label lb" hidden>פירוט</div><div class="body" hidden></div><div class="answer"><label></label><textarea placeholder="רק מה שצריך לשנות. ריק = מאושר"></textarea><div class="status"></div></div></div>';
+    if(it.img){ const im=el.querySelector('img'); im.src=it.img; im.alt=C.itemWord+' '+it.n+': '+it.t; }
+    el.querySelector('.num').textContent=it.n||''; el.querySelector('h2').textContent=it.t; el.querySelector('.sub').textContent=it.sub||'';
+    if(it.ch){ const c=el.querySelector('.changed'); c.hidden=false; c.innerHTML='<span class="chg">שונה</span> '; c.appendChild(document.createTextNode(it.ch)); }
+    if(it.quote){ el.querySelector('.lq').hidden=false; const q=el.querySelector('.quote'); q.hidden=false; q.textContent=it.quote; }
+    if(it.body){ el.querySelector('.lb').hidden=false; const b=el.querySelector('.body'); b.hidden=false; b.textContent=it.body; }
+    if(vid && typeof it.at==='number'){ const j=el.querySelector('.jump'); j.hidden=false; j.addEventListener('click',()=>{ try{ vid.currentTime=it.at; const pr=vid.play(); if(pr&&pr.catch) pr.catch(()=>{}); }catch(e){} vid.scrollIntoView({behavior:'smooth',block:'center'}); }); }
+    const ta=el.querySelector('textarea'); ta.id='a-'+it.k; ta.dataset.key=it.k;
+    const lab=el.querySelector('label'); lab.htmlFor=ta.id; lab.textContent='הערות ל'+C.itemWord+' '+(it.n||it.t);
+    el.querySelector('.status').id='st-'+it.k;
+    $('items').appendChild(el);
+  });
+
+  const ORDER=C.items.map(i=>i.k).concat(['general']);
+  const LABEL={}; C.items.forEach(i=>LABEL[i.k]=C.itemWord+' '+(i.n?i.n+' · ':'')+i.t); LABEL.general='הערה כללית';
+  const areas={}; ORDER.forEach(k=>areas[k]=document.querySelector('textarea[data-key="'+k+'"]'));
+  let docRef=null, comments=null, state={answers:{}}; const timers={};
+  const lsLoad=()=>{ try{ const j=localStorage.getItem(C.ls); return j?JSON.parse(j):null; }catch(e){ return null; } };
+  const lsSave=()=>{ try{ localStorage.setItem(C.ls, JSON.stringify(state)); }catch(e){} };
+  function progress(){ const n=ORDER.filter(k=>(areas[k].value||'').trim()).length; $('progress').textContent=n+' מתוך '+ORDER.length+' תיבות עם הערות'; $('barfill').style.width=(n/ORDER.length*100)+'%'; }
+  function fill(){ ORDER.forEach(k=>{ const v=state.answers[k]||''; if(areas[k].value!==v && document.activeElement!==areas[k]) areas[k].value=v; }); progress(); }
+  function setStatus(k,t,c){ const el=$('st-'+k); if(!el) return; el.textContent=t; el.className='status'+(c?' '+c:''); }
+  async function persist(k){
+    state.answers[k]=areas[k].value; state.updatedAt=new Date().toISOString(); lsSave();
+    if(!docRef){ setStatus(k,'נשמר במכשיר הזה','ok'); return; }
+    try{ await docRef.set({answers:state.answers, updatedAt:state.updatedAt, submittedAt:state.submittedAt||null}); setStatus(k,'נשמר','ok'); }
+    catch(e){ setStatus(k,'השמירה המשותפת לא הצליחה, נשמר בדפדפן הזה בלבד','warn'); }
+  }
+  ORDER.forEach(k=>areas[k].addEventListener('input',()=>{ progress(); setStatus(k,'שומר...'); clearTimeout(timers[k]); timers[k]=setTimeout(()=>persist(k),800); }));
+  const local=lsLoad(); if(local&&local.answers) state=local; fill();
+
+  function collect(){ const notes=[]; ORDER.forEach(k=>{ const v=(areas[k].value||'').trim(); if(v) notes.push({item:LABEL[k], note:v}); }); return notes; }
+  function compile(){ const who=($('who').value||'').trim(); const L=[C.sendTitle+(who?' ('+who+')':'')]; const n=collect();
+    n.forEach(x=>L.push('', '• '+x.item+':', x.note)); if(!n.length) L.push('', '(הכול מאושר, בלי הערות)'); return L.join('\n'); }
+  try{ const w=localStorage.getItem(C.ls+'-who'); if(w) $('who').value=w; }catch(e){}
+  $('who').addEventListener('input',()=>{ try{ localStorage.setItem(C.ls+'-who',$('who').value); }catch(e){} });
+  async function send(){
+    const b=$('sendbtn')||$('sendbtn2'); if(b){ b.disabled=true; b.textContent='שומר...'; }
+    ORDER.forEach(k=>{ state.answers[k]=areas[k].value; }); state.updatedAt=new Date().toISOString(); lsSave();
+    const who=($('who').value||'').trim();
+    const box=document.querySelector('#sendwrap .box');
+    if(!who){ if(b){ b.disabled=false; b.textContent='שמור'; } $('who').focus(); $('who').style.borderColor='var(--warn)'; return; }
+    let ok=false;
+    if(C.inbox){ try{ await fetch(C.inbox,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({project:C.project||'',round:C.doc,name:who,notes:collect()})}); ok=true; }catch(e){} }
+    if(ok){ box.innerHTML='<div class="sent"></div><button class="primary" id="sendbtn2" type="button">שמור שוב</button>'; box.querySelector('.sent').textContent='נשמר, תודה '+who+'. אפשר להמשיך לערוך ולשמור שוב.'; $('sendbtn2').addEventListener('click',send); return; }
+    box.innerHTML='<div class="sent" style="background:var(--warn-soft);color:var(--warn)">השמירה לא הצליחה. העתיקו את הטקסט ושלחו אותו:</div><textarea id="fallbacktext" readonly></textarea><button class="primary" id="sendbtn2" type="button">נסו שוב</button>';
+    $('fallbacktext').value=compile(); $('sendbtn2').addEventListener('click',send);
+  }
+  $('sendbtn').addEventListener('click',send);
+})();
+</script>
+
+</body></html>
