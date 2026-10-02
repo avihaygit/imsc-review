@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex">
+<title>מאמר A6 · ספסטיות וכאב · IMSC</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap">
+<style>
+/* ===== Brand tokens: swap these per project (light first, then dark) ===== */
+:root{
+  --bg:#F3F0E8; --surface:#FFFFFF; --ink:#0A2350; --muted:#4F5E78; --line:#DCD6C8;
+  --accent:#06265A; --accent-ink:#F5F1E8; --hi:#0A7D7D; --hi-soft:#DDF1EF; --chg:#8A6614; --chg-soft:#F6ECD2;
+  --field:#FFFFFF; --ok:#1E7A52; --ok-soft:#DDF1E6; --warn:#A04C0C; --warn-soft:#FBE8D6; --shadow:0 12px 30px rgba(6,38,90,.14);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#071A3A; --surface:#0E2750; --ink:#EEF2FA; --muted:#A8B7D0; --line:#23406E;
+    --accent:#12BCBC; --accent-ink:#06265A; --hi:#12BCBC; --hi-soft:#123E55; --chg:#E0BC6A; --chg-soft:#3A2F16;
+    --field:#0A2045; --ok:#5DD39E; --ok-soft:#173A2B; --warn:#F0A25E; --warn-soft:#432A12; --shadow:0 12px 30px rgba(0,0,0,.35); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#071A3A; --surface:#0E2750; --ink:#EEF2FA; --muted:#A8B7D0; --line:#23406E;
+  --accent:#12BCBC; --accent-ink:#06265A; --hi:#12BCBC; --hi-soft:#123E55; --chg:#E0BC6A; --chg-soft:#3A2F16;
+  --field:#0A2045; --ok:#5DD39E; --ok-soft:#173A2B; --warn:#F0A25E; --warn-soft:#432A12; --shadow:0 12px 30px rgba(0,0,0,.35); color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Assistant","Arial Hebrew",Arial,sans-serif;font-size:17px;line-height:1.6}
+.wrap{direction:rtl;max-width:980px;margin:0 auto;padding-inline:16px;padding-block:0 96px}
+h1,h2{font-weight:800;line-height:1.15;margin:0;text-wrap:balance}
+h1{font-size:clamp(1.9rem,4.5vw,2.6rem)} h2{font-size:1.45rem}
+p{margin:.5rem 0}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:12px 10px;border-bottom:1px solid var(--line)}
+.top .row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-weight:800;color:var(--hi);letter-spacing:.02em}
+.progress{font-size:.92rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.bar{height:5px;background:var(--line);border-radius:99px;margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--hi);transition:width .3s ease}
+.intro{padding-block:28px 12px;display:grid;gap:10px}
+.intro p{color:var(--muted);max-width:62ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.facts span{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:.9rem;font-weight:600}
+.player{margin-top:14px;max-width:340px}
+.player video{display:block;width:100%;border-radius:14px;background:#000;box-shadow:var(--shadow)}
+.items{display:grid;gap:28px;margin-top:20px}
+.item{display:grid;grid-template-columns:minmax(0,250px) minmax(0,1fr);gap:24px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.item.noimg{grid-template-columns:1fr}
+.shot img{display:block;width:100%;border-radius:12px;box-shadow:var(--shadow);max-width:100%}
+.meta{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.num{font-weight:800;color:var(--hi);font-size:1.5rem;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);font-size:.9rem;font-variant-numeric:tabular-nums}
+.chg{display:inline-block;background:var(--chg-soft);color:var(--chg);font-size:.78rem;font-weight:800;padding:.05em .6em;border-radius:99px;vertical-align:middle}
+.changed{background:var(--chg-soft);border-radius:10px;padding:8px 12px;margin-top:10px;font-size:.95rem}
+.label{font-size:.8rem;font-weight:800;letter-spacing:.06em;color:var(--muted);margin-top:14px}
+.quote{background:var(--hi-soft);border-radius:10px;padding:8px 12px;font-weight:700;margin-top:4px;white-space:pre-line}
+.body{margin-top:4px;white-space:pre-line;overflow-wrap:anywhere}
+.jump{font:inherit;font-weight:700;font-size:.9rem;color:var(--hi);background:var(--hi-soft);border:0;border-radius:999px;padding:6px 14px;margin-top:10px;cursor:pointer;min-height:36px}
+.answer{margin-top:16px}
+.answer label{display:block;font-weight:800;margin-bottom:6px}
+textarea{width:100%;min-height:96px;resize:vertical;font:inherit;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:10px;padding:10px 12px;direction:rtl}
+textarea:focus,.jump:focus-visible{outline:2px solid var(--hi);outline-offset:1px}
+.status{font-size:.85rem;color:var(--muted);margin-top:4px;min-height:1.3em}
+.status.ok{color:var(--ok)} .status.warn{color:var(--warn)}
+.general{margin-top:28px;background:var(--chg-soft);border-radius:18px;padding:18px}
+.send{margin-top:28px;padding-top:22px;border-top:2px solid var(--hi)}
+.send .box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.send .hint{color:var(--muted);font-size:.95rem;flex:1 1 240px}
+button.primary{font:inherit;font-weight:800;background:var(--accent);color:var(--accent-ink);border:0;border-radius:999px;padding:12px 32px;cursor:pointer;min-height:44px}
+button.primary:disabled{opacity:.55;cursor:default}
+button.primary:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.sent{background:var(--ok-soft);color:var(--ok);border-radius:10px;padding:10px 14px;font-weight:700}
+@media (max-width:640px){ .item{grid-template-columns:1fr;padding:14px} .shot{max-width:280px;margin-inline:auto;width:100%} }
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="row"><span class="brand" id="brand"></span><span class="progress" id="progress"></span></div>
+    <div class="bar"><i id="barfill"></i></div>
+  </header>
+  <section class="intro">
+    <h1 id="h1"></h1>
+    <p id="intro"></p>
+    <div class="facts" id="facts"></div>
+    <div class="player" id="player" hidden></div>
+  </section>
+  <div class="items" id="items"></div>
+  <section class="general">
+    <h2>הערה כללית</h2>
+    <p id="general-hint"></p>
+    <div class="answer"><label for="a-general">ההערה שלי</label><textarea id="a-general" data-key="general" placeholder="כל מה שלא שייך לפריט אחד"></textarea><div class="status" id="st-general"></div></div>
+  </section>
+  <div class="send" id="sendwrap">
+    <div class="box"><div class="hint" id="sendhint"><label for="who" style="font-weight:700;display:block;margin-bottom:4px">השם שלכם</label><input id="who" type="text" autocomplete="name" style="font:inherit;width:100%;max-width:280px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--field);color:var(--ink)"><div style="margin-top:6px">כשסיימתם, לחצו "שמור" וכל ההערות יישמרו. תיבה ריקה = מאושר.</div></div><button class="primary" id="sendbtn" type="button">שמור</button></div>
+  </div>
+</div>
+
+<script>
+/* ===================== CONFIG — the only part to edit per review ===================== */
+const CONFIG = {
+ "brand": "IMSC · מאגר המידע · מאמר A6 לאישור · סבב 1",
+ "h1": "ספסטיות וכאב: מה הקשר ומה עוזר",
+ "intro": "זו טיוטה של מאמר A6 במאגר המידע באתר, מחולקת לפסקאות. מתחת לכל פסקה יש תיבה: כתבו רק מה שצריך לשנות, ותיבה ריקה = מאושר. בסוף יש 9 עובדות לאימות ו-4 שאלות קצרות לראיון. כשמסיימים, כותבים שם ולוחצים \"שמור\". אפשר לחזור ולהמשיך מאוחר יותר.",
+ "facts": [
+  "32 פסקאות",
+  "9 עובדות לאימות",
+  "4 שאלות לראיון",
+  "כ-1,200 מילים"
+ ],
+ "video": null,
+ "generalHint": "על המאמר כולו: הטון, האורך, מה חסר או מה מיותר.",
+ "doc": "reviews/article-a6-v1",
+ "ls": "imsc-article-a6-v1",
+ "sendTitle": "הערות למאמר A6 \"ספסטיות וכאב\", סבב 1:",
+ "itemWord": "פריט",
+ "items": [
+  {
+   "k": "p01",
+   "n": "01",
+   "t": "בקצרה (תיבה בראש המאמר)",
+   "body": "• ספסטיות יכולה לכאוב דרך עוויתות, התכווצות ממושכת ומשיכה של מפרקים, בעיקר בכתף ובכף הרגל.\n• לא כל כאב אצל אדם עם ספסטיות נובע ממנה, ולכן מתחילים בבירור המקור.\n• כאב מגביר ספסטיות. זיהום, עצירות או פצע יכולים להחמיר את שניהם.\n• עוזרים תנועה איטית, תנוחה, טיפול בגורמים ולפעמים הזרקה או תרופה."
+  },
+  {
+   "k": "p02",
+   "n": "02",
+   "t": "פתיחה",
+   "body": "ספסטיות וכאבים מגיעים הרבה פעמים יחד. לפעמים הכאב בא בגל, כשהרגל נזרקת בעווית באמצע הלילה, ולפעמים הוא שקט וקבוע, כמו כתף שכואבת בכל פעם שמשחילים אותה לשרוול. במאמר הזה תמצאו מאיפה מגיעים הכאבים, איך מבררים את המקור ומה עוזר."
+  },
+  {
+   "k": "p03",
+   "n": "03",
+   "t": "פתיחה",
+   "body": "אם אתם עדיין לא בטוחים מה זו ספסטיות, ההסבר נמצא במאמר מה זה ספסטיות ואיך מזהים אותה."
+  },
+  {
+   "k": "p04",
+   "n": "04",
+   "t": "למה ספסטיות גורמת לכאבים?",
+   "body": "הכאב הכי מוכר הוא של העוויתות. שריר שמתכווץ פתאום בחוזקה כואב כמו התכווצות בשוק באמצע הלילה, רק שאצל אדם עם ספסטיות זה יכול לחזור שוב ושוב. גם בלי עוויתות, שריר שנמצא במתח שעות ארוכות מתעייף וכואב, בדומה לגב אחרי יום שלם של ישיבה עקומה."
+  },
+  {
+   "k": "p05",
+   "n": "05",
+   "t": "למה ספסטיות גורמת לכאבים?",
+   "body": "מקור נוסף הוא המשיכה על המפרקים: שריר ספסטי שמושך את הכתף פנימה או את הקרסול למטה מעמיס על המפרק ועל הגידים סביבו. כשמנסים להלביש או להזיז את הגף, השריר המקוצר נמתח, וזה כואב. עם הזמן יש גם כאבים שנגרמים בעקיפין: ציפורניים שננעצות בכף יד סגורה, אצבעות רגל מכופפות שנלחצות בנעל, או כאב גב בגלל תנוחה עקומה."
+  },
+  {
+   "k": "p06",
+   "n": "06",
+   "t": "למה ספסטיות גורמת לכאבים?",
+   "body": "והקשר עובד בשני הכיוונים: כאב, מכל סיבה, מגביר את הספסטיות. כך הגף הכואב נסגר עוד יותר, וזה מגביר שוב את הכאב. במחקר על מטופלים אחרי שבץ ופגיעת ראש, כאב, כבדות ונוקשות היו קשורים להגבלה בפעולות יומיומיות, בשינה ובמצב הרוח. אצל אנשים עם ספסטיות ביד, הכאב היה קשור במיוחד לקושי ברחצה ובהלבשה."
+  },
+  {
+   "k": "p07",
+   "n": "07",
+   "t": "האם כל כאב נובע מהספסטיות?",
+   "body": "לא. לכן כאב דורש קודם בירור, ואחר כך טיפול. למשל, אחרי אירוע מוחי יש סוגים שונים של כאב בכתף: חלקם קשורים לספסטיות, וחלקם לכתף רפה שנשמטה מעט ממקומה, לדלקת בגידים או לכתף קפואה. יש גם כאב שנוצר מהפגיעה במוח עצמו, בלי קשר לשרירים. אחרי פגיעה בחוט השדרה או בטרשת נפוצה, כאב שורף או דוקר יכול לנבוע מהעצבים. ויש כאבים שלא קשורים לספסטיות בכלל, כמו שחיקת מפרקים או חבלה אחרי נפילה."
+  },
+  {
+   "k": "p08",
+   "n": "08",
+   "t": "האם כל כאב נובע מהספסטיות?",
+   "body": "ההנחיות הבריטיות לשיקום אחרי שבץ ממליצות לבדוק כל כאב בכתף כדי לזהות את הסיבה, ולבחור את הטיפול לפי מה שנמצא."
+  },
+  {
+   "k": "p09",
+   "n": "09",
+   "t": "האם כל כאב נובע מהספסטיות?",
+   "body": "אחרי פגיעת ראש, יש מטופלים שמתקשים לתאר כאב או לזהות אותו, אבל המשפחה רואה את זה אחרת: אי שקט, העוויה כשמזיזים את היד, או ספסטיות שהתגברה בלי הסבר. במקרים כאלה המשפחה היא לפעמים המקור הטוב ביותר למידע."
+  },
+  {
+   "k": "p10",
+   "n": "10",
+   "t": "כתף כואבת אחרי אירוע מוחי: מה ידוע?",
+   "body": "כתף כואבת היא אחת התלונות הנפוצות אחרי אירוע מוחי (שבץ מוחי), בעיקר כשהיד חלשה או ספסטית. ההנחיות ממליצות לתת למטופלים ולמשפחות מידע מוקדם על מניעה, ולעזור למטופל למצוא תנוחה שמקלה על הכאב. הן גם מציינות כמה טיפולים שאפשר לשקול, בהם טייפינג, גירוי חשמלי, הזרקת סטרואידים למפרק או חסימת עצב."
+  },
+  {
+   "k": "p11",
+   "n": "11",
+   "t": "כתף כואבת אחרי אירוע מוחי: מה ידוע?",
+   "body": "כשהכאב קשור לשרירים ספסטיים שמושכים את הכתף פנימה, שוקלים גם הזרקת בוטולינום טוקסין (המוכר בשם בוטוקס) לשרירים האלה. סקירה שיטתית מצאה שההזרקה הפחיתה כאב בכתף אחרי שבץ בבדיקה שנעשתה שלושה עד שישה חודשים אחריה, אבל לא אחרי חודש. עם זאת, המחקרים היו מעטים וקטנים, והחוקרים המליצו לפרש את התוצאות בזהירות. איך ההזרקה פועלת, במאמר איך עובד בוטוקס לספסטיות."
+  },
+  {
+   "k": "p12",
+   "n": "12",
+   "t": "מה מחמיר גם את הכאב וגם את הספסטיות?",
+   "body": "גורמים שנראים לא קשורים יכולים להחמיר את שניהם, ולפעמים הטיפול בהם מספיק:\n• זיהום בדרכי השתן או במקום אחר, וחום.\n• עצירות או שלפוחית מלאה.\n• פצע לחץ, ציפורן חודרנית או נעל לוחצת.\n• בגדים, רצועות או סד שלוחצים.\n• קור, עייפות ומתח."
+  },
+  {
+   "k": "p13",
+   "n": "13",
+   "t": "מה מחמיר גם את הכאב וגם את הספסטיות?",
+   "body": "אחרי פגיעה בחוט השדרה, כשאין תחושה מתחת לגובה הפגיעה, החמרה בעוויתות יכולה להיות הסימן היחיד לבעיה כזו. לכן כשהספסטיות מחמירה פתאום, בודקים קודם את הרשימה הזו ורק אחר כך משנים טיפול."
+  },
+  {
+   "k": "p14",
+   "n": "14",
+   "t": "מה עוזר לכאב שקשור לספסטיות?",
+   "body": "כשכאב הוא התלונה העיקרית, אנחנו מתחילים מהשאלה מאיפה הוא מגיע, ולא מהזריקה. אחרי שמבינים את המקור, יש כמה כיוונים, ולרוב משלבים ביניהם."
+  },
+  {
+   "k": "p15",
+   "n": "15",
+   "t": "מה עוזר לכאב שקשור לספסטיות?",
+   "body": "הדבר הראשון והפשוט הוא לזוז לאט: ספסטיות מגיבה למהירות, ולכן תנועה איטית ורכה מעוררת פחות התנגדות ופחות כאב. זה נכון בהלבשה, במקלחת ובמעבר מהמיטה לכיסא. גם תנוחה נכונה לאורך היום, עם תמיכה בכרית ליד או לכתף, מפחיתה את המשיכה על המפרקים."
+  },
+  {
+   "k": "p16",
+   "n": "16",
+   "t": "מה עוזר לכאב שקשור לספסטיות?",
+   "body": "תנועה יומיומית בטווח המלא שומרת על אורך השריר ומונעת את הכאב שמגיע עם התקצרות. איך עושים את זה בבטחה בבית, במאמר תרגילי הארכה לספסטיות. המחקר על הארכה כטיפול בכאב עצמו מוגבל, ולכן לא ממשיכים בתרגיל שמכאיב."
+  },
+  {
+   "k": "p17",
+   "n": "17",
+   "t": "מה עוזר לכאב שקשור לספסטיות?",
+   "body": "כשהכאב נובע משרירים מסוימים, הזרקה לשרירים האלה יכולה לעזור, והפחתת כאב היא אחת המטרות שההנחיות הבריטיות מונות לטיפול הזה. לעומת זאת, כשהעוויתות מפושטות, בכל הרגליים או הגו, הרופא המטפל יכול לשקול תרופה בכדורים, כמו בקלופן."
+  },
+  {
+   "k": "p18",
+   "n": "18",
+   "t": "מה עוזר לכאב שקשור לספסטיות?",
+   "body": "סד שמחזיק את כף היד פתוחה או את הקרסול בזווית נוחה יכול להפחית את המשיכה בשעות המנוחה, בתנאי שהוא לא לוחץ. כלומר, סד שמכאיב צריך בדיקה והתאמה מחדש, לא סבלנות. וכשהכתף כואבת, לא מושכים את היד ולא מרימים את המטופל בעזרת בית השחי של הצד הפגוע."
+  },
+  {
+   "k": "p19",
+   "n": "19",
+   "t": "מה עוזר לכאב שקשור לספסטיות?",
+   "body": "ריפוי בעיסוק ופיזיותרפיה עוזרים לשנות את מה שמעורר את הכאב: ישיבה בכיסא, שינה, דרך ההלבשה. על השיקום אצלנו תמצאו בעמוד ריפוי בעיסוק ופיזיותרפיה."
+  },
+  {
+   "k": "p20",
+   "n": "20",
+   "t": "איך מתארים את הכאב לצוות?",
+   "body": "תיאור טוב של הכאב חוסך הרבה ניחושים. כדאי להגיע עם תשובות לכמה שאלות פשוטות. איפה בדיוק כואב, ואם הכאב נשאר במקום אחד או זז. מתי הוא מופיע: בהלבשה, במקלחת, בלילה, אחרי ישיבה ארוכה. איך הוא מרגיש: כמו התכווצות, כמו כאב עמום של שריר עייף, או כמו שריפה ודקירות. ומה מקל עליו, אם יש משהו כזה."
+  },
+  {
+   "k": "p21",
+   "n": "21",
+   "t": "איך מתארים את הכאב לצוות?",
+   "body": "עוזר גם לתת לכאב מספר, מ-0 (אין כאב) עד 10 (הכאב הכי חזק שאפשר לדמיין), ולבדוק אותו באותו מצב לאורך זמן. למשל, כמה כואב להכניס את היד לשרוול בבוקר. כך אפשר לראות אחר כך אם טיפול באמת שינה משהו."
+  },
+  {
+   "k": "p22",
+   "n": "22",
+   "t": "איך מתארים את הכאב לצוות?",
+   "body": "כשהמטופל מתקשה לדבר על הכאב, התצפית של המשפחה שווה זהב: מתי הוא מתכווץ, מתי הוא נרגע, אילו תנועות הוא מנסה להימנע מהן."
+  },
+  {
+   "k": "p23",
+   "n": "23",
+   "t": "לאן פונים ומה מביאים?",
+   "body": "ב-IMSC לא צריך הפניה, ומומלץ להביא תיעוד רפואי ורשימת תרופות, כולל משככי כאבים. אם יש דו״ח מסכם טיפול של פיזיותרפיסט/ית או ריפוי בעיסוק, כדאי להביא גם אותו. אם אפשר, כדאי לרשום במשך שבוע מתי הכאב מופיע ומה קדם לו. ההערכה נעשית במגדלי ב.ס.ר 2 בבני ברק, וריפוי בעיסוק ופיזיותרפיה גם במרכז הספורט של אוניברסיטת תל אביב. IMSC הוא שירות פרטי, וקיימת אפשרות להחזרים מביטוחים פרטיים, הן על התייעצות עם רופא והן על טיפולי שיקום. כדאי לבדוק מול הפוליסה שלכם."
+  },
+  {
+   "k": "p24",
+   "n": "24",
+   "t": "מתי לפנות לרופא?",
+   "body": "• מיד: רגל נפוחה, חמה וכואבת, או כאב חדש וחזק אחרי נפילה.\n• באותו יום: החמרה פתאומית בספסטיות ובכאב עם חום או שינוי בשתן.\n• בהקדם: כאב שמעיר משינה או מונע הלבשה ורחצה.\n• בהקדם: פצע, אדמומיות או נפיחות בכף היד, בין האצבעות או בכף הרגל.\n• בהקדם: כאב בכתף שמחמיר, או מגביל את התנועה יותר מבעבר."
+  },
+  {
+   "k": "p25",
+   "n": "25",
+   "t": "שאלות שחוזרות",
+   "body": "למה הכאב חזק יותר בלילה?\nבלילה אין תנועה, השרירים נשארים שעות באותה תנוחה ועוויתות יכולות להעיר משינה. אצל חלק מהאנשים גם הקור או שלפוחית מלאה מעוררים עוויתות. לכן כדאי לספר לצוות מתי בדיוק זה קורה."
+  },
+  {
+   "k": "p26",
+   "n": "26",
+   "t": "שאלות שחוזרות",
+   "body": "הזרקת בוטוקס תעזור לכאב?\nכשהכאב נובע משרירים ספסטיים מסוימים, הפחתת הכאב היא מטרה מוכרת של ההזרקה, אבל כשהכאב ממקור אחר, ההזרקה לא תעזור לו. לכן מבררים את המקור קודם."
+  },
+  {
+   "k": "p27",
+   "n": "27",
+   "t": "שאלות שחוזרות",
+   "body": "כאב יכול להחמיר את הספסטיות?\nכן. כאב מכל סיבה, גם ציפורן חודרנית או עצירות, יכול להגביר את הספסטיות. טיפול בגורם הכאב מרגיע לפעמים גם אותה."
+  },
+  {
+   "k": "p28",
+   "n": "28",
+   "t": "שאלות שחוזרות",
+   "body": "להמשיך בתרגיל אם הוא כואב?\nלא. תחושת מתיחה מתונה מקובלת. לעומת זאת, כאב חד, או כאב שנשאר אחרי התרגול, הוא סיבה לעצור ולבדוק עם המטפל."
+  },
+  {
+   "k": "p29",
+   "n": "29",
+   "t": "שאלות שחוזרות",
+   "body": "כאב חדש אומר שהספסטיות מחמירה?\nלא בהכרח. כאב יכול להגיע מזיהום, מפצע, מהמפרק עצמו או מהעצבים. לפעמים הספסטיות לא השתנתה בכלל, ורק הגורם שמעורר אותה. בירור אצל הרופא המטפל עוזר להבין מה באמת השתנה."
+  },
+  {
+   "k": "p30",
+   "n": "30",
+   "t": "שאלות שחוזרות",
+   "body": "רוצים להבין מאיפה הכאב מגיע?\nבמפגש ההערכה ב-IMSC בודקים יחד אם הכאב קשור לספסטיות, מה מחמיר אותו ומה אפשר לשנות. אפשר להתחיל בשיחת היכרות, ונחזור אליכם בהקדם."
+  },
+  {
+   "k": "p31",
+   "n": "31",
+   "t": "מקורות מידע (באתר: אקורדיון מקופל)",
+   "body": "• NICE (2023). Stroke rehabilitation in adults (NG236). https://www.nice.org.uk/guidance/ng236\n• Singh, J. A., & Fitzgerald, P. M. (2010). Botulinum toxin for shoulder pain. Cochrane Database of Systematic Reviews. https://www.cochrane.org/evidence/CD008271_botulinum-toxin-shoulder-pain\n• Facciorusso, S., Spina, S., Picelli, A., Baricich, A., Molteni, F., & Santamato, A. (2024). May spasticity-related unpleasant sensations interfere with daily activities in people with stroke and traumatic brain injury? Secondary analysis from the CORTOX study. Journal of Clinical Medicine. https://www.mdpi.com/2077-0383/13/6/1720\n• Royal College of Physicians (2018). Spasticity in adults: management using botulinum toxin. National guidelines. https://www.rcp.ac.uk/improving-care/resources/spasticity-in-adults-management-using-botulinum-toxin/\n• MS Society UK. Spasticity, spasms and stiffness. https://www.mssociety.org.uk/about-ms/signs-and-symptoms/spasms-and-stiffness\n• Billington, Z. J., Henke, A. M., & Gater, D. R. (2022). Spasticity management after spinal cord injury: the here and now. Journal of Personalized Medicine. https://pmc.ncbi.nlm.nih.gov/articles/PMC9144471/"
+  },
+  {
+   "k": "p32",
+   "n": "32",
+   "t": "גילוי נאות",
+   "body": "המידע כללי ואינו מחליף ייעוץ רפואי אישי. התאמת טיפול נעשית על ידי רופא מטפל."
+  },
+  {
+   "k": "v1",
+   "n": "א1",
+   "t": "עובדה לאימות",
+   "body": "סוגי הכאב בכתף אחרי שבץ: כתף רפה שנשמטה, דלקת בגידים, כתף קפואה, כאב שמקורו במוח. הרשימה נכונה?",
+   "sub": "פסקה 07"
+  },
+  {
+   "k": "v2",
+   "n": "א2",
+   "t": "עובדה לאימות",
+   "body": "\"כתף כואבת היא אחת התלונות הנפוצות אחרי שבץ\" (בלי מספר).",
+   "sub": "פסקה 10"
+  },
+  {
+   "k": "v3",
+   "n": "א3",
+   "t": "עובדה לאימות",
+   "body": "אחרי פגיעת ראש: מטופלים שמתקשים לתאר כאב, והסימנים שהמשפחה יכולה לראות במקום זה.",
+   "sub": "פסקאות 06, 09"
+  },
+  {
+   "k": "v4",
+   "n": "א4",
+   "t": "עובדה לאימות",
+   "body": "\"רגל נפוחה, חמה וכואבת\" כסימן לפנייה דחופה.",
+   "sub": "פסקה 24"
+  },
+  {
+   "k": "v5",
+   "n": "א5",
+   "t": "עובדה לאימות",
+   "body": "גורמים שמגבירים כאב וספסטיות: זיהום, עצירות, שלפוחית מלאה, פצעים, בגדים לוחצים, קור, עייפות, מתח, ציפורן חודרנית וסד שלוחץ.",
+   "sub": "פסקאות 12, 27"
+  },
+  {
+   "k": "v6",
+   "n": "א6",
+   "t": "עובדה לאימות",
+   "body": "\"המחקר על הארכה כטיפול בכאב עצמו מוגבל.\"",
+   "sub": "פסקה 16"
+  },
+  {
+   "k": "v7",
+   "n": "א7",
+   "t": "עובדה לאימות",
+   "body": "ההמלצה לרשום יומן כאב במשך שבוע לפני המפגש.",
+   "sub": "פסקה 23"
+  },
+  {
+   "k": "v8",
+   "n": "א8",
+   "t": "עובדה לאימות",
+   "body": "\"לא מושכים את היד ולא מרימים את המטופל בעזרת בית השחי של הצד הפגוע.\"",
+   "sub": "פסקה 18"
+  },
+  {
+   "k": "v9",
+   "n": "א9",
+   "t": "עובדה לאימות",
+   "body": "סולם כאב 0–10 כהמלצה למטופלים. זה הכלי שבו IMSC משתמש?",
+   "sub": "פסקה 21"
+  },
+  {
+   "k": "q1",
+   "n": "ש1",
+   "t": "שאלה לראיון: כאב שאינו מהספסטיות",
+   "sub": "משפט או שניים מספיקים",
+   "body": "אילו כאבים מטופלים ומשפחות מייחסים לספסטיות, ובבדיקה מתברר שמקורם אחר? מה הנפוץ ביותר אצלך?"
+  },
+  {
+   "k": "q2",
+   "n": "ש2",
+   "t": "שאלה לראיון: ידיים של המשפחה",
+   "sub": "משפט או שניים מספיקים",
+   "body": "מה אתה מלמד בני משפחה שעוזרים בהלבשה ובמקלחת, כדי לא לגרום כאב כשמזיזים את היד או הרגל?"
+  },
+  {
+   "k": "q3",
+   "n": "ש3",
+   "t": "שאלה לראיון: מטרה כשהכאב הוא העיקר",
+   "sub": "משפט או שניים מספיקים",
+   "body": "כשכאב הוא הסיבה העיקרית לפנייה, איך אתה מגדיר איתם מטרה, ואיך בודקים אחרי הטיפול אם הכאב באמת ירד?"
+  },
+  {
+   "k": "q4",
+   "n": "ש4",
+   "t": "שאלה לראיון: לילה",
+   "sub": "משפט או שניים מספיקים",
+   "body": "כמה נפוץ אצלך שהספסטיות או העוויתות מעירות מטופלים בלילה? מה אתה שואל כדי להבין את זה?"
+  }
+ ],
+ "inbox": "https://script.google.com/macros/s/AKfycbzEj4lUky1em3ctwa-hol23Hfu5F5paCqut5pzeSTKYG4oaqZSQhPhb5EfFf9ZS16u11w/exec",
+ "project": "article-a6"
+};
+/* ===================================================================================== */
+(function(){
+  document.documentElement.setAttribute('dir','rtl'); document.documentElement.setAttribute('lang','he');
+  const C=CONFIG, $=id=>document.getElementById(id);
+  $('brand').textContent=C.brand; $('h1').textContent=C.h1; $('intro').textContent=C.intro; $('general-hint').textContent=C.generalHint;
+  C.facts.forEach(f=>{ const s=document.createElement('span'); s.textContent=f; $('facts').appendChild(s); });
+  let vid=null;
+  if(C.video){ const p=$('player'); p.hidden=false; vid=document.createElement('video'); vid.src=C.video.src; if(C.video.poster) vid.poster=C.video.poster; vid.controls=true; vid.playsInline=true; vid.preload='metadata'; p.appendChild(vid); }
+  C.items.forEach(it=>{
+    const el=document.createElement('article'); el.className='item'+(it.img?'':' noimg'); el.id='i-'+it.k;
+    el.innerHTML=(it.img?'<div class="shot"><img alt="" loading="lazy"></div>':'')+'<div><div class="meta"><span class="num"></span><h2></h2><span class="sub"></span></div><div class="changed" hidden></div><button class="jump" type="button" hidden>▶ לצפות מכאן</button><div class="label lq" hidden>טקסט</div><div class="quote" hidden></div><div class="label lb" hidden>פירוט</div><div class="body" hidden></div><div class="answer"><label></label><textarea placeholder="רק מה שצריך לשנות. ריק = מאושר"></textarea><div class="status"></div></div></div>';
+    if(it.img){ const im=el.querySelector('img'); im.src=it.img; im.alt=C.itemWord+' '+it.n+': '+it.t; }
+    el.querySelector('.num').textContent=it.n||''; el.querySelector('h2').textContent=it.t; el.querySelector('.sub').textContent=it.sub||'';
+    if(it.ch){ const c=el.querySelector('.changed'); c.hidden=false; c.innerHTML='<span class="chg">שונה</span> '; c.appendChild(document.createTextNode(it.ch)); }
+    if(it.quote){ el.querySelector('.lq').hidden=false; const q=el.querySelector('.quote'); q.hidden=false; q.textContent=it.quote; }
+    if(it.body){ el.querySelector('.lb').hidden=false; const b=el.querySelector('.body'); b.hidden=false; b.textContent=it.body; }
+    if(vid && typeof it.at==='number'){ const j=el.querySelector('.jump'); j.hidden=false; j.addEventListener('click',()=>{ try{ vid.currentTime=it.at; const pr=vid.play(); if(pr&&pr.catch) pr.catch(()=>{}); }catch(e){} vid.scrollIntoView({behavior:'smooth',block:'center'}); }); }
+    const ta=el.querySelector('textarea'); ta.id='a-'+it.k; ta.dataset.key=it.k;
+    const lab=el.querySelector('label'); lab.htmlFor=ta.id; lab.textContent='הערות ל'+C.itemWord+' '+(it.n||it.t);
+    el.querySelector('.status').id='st-'+it.k;
+    $('items').appendChild(el);
+  });
+
+  const ORDER=C.items.map(i=>i.k).concat(['general']);
+  const LABEL={}; C.items.forEach(i=>LABEL[i.k]=C.itemWord+' '+(i.n?i.n+' · ':'')+i.t); LABEL.general='הערה כללית';
+  const areas={}; ORDER.forEach(k=>areas[k]=document.querySelector('textarea[data-key="'+k+'"]'));
+  let docRef=null, comments=null, state={answers:{}}; const timers={};
+  const lsLoad=()=>{ try{ const j=localStorage.getItem(C.ls); return j?JSON.parse(j):null; }catch(e){ return null; } };
+  const lsSave=()=>{ try{ localStorage.setItem(C.ls, JSON.stringify(state)); }catch(e){} };
+  function progress(){ const n=ORDER.filter(k=>(areas[k].value||'').trim()).length; $('progress').textContent=n+' מתוך '+ORDER.length+' תיבות עם הערות'; $('barfill').style.width=(n/ORDER.length*100)+'%'; }
+  function fill(){ ORDER.forEach(k=>{ const v=state.answers[k]||''; if(areas[k].value!==v && document.activeElement!==areas[k]) areas[k].value=v; }); progress(); }
+  function setStatus(k,t,c){ const el=$('st-'+k); if(!el) return; el.textContent=t; el.className='status'+(c?' '+c:''); }
+  async function persist(k){
+    state.answers[k]=areas[k].value; state.updatedAt=new Date().toISOString(); lsSave();
+    if(!docRef){ setStatus(k,'נשמר במכשיר הזה','ok'); return; }
+    try{ await docRef.set({answers:state.answers, updatedAt:state.updatedAt, submittedAt:state.submittedAt||null}); setStatus(k,'נשמר','ok'); }
+    catch(e){ setStatus(k,'השמירה המשותפת לא הצליחה, נשמר בדפדפן הזה בלבד','warn'); }
+  }
+  ORDER.forEach(k=>areas[k].addEventListener('input',()=>{ progress(); setStatus(k,'שומר...'); clearTimeout(timers[k]); timers[k]=setTimeout(()=>persist(k),800); }));
+  const local=lsLoad(); if(local&&local.answers) state=local; fill();
+
+  function collect(){ const notes=[]; ORDER.forEach(k=>{ const v=(areas[k].value||'').trim(); if(v) notes.push({item:LABEL[k], note:v}); }); return notes; }
+  function compile(){ const who=($('who').value||'').trim(); const L=[C.sendTitle+(who?' ('+who+')':'')]; const n=collect();
+    n.forEach(x=>L.push('', '• '+x.item+':', x.note)); if(!n.length) L.push('', '(הכול מאושר, בלי הערות)'); return L.join('\n'); }
+  try{ const w=localStorage.getItem(C.ls+'-who'); if(w) $('who').value=w; }catch(e){}
+  $('who').addEventListener('input',()=>{ try{ localStorage.setItem(C.ls+'-who',$('who').value); }catch(e){} });
+  async function send(){
+    const b=$('sendbtn')||$('sendbtn2'); if(b){ b.disabled=true; b.textContent='שומר...'; }
+    ORDER.forEach(k=>{ state.answers[k]=areas[k].value; }); state.updatedAt=new Date().toISOString(); lsSave();
+    const who=($('who').value||'').trim();
+    const box=document.querySelector('#sendwrap .box');
+    if(!who){ if(b){ b.disabled=false; b.textContent='שמור'; } $('who').focus(); $('who').style.borderColor='var(--warn)'; return; }
+    let ok=false;
+    if(C.inbox){ try{ await fetch(C.inbox,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({project:C.project||'',round:C.doc,name:who,notes:collect()})}); ok=true; }catch(e){} }
+    if(ok){ box.innerHTML='<div class="sent"></div><button class="primary" id="sendbtn2" type="button">שמור שוב</button>'; box.querySelector('.sent').textContent='נשמר, תודה '+who+'. אפשר להמשיך לערוך ולשמור שוב.'; $('sendbtn2').addEventListener('click',send); return; }
+    box.innerHTML='<div class="sent" style="background:var(--warn-soft);color:var(--warn)">השמירה לא הצליחה. העתיקו את הטקסט ושלחו אותו:</div><textarea id="fallbacktext" readonly></textarea><button class="primary" id="sendbtn2" type="button">נסו שוב</button>';
+    $('fallbacktext').value=compile(); $('sendbtn2').addEventListener('click',send);
+  }
+  $('sendbtn').addEventListener('click',send);
+})();
+</script>
+
+</body></html>
