@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex">
+<title>מאמר A3 · ספסטיות ברגליים · IMSC</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap">
+<style>
+/* ===== Brand tokens: swap these per project (light first, then dark) ===== */
+:root{
+  --bg:#F3F0E8; --surface:#FFFFFF; --ink:#0A2350; --muted:#4F5E78; --line:#DCD6C8;
+  --accent:#06265A; --accent-ink:#F5F1E8; --hi:#0A7D7D; --hi-soft:#DDF1EF; --chg:#8A6614; --chg-soft:#F6ECD2;
+  --field:#FFFFFF; --ok:#1E7A52; --ok-soft:#DDF1E6; --warn:#A04C0C; --warn-soft:#FBE8D6; --shadow:0 12px 30px rgba(6,38,90,.14);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#071A3A; --surface:#0E2750; --ink:#EEF2FA; --muted:#A8B7D0; --line:#23406E;
+    --accent:#12BCBC; --accent-ink:#06265A; --hi:#12BCBC; --hi-soft:#123E55; --chg:#E0BC6A; --chg-soft:#3A2F16;
+    --field:#0A2045; --ok:#5DD39E; --ok-soft:#173A2B; --warn:#F0A25E; --warn-soft:#432A12; --shadow:0 12px 30px rgba(0,0,0,.35); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#071A3A; --surface:#0E2750; --ink:#EEF2FA; --muted:#A8B7D0; --line:#23406E;
+  --accent:#12BCBC; --accent-ink:#06265A; --hi:#12BCBC; --hi-soft:#123E55; --chg:#E0BC6A; --chg-soft:#3A2F16;
+  --field:#0A2045; --ok:#5DD39E; --ok-soft:#173A2B; --warn:#F0A25E; --warn-soft:#432A12; --shadow:0 12px 30px rgba(0,0,0,.35); color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Assistant","Arial Hebrew",Arial,sans-serif;font-size:17px;line-height:1.6}
+.wrap{direction:rtl;max-width:980px;margin:0 auto;padding-inline:16px;padding-block:0 96px}
+h1,h2{font-weight:800;line-height:1.15;margin:0;text-wrap:balance}
+h1{font-size:clamp(1.9rem,4.5vw,2.6rem)} h2{font-size:1.45rem}
+p{margin:.5rem 0}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:12px 10px;border-bottom:1px solid var(--line)}
+.top .row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-weight:800;color:var(--hi);letter-spacing:.02em}
+.progress{font-size:.92rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.bar{height:5px;background:var(--line);border-radius:99px;margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--hi);transition:width .3s ease}
+.intro{padding-block:28px 12px;display:grid;gap:10px}
+.intro p{color:var(--muted);max-width:62ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.facts span{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:.9rem;font-weight:600}
+.player{margin-top:14px;max-width:340px}
+.player video{display:block;width:100%;border-radius:14px;background:#000;box-shadow:var(--shadow)}
+.items{display:grid;gap:28px;margin-top:20px}
+.item{display:grid;grid-template-columns:minmax(0,250px) minmax(0,1fr);gap:24px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.item.noimg{grid-template-columns:1fr}
+.shot img{display:block;width:100%;border-radius:12px;box-shadow:var(--shadow);max-width:100%}
+.meta{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.num{font-weight:800;color:var(--hi);font-size:1.5rem;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);font-size:.9rem;font-variant-numeric:tabular-nums}
+.chg{display:inline-block;background:var(--chg-soft);color:var(--chg);font-size:.78rem;font-weight:800;padding:.05em .6em;border-radius:99px;vertical-align:middle}
+.changed{background:var(--chg-soft);border-radius:10px;padding:8px 12px;margin-top:10px;font-size:.95rem}
+.label{font-size:.8rem;font-weight:800;letter-spacing:.06em;color:var(--muted);margin-top:14px}
+.quote{background:var(--hi-soft);border-radius:10px;padding:8px 12px;font-weight:700;margin-top:4px;white-space:pre-line}
+.body{margin-top:4px;white-space:pre-line;overflow-wrap:anywhere}
+.jump{font:inherit;font-weight:700;font-size:.9rem;color:var(--hi);background:var(--hi-soft);border:0;border-radius:999px;padding:6px 14px;margin-top:10px;cursor:pointer;min-height:36px}
+.answer{margin-top:16px}
+.answer label{display:block;font-weight:800;margin-bottom:6px}
+textarea{width:100%;min-height:96px;resize:vertical;font:inherit;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:10px;padding:10px 12px;direction:rtl}
+textarea:focus,.jump:focus-visible{outline:2px solid var(--hi);outline-offset:1px}
+.status{font-size:.85rem;color:var(--muted);margin-top:4px;min-height:1.3em}
+.status.ok{color:var(--ok)} .status.warn{color:var(--warn)}
+.general{margin-top:28px;background:var(--chg-soft);border-radius:18px;padding:18px}
+.send{margin-top:28px;padding-top:22px;border-top:2px solid var(--hi)}
+.send .box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.send .hint{color:var(--muted);font-size:.95rem;flex:1 1 240px}
+button.primary{font:inherit;font-weight:800;background:var(--accent);color:var(--accent-ink);border:0;border-radius:999px;padding:12px 32px;cursor:pointer;min-height:44px}
+button.primary:disabled{opacity:.55;cursor:default}
+button.primary:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.sent{background:var(--ok-soft);color:var(--ok);border-radius:10px;padding:10px 14px;font-weight:700}
+@media (max-width:640px){ .item{grid-template-columns:1fr;padding:14px} .shot{max-width:280px;margin-inline:auto;width:100%} }
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="row"><span class="brand" id="brand"></span><span class="progress" id="progress"></span></div>
+    <div class="bar"><i id="barfill"></i></div>
+  </header>
+  <section class="intro">
+    <h1 id="h1"></h1>
+    <p id="intro"></p>
+    <div class="facts" id="facts"></div>
+    <div class="player" id="player" hidden></div>
+  </section>
+  <div class="items" id="items"></div>
+  <section class="general">
+    <h2>הערה כללית</h2>
+    <p id="general-hint"></p>
+    <div class="answer"><label for="a-general">ההערה שלי</label><textarea id="a-general" data-key="general" placeholder="כל מה שלא שייך לפריט אחד"></textarea><div class="status" id="st-general"></div></div>
+  </section>
+  <div class="send" id="sendwrap">
+    <div class="box"><div class="hint" id="sendhint"><label for="who" style="font-weight:700;display:block;margin-bottom:4px">השם שלכם</label><input id="who" type="text" autocomplete="name" style="font:inherit;width:100%;max-width:280px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--field);color:var(--ink)"><div style="margin-top:6px">כשסיימתם, לחצו "שמור" וכל ההערות יישמרו. תיבה ריקה = מאושר.</div></div><button class="primary" id="sendbtn" type="button">שמור</button></div>
+  </div>
+</div>
+
+<script>
+/* ===================== CONFIG — the only part to edit per review ===================== */
+const CONFIG = {
+ "brand": "IMSC · מאגר המידע · מאמר A3 לאישור · סבב 1",
+ "h1": "ספסטיות ברגליים: הליכה, קרסול וכף רגל",
+ "intro": "זו טיוטה של מאמר A3 במאגר המידע באתר, מחולקת לפסקאות. מתחת לכל פסקה יש תיבה: כתבו רק מה שצריך לשנות, ותיבה ריקה = מאושר. בסוף יש 9 עובדות לאימות ו-4 שאלות קצרות לראיון. כשמסיימים, כותבים שם ולוחצים \"שמור\". אפשר לחזור ולהמשיך מאוחר יותר.",
+ "facts": [
+  "32 פסקאות",
+  "9 עובדות לאימות",
+  "4 שאלות לראיון",
+  "כ-1,200 מילים"
+ ],
+ "video": null,
+ "generalHint": "על המאמר כולו: הטון, האורך, מה חסר או מה מיותר.",
+ "doc": "reviews/article-a3-v1",
+ "ls": "imsc-article-a3-v1",
+ "sendTitle": "הערות למאמר A3 \"ספסטיות ברגליים\", סבב 1:",
+ "itemWord": "פריט",
+ "items": [
+  {
+   "k": "p01",
+   "n": "01",
+   "t": "בקצרה (תיבה בראש המאמר)",
+   "body": "• ספסטיות ברגליים מופיעה לרוב בקרסול ובכף הרגל: הקרסול יורד ומסתובב פנימה, והאצבעות מתכופפות.\n• היא גורמת לרגל להיתקע ברצפה, לחוסר יציבות בעמידה ולכאב בכף הרגל.\n• אצל חלק מהאנשים המתח ברגל עוזר לעמוד, ולכן לא כל ספסטיות ברגל מטפלים בה.\n• הטיפול משלב נעל וסד, תרגול ולפעמים הזרקה לשרירים מסוימים."
+  },
+  {
+   "k": "p02",
+   "n": "02",
+   "t": "פתיחה",
+   "body": "נעל שנשחקת רק בצד החיצוני, אצבעות שמתכופפות בתוך הגרב, רגל שנגררת יותר בסוף היום. משפחות רואות את הסימנים האלה הרבה לפני שמישהו אומר את המילים ספסטיות ברגליים. במאמר הזה תמצאו איך הספסטיות נראית בכל חלק של הרגל, מה היא עושה להליכה ולישיבה ומה אפשר לעשות."
+  },
+  {
+   "k": "p03",
+   "n": "03",
+   "t": "פתיחה",
+   "body": "ההסבר הכללי על ספסטיות, ואיך מבדילים אותה מחולשה, נמצא במאמר מה זה ספסטיות ואיך מזהים אותה."
+  },
+  {
+   "k": "p04",
+   "n": "04",
+   "t": "איך נראית ספסטיות ברגליים?",
+   "body": "המקום הנפוץ ביותר הוא הקרסול: שרירי השוק האחוריים והשריר שמסובב את כף הרגל פנימה מושכים יחד, וכף הרגל פונה מטה ופנימה. ברפואה קוראים לזה כף רגל אקווינווארוס. לכן בעמידה, העקב לא יורד עד הרצפה, והמשקל עובר לצד החיצוני של כף הרגל."
+  },
+  {
+   "k": "p05",
+   "n": "05",
+   "t": "איך נראית ספסטיות ברגליים?",
+   "body": "האצבעות מתכופפות לעיתים קרובות ונלחצות לסוליה. בנעל זה מורגש כלחץ וכאב בקצות האצבעות, ולפעמים מופיעות יבלות או פצעים. לעומת זאת, אצל אחרים דווקא הבוהן מתרוממת למעלה ומתחככת בחלק העליון של הנעל."
+  },
+  {
+   "k": "p06",
+   "n": "06",
+   "t": "איך נראית ספסטיות ברגליים?",
+   "body": "הברך יכולה להתנהג בשתי דרכים הפוכות: אצל חלק מהאנשים השריר הקדמי של הירך ספסטי, והברך נשארת ישרה ולא מתכופפת כשמניפים את הרגל קדימה. אצל אחרים, בעיקר מי שיושב או שוכב הרבה, הברך נשארת כפופה. בירך, השרירים הפנימיים יכולים לקרב את הרגליים זו לזו עד שהברכיים נוגעות, וזה מפריע להלביש, לרחוץ ולטפל בהיגיינה אינטימית או בקטטר."
+  },
+  {
+   "k": "p07",
+   "n": "07",
+   "t": "איך נראית ספסטיות ברגליים?",
+   "body": "ויש קלונוס: רעד קצבי בכף הרגל שמופיע כשמותחים את השריר בבת אחת. זה מבהיל בפעם הראשונה, אבל בדרך כלל נרגע כשמורידים את הרגל או לוחצים בעדינות על הברך כלפי מטה."
+  },
+  {
+   "k": "p08",
+   "n": "08",
+   "t": "איך ספסטיות ברגל משפיעה על ההליכה?",
+   "body": "בזמן שהרגל עוברת קדימה, קרסול שיורד למטה גורם לאצבעות להיתקע ברצפה. כדי לא למעוד, הגוף מפצה: מרימים את האגן בצד הפגוע, או מניפים את הרגל הצידה בחצי עיגול. זה עובד, אבל זה מעייף מאוד, ולכן ההליכה מתדרדרת בסוף היום."
+  },
+  {
+   "k": "p09",
+   "n": "09",
+   "t": "איך ספסטיות ברגל משפיעה על ההליכה?",
+   "body": "כשהרגל נוחתת, היא נוגעת ברצפה עם הקצה או עם הצד החיצוני במקום עם העקב. הקרסול יכול להתעקם החוצה, והעמידה על הרגל הזו פחות יציבה. כשהעקב לא מגיע לרצפה, יש גם מי שמפצה בנעילת הברך לאחור."
+  },
+  {
+   "k": "p10",
+   "n": "10",
+   "t": "איך ספסטיות ברגל משפיעה על ההליכה?",
+   "body": "כל זה מעלה את הסיכון לנפילות. הרבה פעמים הבעיה לא נראית בבדיקה במרפאה, כשהמטופל רענן ומרוכז, אלא בבית: בדרך לשירותים בלילה, על השטיח, במדרגה בכניסה."
+  },
+  {
+   "k": "p11",
+   "n": "11",
+   "t": "ומה קורה אצל מי שלא הולך?",
+   "body": "ספסטיות ברגליים מפריעה גם למי שמשתמש בכיסא גלגלים: עוויתות יכולות לזרוק את הרגליים קדימה ולהחליק את הגוף מהכיסא, ורגליים שנצמדות זו לזו מקשות על היגיינה. הברך או הקרסול שלא מתיישרים מקשים על ההעברה מהמיטה לכיסא, ועוויתות בלילה מעירות גם את המטופל וגם את מי שישן לידו."
+  },
+  {
+   "k": "p12",
+   "n": "12",
+   "t": "ומה קורה אצל מי שלא הולך?",
+   "body": "אחרי פגיעת חוט שדרה, הספסטיות מופיעה בשרירים שמתחת לגובה הפגיעה. החמרה פתאומית בעוויתות יכולה להיות הסימן הראשון לבעיה אחרת באותו אזור, כמו זיהום בדרכי השתן, עצירות או פצע לחץ, דווקא כשאין שם תחושה שתתריע על כאב."
+  },
+  {
+   "k": "p13",
+   "n": "13",
+   "t": "ומה קורה אצל מי שלא הולך?",
+   "body": "ויש צד שני: אצל חלק מהאנשים עם רגליים חלשות, המתח בשרירים עוזר לרגל להחזיק משקל בעמידה ובהעברות. לכן לפני שמרככים שריר ברגל, בודקים מה הוא נותן. ההסבר המלא נמצא במאמר מה זה ספסטיות."
+  },
+  {
+   "k": "p14",
+   "n": "14",
+   "t": "מה אפשר לעשות בספסטיות ברגליים?",
+   "body": "מתחילים ממה שהרגל נועלת, כי נעל סגורה ויציבה, שמחזיקה את העקב ולא לוחצת על האצבעות, יכולה לשנות את ההליכה עוד לפני כל טיפול אחר."
+  },
+  {
+   "k": "p15",
+   "n": "15",
+   "t": "מה אפשר לעשות בספסטיות ברגליים?",
+   "body": "סד קרסול-רגל (AFO) מחזיק את הקרסול בזווית שמאפשרת לאצבעות לעבור מעל הרצפה, ומייצב את כף הרגל בנחיתה. ההנחיות הבריטיות לשיקום אחרי שבץ ממליצות לשקול סד כזה כשיש קושי להרים את כף הרגל בהליכה או חוסר יציבות בעמידה, ולבדוק שהמטופל מסוגל לנעול ולהוריד אותו. איך בוחרים סד כזה ואיך מתרגלים ללכת איתו, במאמר סד קרסול-רגל (AFO). העקרונות של תדירות ואופן הלבישה דומים לאלה של סד ליד ספסטית. על ההתאמה אצלנו תמצאו בעמוד סדים ואביזרי עזר."
+  },
+  {
+   "k": "p16",
+   "n": "16",
+   "t": "מה אפשר לעשות בספסטיות ברגליים?",
+   "body": "חיזוק השרירים החלשים, כמו אלה שמרימים את כף הרגל ומיישרים את הירך, הוא חלק מהטיפול. בעבר חששו שאימון כוח מגביר ספסטיות, אבל היום ידוע שהוא לא מחמיר אותה, ושהוא משפר את התפקוד."
+  },
+  {
+   "k": "p17",
+   "n": "17",
+   "t": "מה אפשר לעשות בספסטיות ברגליים?",
+   "body": "הארכה (מתיחה) יומיומית של שרירי השוק והירך שומרת על הטווח שיש. איך עושים את זה נכון ובבטחה בבית, במאמר תרגילי הארכה לספסטיות."
+  },
+  {
+   "k": "p18",
+   "n": "18",
+   "t": "מה אפשר לעשות בספסטיות ברגליים?",
+   "body": "כשהספסטיות מרוכזת בכמה שרירים, למשל בשוק ובשריר שמסובב את כף הרגל פנימה, אפשר להזריק לשם בוטולינום טוקסין (המוכר בשם בוטוקס). בהנחיה מקצועית על כף רגל אקווינווארוס אחרי שבץ, ההזרקה מופיעה כטיפול הראשון לספסטיות במצב הזה, יחד עם סד ושיקום. בחלק מהמקרים עושים לפני ההחלטה חסימה זמנית של העצב בחומר הרדמה מקומית, כדי לראות כמה מהבעיה נובע מספסטיות וכמה מהתקצרות. על ההזרקות אצלנו תמצאו בעמוד הזרקות בוטוקס רפואי לספסטיות."
+  },
+  {
+   "k": "p19",
+   "n": "19",
+   "t": "מה אפשר לעשות בספסטיות ברגליים?",
+   "body": "יש גבול. כשהשרירים והגידים כבר התקצרו והקרסול מקובע, סד והזרקה לא יחזירו את הטווח. במצב כזה שוקלים הפניה לאורתופד, להערכה של הארכת גיד או ניתוח אחר."
+  },
+  {
+   "k": "p20",
+   "n": "20",
+   "t": "מה אפשר לעשות בספסטיות ברגליים?",
+   "body": "אותם עקרונות חלים על היד. על המקבילה שם, במאמר ספסטיות ביד."
+  },
+  {
+   "k": "p21",
+   "n": "21",
+   "t": "איך יודעים שהטיפול ברגל עזר?",
+   "body": "גם ברגל מגדירים מראש מטרה שאפשר לבדוק. לא \"הליכה טובה יותר\", אלא משהו מוחשי: להגיע לשירותים בלילה בלי למעוד, ללכת עד המכולת בלי לעצור, לעלות את המדרגה בכניסה לבניין, לשבת בכיסא בלי להחליק. אצל מי שלא הולך, המטרה יכולה להיות לילה בלי עוויתות שמעירות, או העברה מהמיטה לכיסא עם פחות עזרה."
+  },
+  {
+   "k": "p22",
+   "n": "22",
+   "t": "איך יודעים שהטיפול ברגל עזר?",
+   "body": "לצד המטרה האישית משתמשים גם במדידות קבועות: זמן הליכה למרחק מוגדר, טווח התנועה של הקרסול ומידת הספסטיות בשרירי השוק. בודקים אותן לפני הטיפול ושוב אחריו, באותם תנאים ועם אותה נעל או אותו סד. אם משהו השתפר בבדיקה אבל לא בבית, זה מידע חשוב, כי הוא אומר שצריך לתרגל את השינוי בסביבה האמיתית, בדרך למטבח ולא רק במסדרון של המרפאה."
+  },
+  {
+   "k": "p23",
+   "n": "23",
+   "t": "איך יודעים שהטיפול ברגל עזר?",
+   "body": "בטרשת נפוצה, שבה הספסטיות מורגשת הרבה פעמים בעיקר ברגליים, היא משתנה גם עם החום, עם זיהומים ובהתקפים. לכן כדאי לבדוק את ההליכה בכמה מצבים, ולא להסיק מסקנות מיום אחד."
+  },
+  {
+   "k": "p24",
+   "n": "24",
+   "t": "לאן פונים ומה מביאים?",
+   "body": "ספסטיות ברגליים היא אחת הסיבות הנפוצות לפנייה אחרי אירוע מוחי (שבץ). ב-IMSC לא צריך הפניה, ומומלץ להביא תיעוד רפואי ודו״ח מסכם טיפול של פיזיותרפיסט/ית או ריפוי בעיסוק, אם יש. כדאי להביא גם את הנעליים שהולכים בהן ביום-יום ואת הסד, אם יש. ההערכה וההזרקות נעשות במגדלי ב.ס.ר 2 בבני ברק, ופיזיותרפיה ניתנת גם במרכז הספורט של אוניברסיטת תל אביב. IMSC הוא שירות פרטי, וקיימת אפשרות להחזרים מביטוחים פרטיים, הן על התייעצות עם רופא והן על טיפולי שיקום. כדאי לבדוק מול הפוליסה שלכם."
+  },
+  {
+   "k": "p25",
+   "n": "25",
+   "t": "מתי כדאי לפנות לבדיקה?",
+   "body": "• היו נפילות או כמעט-נפילות, או שהאצבעות נתקעות ברצפה.\n• הקרסול מתעקם החוצה בהליכה.\n• יש כאב, יבלות או פצעים בקצות האצבעות או בצד החיצוני של כף הרגל.\n• העקב כבר לא יורד לרצפה, גם כשעומדים עליו.\n• עוויתות ברגליים מעירות משינה או מזיזות את הגוף בכיסא.\n• החמרה פתאומית בעוויתות עם חום או שינוי בשתן: פונים לרופא המטפל באותו יום."
+  },
+  {
+   "k": "p26",
+   "n": "26",
+   "t": "שאלות שחוזרות",
+   "body": "הקרסול מסתובב פנימה. זה ספסטיות או חולשה?\nלרוב שניהם: השרירים שמורידים ומסובבים את כף הרגל ספסטיים, והשרירים שמרימים אותה חלשים. בבדיקה מפרידים ביניהם, כי לכל אחד טיפול אחר."
+  },
+  {
+   "k": "p27",
+   "n": "27",
+   "t": "שאלות שחוזרות",
+   "body": "למה הרגל רועדת כשאני מניח אותה על המדרגה?\nזה קלונוס, תגובה רפלקסית חוזרת של שרירי השוק למתיחה. הוא לא מזיק, אבל יכול להפריע ולהבהיל. בדרך כלל הוא נרגע כשמורידים את הרגל או לוחצים בעדינות על הברך כלפי מטה."
+  },
+  {
+   "k": "p28",
+   "n": "28",
+   "t": "שאלות שחוזרות",
+   "body": "אפשר ללכת בלי סד?\nתלוי בהליכה. אם האצבעות לא נתקעות והקרסול יציב, ייתכן שלא צריך. לעומת זאת, אם יש מעידות או נפילות, סד מתאים יכול להפוך את ההליכה לבטוחה יותר. ההחלטה נעשית אחרי שרואים את ההליכה עם הסד וגם בלעדיו."
+  },
+  {
+   "k": "p29",
+   "n": "29",
+   "t": "שאלות שחוזרות",
+   "body": "אחרי פגיעת חוט שדרה העוויתות התגברו. למה?\nלפעמים זו רק תנודה, אבל החמרה פתאומית יכולה לרמז על זיהום בשתן, עצירות, פצע לחץ או ציפורן חודרנית. לכן כדאי לבדוק את הגורמים האלה עם הרופא המטפל לפני שמשנים טיפול."
+  },
+  {
+   "k": "p30",
+   "n": "30",
+   "t": "שאלות שחוזרות",
+   "body": "רוצים לבדוק מה קורה ברגל?\nבמפגש ההערכה ב-IMSC רואים את ההליכה, בודקים כל מפרק ומגדירים מטרה אחת שאפשר למדוד, למשל פחות מעידות בדרך לשירותים. אפשר להתחיל בשיחת היכרות, ונחזור אליכם בהקדם."
+  },
+  {
+   "k": "p31",
+   "n": "31",
+   "t": "מקורות מידע (באתר: אקורדיון מקופל)",
+   "body": "• Deltombe, T., Wautier, D., De Cloedt, P., Fostier, M., & Gustin, T. (2017). Assessment and treatment of spastic equinovarus foot after stroke: Guidance from the Mont-Godinne interdisciplinary group. Journal of Rehabilitation Medicine. https://www.medicaljournals.se/jrm/content/html/10.2340/16501977-2226\n• NICE (2023). Stroke rehabilitation in adults (NG236). https://www.nice.org.uk/guidance/ng236\n• Billington, Z. J., Henke, A. M., & Gater, D. R. (2022). Spasticity management after spinal cord injury: the here and now. Journal of Personalized Medicine. https://pmc.ncbi.nlm.nih.gov/articles/PMC9144471/\n• MS Society UK. Spasticity, spasms and stiffness. https://www.mssociety.org.uk/about-ms/signs-and-symptoms/spasms-and-stiffness\n• Stroke Association. Spasticity and contractures. https://www.stroke.org.uk/stroke/effects/physical/spasticity-and-contractures"
+  },
+  {
+   "k": "p32",
+   "n": "32",
+   "t": "גילוי נאות",
+   "body": "המידע כללי ואינו מחליף ייעוץ רפואי אישי. התאמת טיפול נעשית על ידי רופא מטפל."
+  },
+  {
+   "k": "v1",
+   "n": "א1",
+   "t": "עובדה לאימות",
+   "body": "בוהן גדולה שמתרוממת למעלה אצל חלק מהמטופלים. רלוונטי לקהל, או מבלבל?",
+   "sub": "פסקה 05"
+  },
+  {
+   "k": "v2",
+   "n": "א2",
+   "t": "עובדה לאימות",
+   "body": "נעילת הברך לאחור כפיצוי כשהעקב לא מגיע לרצפה.",
+   "sub": "פסקה 06"
+  },
+  {
+   "k": "v3",
+   "n": "א3",
+   "t": "עובדה לאימות",
+   "body": "קלונוס \"נרגע כשמורידים את הרגל או לוחצים בעדינות על הברך כלפי מטה\". עצה נכונה למשפחות?",
+   "sub": "פסקה 07"
+  },
+  {
+   "k": "v4",
+   "n": "א4",
+   "t": "עובדה לאימות",
+   "body": "הזרקה כטיפול ראשון לכף רגל שנמשכת למטה ופנימה, וחסימת עצב אבחנתית בחומר הרדמה מקומית. האם IMSC מבצע חסימות אבחנתיות? אם לא, להוריד?",
+   "sub": "פסקה 18"
+  },
+  {
+   "k": "v5",
+   "n": "א5",
+   "t": "עובדה לאימות",
+   "body": "גורמים להחמרה פתאומית: זיהום בדרכי השתן, עצירות, פצע לחץ, ציפורן חודרנית.",
+   "sub": "פסקה 29"
+  },
+  {
+   "k": "v6",
+   "n": "א6",
+   "t": "עובדה לאימות",
+   "body": "\"ספסטיות ברגליים היא אחת הסיבות הנפוצות לפנייה אחרי אירוע מוחי.\" נכון לקליניקה?",
+   "sub": "פסקה 24"
+  },
+  {
+   "k": "v7",
+   "n": "א7",
+   "t": "עובדה לאימות",
+   "body": "ההמלצה להביא למפגש ההערכה את הנעליים והסד.",
+   "sub": "פסקה 24"
+  },
+  {
+   "k": "v8",
+   "n": "א8",
+   "t": "עובדה לאימות",
+   "body": "\"אימון כוח לא מחמיר ספסטיות ומשפר תפקוד.\"",
+   "sub": "פסקה 16"
+  },
+  {
+   "k": "v9",
+   "n": "א9",
+   "t": "עובדה לאימות",
+   "body": "מדידות קבועות: זמן הליכה למרחק מוגדר, טווח הקרסול ומידת הספסטיות. אלה הכלים שבהם IMSC משתמש?",
+   "sub": "פסקה 22"
+  },
+  {
+   "k": "q1",
+   "n": "ש1",
+   "t": "שאלה לראיון: אצבעות בנעל",
+   "sub": "משפט או שניים מספיקים",
+   "body": "כמה נפוץ אצלך שהתלונה העיקרית ברגל היא אצבעות שמתכופפות בתוך הנעל? מה זה עושה למטופלים ביום-יום?"
+  },
+  {
+   "k": "q2",
+   "n": "ש2",
+   "t": "שאלה לראיון: נעליים",
+   "sub": "משפט או שניים מספיקים",
+   "body": "מה אתה ממליץ למשפחות לגבי נעליים וגרביים לרגל ספסטית, עוד לפני שמגיעים לסד?"
+  },
+  {
+   "k": "q3",
+   "n": "ש3",
+   "t": "שאלה לראיון: סד או הזרקה",
+   "sub": "משפט או שניים מספיקים",
+   "body": "באילו מצבים ברגל אתה מעדיף להתחיל מסד קרסול-רגל, ובאילו מהזרקה? מה מכריע אצלך?"
+  },
+  {
+   "k": "q4",
+   "n": "ש4",
+   "t": "שאלה לראיון: במרפאה ובבית",
+   "sub": "משפט או שניים מספיקים",
+   "body": "מה ההבדל שאתה רואה בין איך מטופל הולך בבדיקה לבין מה שהמשפחה מספרת על ההליכה בבית, בסוף יום או בדרך לשירותים בלילה?"
+  }
+ ],
+ "inbox": "https://script.google.com/macros/s/AKfycbzEj4lUky1em3ctwa-hol23Hfu5F5paCqut5pzeSTKYG4oaqZSQhPhb5EfFf9ZS16u11w/exec",
+ "project": "article-a3"
+};
+/* ===================================================================================== */
+(function(){
+  document.documentElement.setAttribute('dir','rtl'); document.documentElement.setAttribute('lang','he');
+  const C=CONFIG, $=id=>document.getElementById(id);
+  $('brand').textContent=C.brand; $('h1').textContent=C.h1; $('intro').textContent=C.intro; $('general-hint').textContent=C.generalHint;
+  C.facts.forEach(f=>{ const s=document.createElement('span'); s.textContent=f; $('facts').appendChild(s); });
+  let vid=null;
+  if(C.video){ const p=$('player'); p.hidden=false; vid=document.createElement('video'); vid.src=C.video.src; if(C.video.poster) vid.poster=C.video.poster; vid.controls=true; vid.playsInline=true; vid.preload='metadata'; p.appendChild(vid); }
+  C.items.forEach(it=>{
+    const el=document.createElement('article'); el.className='item'+(it.img?'':' noimg'); el.id='i-'+it.k;
+    el.innerHTML=(it.img?'<div class="shot"><img alt="" loading="lazy"></div>':'')+'<div><div class="meta"><span class="num"></span><h2></h2><span class="sub"></span></div><div class="changed" hidden></div><button class="jump" type="button" hidden>▶ לצפות מכאן</button><div class="label lq" hidden>טקסט</div><div class="quote" hidden></div><div class="label lb" hidden>פירוט</div><div class="body" hidden></div><div class="answer"><label></label><textarea placeholder="רק מה שצריך לשנות. ריק = מאושר"></textarea><div class="status"></div></div></div>';
+    if(it.img){ const im=el.querySelector('img'); im.src=it.img; im.alt=C.itemWord+' '+it.n+': '+it.t; }
+    el.querySelector('.num').textContent=it.n||''; el.querySelector('h2').textContent=it.t; el.querySelector('.sub').textContent=it.sub||'';
+    if(it.ch){ const c=el.querySelector('.changed'); c.hidden=false; c.innerHTML='<span class="chg">שונה</span> '; c.appendChild(document.createTextNode(it.ch)); }
+    if(it.quote){ el.querySelector('.lq').hidden=false; const q=el.querySelector('.quote'); q.hidden=false; q.textContent=it.quote; }
+    if(it.body){ el.querySelector('.lb').hidden=false; const b=el.querySelector('.body'); b.hidden=false; b.textContent=it.body; }
+    if(vid && typeof it.at==='number'){ const j=el.querySelector('.jump'); j.hidden=false; j.addEventListener('click',()=>{ try{ vid.currentTime=it.at; const pr=vid.play(); if(pr&&pr.catch) pr.catch(()=>{}); }catch(e){} vid.scrollIntoView({behavior:'smooth',block:'center'}); }); }
+    const ta=el.querySelector('textarea'); ta.id='a-'+it.k; ta.dataset.key=it.k;
+    const lab=el.querySelector('label'); lab.htmlFor=ta.id; lab.textContent='הערות ל'+C.itemWord+' '+(it.n||it.t);
+    el.querySelector('.status').id='st-'+it.k;
+    $('items').appendChild(el);
+  });
+
+  const ORDER=C.items.map(i=>i.k).concat(['general']);
+  const LABEL={}; C.items.forEach(i=>LABEL[i.k]=C.itemWord+' '+(i.n?i.n+' · ':'')+i.t); LABEL.general='הערה כללית';
+  const areas={}; ORDER.forEach(k=>areas[k]=document.querySelector('textarea[data-key="'+k+'"]'));
+  let docRef=null, comments=null, state={answers:{}}; const timers={};
+  const lsLoad=()=>{ try{ const j=localStorage.getItem(C.ls); return j?JSON.parse(j):null; }catch(e){ return null; } };
+  const lsSave=()=>{ try{ localStorage.setItem(C.ls, JSON.stringify(state)); }catch(e){} };
+  function progress(){ const n=ORDER.filter(k=>(areas[k].value||'').trim()).length; $('progress').textContent=n+' מתוך '+ORDER.length+' תיבות עם הערות'; $('barfill').style.width=(n/ORDER.length*100)+'%'; }
+  function fill(){ ORDER.forEach(k=>{ const v=state.answers[k]||''; if(areas[k].value!==v && document.activeElement!==areas[k]) areas[k].value=v; }); progress(); }
+  function setStatus(k,t,c){ const el=$('st-'+k); if(!el) return; el.textContent=t; el.className='status'+(c?' '+c:''); }
+  async function persist(k){
+    state.answers[k]=areas[k].value; state.updatedAt=new Date().toISOString(); lsSave();
+    if(!docRef){ setStatus(k,'נשמר במכשיר הזה','ok'); return; }
+    try{ await docRef.set({answers:state.answers, updatedAt:state.updatedAt, submittedAt:state.submittedAt||null}); setStatus(k,'נשמר','ok'); }
+    catch(e){ setStatus(k,'השמירה המשותפת לא הצליחה, נשמר בדפדפן הזה בלבד','warn'); }
+  }
+  ORDER.forEach(k=>areas[k].addEventListener('input',()=>{ progress(); setStatus(k,'שומר...'); clearTimeout(timers[k]); timers[k]=setTimeout(()=>persist(k),800); }));
+  const local=lsLoad(); if(local&&local.answers) state=local; fill();
+
+  function collect(){ const notes=[]; ORDER.forEach(k=>{ const v=(areas[k].value||'').trim(); if(v) notes.push({item:LABEL[k], note:v}); }); return notes; }
+  function compile(){ const who=($('who').value||'').trim(); const L=[C.sendTitle+(who?' ('+who+')':'')]; const n=collect();
+    n.forEach(x=>L.push('', '• '+x.item+':', x.note)); if(!n.length) L.push('', '(הכול מאושר, בלי הערות)'); return L.join('\n'); }
+  try{ const w=localStorage.getItem(C.ls+'-who'); if(w) $('who').value=w; }catch(e){}
+  $('who').addEventListener('input',()=>{ try{ localStorage.setItem(C.ls+'-who',$('who').value); }catch(e){} });
+  async function send(){
+    const b=$('sendbtn')||$('sendbtn2'); if(b){ b.disabled=true; b.textContent='שומר...'; }
+    ORDER.forEach(k=>{ state.answers[k]=areas[k].value; }); state.updatedAt=new Date().toISOString(); lsSave();
+    const who=($('who').value||'').trim();
+    const box=document.querySelector('#sendwrap .box');
+    if(!who){ if(b){ b.disabled=false; b.textContent='שמור'; } $('who').focus(); $('who').style.borderColor='var(--warn)'; return; }
+    let ok=false;
+    if(C.inbox){ try{ await fetch(C.inbox,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({project:C.project||'',round:C.doc,name:who,notes:collect()})}); ok=true; }catch(e){} }
+    if(ok){ box.innerHTML='<div class="sent"></div><button class="primary" id="sendbtn2" type="button">שמור שוב</button>'; box.querySelector('.sent').textContent='נשמר, תודה '+who+'. אפשר להמשיך לערוך ולשמור שוב.'; $('sendbtn2').addEventListener('click',send); return; }
+    box.innerHTML='<div class="sent" style="background:var(--warn-soft);color:var(--warn)">השמירה לא הצליחה. העתיקו את הטקסט ושלחו אותו:</div><textarea id="fallbacktext" readonly></textarea><button class="primary" id="sendbtn2" type="button">נסו שוב</button>';
+    $('fallbacktext').value=compile(); $('sendbtn2').addEventListener('click',send);
+  }
+  $('sendbtn').addEventListener('click',send);
+})();
+</script>
+
+</body></html>
