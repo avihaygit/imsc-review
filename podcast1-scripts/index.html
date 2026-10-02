@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex">
+<title>IMSC · פודקאסט 1 · תסריטים לריילס</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap">
+<style>
+/* ===== Brand tokens: swap these per project (light first, then dark) ===== */
+:root{
+  --bg:#F3F0E8; --surface:#FFFFFF; --ink:#0A2350; --muted:#4F5E78; --line:#DCD6C8;
+  --accent:#06265A; --accent-ink:#F5F1E8; --hi:#0A7D7D; --hi-soft:#DDF1EF; --chg:#8A6614; --chg-soft:#F6ECD2;
+  --field:#FFFFFF; --ok:#1E7A52; --ok-soft:#DDF1E6; --warn:#A04C0C; --warn-soft:#FBE8D6; --shadow:0 12px 30px rgba(6,38,90,.14);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#071A3A; --surface:#0E2750; --ink:#EEF2FA; --muted:#A8B7D0; --line:#23406E;
+    --accent:#12BCBC; --accent-ink:#06265A; --hi:#12BCBC; --hi-soft:#123E55; --chg:#E0BC6A; --chg-soft:#3A2F16;
+    --field:#0A2045; --ok:#5DD39E; --ok-soft:#173A2B; --warn:#F0A25E; --warn-soft:#432A12; --shadow:0 12px 30px rgba(0,0,0,.35); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#071A3A; --surface:#0E2750; --ink:#EEF2FA; --muted:#A8B7D0; --line:#23406E;
+  --accent:#12BCBC; --accent-ink:#06265A; --hi:#12BCBC; --hi-soft:#123E55; --chg:#E0BC6A; --chg-soft:#3A2F16;
+  --field:#0A2045; --ok:#5DD39E; --ok-soft:#173A2B; --warn:#F0A25E; --warn-soft:#432A12; --shadow:0 12px 30px rgba(0,0,0,.35); color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Assistant","Arial Hebrew",Arial,sans-serif;font-size:17px;line-height:1.6}
+.wrap{direction:rtl;max-width:980px;margin:0 auto;padding-inline:16px;padding-block:0 96px}
+h1,h2{font-weight:800;line-height:1.15;margin:0;text-wrap:balance}
+h1{font-size:clamp(1.9rem,4.5vw,2.6rem)} h2{font-size:1.45rem}
+p{margin:.5rem 0}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:12px 10px;border-bottom:1px solid var(--line)}
+.top .row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-weight:800;color:var(--hi);letter-spacing:.02em}
+.progress{font-size:.92rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.bar{height:5px;background:var(--line);border-radius:99px;margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--hi);transition:width .3s ease}
+.intro{padding-block:28px 12px;display:grid;gap:10px}
+.intro p{color:var(--muted);max-width:62ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.facts span{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:.9rem;font-weight:600}
+.player{margin-top:14px;max-width:340px}
+.player video{display:block;width:100%;border-radius:14px;background:#000;box-shadow:var(--shadow)}
+.items{display:grid;gap:28px;margin-top:20px}
+.item{display:grid;grid-template-columns:minmax(0,250px) minmax(0,1fr);gap:24px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.item.noimg{grid-template-columns:1fr}
+.shot img{display:block;width:100%;border-radius:12px;box-shadow:var(--shadow);max-width:100%}
+.meta{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.num{font-weight:800;color:var(--hi);font-size:1.5rem;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);font-size:.9rem;font-variant-numeric:tabular-nums}
+.chg{display:inline-block;background:var(--chg-soft);color:var(--chg);font-size:.78rem;font-weight:800;padding:.05em .6em;border-radius:99px;vertical-align:middle}
+.changed{background:var(--chg-soft);border-radius:10px;padding:8px 12px;margin-top:10px;font-size:.95rem}
+.label{font-size:.8rem;font-weight:800;letter-spacing:.06em;color:var(--muted);margin-top:14px}
+.quote{background:var(--hi-soft);border-radius:10px;padding:8px 12px;font-weight:700;margin-top:4px;white-space:pre-line}
+.body{margin-top:4px;white-space:pre-line}
+.jump{font:inherit;font-weight:700;font-size:.9rem;color:var(--hi);background:var(--hi-soft);border:0;border-radius:999px;padding:6px 14px;margin-top:10px;cursor:pointer;min-height:36px}
+.answer{margin-top:16px}
+.answer label{display:block;font-weight:800;margin-bottom:6px}
+textarea{width:100%;min-height:96px;resize:vertical;font:inherit;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:10px;padding:10px 12px;direction:rtl}
+textarea:focus,.jump:focus-visible{outline:2px solid var(--hi);outline-offset:1px}
+.status{font-size:.85rem;color:var(--muted);margin-top:4px;min-height:1.3em}
+.status.ok{color:var(--ok)} .status.warn{color:var(--warn)}
+.general{margin-top:28px;background:var(--chg-soft);border-radius:18px;padding:18px}
+.send{margin-top:28px;padding-top:22px;border-top:2px solid var(--hi)}
+.send .box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.send .hint{color:var(--muted);font-size:.95rem;flex:1 1 240px}
+button.primary{font:inherit;font-weight:800;background:var(--accent);color:var(--accent-ink);border:0;border-radius:999px;padding:12px 32px;cursor:pointer;min-height:44px}
+button.primary:disabled{opacity:.55;cursor:default}
+button.primary:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.sent{background:var(--ok-soft);color:var(--ok);border-radius:10px;padding:10px 14px;font-weight:700}
+@media (max-width:640px){ .item{grid-template-columns:1fr;padding:14px} .shot{max-width:280px;margin-inline:auto;width:100%} }
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="row"><span class="brand" id="brand"></span><span class="progress" id="progress"></span></div>
+    <div class="bar"><i id="barfill"></i></div>
+  </header>
+  <section class="intro">
+    <h1 id="h1"></h1>
+    <p id="intro"></p>
+    <div class="facts" id="facts"></div>
+    <div class="player" id="player" hidden></div>
+  </section>
+  <div class="items" id="items"></div>
+  <section class="general">
+    <h2>הערה כללית</h2>
+    <p id="general-hint"></p>
+    <div class="answer"><label for="a-general">ההערה שלי</label><textarea id="a-general" data-key="general" placeholder="כל מה שלא שייך לפריט אחד"></textarea><div class="status" id="st-general"></div></div>
+  </section>
+  <div class="send" id="sendwrap">
+    <div class="box"><div class="hint" id="sendhint"><label for="who" style="font-weight:700;display:block;margin-bottom:4px">השם שלכם <span style="font-weight:400;color:var(--muted)">(לא חובה)</span></label><input id="who" type="text" autocomplete="name" style="font:inherit;width:100%;max-width:280px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--field);color:var(--ink)"><div style="margin-top:6px">כשסיימתם, לחצו "שמור" וכל ההערות יישמרו. תיבה ריקה = מאושר.</div></div><button class="primary" id="sendbtn" type="button">שמור</button></div>
+  </div>
+</div>
+
+<script>
+/* ===================== CONFIG — the only part to edit per review ===================== */
+const CONFIG = {
+  inbox: 'https://script.google.com/macros/s/AKfycbzEj4lUky1em3ctwa-hol23Hfu5F5paCqut5pzeSTKYG4oaqZSQhPhb5EfFf9ZS16u11w/exec',
+  project: 'podcast1-scripts',
+  brand: "IMSC · פודקאסט 1 · תסריטים לריילס · סבב 1",
+  h1: "תסריטים לריילס מהפודקאסט",
+  intro: "תסריט לכל ריל אפשרי מהסרטונים של הפודקאסט (אביה גיטרמן וד״ר ענבל פארן). סרטון 02 כבר נעשה (הריל הראשון), אז הוא לא כאן. לכל תסריט: הכותרת לשקופית הפתיחה, הזמנים מהסרטון, מה שנאמר (בדיוק כפי שנאמר, אחרי חיתוך), איפה יופיעו אייקונים, אורך משוער, ומילים שצריך לוודא. 4 תסריטים (מסומנים \"כבר טיוטה\") כבר עשויים כטיוטה, ולכל אחד מהם יש דף נפרד. כתבו מתחת לכל תסריט: לאשר, לשנות או לוותר. תיבה ריקה = מאושר. בסוף לחצו \"שמור\".",
+  facts: ["9 תסריטים", "6 סרטונים", "4 כבר כטיוטה", "טקסט בלבד"],
+  generalHint: 'על הכול יחד: איזה תסריטים להמשיך, סדר הפרסום, כותרות, אורך.',
+  doc: 'reviews/podcast1-scripts-v1',
+  ls: 'imsc-podcast1-scripts-v1',
+  sendTitle: "הערות לתסריטי הריילס מהפודקאסט:",
+  itemWord: 'מקטע',
+  items: [
+ {
+  "k": "c01",
+  "n": "01",
+  "t": "האם המענה הטיפולי היום מקיף ומספק? · כבר טיוטה",
+  "sub": "סרטון 01 · 0:01–1:39 · כ-74 שנ׳ · אביה שואלת, ענבל עונה",
+  "quote": "שקופית פתיחה: האם המענה / הטיפולי היום / מקיף ומספק?",
+  "body": "אביה: את חושבת שהמענה הטיפולי שניתן היום למטופלים עם ספסטיות, בהכרח מקיף ומספק?\nענבל: קשה למטופלים הרבה פעמים לייצר את המעטפת הזאת, ואת התקשורת ואת השיח בין אנשי הצוות שמטפלים בו. בעצם הוא ה-case manager, או מי שמנהל את הטיפול בעצמו.\n(מעבר) אז אני חושבת שאנחנו מנסים לייצר פה בעצם איזשהו מקום, איזשהו בית, שלוקח תחת קורת גג אחת את הדבר הזה. ומנגיש את זה למטופל, מאפשר לו לחסוך את הזמן, את הכאב ראש, את הבלבול לפעמים מעודף אינפורמציה או אינפורמציה לא מדויקת. ובעצם מיטב אנשי מקצוע המנוסים בדבר נמצאים תחת קורת גג אחת, ויכולים לתת לו את המענה הזה ולאפשר את השיח ואת התקשורת, כדי שהטיפול הזה יהיה באמת מיטבי, יעיל, מדויק ותואם למטרות האישיות שלו, למה שהוא מעוניין לקדם, למה שהכי מפריע לו כרגע בתפקוד, שזה דברים שגם מתעדכנים ומשתנים עם הזמן.\n\nהוצא: \"אני חושבת שלמטופלים הרבה פעמים זה קשה, זה מורכב… ואז זה נהיה מסורבל\" (חוזר על אותו רעיון), ו\"אם הוא לא במסגרת מחוזית\".\nאייקונים: 🏠 בית · ⏰ הזמן · 🤔 הבלבול · 🤝 השיח והתקשורת · 🎯 מטרות אישיות.\nלוודא: בשאלה של אביה התמלול שמע \"אם הספסתי אותו\". בכתוביות כתבתי \"עם ספסטיות\", ונשארה המילה \"אותו\", שלא ברור מה היא. מה נאמר שם?"
+ },
+ {
+  "k": "c03a",
+  "n": "03-א",
+  "t": "למה הזרקה לבד לא מספיקה? · כבר טיוטה",
+  "sub": "סרטון 03 · 0:00–2:41 · כ-75 שנ׳ · אביה שואלת, ענבל עונה",
+  "quote": "שקופית פתיחה: למה הזרקה / לבד / לא מספיקה?",
+  "body": "אביה: הרבה פעמים מטופלים מגיעים אלינו לסדרת טיפולים או להערכה רב-צוותית, ואנחנו מבינים שהם קיבלו הזרקות של בוטולינום טוקסין, או בשפת העם בוטוקס, כל שלושה חודשים באופן תדיר, חוזרני, אבל לא היה שינוי. את רוצה להסביר לנו למה הזרקה לבד לא מספיקה?\nענבל: ההזרקה נותנת את הטיפול ואת המענה באמת בהרפיה של השריר, אבל מה שחשוב להבין פה זה שזה מייצר פתח לחלון הזדמנויות, שעכשיו צריך לקחת בשתי הידיים ולנצל אותו כדי להשיג שיפור תפקודים.\n(מעבר) עכשיו בעצם אפשר להתחיל לעבוד, לאפשר תהליכי למידה מחדש, שמאפשרים בעצם שיפור בטווחי תנועה, אולי התחלה על עבודה אקטיבית מחודשת, להתחיל עבודה על חיזוק בטווחים שלא היו קיימים קודם. אבל חיזוק לא סתם לשם החיזוק של השריר, אלא חיזוק בתוך הפונקציה, בתוך התפקוד, זה תמיד הרי בסופו של דבר מה שמעניין אותנו. אנחנו תמיד נשאל: איזה תפקודים קשים לך, מה הכי מפריע לך, איפה זה הכי תוקע אותך, ואז על זה נרצה לעבוד.\n(מעבר) צריך להבין שההזרקה הזו, צריך לנצל אותה.\n\nהוצא בכוונה: \"כשבועיים אחרי ההזרקה יתחיל להרגיש הטבה\" (לוח זמנים, צריך אישור של ד״ר צווקר), \"אפשר יהיה לרווח בין הזרקות או לא להזריק\" (נשמע כמו הבטחת תוצאה), ושמות התרופות.\nאייקונים: 🪟 חלון הזדמנויות · 🧠 למידה מחדש · 💪 חיזוק.\nלוודא: אביה אומרת \"בוטוקס\" ומיד \"בוטולינום טוקסין\", כך שזה בסדר לפי כללי המונחים. \"כל שלושה חודשים\" נאמר כתיאור של מה שמטופלים מספרים, לא כהמלצה."
+ },
+ {
+  "k": "c03b",
+  "n": "03-ב",
+  "t": "מה הכי מטריד את המטופלים",
+  "sub": "סרטון 03 · 1:26–2:16 · כ-36 שנ׳ · ענבל",
+  "quote": "שקופית פתיחה (הצעה): מה הכי / *מטריד* / את המטופלים?",
+  "body": "ענבל: הרבה פעמים מטופלים מאוד סובלים ממנה, וזה מה שבראש ובראשונה מטריד אותם: התנועות הלא רצוניות, הכאבים, הנוקשות, ההגבלה בתנועה הזו שנוצרת בעקבות זה. אבל עכשיו שיש את ההטבה הזו, אם באמת היא הושגה, בהנחה שהיא באמת הושגה, אז עכשיו אפשר בעצם מזה להפיק כל כך הרבה יותר. עכשיו בעצם אפשר להתחיל לעבוד, לאפשר תהליכי למידה מחדש. אנחנו תמיד נשאל: איזה תפקודים קשים לך, מה הכי מפריע לך, איפה זה הכי תוקע אותך, ואז על זה נרצה לעבוד.\n\nאייקונים (הצעה): 🌀 תנועות לא רצוניות · 😣 כאבים · 🔒 נוקשות.\nהערה: חופף חלקית ל-03-א (אותו סרטון). קצר מ-45 שנ׳. אפשר לוותר עליו אם 03-א מאושר."
+ },
+ {
+  "k": "c04a",
+  "n": "04-א",
+  "t": "הזרקה היא החרישה של השדה · כבר טיוטה",
+  "sub": "סרטון 04 · 0:00–1:51 · כ-63 שנ׳ · אביה",
+  "quote": "שקופית פתיחה: הזרקה היא / החרישה / של השדה",
+  "body": "אביה: להתייחס לזה כמו שהזרקה בעצם זה ממש החרישה של השדה, ואז העבודה אחר כך היא ממש הנטיעה, הצמיחה של משהו חדש.\n(מעבר) הרבה פעמים הזרקה מאפשרת לנו להוריד את כל רעשי הרקע האלה של הטונוס המוגבר, השרירים עובדים ביתר, עוזר לנו קצת להפחית ולהשקיט שם את התזמורת שבה כולם מנגנים ביחד, ובעצם להתמקד במה שאנחנו כן רוצים להשיג, בתנועות שאנחנו רוצים להפוך אותן להיות יותר מיומנות. וזה בעצם הזמן שלנו ללמד את השרירים דברים חדשים.\n(מעבר) זה נשמע קל, אבל זה לא מה שקורה ביום אחד. זה דורש עבודה מאוד אינטנסיבית, חוזרנית, מוכוונת מטרה, שזה בעצם מושתת על מטרות תפקודיות, ולא סתם לפתוח ולסגור את היד, לפתוח ולסגור, ללא שום מטרה ותכלית.\n\nהוצא: \"של הזריעה והנטיעה\", \"של מה שנקרא הסימנים החיוביים\", \"כאילו\", \"כמו שאמרת\", והקטע על המחקרים (תסריט 04-ב).\nאייקונים: 🚜 החרישה · 🌱 הנטיעה והצמיחה · 🎻 התזמורת · 🎯 מוכוונת מטרה."
+ },
+ {
+  "k": "c04b",
+  "n": "04-ב",
+  "t": "מה המחקרים מהשנים האחרונות אומרים",
+  "sub": "סרטון 04 · 0:58–2:02 · כ-45 שנ׳ · אביה",
+  "quote": "שקופית פתיחה (הצעה): מה *ההזרקה* / מאפשרת / *למוח*?",
+  "body": "אביה: ואנחנו יודעים היום גם ממחקרים מהשנים האחרונות שההזרקה, ממש החומר, הבוטולינום טוקסין, ההזרקה שלו מאפשרת גם התאוששות של מסלולים נוירולוגיים בעצם, מסלולים עולים למוח, עצביים, ומאפשרת למידה של מיומנויות חדשות. ועל ידי זה אנחנו בעצם, בחלון הזה, אנחנו בעצם מלמדים את השרירים פונקציות חדשות. זה בעצם שילוב של הרבה דברים שמביאים ללמידה חדשה ומאפשרים שיפור של התפקוד היומיומי.\n\nלבדיקת ד״ר צווקר: הטענה על המחקרים (התאוששות מסלולים נוירולוגיים) היא עובדה רפואית שלא מופיעה באתר. לא הכנתי טיוטה עד שתאושר.\nהוצא: \"אפשר לרווח בין ההזרקות… או לא להזריק בכלל\" (הבטחת תוצאה).\nאייקונים (הצעה): 🧠 מסלולים עולים למוח."
+ },
+ {
+  "k": "c05",
+  "n": "05",
+  "t": "למה התזמון של ההזרקה חשוב?",
+  "sub": "סרטון 05 · 0:00–1:26 · כ-77 שנ׳",
+  "quote": "שקופית פתיחה (הצעה): למה *התזמון* / של ההזרקה / *חשוב*?",
+  "body": "אנחנו רוצים לשים לב שהזרקה נעשית לפני שנוצרת איזושהי קונטרקטורה, מה שנקרא, לפני שנוצר איזשהו קיבוע בעקבות קיצור, בעקבות העלייה המשמעותית בטון. זאת אומרת, אם אין טיפול מתאים לאורך הזמן שמשמר את טווחי התנועה, שעובד באמת על הקפדה על טווחים מלאים במפרקים, אז נוצרים קיצורים בעקבות העלייה הזו בטונוס, בעקבות הספסטיות, שהטיפול בהם הוא בעצם רק על ידי ניתוח, בסופו של דבר, בסופה של הדרך. אבל אם נספיק לתפוס את זה בזמן, אז הזרקה עשויה למנוע בדיוק את הסיבוכים הללו, ואז בעצם מעבר לשמירה על הטווחים, או הפחתה בכאבים שהקיצורים האלה הרבה פעמים גורמים, אז אפשר כבר באמת לשפר תפקוד.\n(מעבר) זאת אומרת, זה משהו שיכול לקרות גם במצבים של פגיעות כרוניות. אפשר לנצל את ההטבה הזו של ההזרקה גם בפגיעות שהן כרוניות. אבל צריך לראות שזה קורה לפני שנוצר קיצור משמעותי ואובדן טווח במפרקים השונים.\n\nלמה לא הכנתי טיוטה: (1) לא ברור לי מי מדברת. המצלמה עוברת מענבל לאביה ב-0:34, ושתיהן נראות מדברות. מי מדברת בכל חלק? (2) נאמר \"ניתוח\". לפי מילון המונחים כותבים \"התערבות כירורגית\", אבל הכתוביות צריכות להתאים למה שנאמר. איך לכתוב? (3) \"הזרקה עשויה למנוע את הסיבוכים\" היא טענה רפואית. כדאי שד״ר צווקר יאשר.\nלוודא: התמלול שמע \"טמח\". כתבתי \"טווח\"."
+ },
+ {
+  "k": "c06",
+  "n": "06",
+  "t": "ניהול ספסטיות זה לא רק הזרקות · כבר טיוטה",
+  "sub": "סרטון 06 · 0:00–1:26 · כ-78 שנ׳ · אביה",
+  "quote": "שקופית פתיחה: ניהול ספסטיות / זה לא רק / הזרקות",
+  "body": "אביה: באמת, כל מה שנקרא ניהול הספסטיות הוא כל כך חשוב, לאו דווקא רק בהקשרים של הזרקות. יש עוד דרכים באמת לשמור על טווחי התנועה ולנהל את הספסטיות הזו.\n(מעבר) הטיפול בעצם התרופתי או ההזרקות, זה נועד כדי להפחית את מתח השריר. אבל ניהול הספסטיות מתייחס גם לטיפולים שלנו, פיזיו וריפוי בעיסוק, לשמירה על טווחי התנועה, אם זה על ידי הארכות של השריר, אם זה על ידי התאמות של סדים, על ידי הקפדה על מנחים מסוימים בלילה, מניעה של בצקות או הפחתה שלהן במידה שהן קיימות. כל הדברים האלה, ועוד דברים רבים, נכללים תחת ניהול ספסטיות. וזה למה חשוב להגיע לאנשי צוות שבעצם יודעים להכווין את הכול, את כל המהלך הזה של איך אני שומר על הגוף שלי, על הטווחים שלי, מעבר לרק לקחת תרופה או רק לקבל הזרקה וללכת. יש מצבים שגם אם אין תנועה אקטיבית ביד או ברגל, יש מה לעשות כדי לשמור על עצמי.\n\nהוצא: \"גם באמת פועל יוצא של הספסטיות\" ו\"כלומר, את דיברת הרבה על טווחי תנועה\".\nאייקונים: 🧘 הארכות של השריר · 🦾 סדים · 🌙 מנחים בלילה · 💧 בצקות.\nלוודא: התמלול שמע \"הערכות של השריר\" ו\"שדים\". בכתוביות כתבתי \"הארכות של השריר\" ו\"סדים\"."
+ },
+ {
+  "k": "c07a",
+  "n": "07-א",
+  "t": "ספסטיות היא לא תופעה שנעלמת",
+  "sub": "סרטון 07 · 0:03–0:53 · כ-49 שנ׳ · ענבל",
+  "quote": "שקופית פתיחה (הצעה): ספסטיות / *לא נעלמת* / אחרי הטיפול",
+  "body": "ענבל: הרבה פעמים, אנחנו יודעים, ספסטיות היא לא תופעה שנעלמת. היא מלווה את המטופל לאורך היום, 24 שעות. גם אם עשינו טיפול עכשיו בפיזיותרפיה, לצורך העניין, והשקעתי זמן ניכר מהטיפול במתיחות, והרגשתי איזושהי הטבה מסוימת בספסטיות, אז בעצם לא… מיד אחרי הטיפול, הספסטיות הזו במאמץ קל תחזור. ולכן צריך להבין שצריך פה איזשהו טיפול, טיפול תומך או טיפול מלווה, אבל זה חייב לבוא הרבה פעמים בד בבד עם טיפול תרופתי כזה או אחר.\n(מעבר) צריך להבין את המטופל, ואם זה מפריע לו בתפקוד או לא מפריע לו בתפקוד. זה תמיד יהיה סביב שאלת התפקוד, אם זה מחמיר כאבים או לא מחמיר כאבים.\n\nהוצא: \"וצריך גם להגיד שזה באמת הולך בד בבד\" (פתיחה), \"אני לא יודעת אם לקרוא לזה\", \"כשאנחנו מרגישים שזה נורא נורא תלוי כמובן\".\nאייקונים (הצעה): ⏰ 24 שעות · 🔄 תחזור.\nלוודא: \"אז בעצם לא… מיד אחרי הטיפול\" — המשפט נקטע באמצע. השארתי אותו כמו שהוא כדי לא לשנות את המשמעות."
+ },
+ {
+  "k": "c07b",
+  "n": "07-ב",
+  "t": "מתי מתיחות לבד לא מספיקות",
+  "sub": "סרטון 07 · 0:53–1:51 · כ-55 שנ׳ · ענבל, ואחריה אביה",
+  "quote": "שקופית פתיחה (הצעה): מתי *מתיחות* / *לבד* / לא מספיקות?",
+  "body": "ענבל: אבל אם זה מפריע לתפקוד, ואם זה מחמיר כאבים, ואם אנחנו חוששים מפגיעה בטווחי תנועה, אז הרבה פעמים מתיחות לבד לא יספיקו. ואז באמת אני אצטרך את השיח הזה עם הרופא, שיודע להתאים את הטיפול התרופתי, שיודע להתאים את המינונים, או לחילופין להחליט שיש פה מקום להזרקה, כי יש פה משהו יותר מקומי, נקודתי, שדורש טיפול יותר ממוקד.\nאביה: גם אם אני אתאים סד למטופל, והיד שלו מאוד מאוד ספסטית, מתח השרירים שם מאוד גבוה, בשלב מסוים הוא לא יצליח להשתמש בו, כי הוא יסבול מכאבים, כי יש שם נקודות לחץ. ולכן צריך שוב פעם לחזור חזרה לטיפול הרפואי, ולהתאים אולי איזושהי הזרקה לשרירים שעובדים במתח, כדי להפחית שם, להרגיע טיפה, כדי שהוא יוכל להשתמש בסד שישמור על טווחי התנועה שלו לאורך זמן.\n\nהוצא: \"נכון, ושוב, כמו שאת אומרת\".\nאייקונים (הצעה): 🩺 הרופא · 🖐️ היד.\nלוודא: התמלול שמע \"מפחיד לתפקוד\" (כתבתי \"מפריע\"), \"לחיופין\" (\"לחילופין\"), \"סעד\" (\"סד\")."
+ }
+]
+};
+/* ===================================================================================== */
+(function(){
+  document.documentElement.setAttribute('dir','rtl'); document.documentElement.setAttribute('lang','he');
+  const C=CONFIG, $=id=>document.getElementById(id);
+  $('brand').textContent=C.brand; $('h1').textContent=C.h1; $('intro').textContent=C.intro; $('general-hint').textContent=C.generalHint;
+  C.facts.forEach(f=>{ const s=document.createElement('span'); s.textContent=f; $('facts').appendChild(s); });
+  let vid=null;
+  if(C.video){ const p=$('player'); p.hidden=false; vid=document.createElement('video'); vid.src=C.video.src; if(C.video.poster) vid.poster=C.video.poster; vid.controls=true; vid.playsInline=true; vid.preload='metadata'; p.appendChild(vid); }
+  C.items.forEach(it=>{
+    const el=document.createElement('article'); el.className='item'+(it.img?'':' noimg'); el.id='i-'+it.k;
+    el.innerHTML=(it.img?'<div class="shot"><img alt="" loading="lazy"></div>':'')+'<div><div class="meta"><span class="num"></span><h2></h2><span class="sub"></span></div><div class="changed" hidden></div><button class="jump" type="button" hidden>▶ לצפות מכאן</button><div class="label lq" hidden>טקסט</div><div class="quote" hidden></div><div class="label lb" hidden>פירוט</div><div class="body" hidden></div><div class="answer"><label></label><textarea placeholder="רק מה שצריך לשנות. ריק = מאושר"></textarea><div class="status"></div></div></div>';
+    if(it.img){ const im=el.querySelector('img'); im.src=it.img; im.alt=C.itemWord+' '+it.n+': '+it.t; }
+    el.querySelector('.num').textContent=it.n||''; el.querySelector('h2').textContent=it.t; el.querySelector('.sub').textContent=it.sub||'';
+    if(it.ch){ const c=el.querySelector('.changed'); c.hidden=false; c.innerHTML='<span class="chg">שונה</span> '; c.appendChild(document.createTextNode(it.ch)); }
+    if(it.quote){ el.querySelector('.lq').hidden=false; const q=el.querySelector('.quote'); q.hidden=false; q.textContent=it.quote; }
+    if(it.body){ el.querySelector('.lb').hidden=false; const b=el.querySelector('.body'); b.hidden=false; b.textContent=it.body; }
+    if(vid && typeof it.at==='number'){ const j=el.querySelector('.jump'); j.hidden=false; j.addEventListener('click',()=>{ try{ vid.currentTime=it.at; const pr=vid.play(); if(pr&&pr.catch) pr.catch(()=>{}); }catch(e){} vid.scrollIntoView({behavior:'smooth',block:'center'}); }); }
+    const ta=el.querySelector('textarea'); ta.id='a-'+it.k; ta.dataset.key=it.k;
+    const lab=el.querySelector('label'); lab.htmlFor=ta.id; lab.textContent='הערות ל'+C.itemWord+' '+(it.n||it.t);
+    el.querySelector('.status').id='st-'+it.k;
+    $('items').appendChild(el);
+  });
+
+  const ORDER=C.items.map(i=>i.k).concat(['general']);
+  const LABEL={}; C.items.forEach(i=>LABEL[i.k]=C.itemWord+' '+(i.n?i.n+' · ':'')+i.t); LABEL.general='הערה כללית';
+  const areas={}; ORDER.forEach(k=>areas[k]=document.querySelector('textarea[data-key="'+k+'"]'));
+  let docRef=null, comments=null, state={answers:{}}; const timers={};
+  const lsLoad=()=>{ try{ const j=localStorage.getItem(C.ls); return j?JSON.parse(j):null; }catch(e){ return null; } };
+  const lsSave=()=>{ try{ localStorage.setItem(C.ls, JSON.stringify(state)); }catch(e){} };
+  function progress(){ const n=ORDER.filter(k=>(areas[k].value||'').trim()).length; $('progress').textContent=n+' מתוך '+ORDER.length+' תיבות עם הערות'; $('barfill').style.width=(n/ORDER.length*100)+'%'; }
+  function fill(){ ORDER.forEach(k=>{ const v=state.answers[k]||''; if(areas[k].value!==v && document.activeElement!==areas[k]) areas[k].value=v; }); progress(); }
+  function setStatus(k,t,c){ const el=$('st-'+k); if(!el) return; el.textContent=t; el.className='status'+(c?' '+c:''); }
+  async function persist(k){
+    state.answers[k]=areas[k].value; state.updatedAt=new Date().toISOString(); lsSave();
+    if(!docRef){ setStatus(k,'נשמר במכשיר הזה','ok'); return; }
+    try{ await docRef.set({answers:state.answers, updatedAt:state.updatedAt, submittedAt:state.submittedAt||null}); setStatus(k,'נשמר','ok'); }
+    catch(e){ setStatus(k,'השמירה המשותפת לא הצליחה, נשמר בדפדפן הזה בלבד','warn'); }
+  }
+  ORDER.forEach(k=>areas[k].addEventListener('input',()=>{ progress(); setStatus(k,'שומר...'); clearTimeout(timers[k]); timers[k]=setTimeout(()=>persist(k),800); }));
+  const local=lsLoad(); if(local&&local.answers) state=local; fill();
+
+  function collect(){ const notes=[]; ORDER.forEach(k=>{ const v=(areas[k].value||'').trim(); if(v) notes.push({item:LABEL[k], note:v}); }); return notes; }
+  function compile(){ const who=($('who').value||'').trim(); const L=[C.sendTitle+(who?' ('+who+')':'')]; const n=collect();
+    n.forEach(x=>L.push('', '• '+x.item+':', x.note)); if(!n.length) L.push('', '(הכול מאושר, בלי הערות)'); return L.join('\n'); }
+  try{ const w=localStorage.getItem(C.ls+'-who'); if(w) $('who').value=w; }catch(e){}
+  $('who').addEventListener('input',()=>{ try{ localStorage.setItem(C.ls+'-who',$('who').value); }catch(e){} });
+  async function send(){
+    const b=$('sendbtn')||$('sendbtn2'); if(b){ b.disabled=true; b.textContent='שומר...'; }
+    ORDER.forEach(k=>{ state.answers[k]=areas[k].value; }); state.updatedAt=new Date().toISOString(); lsSave();
+    const who=($('who').value||'').trim();
+    const box=document.querySelector('#sendwrap .box');
+    let ok=false;
+    if(C.inbox){ try{ await fetch(C.inbox,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({project:C.project||'',round:C.doc,name:who||'ללא שם',notes:collect()})}); ok=true; }catch(e){} }
+    if(ok){ box.innerHTML='<div class="sent"></div><button class="primary" id="sendbtn2" type="button">שמור שוב</button>'; box.querySelector('.sent').textContent='נשמר'+(who?', תודה '+who:'')+'. אפשר להמשיך לערוך ולשמור שוב.'; $('sendbtn2').addEventListener('click',send); return; }
+    box.innerHTML='<div class="sent" style="background:var(--warn-soft);color:var(--warn)">השמירה לא הצליחה. העתיקו את הטקסט ושלחו אותו:</div><textarea id="fallbacktext" readonly></textarea><button class="primary" id="sendbtn2" type="button">נסו שוב</button>';
+    $('fallbacktext').value=compile(); $('sendbtn2').addEventListener('click',send);
+  }
+  $('sendbtn').addEventListener('click',send);
+})();
+</script>
+
+</body></html>
