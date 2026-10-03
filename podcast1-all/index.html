@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex">
+<title>IMSC · פודקאסט 1 · כל הריילס</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap">
+<style>
+/* ===== Brand tokens: swap these per project (light first, then dark) ===== */
+:root{
+  --bg:#F3F0E8; --surface:#FFFFFF; --ink:#0A2350; --muted:#4F5E78; --line:#DCD6C8;
+  --accent:#06265A; --accent-ink:#F5F1E8; --hi:#0A7D7D; --hi-soft:#DDF1EF; --chg:#8A6614; --chg-soft:#F6ECD2;
+  --field:#FFFFFF; --ok:#1E7A52; --ok-soft:#DDF1E6; --warn:#A04C0C; --warn-soft:#FBE8D6; --shadow:0 12px 30px rgba(6,38,90,.14);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#071A3A; --surface:#0E2750; --ink:#EEF2FA; --muted:#A8B7D0; --line:#23406E;
+    --accent:#12BCBC; --accent-ink:#06265A; --hi:#12BCBC; --hi-soft:#123E55; --chg:#E0BC6A; --chg-soft:#3A2F16;
+    --field:#0A2045; --ok:#5DD39E; --ok-soft:#173A2B; --warn:#F0A25E; --warn-soft:#432A12; --shadow:0 12px 30px rgba(0,0,0,.35); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#071A3A; --surface:#0E2750; --ink:#EEF2FA; --muted:#A8B7D0; --line:#23406E;
+  --accent:#12BCBC; --accent-ink:#06265A; --hi:#12BCBC; --hi-soft:#123E55; --chg:#E0BC6A; --chg-soft:#3A2F16;
+  --field:#0A2045; --ok:#5DD39E; --ok-soft:#173A2B; --warn:#F0A25E; --warn-soft:#432A12; --shadow:0 12px 30px rgba(0,0,0,.35); color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Assistant","Arial Hebrew",Arial,sans-serif;font-size:17px;line-height:1.6}
+.wrap{direction:rtl;max-width:980px;margin:0 auto;padding-inline:16px;padding-block:0 96px}
+h1,h2{font-weight:800;line-height:1.15;margin:0;text-wrap:balance}
+h1{font-size:clamp(1.9rem,4.5vw,2.6rem)} h2{font-size:1.45rem}
+p{margin:.5rem 0}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:12px 10px;border-bottom:1px solid var(--line)}
+.top .row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-weight:800;color:var(--hi);letter-spacing:.02em}
+.progress{font-size:.92rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.bar{height:5px;background:var(--line);border-radius:99px;margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--hi);transition:width .3s ease}
+.intro{padding-block:28px 12px;display:grid;gap:10px}
+.intro p{color:var(--muted);max-width:62ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.facts span{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:.9rem;font-weight:600}
+.player{margin-top:14px;max-width:340px}
+.player video{display:block;width:100%;border-radius:14px;background:#000;box-shadow:var(--shadow)}
+.items{display:grid;gap:28px;margin-top:20px}
+.item{display:grid;grid-template-columns:minmax(0,250px) minmax(0,1fr);gap:24px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.item.noimg{grid-template-columns:1fr}
+.shot img{display:block;width:100%;border-radius:12px;box-shadow:var(--shadow);max-width:100%}
+.meta{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.num{font-weight:800;color:var(--hi);font-size:1.5rem;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);font-size:.9rem;font-variant-numeric:tabular-nums}
+.chg{display:inline-block;background:var(--chg-soft);color:var(--chg);font-size:.78rem;font-weight:800;padding:.05em .6em;border-radius:99px;vertical-align:middle}
+.changed{background:var(--chg-soft);border-radius:10px;padding:8px 12px;margin-top:10px;font-size:.95rem}
+.label{font-size:.8rem;font-weight:800;letter-spacing:.06em;color:var(--muted);margin-top:14px}
+.quote{background:var(--hi-soft);border-radius:10px;padding:8px 12px;font-weight:700;margin-top:4px;white-space:pre-line}
+.body{margin-top:4px;white-space:pre-line}
+.jump{font:inherit;font-weight:700;font-size:.9rem;color:var(--hi);background:var(--hi-soft);border:0;border-radius:999px;padding:6px 14px;margin-top:10px;cursor:pointer;min-height:36px}
+.answer{margin-top:16px}
+.answer label{display:block;font-weight:800;margin-bottom:6px}
+textarea{width:100%;min-height:96px;resize:vertical;font:inherit;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:10px;padding:10px 12px;direction:rtl}
+textarea:focus,.jump:focus-visible{outline:2px solid var(--hi);outline-offset:1px}
+.status{font-size:.85rem;color:var(--muted);margin-top:4px;min-height:1.3em}
+.status.ok{color:var(--ok)} .status.warn{color:var(--warn)}
+.general{margin-top:28px;background:var(--chg-soft);border-radius:18px;padding:18px}
+.send{margin-top:28px;padding-top:22px;border-top:2px solid var(--hi)}
+.send .box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.send .hint{color:var(--muted);font-size:.95rem;flex:1 1 240px}
+button.primary{font:inherit;font-weight:800;background:var(--accent);color:var(--accent-ink);border:0;border-radius:999px;padding:12px 32px;cursor:pointer;min-height:44px}
+button.primary:disabled{opacity:.55;cursor:default}
+button.primary:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.sent{background:var(--ok-soft);color:var(--ok);border-radius:10px;padding:10px 14px;font-weight:700}
+@media (max-width:640px){ .item{grid-template-columns:1fr;padding:14px} .shot{max-width:280px;margin-inline:auto;width:100%} }
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="row"><span class="brand" id="brand"></span><span class="progress" id="progress"></span></div>
+    <div class="bar"><i id="barfill"></i></div>
+  </header>
+  <section class="intro">
+    <h1 id="h1"></h1>
+    <p id="intro"></p>
+    <div class="facts" id="facts"></div>
+    <div class="player" id="player" hidden></div>
+  </section>
+  <div class="items" id="items"></div>
+  <section class="general">
+    <h2>הערה כללית</h2>
+    <p id="general-hint"></p>
+    <div class="answer"><label for="a-general">ההערה שלי</label><textarea id="a-general" data-key="general" placeholder="כל מה שלא שייך לפריט אחד"></textarea><div class="status" id="st-general"></div></div>
+  </section>
+  <div class="send" id="sendwrap">
+    <div class="box"><div class="hint" id="sendhint"><label for="who" style="font-weight:700;display:block;margin-bottom:4px">השם שלכם <span style="font-weight:400;color:var(--muted)">(לא חובה)</span></label><input id="who" type="text" autocomplete="name" style="font:inherit;width:100%;max-width:280px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--field);color:var(--ink)"><div style="margin-top:6px">כשסיימתם, לחצו "שמור" וכל ההערות יישמרו. תיבה ריקה = מאושר.</div></div><button class="primary" id="sendbtn" type="button">שמור</button></div>
+  </div>
+</div>
+
+<script>
+/* ===================== CONFIG — the only part to edit per review ===================== */
+const CONFIG = {
+  inbox: 'https://script.google.com/macros/s/AKfycbzEj4lUky1em3ctwa-hol23Hfu5F5paCqut5pzeSTKYG4oaqZSQhPhb5EfFf9ZS16u11w/exec',
+  project: 'podcast1-all',
+  brand: "IMSC · פודקאסט 1 · כל הריילס · סבב 2",
+  h1: "כל הריילס מהפודקאסט: סבב 2",
+  intro: "כל 18 הריילס של הפודקאסט, לפי הסדר. כל סרטון עם נגן משלו ותיבת הערות משלו. מה שהשתנה מהסבב הקודם מסומן \"שונה\". כתבו רק מה שעוד צריך לשנות. תיבה ריקה = מאושר. בסוף לחצו \"שמור\". כל הסרטונים בטיוטה, באיכות נמוכה.",
+  facts: ["18 ריילס", "9:16", "טיוטה באיכות נמוכה", "סבב 2"],
+  generalHint: 'על כל הסדרה יחד: שקופית הסיום, הקול, הכתוביות, סדר הפרסום, או כל דבר שנוגע לכל הריילס.',
+  doc: 'reviews/podcast1-all-v2',
+  ls: 'imsc-podcast1-all-v2',
+  sendTitle: "הערות לסבב 2 של ריילס הפודקאסט:",
+  itemWord: 'ריל',
+  items: [
+ {
+  "k": "01",
+  "n": "01",
+  "t": "האם המענה הטיפולי היום למטופלים עם ספסטיות הוא מיטבי ומספק?",
+  "sub": "74 שנ׳ · podcast1-clip01_v2",
+  "img": "img/01.jpg?v=2",
+  "vid": "video/01.mp4?v=2",
+  "ch": "כותרת חדשה בשקופית הפתיחה. במקום אייקון הבית, הלוגו של IMSC. שקופית הסיום: התמונות של הצוות בלי חיתוך ובאותו גובה, כמו בעמוד הצוות באתר, ובמקום הכתובת: \"עקבו אחרינו כדי ליהנות מעוד תוכן מקצועי לטיפול בספסטיות\". הקול מאוזן בין הדוברות, והמוזיקה של הסיום הונמכה לגובה הדיבור."
+ },
+ {
+  "k": "02",
+  "n": "02",
+  "t": "מה ההבדל בין ריפוי בעיסוק לפיזיותרפיה?",
+  "sub": "90 שנ׳ · podcast1-clip02_v5",
+  "img": "img/02.jpg?v=2",
+  "vid": "video/02.mp4?v=2",
+  "ch": "שקופית הסיום: התמונות של הצוות בלי חיתוך ובאותו גובה, כמו בעמוד הצוות באתר, ובמקום הכתובת: \"עקבו אחרינו כדי ליהנות מעוד תוכן מקצועי לטיפול בספסטיות\". הקול מאוזן בין הדוברות, והמוזיקה של הסיום הונמכה לגובה הדיבור.",
+  "body": "הריל הראשון (רילס א׳)."
+ },
+ {
+  "k": "03a",
+  "n": "03-א",
+  "t": "למה הזרקה לבד לא מספיקה?",
+  "sub": "76 שנ׳ · podcast1-clip03_v2",
+  "img": "img/03a.jpg?v=2",
+  "vid": "video/03a.mp4?v=2",
+  "ch": "בכתוביות: \"שיפור תפקודי\". שקופית הסיום: התמונות של הצוות בלי חיתוך ובאותו גובה, כמו בעמוד הצוות באתר, ובמקום הכתובת: \"עקבו אחרינו כדי ליהנות מעוד תוכן מקצועי לטיפול בספסטיות\". הקול מאוזן בין הדוברות, והמוזיקה של הסיום הונמכה לגובה הדיבור."
+ },
+ {
+  "k": "03b",
+  "n": "03-ב",
+  "t": "מה הכי מטריד את המטופלים?",
+  "sub": "36 שנ׳ · podcast1-clip03b_v2",
+  "img": "img/03b.jpg?v=2",
+  "vid": "video/03b.mp4?v=2",
+  "ch": "הקול הוגבר והושווה לשאר הריילס. שקופית הסיום: התמונות של הצוות בלי חיתוך ובאותו גובה, כמו בעמוד הצוות באתר, ובמקום הכתובת: \"עקבו אחרינו כדי ליהנות מעוד תוכן מקצועי לטיפול בספסטיות\". הקול מאוזן בין הדוברות, והמוזיקה של הסיום הונמכה לגובה הדיבור."
+ },
+ {
+  "k": "04a",
+  "n": "04-א",
+  "t": "הזרקה היא החרישה של השדה",
+  "sub": "63 שנ׳ · podcast1-clip04_v2",
+  "img": "img/04a.jpg?v=2",
+  "vid": "video/04a.mp4?v=2",
+  "ch": "שקופית הסיום: התמונות של הצוות בלי חיתוך ובאותו גובה, כמו בעמוד הצוות באתר, ובמקום הכתובת: \"עקבו אחרינו כדי ליהנות מעוד תוכן מקצועי לטיפול בספסטיות\". הקול מאוזן בין הדוברות, והמוזיקה של הסיום הונמכה לגובה הדיבור."
+ },
+ {
+  "k": "04b",
+  "n": "04-ב",
+  "t": "מה ההזרקה מאפשרת למוח?",
+  "sub": "48 שנ׳ · podcast1-clip04b_v2",
+  "img": "img/04b.jpg?v=2",
+  "vid": "video/04b.mp4?v=2",
+  "ch": "הריל נגמר עכשיו בשנייה 41. שקופית הסיום: התמונות של הצוות בלי חיתוך ובאותו גובה, כמו בעמוד הצוות באתר, ובמקום הכתובת: \"עקבו אחרינו כדי ליהנות מעוד תוכן מקצועי לטיפול בספסטיות\". הקול מאוזן בין הדוברות, והמוזיקה של הסיום הונמכה לגובה הדיבור.",
+  "body": "סטטוס: פחות מוצלח, לא עולה לאינסטגרם עד שתגידו אחרת. הטענה על המחקרים עדיין צריכה אישור של ד״ר צווקר."
+ },
+ {
+  "k": "05",
+  "n": "05",
+  "t": "למה התזמון של ההזרקה חשוב?",
+  "sub": "76 שנ׳ · podcast1-clip05_v2",
+  "img": "img/05.jpg?v=2",
+  "vid": "video/05.mp4?v=2",
+  "ch": "בכתוביות: \"בטונוס\" במקום \"בטון\". שקופית הסיום: התמונות של הצוות בלי חיתוך ובאותו גובה, כמו בעמוד הצוות באתר, ובמקום הכתובת: \"עקבו אחרינו כדי ליהנות מעוד תוכן מקצועי לטיפול בספסטיות\". הקול מאוזן בין הדוברות, והמוזיקה של הסיום הונמכה לגובה הדיבור.",
+  "body": "נאמר \"ניתוח\", והכתוביות כתובות כפי שנאמר."
+ },
+ {
+  "k": "06",
+  "n": "06",
+  "t": "ניהול ספסטיות זה לא רק הזרקות",
+  "sub": "78 שנ׳ · podcast1-clip06_v2",
+  "img": "img/06.jpg?v=2",
+  "vid": "video/06.mp4?v=2",
+  "ch": "שקופית הסיום: התמונות של הצוות בלי חיתוך ובאותו גובה, כמו בעמוד הצוות באתר, ובמקום הכתובת: \"עקבו אחרינו כדי ליהנות מעוד תוכן מקצועי לטיפול בספסטיות\". הקול מאוזן בין הדוברות, והמוזיקה של הסיום הונמכה לגובה הדיבור."
+ },
+ {
+  "k": "07a",
+  "n": "07-א",
+  "t": "ספסטיות לא נעלמת אחרי הטיפול",
+  "sub": "49 שנ׳ · podcast1-clip07_v2",
+  "img": "img/07a.jpg?v=2",
+  "vid": "video/07a.mp4?v=2",
+  "ch": "בכתוביות: \"יודעים שספסטיות\". הקול בשיחה הוגבר. שקופית הסיום: התמונות של הצוות בלי חיתוך ובאותו גובה, כמו בעמוד הצוות באתר, ובמקום הכתובת: \"עקבו אחרינו כדי ליהנות מעוד תוכן מקצועי לטיפול בספסטיות\". הקול מאוזן בין הדוברות, והמוזיקה של הסיום הונמכה לגובה הדיבור."
+ },
+ {
+  "k": "07b",
+  "n": "07-ב",
+  "t": "מתי מתיחות לבד לא מספיקות?",
+  "sub": "55 שנ׳ · podcast1-clip07b_v2",
+  "img": "img/07b.jpg?v=2",
+  "vid": "video/07b.mp4?v=2",
+  "ch": "הקול של ענבל הוגבר לגובה של אביה. שקופית הסיום: התמונות של הצוות בלי חיתוך ובאותו גובה, כמו בעמוד הצוות באתר, ובמקום הכתובת: \"עקבו אחרינו כדי ליהנות מעוד תוכן מקצועי לטיפול בספסטיות\". הקול מאוזן בין הדוברות, והמוזיקה של הסיום הונמכה לגובה הדיבור."
+ },
+ {
+  "k": "08a",
+  "n": "08-א",
+  "t": "מזהים התחלה של קיצורים: מה עושים קודם?",
+  "sub": "81 שנ׳ · podcast1-clip08_v2",
+  "img": "img/08a.jpg?v=2",
+  "vid": "video/08a.mp4?v=2",
+  "ch": "שקופית הסיום: התמונות של הצוות בלי חיתוך ובאותו גובה, כמו בעמוד הצוות באתר, ובמקום הכתובת: \"עקבו אחרינו כדי ליהנות מעוד תוכן מקצועי לטיפול בספסטיות\". הקול מאוזן בין הדוברות, והמוזיקה של הסיום הונמכה לגובה הדיבור."
+ },
+ {
+  "k": "08b",
+  "n": "08-ב",
+  "t": "מתי מתיחות כבר לא מספיקות?",
+  "sub": "82 שנ׳ · podcast1-clip08b_v2",
+  "img": "img/08b.jpg?v=2",
+  "vid": "video/08b.mp4?v=2",
+  "ch": "שקופית הסיום: התמונות של הצוות בלי חיתוך ובאותו גובה, כמו בעמוד הצוות באתר, ובמקום הכתובת: \"עקבו אחרינו כדי ליהנות מעוד תוכן מקצועי לטיפול בספסטיות\". הקול מאוזן בין הדוברות, והמוזיקה של הסיום הונמכה לגובה הדיבור."
+ },
+ {
+  "k": "09a",
+  "n": "09-א",
+  "t": "למה קשה לפתוח את כף היד?",
+  "sub": "72 שנ׳ · podcast1-clip09_v2",
+  "img": "img/09a.jpg?v=2",
+  "vid": "video/09a.mp4?v=2",
+  "ch": "שקופית הסיום: התמונות של הצוות בלי חיתוך ובאותו גובה, כמו בעמוד הצוות באתר, ובמקום הכתובת: \"עקבו אחרינו כדי ליהנות מעוד תוכן מקצועי לטיפול בספסטיות\". הקול מאוזן בין הדוברות, והמוזיקה של הסיום הונמכה לגובה הדיבור."
+ },
+ {
+  "k": "09b",
+  "n": "09-ב",
+  "t": "כשהכתף נכנסת פנימה: מה זה עושה ביומיום?",
+  "sub": "62 שנ׳ · podcast1-clip09b_v2",
+  "img": "img/09b.jpg?v=2",
+  "vid": "video/09b.mp4?v=2",
+  "ch": "הריל נגמר בסוף החלק של אביה; החלק של ענבל ירד. כותרת חדשה (אפשרות 1 מהרשימה). שקופית הסיום: התמונות של הצוות בלי חיתוך ובאותו גובה, כמו בעמוד הצוות באתר, ובמקום הכתובת: \"עקבו אחרינו כדי ליהנות מעוד תוכן מקצועי לטיפול בספסטיות\". הקול מאוזן בין הדוברות, והמוזיקה של הסיום הונמכה לגובה הדיבור.",
+  "body": "4 אפשרויות לכותרת — כתבו מספר:\n1. כשהכתף נכנסת פנימה: מה זה עושה ביומיום? (בסרטון עכשיו)\n2. למה קשה להרים ידיים לראש?\n3. הכתף והטונוס: למה מטלות פשוטות נהיות קשות\n4. לסגור חזייה, להגיע לראש: איך קיצור בכתף משפיע"
+ },
+ {
+  "k": "10",
+  "n": "10",
+  "t": "טיפול תרופתי בספסטיות: יד על הדופק",
+  "sub": "83 שנ׳ · podcast1-clip10_v2",
+  "img": "img/10.jpg?v=2",
+  "vid": "video/10.mp4?v=2",
+  "ch": "שקופית הסיום: התמונות של הצוות בלי חיתוך ובאותו גובה, כמו בעמוד הצוות באתר, ובמקום הכתובת: \"עקבו אחרינו כדי ליהנות מעוד תוכן מקצועי לטיפול בספסטיות\". הקול מאוזן בין הדוברות, והמוזיקה של הסיום הונמכה לגובה הדיבור."
+ },
+ {
+  "k": "11",
+  "n": "11",
+  "t": "מה קורה אם נשארים רק עם מתיחות?",
+  "sub": "79 שנ׳ · podcast1-clip11_v2",
+  "img": "img/11.jpg?v=2",
+  "vid": "video/11.mp4?v=2",
+  "ch": "שקופית הסיום: התמונות של הצוות בלי חיתוך ובאותו גובה, כמו בעמוד הצוות באתר, ובמקום הכתובת: \"עקבו אחרינו כדי ליהנות מעוד תוכן מקצועי לטיפול בספסטיות\". הקול מאוזן בין הדוברות, והמוזיקה של הסיום הונמכה לגובה הדיבור."
+ },
+ {
+  "k": "12",
+  "n": "12",
+  "t": "כף יד סגורה לאורך זמן: מה זה עושה?",
+  "sub": "75 שנ׳ · podcast1-clip12_v2",
+  "img": "img/12.jpg?v=2",
+  "vid": "video/12.mp4?v=2",
+  "ch": "שקופית הסיום: התמונות של הצוות בלי חיתוך ובאותו גובה, כמו בעמוד הצוות באתר, ובמקום הכתובת: \"עקבו אחרינו כדי ליהנות מעוד תוכן מקצועי לטיפול בספסטיות\". הקול מאוזן בין הדוברות, והמוזיקה של הסיום הונמכה לגובה הדיבור."
+ },
+ {
+  "k": "1314",
+  "n": "13+14",
+  "t": "למה ספסטיות ביד משפיעה גם על ההליכה?",
+  "sub": "79 שנ׳ · podcast1-clip13_v2",
+  "img": "img/1314.jpg?v=2",
+  "vid": "video/1314.mp4?v=2",
+  "ch": "כותרת חדשה (אפשרות 1 מהרשימה). שקופית הסיום: התמונות של הצוות בלי חיתוך ובאותו גובה, כמו בעמוד הצוות באתר, ובמקום הכתובת: \"עקבו אחרינו כדי ליהנות מעוד תוכן מקצועי לטיפול בספסטיות\". הקול מאוזן בין הדוברות, והמוזיקה של הסיום הונמכה לגובה הדיבור.",
+  "body": "3 אפשרויות לכותרת — כתבו מספר:\n1. למה ספסטיות ביד משפיעה גם על ההליכה? (בסרטון עכשיו)\n2. הכול מחובר: יד, גב והליכה\n3. איך היציבה משפיעה על ההליכה ועל הידיים?"
+ }
+]
+};
+/* ===================================================================================== */
+(function(){
+  document.documentElement.setAttribute('dir','rtl'); document.documentElement.setAttribute('lang','he');
+  const C=CONFIG, $=id=>document.getElementById(id);
+  $('brand').textContent=C.brand; $('h1').textContent=C.h1; $('intro').textContent=C.intro; $('general-hint').textContent=C.generalHint;
+  C.facts.forEach(f=>{ const s=document.createElement('span'); s.textContent=f; $('facts').appendChild(s); });
+  let vid=null;
+  if(C.video){ const p=$('player'); p.hidden=false; vid=document.createElement('video'); vid.src=C.video.src; if(C.video.poster) vid.poster=C.video.poster; vid.controls=true; vid.playsInline=true; vid.preload='metadata'; p.appendChild(vid); }
+  C.items.forEach(it=>{
+    const el=document.createElement('article'); el.className='item'+(it.img?'':' noimg'); el.id='i-'+it.k;
+    el.innerHTML=(it.img?'<div class="shot"><img alt="" loading="lazy"></div>':'')+'<div><div class="meta"><span class="num"></span><h2></h2><span class="sub"></span></div><div class="changed" hidden></div><button class="jump" type="button" hidden>▶ לצפות מכאן</button><div class="label lq" hidden>טקסט</div><div class="quote" hidden></div><div class="label lb" hidden>פירוט</div><div class="body" hidden></div><div class="answer"><label></label><textarea placeholder="רק מה שצריך לשנות. ריק = מאושר"></textarea><div class="status"></div></div></div>';
+    if(it.img){ const im=el.querySelector('img'); im.src=it.img; im.alt=C.itemWord+' '+it.n+': '+it.t; }
+    el.querySelector('.num').textContent=it.n||''; el.querySelector('h2').textContent=it.t; el.querySelector('.sub').textContent=it.sub||'';
+    if(it.ch){ const c=el.querySelector('.changed'); c.hidden=false; c.innerHTML='<span class="chg">שונה</span> '; c.appendChild(document.createTextNode(it.ch)); }
+    if(it.quote){ el.querySelector('.lq').hidden=false; const q=el.querySelector('.quote'); q.hidden=false; q.textContent=it.quote; }
+    if(it.body){ el.querySelector('.lb').hidden=false; const b=el.querySelector('.body'); b.hidden=false; b.textContent=it.body; }
+    if(vid && typeof it.at==='number'){ const j=el.querySelector('.jump'); j.hidden=false; j.addEventListener('click',()=>{ try{ vid.currentTime=it.at; const pr=vid.play(); if(pr&&pr.catch) pr.catch(()=>{}); }catch(e){} vid.scrollIntoView({behavior:'smooth',block:'center'}); }); }
+    const ta=el.querySelector('textarea'); ta.id='a-'+it.k; ta.dataset.key=it.k;
+    const lab=el.querySelector('label'); lab.htmlFor=ta.id; lab.textContent='הערות ל'+C.itemWord+' '+(it.n||it.t);
+    el.querySelector('.status').id='st-'+it.k;
+    $('items').appendChild(el);
+  });
+
+  const ORDER=C.items.map(i=>i.k).concat(['general']);
+  const LABEL={}; C.items.forEach(i=>LABEL[i.k]=C.itemWord+' '+(i.n?i.n+' · ':'')+i.t); LABEL.general='הערה כללית';
+  const areas={}; ORDER.forEach(k=>areas[k]=document.querySelector('textarea[data-key="'+k+'"]'));
+  let docRef=null, comments=null, state={answers:{}}; const timers={};
+  const lsLoad=()=>{ try{ const j=localStorage.getItem(C.ls); return j?JSON.parse(j):null; }catch(e){ return null; } };
+  const lsSave=()=>{ try{ localStorage.setItem(C.ls, JSON.stringify(state)); }catch(e){} };
+  function progress(){ const n=ORDER.filter(k=>(areas[k].value||'').trim()).length; $('progress').textContent=n+' מתוך '+ORDER.length+' תיבות עם הערות'; $('barfill').style.width=(n/ORDER.length*100)+'%'; }
+  function fill(){ ORDER.forEach(k=>{ const v=state.answers[k]||''; if(areas[k].value!==v && document.activeElement!==areas[k]) areas[k].value=v; }); progress(); }
+  function setStatus(k,t,c){ const el=$('st-'+k); if(!el) return; el.textContent=t; el.className='status'+(c?' '+c:''); }
+  async function persist(k){
+    state.answers[k]=areas[k].value; state.updatedAt=new Date().toISOString(); lsSave();
+    if(!docRef){ setStatus(k,'נשמר במכשיר הזה','ok'); return; }
+    try{ await docRef.set({answers:state.answers, updatedAt:state.updatedAt, submittedAt:state.submittedAt||null}); setStatus(k,'נשמר','ok'); }
+    catch(e){ setStatus(k,'השמירה המשותפת לא הצליחה, נשמר בדפדפן הזה בלבד','warn'); }
+  }
+  ORDER.forEach(k=>areas[k].addEventListener('input',()=>{ progress(); setStatus(k,'שומר...'); clearTimeout(timers[k]); timers[k]=setTimeout(()=>persist(k),800); }));
+  const local=lsLoad(); if(local&&local.answers) state=local; fill();
+
+  function collect(){ const notes=[]; ORDER.forEach(k=>{ const v=(areas[k].value||'').trim(); if(v) notes.push({item:LABEL[k], note:v}); }); return notes; }
+  function compile(){ const who=($('who').value||'').trim(); const L=[C.sendTitle+(who?' ('+who+')':'')]; const n=collect();
+    n.forEach(x=>L.push('', '• '+x.item+':', x.note)); if(!n.length) L.push('', '(הכול מאושר, בלי הערות)'); return L.join('\n'); }
+  try{ const w=localStorage.getItem(C.ls+'-who'); if(w) $('who').value=w; }catch(e){}
+  $('who').addEventListener('input',()=>{ try{ localStorage.setItem(C.ls+'-who',$('who').value); }catch(e){} });
+  async function send(){
+    const b=$('sendbtn')||$('sendbtn2'); if(b){ b.disabled=true; b.textContent='שומר...'; }
+    ORDER.forEach(k=>{ state.answers[k]=areas[k].value; }); state.updatedAt=new Date().toISOString(); lsSave();
+    const who=($('who').value||'').trim();
+    const box=document.querySelector('#sendwrap .box');
+    let ok=false;
+    if(C.inbox){ try{ await fetch(C.inbox,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({project:C.project||'',round:C.doc,name:who||'ללא שם',notes:collect()})}); ok=true; }catch(e){} }
+    if(ok){ box.innerHTML='<div class="sent"></div><button class="primary" id="sendbtn2" type="button">שמור שוב</button>'; box.querySelector('.sent').textContent='נשמר'+(who?', תודה '+who:'')+'. אפשר להמשיך לערוך ולשמור שוב.'; $('sendbtn2').addEventListener('click',send); return; }
+    box.innerHTML='<div class="sent" style="background:var(--warn-soft);color:var(--warn)">השמירה לא הצליחה. העתיקו את הטקסט ושלחו אותו:</div><textarea id="fallbacktext" readonly></textarea><button class="primary" id="sendbtn2" type="button">נסו שוב</button>';
+    $('fallbacktext').value=compile(); $('sendbtn2').addEventListener('click',send);
+  }
+  $('sendbtn').addEventListener('click',send);
+})();
+</script>
+
+<script>
+(function(){
+  (CONFIG.items||[]).forEach(function(it){
+    if(!it.vid) return;
+    var el=document.getElementById('i-'+it.k); if(!el) return;
+    var shot=el.querySelector('.shot'); if(!shot) return;
+    var v=document.createElement('video');
+    v.controls=true; v.preload='none'; v.playsInline=true; v.setAttribute('playsinline','');
+    v.poster=it.img; v.src=it.vid;
+    v.style.cssText='display:block;width:100%;border-radius:12px;box-shadow:var(--shadow);background:#000';
+    shot.innerHTML=''; shot.appendChild(v);
+  });
+})();
+</script>
+
+</body></html>
