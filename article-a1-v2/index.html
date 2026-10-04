@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>מאמר A1 לאישור, סבב 2 · IMSC</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap">
+<style>
+:root{--bg:#F3F0E8;--surface:#FFFFFF;--ink:#0A2350;--muted:#4F5E78;--line:#DCD6C8;--accent:#06265A;--accent-ink:#F5F1E8;--hi:#0A7D7D;--hi-soft:#DDF1EF;--ok:#1E7A52;--ok-soft:#DDF1E6;--warn:#A04C0C;--warn-soft:#FBE8D6;--field:#FFFFFF;--shadow:0 12px 30px rgba(6,38,90,.14)}
+@media (prefers-color-scheme:dark){:root{--bg:#071A3A;--surface:#0E2750;--ink:#EEF2FA;--muted:#A8B7D0;--line:#23406E;--accent:#12BCBC;--accent-ink:#06265A;--hi:#12BCBC;--hi-soft:#123E55;--ok:#5DD39E;--ok-soft:#173A2B;--warn:#F0A25E;--warn-soft:#432A12;--field:#0A2045;--shadow:0 12px 30px rgba(0,0,0,.35);color-scheme:dark}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Assistant,system-ui,sans-serif;font-size:17px;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 120px}
+.top{position:sticky;top:0;z-index:5;background:var(--bg);padding:12px 0 8px;border-bottom:1px solid var(--line)}
+.top .row{display:flex;justify-content:space-between;gap:12px;align-items:baseline;font-size:14px;color:var(--muted)}
+.brand{font-weight:700;color:var(--ink)}
+.bar{height:5px;background:var(--line);border-radius:4px;margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--hi);transition:width .3s}
+.intro{padding:24px 0 8px}
+h1{font-size:28px;line-height:1.25;margin:0 0 10px;font-weight:800}
+.intro p{margin:0 0 12px;max-width:62ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.facts span{background:var(--hi-soft);color:var(--ink);border-radius:999px;padding:3px 12px;font-size:14px;font-weight:600}
+.who{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:14px 0}
+.who label{display:block;font-weight:700;margin-bottom:6px}
+.who input{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--field);color:var(--ink)}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 18px 14px;margin:16px 0;box-shadow:var(--shadow)}
+.item .meta{display:flex;gap:10px;align-items:center;font-size:14px;color:var(--muted);margin-bottom:6px}
+.item .num{background:var(--accent);color:var(--accent-ink);border-radius:8px;padding:1px 9px;font-weight:700}
+.item .common{background:var(--hi-soft);color:var(--ink);border-radius:999px;padding:0 10px;font-size:12px;font-weight:600}
+.item h2{font-size:19px;line-height:1.4;margin:0 0 12px;font-weight:700}
+.answer label{display:block;font-size:14px;font-weight:700;color:var(--muted);margin-bottom:4px}
+textarea{width:100%;min-height:96px;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--field);color:var(--ink);resize:vertical}
+textarea:focus,input:focus{outline:3px solid var(--hi);outline-offset:1px}
+.status{font-size:13px;min-height:18px;margin-top:4px;color:var(--muted)}
+.status.ok{color:var(--ok)}.status.warn{color:var(--warn)}
+.sec{margin:34px 0 4px;padding-top:6px;border-top:3px solid var(--hi)}
+.sec h2{font-size:22px;line-height:1.3;margin:10px 0 4px;font-weight:800}
+.sec p{margin:0;color:var(--muted);max-width:62ch}
+.why{margin:-6px 0 12px;font-size:14px;color:var(--muted)}
+.cur{margin:0 0 12px;padding:10px 12px;background:var(--hi-soft);border-radius:10px;font-size:15px;white-space:pre-line;overflow-wrap:anywhere}
+.cur a{color:var(--ink);text-decoration:underline;display:inline-block;max-width:100%}
+.cur b{display:block;font-size:13px;margin-bottom:2px}
+.general{margin:28px 0 0}
+.general h2{font-size:20px;margin:0 0 4px}
+.send{position:fixed;inset:auto 0 0 0;background:var(--bg);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom))}
+.send .box{max-width:760px;margin:0 auto;display:flex;gap:12px;align-items:center;justify-content:space-between}
+.send .hint{font-size:14px;color:var(--muted)}
+button.primary{font:inherit;font-weight:800;background:var(--accent);color:var(--accent-ink);border:0;border-radius:12px;padding:12px 28px;cursor:pointer;min-height:44px}
+button.primary:disabled{opacity:.6}
+.sent{background:var(--ok-soft);color:var(--ok);padding:10px 14px;border-radius:10px;font-weight:600}
+#fallbacktext{width:100%;min-height:120px;margin-top:8px}
+@media (max-width:560px){.send .box{flex-direction:column;align-items:stretch}h1{font-size:24px}}
+
+.body{white-space:pre-line;overflow-wrap:anywhere;margin:0 0 12px;max-width:66ch;font-size:17px}
+.body a{color:var(--ink);text-decoration:underline;display:inline-block;max-width:100%}
+.item .chg{background:var(--warn-soft);color:var(--warn);border-radius:999px;padding:0 10px;font-size:12px;font-weight:700}
+.chgnote{margin:0 0 12px;padding:10px 12px;background:var(--warn-soft);border-radius:10px;font-size:15px;overflow-wrap:anywhere}
+.chgnote b{display:block;font-size:13px;margin-bottom:2px;color:var(--warn)}
+.sub{font-size:14px;color:var(--muted);margin:-2px 0 6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="row"><span class="brand" id="brand"></span><span id="progress"></span></div>
+    <div class="bar"><i id="barfill"></i></div>
+  </header>
+  <section class="intro">
+    <h1 id="h1"></h1>
+    <p id="intro"></p>
+    <div class="facts" id="facts"></div>
+    <div class="who"><label for="who">שם (לא חובה)</label><input id="who" type="text" autocomplete="name" placeholder="אפשר להשאיר ריק"></div>
+  </section>
+  <div id="items"></div>
+  <section class="general">
+    <h2>הערה כללית</h2>
+    <p id="ghint" style="margin:0 0 8px;color:var(--muted)"></p>
+    <div class="answer"><label for="a-general">ההערה שלי</label><textarea id="a-general" data-key="general"></textarea><div class="status" id="st-general"></div></div>
+  </section>
+  <div class="send" id="sendwrap">
+    <div class="box"><div class="hint" id="sendhint">אפשר לכתוב על חלק מהפריטים ולחזור אחר כך. ההערות נשמרות במכשיר, ולחיצה על "שמור" שולחת אותן אלינו. תיבה ריקה = מאושר.</div><button class="primary" id="sendbtn" type="button">שמור</button></div>
+  </div>
+</div>
+<script>
+const CONFIG = {
+ "brand": "IMSC · מאגר המידע · מאמר A1 · סבב 2",
+ "h1": "מאמר לאישור: מה זה ספסטיות ואיך מזהים אותה",
+ "intro": "זו הגרסה שבאוויר באתר, אחרי העדכון של 3 באוקטובר בעקבות הביקורת המקצועית. מתחת לכל פסקה יש תיבה: כתבו רק מה שצריך לשנות, ותיבה ריקה = מאושר. פסקאות שהשתנו מאז הגרסה הקודמת מסומנות ב\"שונה\", ומתחתיהן הסבר קצר. כשמסיימים, כותבים שם ולוחצים \"שמור\". אפשר לחזור ולהמשיך מאוחר יותר.",
+ "facts": [
+  "39 פריטים",
+  "9 פריטים שהשתנו",
+  "כ-1,680 מילים"
+ ],
+ "generalHint": "על המאמר כולו: הטון, האורך, מה חסר או מה מיותר.",
+ "secs": {
+  "a": {
+   "t": "המאמר",
+   "d": "מתחת לכל פסקה יש תיבה. כתבו רק מה שצריך לשנות, ותיבה ריקה = מאושר. פסקאות שהשתנו מאז הגרסה הקודמת מסומנות ב\"שונה\"."
+  },
+  "b": {
+   "t": "שאלות שחוזרות",
+   "d": "חמש השאלות והתשובות שבסוף המאמר."
+  },
+  "c": {
+   "t": "מקורות",
+   "d": "רשימת המקורות שנפתחת בתחתית המאמר."
+  }
+ },
+ "doc": "reviews/article-a1-v2",
+ "ls": "imsc-article-a1-v2",
+ "sendTitle": "הערות למאמר A1 \"מה זה ספסטיות\", סבב 2:",
+ "itemWord": "פריט",
+ "inbox": "https://script.google.com/macros/s/AKfycbzEj4lUky1em3ctwa-hol23Hfu5F5paCqut5pzeSTKYG4oaqZSQhPhb5EfFf9ZS16u11w/exec",
+ "project": "article-a1",
+ "items": [
+  {
+   "k": "p01",
+   "n": "01",
+   "sec": "a",
+   "t": "בקצרה (תיבה בראש המאמר)",
+   "body": "• ספסטיות היא מתח שריר מוגבר שנובע מפגיעה במוח או בחוט השדרה. השריר מתנגד למתיחה, ויותר כשמזיזים אותו מהר.\n• היא יכולה בשילוב עם חולשה והתקצרות השריר והגיד לגרום למגבלה קשה.\n• ניתן לזהות אותה בבדיקה גופנית ולכמת אותה באמצעות סולם אשוורת׳ המתוקן (Modified Ashworth Scale).\n• מטפלים בה כשהיא מפריעה: כואבת, מקשה על הלבשה או הליכה, או מתחילה לקבע מפרק.",
+   "chg": "בנקודה השנייה: \"התקצרות הגיד\" הפך ל\"התקצרות השריר והגיד\".",
+   "snip": "• ספסטיות היא מתח שריר מוגבר שנובע מפגיעה במוח או בחוט השדרה. השריר מת…"
+  },
+  {
+   "k": "p02",
+   "n": "02",
+   "sec": "a",
+   "t": "פתיחה",
+   "body": "היד נסגרת לאגרוף בכל פעם שקמים מהכיסא, או שהרגל מתיישרת ונתקעת בדיוק כשמנסים להכניס אותה למכנסיים. משפחות מתארות את זה במילים שונות, ורק אחר כך שומעות מהרופא את המילה ספסטיות. במאמר הזה תמצאו מה עומד מאחורי המילה, איך מבדילים אותה מבעיות שנראות דומות ואיך בודקים אותה.",
+   "chg": "",
+   "snip": "היד נסגרת לאגרוף בכל פעם שקמים מהכיסא, או שהרגל מתיישרת ונתקעת בדיוק כ…"
+  },
+  {
+   "k": "p03",
+   "n": "03",
+   "sec": "a",
+   "t": "מה זה ספסטיות, במילים פשוטות? (פסקה 1)",
+   "body": "רפלקסים רבים מתווכים בחוט השדרה ומאפשרים לגוף להגיב במהירות לשינויים בסביבה, ללא צורך במעורבות המוח. רפלקס בסיסי אחד, רפלקס המתיחה, שומר על אורך השריר: כאשר השריר נמתח, הרפלקס מפעיל אותו ומכווץ אותו בחזרה. במצב רגיל המוח מווסת את הרפלקסים האלה כל הזמן, ולכן אפשר ליישר מרפק או לכופף ברך בלי שהשריר מתנגד. לאחר פגיעה במערכת העצבים המרכזית, הרפלקסים הופכים מעוררים יתר על המידה, ובעקבות זאת השרירים מופעלים באופן לא מבוקר ונוצרות תנועות לא רצויות.",
+   "chg": "",
+   "snip": "רפלקסים רבים מתווכים בחוט השדרה ומאפשרים לגוף להגיב במהירות לשינויים ב…"
+  },
+  {
+   "k": "p04",
+   "n": "04",
+   "sec": "a",
+   "t": "מה זה ספסטיות, במילים פשוטות? (פסקה 2)",
+   "body": "אחרי פגיעה במוח או בחוט השדרה, הוויסות הזה נחלש. רפלקס המתיחה נעשה חזק מדי, והשריר מגיב למתיחה בהתכווצות מוגזמת. זוהי ספסטיות. הסימן המאפיין שלה הוא התלות במהירות: ככל שמזיזים את הגף מהר יותר, ההתנגדות גדולה יותר. לתנועה איטית עוברת יש בדרך כלל פחות התנגדות.",
+   "chg": "",
+   "snip": "אחרי פגיעה במוח או בחוט השדרה, הוויסות הזה נחלש. רפלקס המתיחה נעשה חזק…"
+  },
+  {
+   "k": "p05",
+   "n": "05",
+   "sec": "a",
+   "t": "מה זה ספסטיות, במילים פשוטות? (פסקה 3, ההגדרה)",
+   "body": "ההגדרה הקלאסית מתארת בדיוק את זה, עלייה בטונוס השריר שתלויה במהירות התנועה. עם השנים הציעו חוקרים להרחיב את ההגדרה, כך שתכלול כל הפעלה לא רצונית של שרירים שנובעת מהפגיעה העצבית. לכן גם עוויתות פתאומיות ומתמשכות הן חלק מההגדרה הרחבה של הספסטיות, וכך גם רעד קצבי בקרסול (קלונוס), ויד שמתכופפת מעצמה בזמן הליכה או מאמץ.",
+   "chg": "במקום \"היום נהוג לכלול\" נכתב \"הציעו חוקרים להרחיב את ההגדרה, כך שתכלול…\".",
+   "snip": "ההגדרה הקלאסית מתארת בדיוק את זה, עלייה בטונוס השריר שתלויה במהירות הת…"
+  },
+  {
+   "k": "p06",
+   "n": "06",
+   "sec": "a",
+   "t": "מה זה ספסטיות, במילים פשוטות? (פסקה 4)",
+   "body": "ספסטיות משתנה במשך היום, וקור, עייפות, מתח, עצירות, שלפוחית מלאה או זיהום יכולים להגביר אותה. החמרה פתאומית, לעומת זאת, שווה בדיקה, כי לפעמים היא הסימן הראשון לזיהום או לבעיה אחרת בגוף.",
+   "chg": "",
+   "snip": "ספסטיות משתנה במשך היום, וקור, עייפות, מתח, עצירות, שלפוחית מלאה או זי…"
+  },
+  {
+   "k": "p07",
+   "n": "07",
+   "sec": "a",
+   "t": "תיבה: ד״ר מנואל צווקר מסביר",
+   "body": "\"ספסטיות היא תופעה שמקשה על הרפיית השריר וגורמת לשריר להתכווץ באופן בלתי נשלט.\"",
+   "chg": "",
+   "snip": "\"ספסטיות היא תופעה שמקשה על הרפיית השריר וגורמת לשריר להתכווץ באופן בל…"
+  },
+  {
+   "k": "p08",
+   "n": "08",
+   "sec": "a",
+   "t": "ספסטיות, חולשה, קונטרקטורה ונוקשות: פתיח",
+   "body": "מבחוץ כל הארבעה נראים דומים: גף שלא זז כמו שצריך. אבל ההבחנה ביניהם קובעת את הטיפול, ולכן זה הדבר הראשון שבודקים.",
+   "chg": "",
+   "snip": "מבחוץ כל הארבעה נראים דומים: גף שלא זז כמו שצריך. אבל ההבחנה ביניהם קו…"
+  },
+  {
+   "k": "p09",
+   "n": "09",
+   "sec": "a",
+   "t": "טבלת ההשוואה",
+   "body": "ספסטיות\nמה קורה בגוף: הרפלקסים של השריר מוגברים בגלל פגיעה במוח או בחוט השדרה.\nמה מרגישים כשמזיזים את הגף של המטופל: התנגדות שגדלה ככל שמזיזים מהר יותר, ומשתנה מיום ליום.\n\nחולשה (שיתוק חלקי)\nמה קורה בגוף: המוח לא מצליח לשלוח לשריר פקודה חזקה מספיק.\nמה מרגישים כשמזיזים את הגף של המטופל: הגף זז בקלות, אבל המטופל לא מצליח להזיז אותו בעצמו.\n\nקונטרקטורה (התקצרות קבועה)\nמה קורה בגוף: השריר, הגיד או רקמות המפרק התקצרו פיזית.\nמה מרגישים כשמזיזים את הגף של המטופל: עצירה קשיחה, תמיד באותה זווית, גם בתנועה איטית מאוד.\n\nריגידיות (נוקשות, למשל בפרקינסון)\nמה קורה בגוף: פגיעה באזור אחר במוח, הגרעינים הבסיסיים.\nמה מרגישים כשמזיזים את הגף של המטופל: נוקשות אחידה לאורך כל התנועה, בלי קשר למהירות.",
+   "chg": "",
+   "snip": "ספסטיות מה קורה בגוף: הרפלקסים של השריר מוגברים בגלל פגיעה במוח או בחו…"
+  },
+  {
+   "k": "p10",
+   "n": "10",
+   "sec": "a",
+   "t": "אחרי הטבלה",
+   "body": "אצל רוב האנשים עם ספסטיות יש גם חולשה, ולפעמים גם התחלה של התקצרות, וזה מסביר למה ריכוך של שריר ספסטי לא תמיד מחזיר תנועה. אם הבעיה העיקרית היא חולשה, השריר אמנם נעשה רך יותר, אבל עדיין לא מקבל פקודה חזקה מספיק. ואם הרקמות כבר התקצרו, שום טיפול שמרפה את השריר לא יאריך אותן.",
+   "chg": "",
+   "snip": "אצל רוב האנשים עם ספסטיות יש גם חולשה, ולפעמים גם התחלה של התקצרות, וז…"
+  },
+  {
+   "k": "p11",
+   "n": "11",
+   "sec": "a",
+   "t": "תיבה: ד״ר מנואל צווקר, הטעות הנפוצה",
+   "body": "התפיסה השגויה שד״ר צווקר פוגש הכי הרבה אצל מטופלים ומשפחות: \"אם בעבר הטיפול בהזרקת רעלן בוטולינום לא עזר, אין טעם לחזור על הטיפול.\"",
+   "chg": "",
+   "snip": "התפיסה השגויה שד״ר צווקר פוגש הכי הרבה אצל מטופלים ומשפחות: \"אם בעבר ה…"
+  },
+  {
+   "k": "p12",
+   "n": "12",
+   "sec": "a",
+   "t": "משפט תשובה אחרי תיבת \"הטעות הנפוצה\"",
+   "body": "יכולות להיות סיבות מגוונות שבגינן הטיפול לא עזר, ואין זה אומר שטיפול נכון לא יעזור.",
+   "chg": "פסקה חדשה. נוספה אחרי התיבה.",
+   "snip": "יכולות להיות סיבות מגוונות שבגינן הטיפול לא עזר, ואין זה אומר שטיפול נ…"
+  },
+  {
+   "k": "p13",
+   "n": "13",
+   "sec": "a",
+   "t": "איך נראית ספסטיות ביום-יום? (יד)",
+   "body": "ספסטיות לאחר שבץ מוחי מתאפיינת לעיתים קרובות בתבנית שבה הזרוע צמודה לגוף, המרפק כפוף, שורש כף היד כפוף והאצבעות קפוצות. ביום-יום, דווקא הדברים הקטנים מפריעים יותר מכול: להשחיל יד לשרוול, לנקות את כף היד, לגזור ציפורניים.",
+   "chg": "",
+   "snip": "ספסטיות לאחר שבץ מוחי מתאפיינת לעיתים קרובות בתבנית שבה הזרוע צמודה לג…"
+  },
+  {
+   "k": "p14",
+   "n": "14",
+   "sec": "a",
+   "t": "איך נראית ספסטיות ביום-יום? (רגל)",
+   "body": "ברגל, הקרסול נוטה לרדת ולהסתובב פנימה, האצבעות מתכופפות בתוך הנעל והברך יכולה להינעל ישרה או להישאר כפופה, ולכן בהליכה כף הרגל נתקעת ברצפה. ויש מי שאצלו הבעיה מתגלה דווקא בלילה, כשעוויתות ברגליים מעירות משינה.",
+   "chg": "",
+   "snip": "ברגל, הקרסול נוטה לרדת ולהסתובב פנימה, האצבעות מתכופפות בתוך הנעל והבר…"
+  },
+  {
+   "k": "p15",
+   "n": "15",
+   "sec": "a",
+   "t": "איך נראית ספסטיות ביום-יום? (בסיום)",
+   "body": "מטופלים ומשפחות מתארים את זה בדרך כלל במילים פשוטות: קשה להניע את היד או את הרגל, או שהידיים או הרגליים קופצות.",
+   "chg": "",
+   "snip": "מטופלים ומשפחות מתארים את זה בדרך כלל במילים פשוטות: קשה להניע את היד …"
+  },
+  {
+   "k": "p16",
+   "n": "16",
+   "sec": "a",
+   "t": "איך מזהים ספסטיות בבדיקה?",
+   "body": "אין בדיקת דם או צילום שמאבחנים ספסטיות. האבחנה נעשית בידיים: הבודק מזיז את הגף של המטופל כשהמטופל רגוע, פעם לאט ופעם מהר, ומרגיש כמה השריר מתנגד ובאיזה שלב של התנועה. בודקים גם רפלקסים ומחפשים קלונוס בקרסול, כלומר רעד קצבי שמופיע כשמותחים את השריר בבת אחת. לבסוף מסתכלים על הגף בפעולה: בקימה מכיסא, בהליכה, בניסיון לתפוס כוס.",
+   "chg": "",
+   "snip": "אין בדיקת דם או צילום שמאבחנים ספסטיות. האבחנה נעשית בידיים: הבודק מזי…"
+  },
+  {
+   "k": "p17",
+   "n": "17",
+   "sec": "a",
+   "t": "סולם אשוורת׳ המתוקן",
+   "body": "הכלי הנפוץ לדירוג הוא סולם אשוורת׳ המתוקן (Modified Ashworth Scale), שבו הבודק מיישר או מכופף את המפרק ונותן ציון לפי כמה קשה להזיז אותו:\n• 0: אין עלייה במתח השריר.\n• 1: עלייה קלה בטונוס השרירים, המתבטאת במעין \"תפיסה ושחרור\" (catch and release), או בהתנגדות קטנה רק בסוף התנועה.\n• 1+: עלייה קלה בטונוס השרירים, המתבטאת ב\"תפיסה\" ואחריה התנגדות קלה לאורך פחות ממחצית התנועה.\n• 2: התנגדות ברורה לאורך רוב התנועה, אבל המפרק עדיין זז בלי קושי רב.\n• 3: קשה להזיז את המפרק.\n• 4: המפרק נוקשה ולא זז.",
+   "chg": "דרגות 1 ו-1+ פוצלו לשתי שורות נפרדות. לדרגה 1 נוסף \"או בהתנגדות קטנה רק בסוף התנועה\".",
+   "snip": "הכלי הנפוץ לדירוג הוא סולם אשוורת׳ המתוקן (Modified Ashworth Scale), ש…"
+  },
+  {
+   "k": "p18",
+   "n": "18",
+   "sec": "a",
+   "t": "מגבלות הסולם",
+   "body": "עם זאת, לסולם יש מגבלות: הוא מצלם רגע אחד, והציון יכול להשתנות לפי השעה, הטמפרטורה ומצב הרוח. הוא גם לא מבחין היטב בין התנגדות שנובעת מרפלקס מוגבר לבין רקמה שהתקצרה. לכן אצלנו הציון הוא נתון אחד מתוך כמה, ומה שקובע יותר הוא מה הספסטיות עושה לאדם: אם היא כואבת, אם היא מקשה על הלבשה או הליכה ואם היא מתחילה לקבע מפרק.",
+   "chg": "",
+   "snip": "עם זאת, לסולם יש מגבלות: הוא מצלם רגע אחד, והציון יכול להשתנות לפי השע…"
+  },
+  {
+   "k": "p19",
+   "n": "19",
+   "sec": "a",
+   "t": "ההערכה ב-IMSC",
+   "body": "ב-IMSC ההערכה נעשית במפגש רב-צוותי של שעה לפחות, עם ד״ר צווקר, מרפאה בעיסוק ופיזיותרפיסט, וכל אחד מהם בודק צד אחר של אותה תמונה.",
+   "chg": "",
+   "snip": "ב-IMSC ההערכה נעשית במפגש רב-צוותי של שעה לפחות, עם ד״ר צווקר, מרפאה ב…"
+  },
+  {
+   "k": "p20",
+   "n": "20",
+   "sec": "a",
+   "t": "מה גורם לספסטיות?",
+   "body": "ספסטיות נובעת מפגיעה במערכת העצבים המרכזית, כלומר במוח או בחוט השדרה, ולכן פגיעה בעצב היקפי, בשריר עצמו או במפרק לא גורמת לספסטיות. עם זאת, היא לא מופיעה אצל כל מי שנפגע: לפי סקירה עדכנית, היא מופיעה אצל כ-35% מהאנשים אחרי שבץ, כמחצית מהאנשים אחרי פגיעת ראש, כ-40% אחרי פגיעת חוט שדרה, 37%–78% מהאנשים עם טרשת נפוצה ויותר מ-90% מהאנשים עם שיתוק מוחין. אלה המצבים הנפוצים אצל מבוגרים:",
+   "chg": "נוסף משפט השכיחות, לפי סקירת StatPearls (עודכנה 22.2.2026).",
+   "snip": "ספסטיות נובעת מפגיעה במערכת העצבים המרכזית, כלומר במוח או בחוט השדרה, …"
+  },
+  {
+   "k": "p21",
+   "n": "21",
+   "sec": "a",
+   "t": "אחרי אירוע מוחי (שבץ מוחי)",
+   "body": "אחרי אירוע מוחי (שבץ מוחי), הספסטיות מתפתחת בדרך כלל אחרי החולשה בפלג הגוף הפגוע, ולא מיד. היא יכולה להופיע כבר בימים הראשונים או רק אחרי כמה שבועות. לדוגמה: יד שהייתה רפה בהתחלה מתחילה להיסגר באופן בלתי נשלט.",
+   "chg": "",
+   "snip": "אחרי אירוע מוחי (שבץ מוחי), הספסטיות מתפתחת בדרך כלל אחרי החולשה בפלג …"
+  },
+  {
+   "k": "p22",
+   "n": "22",
+   "sec": "a",
+   "t": "אחרי פגיעת ראש",
+   "body": "אחרי פגיעת ראש, הספסטיות יכולה להופיע בצד אחד או בשני הצדדים, ולעיתים קרובות היא מגיעה יחד עם קשיי קשב וזיכרון, שמשפיעים גם על הדרך שבה מתרגלים.",
+   "chg": "",
+   "snip": "אחרי פגיעת ראש, הספסטיות יכולה להופיע בצד אחד או בשני הצדדים, ולעיתים …"
+  },
+  {
+   "k": "p23",
+   "n": "23",
+   "sec": "a",
+   "t": "אחרי פגיעת חוט שדרה",
+   "body": "אחרי פגיעת חוט שדרה, הספסטיות מופיעה בשרירים שמתחת לגובה הפגיעה, ולעיתים קרובות מלווה בעוויתות חזקות ברגליים ובגו.",
+   "chg": "נוסף \"ולעיתים קרובות מלווה בעוויתות\".",
+   "snip": "אחרי פגיעת חוט שדרה, הספסטיות מופיעה בשרירים שמתחת לגובה הפגיעה, ולעית…"
+  },
+  {
+   "k": "p24",
+   "n": "24",
+   "sec": "a",
+   "t": "בטרשת נפוצה",
+   "body": "בטרשת נפוצה, הספסטיות יכולה לבוא וללכת: היא מחמירה לפעמים בהתקפים, בחום או בזיהום, ומורגשת בעיקר ברגליים.",
+   "chg": "",
+   "snip": "בטרשת נפוצה, הספסטיות יכולה לבוא וללכת: היא מחמירה לפעמים בהתקפים, בחו…"
+  },
+  {
+   "k": "p25",
+   "n": "25",
+   "sec": "a",
+   "t": "בשיתוק מוחין (CP) במבוגרים",
+   "body": "בשיתוק מוחין (CP) במבוגרים, הפגיעה במוח קרתה כשהמוח עוד התפתח, בהריון, סביב הלידה או בשנים הראשונות לחיים, והיא אינה מתקדמת. ההשפעה שלה על השרירים והמפרקים, לעומת זאת, ממשיכה להשתנות לאורך החיים הבוגרים.",
+   "chg": "נוסף \"כשהמוח עוד התפתח, בהריון, סביב הלידה או בשנים הראשונות לחיים\".",
+   "snip": "בשיתוק מוחין (CP) במבוגרים, הפגיעה במוח קרתה כשהמוח עוד התפתח, בהריון,…"
+  },
+  {
+   "k": "p26",
+   "n": "26",
+   "sec": "a",
+   "t": "האם תמיד צריך לטפל בספסטיות? (פסקה 1)",
+   "body": "לא. ספסטיות היא ממצא בבדיקה, ולא בהכרח בעיה. למשל, אצל חלק מהאנשים עם רגליים חלשות, המתח בשרירים עוזר לרגל להישאר יציבה בעמידה, במעבר מהמיטה לכיסא או בכמה צעדים בבית. לכן, הורדה של המתח הזה בלי לבדוק מה הוא נותן עלולה לפגוע בתפקוד.",
+   "chg": "",
+   "snip": "לא. ספסטיות היא ממצא בבדיקה, ולא בהכרח בעיה. למשל, אצל חלק מהאנשים עם …"
+  },
+  {
+   "k": "p27",
+   "n": "27",
+   "sec": "a",
+   "t": "האם תמיד צריך לטפל בספסטיות? (פסקה 2)",
+   "body": "כדי לקבוע אם נכון לטפל, צריך הערכה תפקודית מקיפה של צוות רב-תחומי שכולל פיזיותרפיסט ומרפאה בעיסוק: צוות מיומן יידע לקבוע אם לטפל, ואיך.",
+   "chg": "",
+   "snip": "כדי לקבוע אם נכון לטפל, צריך הערכה תפקודית מקיפה של צוות רב-תחומי שכול…"
+  },
+  {
+   "k": "p28",
+   "n": "28",
+   "sec": "a",
+   "t": "האם תמיד צריך לטפל בספסטיות? (פסקה 3)",
+   "body": "מטפלים כשהספסטיות מפריעה לתפקוד כלשהו ומגדירים מראש את התועלת שרוצים להשיג בטיפול. למשל: פחות כאב, פחות עוויתות שמעירות בלילה, יד שקל יותר לנקות, קרסול שלא מכשיל בהליכה, או מפרק שלא ממשיך להתקבע. לכל מטרה כזו מתאים כלי אחר: תרגול והארכה (מתיחה) יומיומיים, סד, הזרקת בוטולינום טוקסין (המוכר בשם בוטוקס) לשרירים מסוימים, או תרופה שפועלת על כל הגוף כמו בקלופן. ברוב המקרים משלבים כמה מהם. סקירה של הדרכים שבהן אנחנו עובדים נמצאת בעמוד טיפול בספסטיות.",
+   "chg": "",
+   "snip": "מטפלים כשהספסטיות מפריעה לתפקוד כלשהו ומגדירים מראש את התועלת שרוצים ל…"
+  },
+  {
+   "k": "p29",
+   "n": "29",
+   "sec": "a",
+   "t": "האם תמיד צריך לטפל בספסטיות? (פסקה 4)",
+   "body": "לפעמים התועלת פשוטה ומשמעותית מאוד. למשל, כשכף היד קפוצה, ללא יכולת פתיחה מינימלית של היד, יכול להיווצר בה פצע. אחרי הזרקה בבוטולינום טוקסין האצבעות יכולות להתיישר, וכך אפשר לאוורר את היד, לטפל בפצע ולגזור ציפורניים.",
+   "chg": "",
+   "snip": "לפעמים התועלת פשוטה ומשמעותית מאוד. למשל, כשכף היד קפוצה, ללא יכולת פת…"
+  },
+  {
+   "k": "p30",
+   "n": "30",
+   "sec": "a",
+   "t": "לאן פונים בישראל ומה מביאים? (פסקה 1)",
+   "body": "ב-IMSC לא צריך הפניה, אבל כדאי להביא תיעוד רפואי: סיכומי אשפוז ושחרור, בדיקות הדמיה אם יש, רשימת תרופות עדכנית ודו״ח מסכם טיפול של פיזיותרפיסט/ית או ריפוי בעיסוק, אם יש. IMSC הוא שירות פרטי, וקיימת אפשרות להחזרים מביטוחים פרטיים, הן על התייעצות עם רופא והן על טיפולי שיקום. כדאי לבדוק את זה מול הפוליסה שלכם.",
+   "chg": "",
+   "snip": "ב-IMSC לא צריך הפניה, אבל כדאי להביא תיעוד רפואי: סיכומי אשפוז ושחרור,…"
+  },
+  {
+   "k": "p31",
+   "n": "31",
+   "sec": "a",
+   "t": "לאן פונים בישראל ומה מביאים? (פסקה 2)",
+   "body": "ההערכה וההזרקות נעשות במגדלי ב.ס.ר 2, דוד בן גוריון 1, בני ברק. ריפוי בעיסוק ופיזיותרפיה ניתנים גם במרכז הספורט של אוניברסיטת תל אביב.",
+   "chg": "",
+   "snip": "ההערכה וההזרקות נעשות במגדלי ב.ס.ר 2, דוד בן גוריון 1, בני ברק. ריפוי …"
+  },
+  {
+   "k": "p32",
+   "n": "32",
+   "sec": "a",
+   "t": "מתי כדאי לפנות לבדיקה?",
+   "body": "• היד או הרגל נעשות נוקשות יותר מחודש לחודש.\n• קשה יותר להלביש, לרחוץ או לנקות את כף היד ואת בית השחי.\n• כאב או עוויתות מפריעים לשינה.\n• הקרסול או האצבעות מכשילים בהליכה, או שהיו נפילות.\n• מפרק כבר לא מגיע לטווח שהגיע אליו קודם.\n• הספסטיות החמירה פתאום, במיוחד עם חום, צריבה במתן שתן או פצע חדש, ובמקרה כזה פונים קודם לרופא המטפל כדי לשלול זיהום.",
+   "chg": "",
+   "snip": "• היד או הרגל נעשות נוקשות יותר מחודש לחודש. • קשה יותר להלביש, לרחוץ …"
+  },
+  {
+   "k": "p33",
+   "n": "33",
+   "sec": "b",
+   "t": "שאלה: מהי ספסטיות?",
+   "body": "ספסטיות היא מתח שרירים מוגבר שנובע מפגיעה במערכת העצבים המרכזית, כמו אחרי אירוע מוחי (שבץ), פגיעת ראש, פגיעה בחוט השדרה, טרשת נפוצה או שיתוק מוחין.",
+   "chg": "",
+   "snip": "ספסטיות היא מתח שרירים מוגבר שנובע מפגיעה במערכת העצבים המרכזית, כמו א…"
+  },
+  {
+   "k": "p34",
+   "n": "34",
+   "sec": "b",
+   "t": "שאלה: ספסטיות ושיתוק זה אותו דבר?",
+   "body": "לא. שתיהן יכולות להופיע אחרי פגיעה במערכת העצבים המרכזית, אבל מדובר בבעיות שונות. בשיתוק או בחולשה, השריר לא מקבל פקודה חזקה מספיק. בספסטיות, השריר מתכווץ יותר מדי, בלי שביקשו ממנו. אצל רוב האנשים עם ספסטיות יש את שתיהן יחד, ולכן בודקים כל אחת בנפרד.",
+   "chg": "",
+   "snip": "לא. שתיהן יכולות להופיע אחרי פגיעה במערכת העצבים המרכזית, אבל מדובר בב…"
+  },
+  {
+   "k": "p35",
+   "n": "35",
+   "sec": "b",
+   "t": "שאלה: האם ספסטיות עוברת מעצמה?",
+   "body": "בחודשים הראשונים אחרי הפגיעה היא יכולה להשתנות, אבל אצל רבים היא נשארת לאורך זמן. גם אז אפשר להפחית אותה ולשפר את מה שהיא מגבילה, גם שנים אחרי האירוע. כשכבר יש התקצרות קבועה, השיפור מוגבל יותר.",
+   "chg": "נוסף המשפט האחרון: \"כשכבר יש התקצרות קבועה, השיפור מוגבל יותר.\"",
+   "snip": "בחודשים הראשונים אחרי הפגיעה היא יכולה להשתנות, אבל אצל רבים היא נשארת…"
+  },
+  {
+   "k": "p36",
+   "n": "36",
+   "sec": "b",
+   "t": "שאלה: האם ספסטיות תמיד כואבת?",
+   "body": "לא. יש מי שמרגיש אותה רק כמתח או ככבדות, ואצל אחרים עוויתות או התכווצות ממושכת כואבות מאוד. כאב הוא גם אחת הסיבות העיקריות להתחיל טיפול.",
+   "chg": "",
+   "snip": "לא. יש מי שמרגיש אותה רק כמתח או ככבדות, ואצל אחרים עוויתות או התכווצו…"
+  },
+  {
+   "k": "p37",
+   "n": "37",
+   "sec": "b",
+   "t": "סיום: רוצים להבין מה קורה אצלכם?",
+   "body": "במפגש ההערכה ב-IMSC בודקים יחד מה בגף הוא ספסטיות, מה חולשה ומה כבר התקצר, ומחליטים אם ובמה כדאי לטפל. אפשר להתחיל בשיחת היכרות, ונחזור אליכם בהקדם.",
+   "chg": "",
+   "snip": "במפגש ההערכה ב-IMSC בודקים יחד מה בגף הוא ספסטיות, מה חולשה ומה כבר הת…"
+  },
+  {
+   "k": "p38",
+   "n": "38",
+   "sec": "c",
+   "t": "מקורות מידע (8)",
+   "body": "• Royal College of Physicians (2018). Spasticity in adults: management using botulinum toxin. National guidelines. https://www.rcp.ac.uk/resources/spasticity-in-adults-management-using-botulinum-toxin/\n• Lance, J. W. (1990). What is spasticity? The Lancet. https://pubmed.ncbi.nlm.nih.gov/1968597/\n• Pandyan, A. D., et al. (2005). Spasticity: clinical perceptions, neurological realities and meaningful measurement. Disability and Rehabilitation. https://pubmed.ncbi.nlm.nih.gov/15799140/\n• Bohannon, R. W., & Smith, M. B. (1987). Interrater reliability of a modified Ashworth scale of muscle spasticity. Physical Therapy. https://pubmed.ncbi.nlm.nih.gov/3809245/\n• Fleuren, J. F. M., et al. (2010). Stop using the Ashworth Scale for the assessment of spasticity. Journal of Neurology, Neurosurgery & Psychiatry. https://pubmed.ncbi.nlm.nih.gov/20019216/\n• Winkle, M. J., Huang, D., & Lui, F. Spasticity. StatPearls (NCBI Bookshelf), עודכן 2026. https://www.ncbi.nlm.nih.gov/books/NBK507869/\n• Stroke Association. Spasticity and contractures. https://www.stroke.org.uk/stroke/effects/physical/spasticity-and-contractures\n• MS Society UK. Spasticity, spasms and stiffness. https://www.mssociety.org.uk/about-ms/signs-and-symptoms/spasms-and-stiffness",
+   "chg": "קישור ה-RCP עודכן. נוספו Lance 1990 ו-Fleuren 2010 (סה״כ 8 מקורות).",
+   "snip": "• Royal College of Physicians (2018). Spasticity in adults: management…"
+  },
+  {
+   "k": "p39",
+   "n": "39",
+   "sec": "c",
+   "t": "שורת הסיום",
+   "body": "המידע כללי ואינו מחליף ייעוץ רפואי אישי. התאמת טיפול נעשית על ידי רופא מטפל.",
+   "chg": "",
+   "snip": "המידע כללי ואינו מחליף ייעוץ רפואי אישי. התאמת טיפול נעשית על ידי רופא…"
+  }
+ ]
+};
+(function(){
+  const C=CONFIG, $=id=>document.getElementById(id);
+  $('brand').textContent=C.brand; $('h1').textContent=C.h1; $('intro').textContent=C.intro; $('ghint').textContent=C.generalHint;
+  C.facts.forEach(f=>{ const s=document.createElement('span'); s.textContent=f; $('facts').appendChild(s); });
+  function addText(parent,text){
+    text.split(/(https?:\/\/[^\s)]+)/).forEach(part=>{
+      if(/^https?:\/\//.test(part)){ const a=document.createElement('a'); a.href=part; a.textContent=part; a.target='_blank'; a.rel='noopener noreferrer'; a.dir='ltr'; parent.appendChild(a); }
+      else if(part){ parent.appendChild(document.createTextNode(part)); }
+    });
+  }
+  const ORDER=[], LABEL={}, areas={};
+  let curSec='';
+  C.items.forEach(it=>{
+    if(it.sec!==curSec){ curSec=it.sec; const S=C.secs[it.sec];
+      if(S){ const hd=document.createElement('section'); hd.className='sec';
+        const h2=document.createElement('h2'); h2.textContent=S.t; const sp=document.createElement('p'); sp.textContent=S.d;
+        hd.appendChild(h2); hd.appendChild(sp); $('items').appendChild(hd); } }
+    ORDER.push(it.k); LABEL[it.k]=C.itemWord+' '+it.n+' · '+it.t+(it.snip?': '+it.snip:'');
+    const sec=document.createElement('section'); sec.className='item';
+    const meta=document.createElement('div'); meta.className='meta';
+    const num=document.createElement('span'); num.className='num'; num.textContent=it.n;
+    const top=document.createElement('span'); top.textContent=it.t;
+    meta.appendChild(num); meta.appendChild(top);
+    if(it.chg){ const c=document.createElement('span'); c.className='chg'; c.textContent='שונה'; meta.appendChild(c); }
+    const body=document.createElement('p'); body.className='body'; addText(body,it.body);
+    let note=null;
+    if(it.chg){ note=document.createElement('div'); note.className='chgnote'; const nb=document.createElement('b'); nb.textContent='מה השתנה'; note.appendChild(nb); note.appendChild(document.createTextNode(it.chg)); }
+    const ans=document.createElement('div'); ans.className='answer';
+    const lab=document.createElement('label'); lab.setAttribute('for','a-'+it.k); lab.textContent='ההערה שלי (ריק = מאושר)';
+    const ta=document.createElement('textarea'); ta.id='a-'+it.k; ta.dataset.key=it.k;
+    const st=document.createElement('div'); st.className='status'; st.id='st-'+it.k;
+    ans.appendChild(lab); ans.appendChild(ta); ans.appendChild(st);
+    sec.appendChild(meta); sec.appendChild(body); if(note) sec.appendChild(note); sec.appendChild(ans);
+    $('items').appendChild(sec);
+  });
+  ORDER.push('general'); LABEL.general='הערה כללית';
+  ORDER.forEach(k=>{ areas[k]=$('a-'+k); });
+  let state={answers:{},who:''};
+  try{ const raw=localStorage.getItem(C.ls); if(raw) state=Object.assign(state,JSON.parse(raw)); }catch(e){}
+  ORDER.forEach(k=>{ if(state.answers[k]) areas[k].value=state.answers[k]; });
+  if(state.who) $('who').value=state.who;
+  function lsSave(){ try{ localStorage.setItem(C.ls,JSON.stringify(state)); return true; }catch(e){ return false; } }
+  function setStatus(k,t,cls){ const s=$('st-'+k); s.textContent=t; s.className='status '+(cls||''); }
+  function progress(){ const n=ORDER.filter(k=>k!=='general'&&(areas[k].value||'').trim()).length, m=C.items.length;
+    $('progress').textContent=n+' פריטים עם הערה מתוך '+m; $('barfill').style.width=(m?Math.round(100*n/m):0)+'%'; }
+  progress();
+  const timers={};
+  ORDER.forEach(k=>{ areas[k].addEventListener('input',()=>{
+    setStatus(k,'');
+    clearTimeout(timers[k]);
+    timers[k]=setTimeout(()=>{ state.answers[k]=areas[k].value; state.updatedAt=new Date().toISOString(); const ok=lsSave(); setStatus(k, ok?'נשמר במכשיר הזה':'לא הצלחנו לשמור במכשיר', ok?'ok':'warn'); progress(); },800);
+  }); });
+  $('who').addEventListener('input',()=>{ state.who=$('who').value; lsSave(); });
+  function collect(){ const notes=[]; ORDER.forEach(k=>{ const v=(areas[k].value||'').trim(); if(v) notes.push({item:LABEL[k],note:v}); }); return notes; }
+  async function send(){
+    const b=$('sendbtn2')||$('sendbtn'); if(b){ b.disabled=true; b.textContent='שומר...'; }
+    ORDER.forEach(k=>{ state.answers[k]=areas[k].value; }); state.updatedAt=new Date().toISOString(); lsSave();
+    const who=($('who').value||'').trim();
+    const box=document.querySelector('#sendwrap .box');
+    let ok=false;
+    try{ await fetch(C.inbox,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({project:C.project||'',round:C.doc,name:who||'ללא שם',notes:collect()})}); ok=true; }catch(e){}
+    if(ok){ box.innerHTML='<div class="sent"></div><button class="primary" id="sendbtn2" type="button">שמור שוב</button>'; box.querySelector('.sent').textContent='נשמר'+(who?', תודה '+who:'')+'. אפשר להמשיך לכתוב ולשמור שוב.'; $('sendbtn2').addEventListener('click',send); return; }
+    box.innerHTML='<div class="sent" style="background:var(--warn-soft);color:var(--warn)">השמירה לא הצליחה. העתיקו את הטקסט ושלחו אותו:</div><textarea id="fallbacktext" readonly></textarea><button class="primary" id="sendbtn2" type="button">נסו שוב</button>';
+    $('fallbacktext').value=(who?who+'\n\n':'')+collect().map(n=>n.item+'\n'+n.note).join('\n\n');
+    $('sendbtn2').addEventListener('click',send);
+  }
+  $('sendbtn').addEventListener('click',send);
+})();
+</script>
+</body>
+</html>
