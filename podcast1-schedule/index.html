@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex">
+<title>IMSC · פודקאסט 1 · לוח העלאות</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap">
+<style>
+/* ===== Brand tokens: swap these per project (light first, then dark) ===== */
+:root{
+  --bg:#F3F0E8; --surface:#FFFFFF; --ink:#0A2350; --muted:#4F5E78; --line:#DCD6C8;
+  --accent:#06265A; --accent-ink:#F5F1E8; --hi:#0A7D7D; --hi-soft:#DDF1EF; --chg:#8A6614; --chg-soft:#F6ECD2;
+  --field:#FFFFFF; --ok:#1E7A52; --ok-soft:#DDF1E6; --warn:#A04C0C; --warn-soft:#FBE8D6; --shadow:0 12px 30px rgba(6,38,90,.14);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#071A3A; --surface:#0E2750; --ink:#EEF2FA; --muted:#A8B7D0; --line:#23406E;
+    --accent:#12BCBC; --accent-ink:#06265A; --hi:#12BCBC; --hi-soft:#123E55; --chg:#E0BC6A; --chg-soft:#3A2F16;
+    --field:#0A2045; --ok:#5DD39E; --ok-soft:#173A2B; --warn:#F0A25E; --warn-soft:#432A12; --shadow:0 12px 30px rgba(0,0,0,.35); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#071A3A; --surface:#0E2750; --ink:#EEF2FA; --muted:#A8B7D0; --line:#23406E;
+  --accent:#12BCBC; --accent-ink:#06265A; --hi:#12BCBC; --hi-soft:#123E55; --chg:#E0BC6A; --chg-soft:#3A2F16;
+  --field:#0A2045; --ok:#5DD39E; --ok-soft:#173A2B; --warn:#F0A25E; --warn-soft:#432A12; --shadow:0 12px 30px rgba(0,0,0,.35); color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Assistant","Arial Hebrew",Arial,sans-serif;font-size:17px;line-height:1.6}
+.wrap{direction:rtl;max-width:980px;margin:0 auto;padding-inline:16px;padding-block:0 96px}
+h1,h2{font-weight:800;line-height:1.15;margin:0;text-wrap:balance}
+h1{font-size:clamp(1.9rem,4.5vw,2.6rem)} h2{font-size:1.45rem}
+p{margin:.5rem 0}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:12px 10px;border-bottom:1px solid var(--line)}
+.top .row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-weight:800;color:var(--hi);letter-spacing:.02em}
+.progress{font-size:.92rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.bar{height:5px;background:var(--line);border-radius:99px;margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--hi);transition:width .3s ease}
+.intro{padding-block:28px 12px;display:grid;gap:10px}
+.intro p{color:var(--muted);max-width:62ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.facts span{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:.9rem;font-weight:600}
+.player{margin-top:14px;max-width:340px}
+.player video{display:block;width:100%;border-radius:14px;background:#000;box-shadow:var(--shadow)}
+.items{display:grid;gap:28px;margin-top:20px}
+.item{display:grid;grid-template-columns:minmax(0,250px) minmax(0,1fr);gap:24px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.item.noimg{grid-template-columns:1fr}
+.shot img{display:block;width:100%;border-radius:12px;box-shadow:var(--shadow);max-width:100%}
+.meta{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.num{font-weight:800;color:var(--hi);font-size:1.5rem;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);font-size:.9rem;font-variant-numeric:tabular-nums}
+.chg{display:inline-block;background:var(--chg-soft);color:var(--chg);font-size:.78rem;font-weight:800;padding:.05em .6em;border-radius:99px;vertical-align:middle}
+.changed{background:var(--chg-soft);border-radius:10px;padding:8px 12px;margin-top:10px;font-size:.95rem}
+.label{font-size:.8rem;font-weight:800;letter-spacing:.06em;color:var(--muted);margin-top:14px}
+.quote{background:var(--hi-soft);border-radius:10px;padding:8px 12px;font-weight:700;margin-top:4px;white-space:pre-line}
+.body{margin-top:4px;white-space:pre-line}
+.jump{font:inherit;font-weight:700;font-size:.9rem;color:var(--hi);background:var(--hi-soft);border:0;border-radius:999px;padding:6px 14px;margin-top:10px;cursor:pointer;min-height:36px}
+.answer{margin-top:16px}
+.answer label{display:block;font-weight:800;margin-bottom:6px}
+textarea{width:100%;min-height:96px;resize:vertical;font:inherit;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:10px;padding:10px 12px;direction:rtl}
+textarea:focus,.jump:focus-visible{outline:2px solid var(--hi);outline-offset:1px}
+.status{font-size:.85rem;color:var(--muted);margin-top:4px;min-height:1.3em}
+.status.ok{color:var(--ok)} .status.warn{color:var(--warn)}
+.general{margin-top:28px;background:var(--chg-soft);border-radius:18px;padding:18px}
+.send{margin-top:28px;padding-top:22px;border-top:2px solid var(--hi)}
+.send .box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.send .hint{color:var(--muted);font-size:.95rem;flex:1 1 240px}
+button.primary{font:inherit;font-weight:800;background:var(--accent);color:var(--accent-ink);border:0;border-radius:999px;padding:12px 32px;cursor:pointer;min-height:44px}
+button.primary:disabled{opacity:.55;cursor:default}
+button.primary:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.sent{background:var(--ok-soft);color:var(--ok);border-radius:10px;padding:10px 14px;font-weight:700}
+@media (max-width:640px){ .item{grid-template-columns:1fr;padding:14px} .shot{max-width:280px;margin-inline:auto;width:100%} }
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="row"><span class="brand" id="brand"></span><span class="progress" id="progress"></span></div>
+    <div class="bar"><i id="barfill"></i></div>
+  </header>
+  <section class="intro">
+    <h1 id="h1"></h1>
+    <p id="intro"></p>
+    <div class="facts" id="facts"></div>
+    <div class="player" id="player" hidden></div>
+  </section>
+  <div class="items" id="items"></div>
+  <section class="general">
+    <h2>הערה כללית</h2>
+    <p id="general-hint"></p>
+    <div class="answer"><label for="a-general">ההערה שלי</label><textarea id="a-general" data-key="general" placeholder="כל מה שלא שייך לפריט אחד"></textarea><div class="status" id="st-general"></div></div>
+  </section>
+  <div class="send" id="sendwrap">
+    <div class="box"><div class="hint" id="sendhint"><label for="who" style="font-weight:700;display:block;margin-bottom:4px">השם שלכם <span style="font-weight:400;color:var(--muted)">(לא חובה)</span></label><input id="who" type="text" autocomplete="name" style="font:inherit;width:100%;max-width:280px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--field);color:var(--ink)"><div style="margin-top:6px">כשסיימתם, לחצו "שמור" וכל ההערות יישמרו. תיבה ריקה = מאושר.</div></div><button class="primary" id="sendbtn" type="button">שמור</button></div>
+  </div>
+</div>
+
+<script>
+/* ===================== CONFIG — the only part to edit per review ===================== */
+const CONFIG = {
+  inbox: 'https://script.google.com/macros/s/AKfycbzEj4lUky1em3ctwa-hol23Hfu5F5paCqut5pzeSTKYG4oaqZSQhPhb5EfFf9ZS16u11w/exec',
+  project: 'podcast1-schedule',
+  brand: "IMSC · פודקאסט 1 · לוח העלאות לאינסטגרם",
+  h1: "לוח ההעלאות של ריילס הפודקאסט",
+  intro: "16 הריילס לפי סדר ההעלאה, סרטון כל יומיים מ-20.10. לכל ריל: התאריך, הטקסט שעולה איתו לאינסטגרם (תחת \"טקסט\"), ההערות של אביה וענבל ומה שתוקן בעקבותיהן (תחת \"פירוט\"). כתבו בתיבה רק מה שצריך לשנות, בסרטון, בטקסט לפוסט או בתאריך. תיבה ריקה = מאושר. בסוף לחצו \"שמור\"."שונה\". כתבו רק מה שעוד צריך לשנות. תיבה ריקה = מאושר. בסוף לחצו \"שמור\". כל הסרטונים בטיוטה, באיכות נמוכה.",
+  facts: ["16 ריילס", "20.10–24.11", "סרטון כל יומיים", "טיוטה באיכות נמוכה"],
+  generalHint: 'על כל הלוח יחד: סדר ההעלאה, התאריכים, ההאשטגים, או כל דבר שנוגע לכל הריילס.',
+  doc: 'reviews/podcast1-schedule-v1',
+  ls: 'imsc-podcast1-schedule-v1',
+  sendTitle: "הערות ללוח ההעלאות של ריילס הפודקאסט:",
+  itemWord: 'ריל',
+  items: [
+ {
+  "k": "01",
+  "n": "01",
+  "t": "20.10 · האם המענה הטיפולי היום מקיף ומספק?",
+  "sub": "תאריך העלאה 20.10 · 74 שנ׳",
+  "img": "../podcast1-all/img/01.jpg?v=2",
+  "vid": "../podcast1-all/video/01.mp4?v=2",
+  "quote": "האם המענה הטיפולי שמקבלים היום מטופלים עם ספסטיות באמת מקיף ומספק? 🤔🏠\n\nIMSC המרכז הרב תחומי לטיפול בספסטיות\n\n#אביה_גיטרמן #ד\"ר_ענבל_פארן #מרפאה_בעיסוק #ריפוי_בעיסוק #פיזיותרפיה #ספסטיות #שיקום #אירוע_מוחי #רפואה #מדיהדום #foryou",
+  "body": "הערות אביה: אין\n\nהערות ענבל: פחות מוצלח: הנושא טוב, אבל יש חוסר דיוק במסרים ששווה לחדד. לא להעלות עדיין (מתוך ההערה הכללית).\n\nשינויים שבוצעו בעקבות ההערות:\nלא בוצעו שינויים בעקבות ההערה. ענבל לא פירטה איזה מסר לא מדויק, והריל אושר כמו שהוא בהחלטת אביחי (17.10)."
+ },
+ {
+  "k": "02",
+  "n": "02",
+  "t": "22.10 · מה ההבדל בין ריפוי בעיסוק לפיזיותרפיה?",
+  "sub": "תאריך העלאה 22.10 · 90 שנ׳",
+  "img": "../podcast1-all/img/02.jpg?v=2",
+  "vid": "../podcast1-all/video/02.mp4?v=2",
+  "quote": "פיזיותרפיה או ריפוי בעיסוק? למה מטופל עם ספסטיות צריך גם וגם 🤝\n\nIMSC המרכז הרב תחומי לטיפול בספסטיות\n\n#אביה_גיטרמן #ד\"ר_ענבל_פארן #מרפאה_בעיסוק #ריפוי_בעיסוק #פיזיותרפיה #ספסטיות #שיקום #אירוע_מוחי #רפואה #מדיהדום #foryou",
+  "body": "הערות אביה: אין\n\nהערות ענבל: פחות מוצלח: הנושא טוב, אבל יש חוסר דיוק במסרים ששווה לחדד. לא להעלות עדיין (מתוך ההערה הכללית).\n\nשינויים שבוצעו בעקבות ההערות:\nלא בוצעו שינויים בעקבות ההערה. ענבל לא פירטה איזה מסר לא מדויק, והריל אושר כמו שהוא בהחלטת אביחי (17.10)."
+ },
+ {
+  "k": "03a",
+  "n": "03",
+  "t": "25.10 · למה הזרקה לבד לא מספיקה?",
+  "sub": "תאריך העלאה 25.10 · 76 שנ׳",
+  "img": "../podcast1-all/img/03a.jpg?v=2",
+  "vid": "../podcast1-all/video/03a.mp4?v=2",
+  "quote": "למה הזרקת בוטולינום טוקסין לבד לא מספיקה? ההזרקה פותחת חלון, והעבודה מתחילה אחריה 🪟💪\n\nIMSC המרכז הרב תחומי לטיפול בספסטיות\n\n#אביה_גיטרמן #ד\"ר_ענבל_פארן #מרפאה_בעיסוק #ריפוי_בעיסוק #פיזיותרפיה #ספסטיות #שיקום #אירוע_מוחי #רפואה #מדיהדום #foryou",
+  "body": "הערות אביה: אין\n\nהערות ענבל: (מתוך ההערה על 03-ב) 03-א מדויק וקולע יותר.\n\nשינויים שבוצעו בעקבות ההערות:\nלא נדרש שינוי: ההערה של ענבל היא העדפה של 03-א על פני 03-ב."
+ },
+ {
+  "k": "03b",
+  "n": "04",
+  "t": "27.10 · מה הכי מטריד את המטופלים?",
+  "sub": "תאריך העלאה 27.10 · 36 שנ׳",
+  "img": "../podcast1-all/img/03b.jpg?v=2",
+  "vid": "../podcast1-all/video/03b.mp4?v=3",
+  "quote": "תנועות לא רצוניות, כאבים, נוקשות: מה הכי מטריד מטופלים עם ספסטיות, ועל מה עובדים בטיפול? 🎯\n\nIMSC המרכז הרב תחומי לטיפול בספסטיות\n\n#אביה_גיטרמן #ד\"ר_ענבל_פארן #מרפאה_בעיסוק #ריפוי_בעיסוק #פיזיותרפיה #ספסטיות #שיקום #אירוע_מוחי #רפואה #מדיהדום #foryou",
+  "body": "הערות אביה: קצת חוזר על מה שנאמר בסרטון הקודם.\n\nהערות ענבל: בהתחלה המצלמה על אביה אבל מופיע השם של ענבל. 03-א עדיף; המשפט קטוע בהתחלה ולא ברור מה הכי מטריד. פחות מוצלח.\n\nשינויים שבוצעו בעקבות ההערות:\nכרטיס השם של ענבל הוזז. קודם הוא הופיע כבר בשנייה הראשונה, כשהמצלמה עוד על אביה. עכשיו הוא עולה בשנייה 6.3, כשהמצלמה כבר על ענבל. המצלמה עוברת אליה בשנייה 3.5, אבל בין 4.9 ל-6.2 מופיע באותו מקום אייקון הכאב, ולכן הכרטיס עולה מיד אחריו, כדי שלא יעלו זה על זה.\nההערות על החזרתיות (אביה), על העדפת 03-א ועל המשפט הקטוע בפתיחה (ענבל) לא יושמו: הריל נשאר בהחלטת אביחי."
+ },
+ {
+  "k": "04a",
+  "n": "05",
+  "t": "29.10 · הזרקה היא החרישה של השדה",
+  "sub": "תאריך העלאה 29.10 · 91 שנ׳",
+  "img": "../podcast1-all/img/04a.jpg?v=2",
+  "vid": "../podcast1-all/video/04a.mp4?v=3",
+  "quote": "הזרקה היא החרישה של השדה. מה צומח אחריה? 🚜🌱\n\nIMSC המרכז הרב תחומי לטיפול בספסטיות\n\n#אביה_גיטרמן #ד\"ר_ענבל_פארן #מרפאה_בעיסוק #ריפוי_בעיסוק #פיזיותרפיה #ספסטיות #שיקום #אירוע_מוחי #רפואה #מדיהדום #foryou",
+  "body": "הערות אביה: (על 04-ב) חוזר על הסרטון הקודם. כדאי לשלב: החרישה והצמיחה של משהו חדש באים בעקבות התאוששות של מסלולים עולים למוח.\n\nהערות ענבל: אין\n\nשינויים שבוצעו בעקבות ההערות:\n04-א ו-04-ב חוברו לריל אחד (91 שנ׳), לפי ההצעה של אביה.\nהסדר בריל: הריל נפתח כמו 04-א (\"הזרקה היא החרישה של השדה... הנטיעה... הצמיחה של משהו חדש\") וממשיך ב\"וזה בעצם הזמן שלנו ללמד את השרירים דברים חדשים\". משם נכנס הקטע מ-04-ב: \"ואנחנו יודעים היום גם ממחקרים מהשנים האחרונות שההזרקה... מאפשרת גם התאוששות של מסלולים נוירולוגיים, מסלולים עולים למוח\" ו\"מאפשרת למידה של מיומנויות חדשות\". אחריו מגיע הסיום של 04-א (\"עבודה מאוד אינטנסיבית, חוזרנית, מוכוונת מטרה... ולא סתם לפתוח ולסגור את היד\").\nנוסף אייקון מוח על המילה \"למוח\". שקופית הפתיחה נשארה עם הכותרת של 04-א. 04-ב ירד מהרשימה כריל נפרד."
+ },
+ {
+  "k": "05",
+  "n": "06",
+  "t": "1.11 · למה התזמון של ההזרקה חשוב?",
+  "sub": "תאריך העלאה 1.11 · 76 שנ׳",
+  "img": "../podcast1-all/img/05.jpg?v=2",
+  "vid": "../podcast1-all/video/05.mp4?v=2",
+  "quote": "למה התזמון של ההזרקה כל כך חשוב? ⏰💉\n\nIMSC המרכז הרב תחומי לטיפול בספסטיות\n\n#אביה_גיטרמן #ד\"ר_ענבל_פארן #מרפאה_בעיסוק #ריפוי_בעיסוק #פיזיותרפיה #ספסטיות #שיקום #אירוע_מוחי #רפואה #מדיהדום #foryou",
+  "body": "הערות אביה: אין\n\nהערות ענבל: אין\n\nשינויים שבוצעו בעקבות ההערות:\nלא היו הערות של אביה וענבל."
+ },
+ {
+  "k": "06",
+  "n": "07",
+  "t": "3.11 · ניהול ספסטיות זה לא רק הזרקות",
+  "sub": "תאריך העלאה 3.11 · 78 שנ׳",
+  "img": "../podcast1-all/img/06.jpg?v=2",
+  "vid": "../podcast1-all/video/06.mp4?v=2",
+  "quote": "ניהול ספסטיות זה לא רק הזרקות: סדים, מנחים, ומה שקורה בבית לאורך היום ✨\n\nIMSC המרכז הרב תחומי לטיפול בספסטיות\n\n#אביה_גיטרמן #ד\"ר_ענבל_פארן #מרפאה_בעיסוק #ריפוי_בעיסוק #פיזיותרפיה #ספסטיות #שיקום #אירוע_מוחי #רפואה #מדיהדום #foryou",
+  "body": "הערות אביה: אין\n\nהערות ענבל: אין\n\nשינויים שבוצעו בעקבות ההערות:\nלא היו הערות של אביה וענבל."
+ },
+ {
+  "k": "07a",
+  "n": "08",
+  "t": "5.11 · ספסטיות לא נעלמת אחרי הטיפול",
+  "sub": "תאריך העלאה 5.11 · 49 שנ׳",
+  "img": "../podcast1-all/img/07a.jpg?v=2",
+  "vid": "../podcast1-all/video/07a.mp4?v=3",
+  "quote": "ספסטיות לא נעלמת בסוף הטיפול. היא מלווה את המטופל 24 שעות ביממה ⏰🔄\n\nIMSC המרכז הרב תחומי לטיפול בספסטיות\n\n#אביה_גיטרמן #ד\"ר_ענבל_פארן #מרפאה_בעיסוק #ריפוי_בעיסוק #פיזיותרפיה #ספסטיות #שיקום #אירוע_מוחי #רפואה #מדיהדום #foryou",
+  "body": "הערות אביה: אין\n\nהערות ענבל: 0:18 \"אז בעצם לא\" קוטע את הרצף, להוריד. פחות מוצלח.\n\nשינויים שבוצעו בעקבות ההערות:\nהמילים \"אז בעצם לא\" (שנייה 0:18) הוסרו. המשפט עובר עכשיו מ\"והרגשתי איזושהי הטבה מסוימת בספסטיות\" ישר ל\"מיד אחרי הטיפול, הספסטיות הזו במאמץ קל תחזור\". הריל התקצר מ-48.5 ל-47.1 שניות."
+ },
+ {
+  "k": "07b",
+  "n": "09",
+  "t": "8.11 · מתי מתיחות לבד לא מספיקות?",
+  "sub": "תאריך העלאה 8.11 · 55 שנ׳",
+  "img": "../podcast1-all/img/07b.jpg?v=2",
+  "vid": "../podcast1-all/video/07b.mp4?v=2",
+  "quote": "מתי מתיחות לבד כבר לא מספיקות, ומתי צריך את השיח עם הרופא? 🩺\n\nIMSC המרכז הרב תחומי לטיפול בספסטיות\n\n#אביה_גיטרמן #ד\"ר_ענבל_פארן #מרפאה_בעיסוק #ריפוי_בעיסוק #פיזיותרפיה #ספסטיות #שיקום #אירוע_מוחי #רפואה #מדיהדום #foryou",
+  "body": "הערות אביה: אין\n\nהערות ענבל: אין\n\nשינויים שבוצעו בעקבות ההערות:\nלא היו הערות של אביה וענבל."
+ },
+ {
+  "k": "08b",
+  "n": "10",
+  "t": "10.11 · מתי מתיחות כבר לא מספיקות?",
+  "sub": "תאריך העלאה 10.11 · 82 שנ׳",
+  "img": "../podcast1-all/img/08b.jpg?v=2",
+  "vid": "../podcast1-all/video/08b.mp4?v=2",
+  "quote": "כשמתחילים לאבד טווחי תנועה: מתי מתיחות והדרכה כבר לא מספיקות? 🦶💊\n\nIMSC המרכז הרב תחומי לטיפול בספסטיות\n\n#אביה_גיטרמן #ד\"ר_ענבל_פארן #מרפאה_בעיסוק #ריפוי_בעיסוק #פיזיותרפיה #ספסטיות #שיקום #אירוע_מוחי #רפואה #מדיהדום #foryou",
+  "body": "הערות אביה: אין\n\nהערות ענבל: טוב.\n\nשינויים שבוצעו בעקבות ההערות:\nלא נדרש שינוי: ענבל כתבה שהריל טוב."
+ },
+ {
+  "k": "09a",
+  "n": "11",
+  "t": "12.11 · למה קשה לפתוח את כף היד?",
+  "sub": "תאריך העלאה 12.11 · 59 שנ׳",
+  "img": "../podcast1-all/img/09a.jpg?v=2",
+  "vid": "../podcast1-all/video/09a.mp4?v=3",
+  "quote": "למה קשה לפתוח את כף היד כשיש קיצור באצבעות? ✋\n\nIMSC המרכז הרב תחומי לטיפול בספסטיות\n\n#אביה_גיטרמן #ד\"ר_ענבל_פארן #מרפאה_בעיסוק #ריפוי_בעיסוק #פיזיותרפיה #ספסטיות #שיקום #אירוע_מוחי #רפואה #מדיהדום #foryou",
+  "body": "הערות אביה: המסר קצת מסורבל, הייתה מוותרת עליו.\n\nהערות ענבל: אין\n\nשינויים שבוצעו בעקבות ההערות:\nאביה הציעה לוותר על הריל. בהחלטת אביחי הוא נשאר, אבל קוצר: עכשיו הוא נגמר אחרי \"וזה באמת משהו שהוא מאוד משמעותי כשיש לנו את הקיצור\" (שנייה 52), ומיד אחריו שקופית הסיום.\nירד החלק של ענבל בסוף (\"הזיהוי בזמן הנכון... להקדים תרופה למכה\"), וכרטיס השם שלה ירד איתו. הריל התקצר מ-72 ל-59 שניות."
+ },
+ {
+  "k": "09b",
+  "n": "12",
+  "t": "15.11 · כשהכתף נכנסת פנימה: מה זה עושה ביומיום?",
+  "sub": "תאריך העלאה 15.11 · 62 שנ׳",
+  "img": "../podcast1-all/img/09b.jpg?v=2",
+  "vid": "../podcast1-all/video/09b.mp4?v=2",
+  "quote": "כשהכתף נכנסת פנימה: למה קשה להרים ידיים לראש? 🙆‍♀️\n\nIMSC המרכז הרב תחומי לטיפול בספסטיות\n\n#אביה_גיטרמן #ד\"ר_ענבל_פארן #מרפאה_בעיסוק #ריפוי_בעיסוק #פיזיותרפיה #ספסטיות #שיקום #אירוע_מוחי #רפואה #מדיהדום #foryou",
+  "body": "הערות אביה: הייתה משנה את הכותרת.\n\nהערות ענבל: 0:49 \"אז זה מאפשר לי להישאר במנח הזה...\" להוריד, משתמע שחוסר האיזון מאפשר להישאר במנח. פחות מוצלח.\n\nשינויים שבוצעו בעקבות ההערות:\nההערות לא יושמו, בהחלטת אביחי. הכותרת נשארה \"כשהכתף נכנסת פנימה: מה זה עושה ביומיום?\" (אפשרות 1 מתוך 4 שהוצעו), וגם המשפט מ-0:49 נשאר."
+ },
+ {
+  "k": "10",
+  "n": "13",
+  "t": "17.11 · טיפול תרופתי בספסטיות: יד על הדופק",
+  "sub": "תאריך העלאה 17.11 · 83 שנ׳",
+  "img": "../podcast1-all/img/10.jpg?v=2",
+  "vid": "../podcast1-all/video/10.mp4?v=2",
+  "quote": "טיפול תרופתי בספסטיות: למה צריך יד על הדופק ⚖️💊\n\nIMSC המרכז הרב תחומי לטיפול בספסטיות\n\n#אביה_גיטרמן #ד\"ר_ענבל_פארן #מרפאה_בעיסוק #ריפוי_בעיסוק #פיזיותרפיה #ספסטיות #שיקום #אירוע_מוחי #רפואה #מדיהדום #foryou",
+  "body": "הערות אביה: אין\n\nהערות ענבל: מוצלח, הייתי מעלה.\n\nשינויים שבוצעו בעקבות ההערות:\nלא נדרש שינוי: ענבל כתבה שהריל מוצלח ושהיא הייתה מעלה אותו."
+ },
+ {
+  "k": "11",
+  "n": "14",
+  "t": "19.11 · מה קורה אם נשארים רק עם מתיחות?",
+  "sub": "תאריך העלאה 19.11 · 79 שנ׳",
+  "img": "../podcast1-all/img/11.jpg?v=3",
+  "vid": "../podcast1-all/video/11.mp4?v=3",
+  "quote": "מה קורה אם נשארים רק עם מתיחות? הקרסול, נשיאת המשקל והטיימינג ⏰🦶\n\nIMSC המרכז הרב תחומי לטיפול בספסטיות\n\n#אביה_גיטרמן #ד\"ר_ענבל_פארן #מרפאה_בעיסוק #ריפוי_בעיסוק #פיזיותרפיה #ספסטיות #שיקום #אירוע_מוחי #רפואה #מדיהדום #foryou",
+  "body": "הערות אביה: לכתוב \"גסטרוקנמיוס\" ו\"רוורסבילי\" באנגלית.\n\nהערות ענבל: אין\n\nשינויים שבוצעו בעקבות ההערות:\nשני מונחים בכתוביות הוחלפו לאנגלית:\n• \"הגסטרוקנמיוס\" ← gastrocnemius (שנייה 18.7)\n• \"רוורסבילי\" ← reversible (שנייה 62.3)\nהדיבור עצמו לא השתנה."
+ },
+ {
+  "k": "12",
+  "n": "15",
+  "t": "22.11 · כף יד סגורה לאורך זמן: מה זה עושה?",
+  "sub": "תאריך העלאה 22.11 · 75 שנ׳",
+  "img": "../podcast1-all/img/12.jpg?v=3",
+  "vid": "../podcast1-all/video/12.mp4?v=3",
+  "quote": "כף יד סגורה לאורך זמן: מה זה עושה לעור, לתפקוד ואפילו להליכה? ✋🚶\n\nIMSC המרכז הרב תחומי לטיפול בספסטיות\n\n#אביה_גיטרמן #ד\"ר_ענבל_פארן #מרפאה_בעיסוק #ריפוי_בעיסוק #פיזיותרפיה #ספסטיות #שיקום #אירוע_מוחי #רפואה #מדיהדום #foryou",
+  "body": "הערות אביה: לשנות \"הגב\" ל\"הגו\".\n\nהערות ענבל: אין\n\nשינויים שבוצעו בעקבות ההערות:\nבכתובית \"שזה הגו שלנו\" (שנייה 46.8) הוחלף \"הגב\" ל\"הגו\"."
+ },
+ {
+  "k": "1314",
+  "n": "16",
+  "t": "24.11 · הכול מחובר: יד, גו והליכה",
+  "sub": "תאריך העלאה 24.11 · 79 שנ׳",
+  "img": "../podcast1-all/img/1314.jpg?v=3",
+  "vid": "../podcast1-all/video/1314.mp4?v=3",
+  "quote": "הכול מחובר: איך ספסטיות ביד ובגו משפיעה גם על היציבה ועל ההליכה 🚶⚖️\n\nIMSC המרכז הרב תחומי לטיפול בספסטיות\n\n#אביה_גיטרמן #ד\"ר_ענבל_פארן #מרפאה_בעיסוק #ריפוי_בעיסוק #פיזיותרפיה #ספסטיות #שיקום #אירוע_מוחי #רפואה #מדיהדום #foryou",
+  "body": "הערות אביה: לשנות \"הגב\" ל\"הגו\".\n\nהערות ענבל: אין\n\nשינויים שבוצעו בעקבות ההערות:\nבכל הכתוביות הוחלף \"הגב\" ל\"הגו\":\n• \"כל מנח הגו\" (שנייה 7.9)\n• \"קיצורים של הגו\" (8.9)\n• \"בגפה עליונה או בגו\" (34.7)\n• \"באמת קיצורים בגו\" (41.8)\nגם הכותרת בשקופית הפתיחה שונתה, מ\"הכול מחובר: יד, גב והליכה\" ל\"הכול מחובר: יד, גו והליכה\"."
+ }
+]
+};
+/* ===================================================================================== */
+(function(){
+  document.documentElement.setAttribute('dir','rtl'); document.documentElement.setAttribute('lang','he');
+  const C=CONFIG, $=id=>document.getElementById(id);
+  $('brand').textContent=C.brand; $('h1').textContent=C.h1; $('intro').textContent=C.intro; $('general-hint').textContent=C.generalHint;
+  C.facts.forEach(f=>{ const s=document.createElement('span'); s.textContent=f; $('facts').appendChild(s); });
+  let vid=null;
+  if(C.video){ const p=$('player'); p.hidden=false; vid=document.createElement('video'); vid.src=C.video.src; if(C.video.poster) vid.poster=C.video.poster; vid.controls=true; vid.playsInline=true; vid.preload='metadata'; p.appendChild(vid); }
+  C.items.forEach(it=>{
+    const el=document.createElement('article'); el.className='item'+(it.img?'':' noimg'); el.id='i-'+it.k;
+    el.innerHTML=(it.img?'<div class="shot"><img alt="" loading="lazy"></div>':'')+'<div><div class="meta"><span class="num"></span><h2></h2><span class="sub"></span></div><div class="changed" hidden></div><button class="jump" type="button" hidden>▶ לצפות מכאן</button><div class="label lq" hidden>טקסט</div><div class="quote" hidden></div><div class="label lb" hidden>פירוט</div><div class="body" hidden></div><div class="answer"><label></label><textarea placeholder="רק מה שצריך לשנות. ריק = מאושר"></textarea><div class="status"></div></div></div>';
+    if(it.img){ const im=el.querySelector('img'); im.src=it.img; im.alt=C.itemWord+' '+it.n+': '+it.t; }
+    el.querySelector('.num').textContent=it.n||''; el.querySelector('h2').textContent=it.t; el.querySelector('.sub').textContent=it.sub||'';
+    if(it.ch){ const c=el.querySelector('.changed'); c.hidden=false; c.innerHTML='<span class="chg">שונה</span> '; c.appendChild(document.createTextNode(it.ch)); }
+    if(it.quote){ el.querySelector('.lq').hidden=false; const q=el.querySelector('.quote'); q.hidden=false; q.textContent=it.quote; }
+    if(it.body){ el.querySelector('.lb').hidden=false; const b=el.querySelector('.body'); b.hidden=false; b.textContent=it.body; }
+    if(vid && typeof it.at==='number'){ const j=el.querySelector('.jump'); j.hidden=false; j.addEventListener('click',()=>{ try{ vid.currentTime=it.at; const pr=vid.play(); if(pr&&pr.catch) pr.catch(()=>{}); }catch(e){} vid.scrollIntoView({behavior:'smooth',block:'center'}); }); }
+    const ta=el.querySelector('textarea'); ta.id='a-'+it.k; ta.dataset.key=it.k;
+    const lab=el.querySelector('label'); lab.htmlFor=ta.id; lab.textContent='הערות ל'+C.itemWord+' '+(it.n||it.t);
+    el.querySelector('.status').id='st-'+it.k;
+    $('items').appendChild(el);
+  });
+
+  const ORDER=C.items.map(i=>i.k).concat(['general']);
+  const LABEL={}; C.items.forEach(i=>LABEL[i.k]=C.itemWord+' '+(i.n?i.n+' · ':'')+i.t); LABEL.general='הערה כללית';
+  const areas={}; ORDER.forEach(k=>areas[k]=document.querySelector('textarea[data-key="'+k+'"]'));
+  let docRef=null, comments=null, state={answers:{}}; const timers={};
+  const lsLoad=()=>{ try{ const j=localStorage.getItem(C.ls); return j?JSON.parse(j):null; }catch(e){ return null; } };
+  const lsSave=()=>{ try{ localStorage.setItem(C.ls, JSON.stringify(state)); }catch(e){} };
+  function progress(){ const n=ORDER.filter(k=>(areas[k].value||'').trim()).length; $('progress').textContent=n+' מתוך '+ORDER.length+' תיבות עם הערות'; $('barfill').style.width=(n/ORDER.length*100)+'%'; }
+  function fill(){ ORDER.forEach(k=>{ const v=state.answers[k]||''; if(areas[k].value!==v && document.activeElement!==areas[k]) areas[k].value=v; }); progress(); }
+  function setStatus(k,t,c){ const el=$('st-'+k); if(!el) return; el.textContent=t; el.className='status'+(c?' '+c:''); }
+  async function persist(k){
+    state.answers[k]=areas[k].value; state.updatedAt=new Date().toISOString(); lsSave();
+    if(!docRef){ setStatus(k,'נשמר במכשיר הזה','ok'); return; }
+    try{ await docRef.set({answers:state.answers, updatedAt:state.updatedAt, submittedAt:state.submittedAt||null}); setStatus(k,'נשמר','ok'); }
+    catch(e){ setStatus(k,'השמירה המשותפת לא הצליחה, נשמר בדפדפן הזה בלבד','warn'); }
+  }
+  ORDER.forEach(k=>areas[k].addEventListener('input',()=>{ progress(); setStatus(k,'שומר...'); clearTimeout(timers[k]); timers[k]=setTimeout(()=>persist(k),800); }));
+  const local=lsLoad(); if(local&&local.answers) state=local; fill();
+
+  function collect(){ const notes=[]; ORDER.forEach(k=>{ const v=(areas[k].value||'').trim(); if(v) notes.push({item:LABEL[k], note:v}); }); return notes; }
+  function compile(){ const who=($('who').value||'').trim(); const L=[C.sendTitle+(who?' ('+who+')':'')]; const n=collect();
+    n.forEach(x=>L.push('', '• '+x.item+':', x.note)); if(!n.length) L.push('', '(הכול מאושר, בלי הערות)'); return L.join('\n'); }
+  try{ const w=localStorage.getItem(C.ls+'-who'); if(w) $('who').value=w; }catch(e){}
+  $('who').addEventListener('input',()=>{ try{ localStorage.setItem(C.ls+'-who',$('who').value); }catch(e){} });
+  async function send(){
+    const b=$('sendbtn')||$('sendbtn2'); if(b){ b.disabled=true; b.textContent='שומר...'; }
+    ORDER.forEach(k=>{ state.answers[k]=areas[k].value; }); state.updatedAt=new Date().toISOString(); lsSave();
+    const who=($('who').value||'').trim();
+    const box=document.querySelector('#sendwrap .box');
+    let ok=false;
+    if(C.inbox){ try{ await fetch(C.inbox,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({project:C.project||'',round:C.doc,name:who||'ללא שם',notes:collect()})}); ok=true; }catch(e){} }
+    if(ok){ box.innerHTML='<div class="sent"></div><button class="primary" id="sendbtn2" type="button">שמור שוב</button>'; box.querySelector('.sent').textContent='נשמר'+(who?', תודה '+who:'')+'. אפשר להמשיך לערוך ולשמור שוב.'; $('sendbtn2').addEventListener('click',send); return; }
+    box.innerHTML='<div class="sent" style="background:var(--warn-soft);color:var(--warn)">השמירה לא הצליחה. העתיקו את הטקסט ושלחו אותו:</div><textarea id="fallbacktext" readonly></textarea><button class="primary" id="sendbtn2" type="button">נסו שוב</button>';
+    $('fallbacktext').value=compile(); $('sendbtn2').addEventListener('click',send);
+  }
+  $('sendbtn').addEventListener('click',send);
+})();
+</script>
+
+<script>
+(function(){
+  (CONFIG.items||[]).forEach(function(it){
+    if(!it.vid) return;
+    var el=document.getElementById('i-'+it.k); if(!el) return;
+    var shot=el.querySelector('.shot'); if(!shot) return;
+    var v=document.createElement('video');
+    v.controls=true; v.preload='none'; v.playsInline=true; v.setAttribute('playsinline','');
+    v.poster=it.img; v.src=it.vid;
+    v.style.cssText='display:block;width:100%;border-radius:12px;box-shadow:var(--shadow);background:#000';
+    shot.innerHTML=''; shot.appendChild(v);
+  });
+})();
+</script>
+
+</body></html>
