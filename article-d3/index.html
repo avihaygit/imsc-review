@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex">
+<title>מאמר D3 · 10 שאלות לפני טיפול · IMSC</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap">
+<style>
+/* ===== Brand tokens: swap these per project (light first, then dark) ===== */
+:root{
+  --bg:#F3F0E8; --surface:#FFFFFF; --ink:#0A2350; --muted:#4F5E78; --line:#DCD6C8;
+  --accent:#06265A; --accent-ink:#F5F1E8; --hi:#0A7D7D; --hi-soft:#DDF1EF; --chg:#8A6614; --chg-soft:#F6ECD2;
+  --field:#FFFFFF; --ok:#1E7A52; --ok-soft:#DDF1E6; --warn:#A04C0C; --warn-soft:#FBE8D6; --shadow:0 12px 30px rgba(6,38,90,.14);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#071A3A; --surface:#0E2750; --ink:#EEF2FA; --muted:#A8B7D0; --line:#23406E;
+    --accent:#12BCBC; --accent-ink:#06265A; --hi:#12BCBC; --hi-soft:#123E55; --chg:#E0BC6A; --chg-soft:#3A2F16;
+    --field:#0A2045; --ok:#5DD39E; --ok-soft:#173A2B; --warn:#F0A25E; --warn-soft:#432A12; --shadow:0 12px 30px rgba(0,0,0,.35); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#071A3A; --surface:#0E2750; --ink:#EEF2FA; --muted:#A8B7D0; --line:#23406E;
+  --accent:#12BCBC; --accent-ink:#06265A; --hi:#12BCBC; --hi-soft:#123E55; --chg:#E0BC6A; --chg-soft:#3A2F16;
+  --field:#0A2045; --ok:#5DD39E; --ok-soft:#173A2B; --warn:#F0A25E; --warn-soft:#432A12; --shadow:0 12px 30px rgba(0,0,0,.35); color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Assistant","Arial Hebrew",Arial,sans-serif;font-size:17px;line-height:1.6}
+.wrap{direction:rtl;max-width:980px;margin:0 auto;padding-inline:16px;padding-block:0 96px}
+h1,h2{font-weight:800;line-height:1.15;margin:0;text-wrap:balance}
+h1{font-size:clamp(1.9rem,4.5vw,2.6rem)} h2{font-size:1.45rem}
+p{margin:.5rem 0}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:12px 10px;border-bottom:1px solid var(--line)}
+.top .row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-weight:800;color:var(--hi);letter-spacing:.02em}
+.progress{font-size:.92rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.bar{height:5px;background:var(--line);border-radius:99px;margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--hi);transition:width .3s ease}
+.intro{padding-block:28px 12px;display:grid;gap:10px}
+.intro p{color:var(--muted);max-width:62ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.facts span{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:.9rem;font-weight:600}
+.player{margin-top:14px;max-width:340px}
+.player video{display:block;width:100%;border-radius:14px;background:#000;box-shadow:var(--shadow)}
+.items{display:grid;gap:28px;margin-top:20px}
+.item{display:grid;grid-template-columns:minmax(0,250px) minmax(0,1fr);gap:24px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.item.noimg{grid-template-columns:1fr}
+.shot img{display:block;width:100%;border-radius:12px;box-shadow:var(--shadow);max-width:100%}
+.meta{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.num{font-weight:800;color:var(--hi);font-size:1.5rem;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);font-size:.9rem;font-variant-numeric:tabular-nums}
+.chg{display:inline-block;background:var(--chg-soft);color:var(--chg);font-size:.78rem;font-weight:800;padding:.05em .6em;border-radius:99px;vertical-align:middle}
+.changed{background:var(--chg-soft);border-radius:10px;padding:8px 12px;margin-top:10px;font-size:.95rem}
+.label{font-size:.8rem;font-weight:800;letter-spacing:.06em;color:var(--muted);margin-top:14px}
+.quote{background:var(--hi-soft);border-radius:10px;padding:8px 12px;font-weight:700;margin-top:4px;white-space:pre-line}
+.body{margin-top:4px;white-space:pre-line;overflow-wrap:anywhere}
+.jump{font:inherit;font-weight:700;font-size:.9rem;color:var(--hi);background:var(--hi-soft);border:0;border-radius:999px;padding:6px 14px;margin-top:10px;cursor:pointer;min-height:36px}
+.answer{margin-top:16px}
+.answer label{display:block;font-weight:800;margin-bottom:6px}
+textarea{width:100%;min-height:96px;resize:vertical;font:inherit;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:10px;padding:10px 12px;direction:rtl}
+textarea:focus,.jump:focus-visible{outline:2px solid var(--hi);outline-offset:1px}
+.status{font-size:.85rem;color:var(--muted);margin-top:4px;min-height:1.3em}
+.status.ok{color:var(--ok)} .status.warn{color:var(--warn)}
+.general{margin-top:28px;background:var(--chg-soft);border-radius:18px;padding:18px}
+.send{margin-top:28px;padding-top:22px;border-top:2px solid var(--hi)}
+.send .box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.send .hint{color:var(--muted);font-size:.95rem;flex:1 1 240px}
+button.primary{font:inherit;font-weight:800;background:var(--accent);color:var(--accent-ink);border:0;border-radius:999px;padding:12px 32px;cursor:pointer;min-height:44px}
+button.primary:disabled{opacity:.55;cursor:default}
+button.primary:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.sent{background:var(--ok-soft);color:var(--ok);border-radius:10px;padding:10px 14px;font-weight:700}
+@media (max-width:640px){ .item{grid-template-columns:1fr;padding:14px} .shot{max-width:280px;margin-inline:auto;width:100%} }
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="row"><span class="brand" id="brand"></span><span class="progress" id="progress"></span></div>
+    <div class="bar"><i id="barfill"></i></div>
+  </header>
+  <section class="intro">
+    <h1 id="h1"></h1>
+    <p id="intro"></p>
+    <div class="facts" id="facts"></div>
+    <div class="player" id="player" hidden></div>
+  </section>
+  <div class="items" id="items"></div>
+  <section class="general">
+    <h2>הערה כללית</h2>
+    <p id="general-hint"></p>
+    <div class="answer"><label for="a-general">ההערה שלי</label><textarea id="a-general" data-key="general" placeholder="כל מה שלא שייך לפריט אחד"></textarea><div class="status" id="st-general"></div></div>
+  </section>
+  <div class="send" id="sendwrap">
+    <div class="box"><div class="hint" id="sendhint"><label for="who" style="font-weight:700;display:block;margin-bottom:4px">השם שלכם <span style="color:var(--warn)">(חובה)</span></label><input id="who" type="text" autocomplete="name" required aria-required="true" aria-describedby="who-err" style="font:inherit;width:100%;max-width:280px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--field);color:var(--ink)"><div id="who-err" role="alert" style="color:var(--warn);font-weight:700;margin-top:4px" hidden>כדי לשמור צריך לכתוב שם.</div><div style="margin-top:6px">כשסיימתם, כתבו שם ולחצו "שמור". כל ההערות יישמרו, ואנחנו נקבל עליהן הודעה. תיבה ריקה = מאושר.</div></div><button class="primary" id="sendbtn" type="button">שמור</button></div>
+  </div>
+</div>
+
+<script>
+/* ===================== CONFIG — the only part to edit per review ===================== */
+const CONFIG = {
+ "brand": "IMSC · מאגר המידע · מאמר D3 לאישור · סבב 1",
+ "h1": "10 שאלות לשאול לפני טיפול בספסטיות",
+ "intro": "זו טיוטה של מאמר D3 במאגר המידע באתר, מחולקת לפסקאות. מתחת לכל פסקה יש תיבה: כתבו רק מה שצריך לשנות, ותיבה ריקה = מאושר. בסוף יש 6 עובדות לאימות ו-4 שאלות קצרות לראיון. כשמסיימים, כותבים שם ולוחצים \"שמור\". אפשר לחזור ולהמשיך מאוחר יותר.",
+ "facts": [
+  "37 פסקאות",
+  "6 עובדות לאימות",
+  "4 שאלות לראיון",
+  "כ-1,200 מילים"
+ ],
+ "video": null,
+ "generalHint": "על המאמר כולו: הטון, האורך, מה חסר או מה מיותר.",
+ "doc": "reviews/article-d3-v1",
+ "ls": "imsc-article-d3-v1",
+ "sendTitle": "הערות למאמר D3 \"10 שאלות לפני טיפול\", סבב 1:",
+ "itemWord": "פריט",
+ "items": [
+  {
+   "k": "p01",
+   "n": "01",
+   "t": "בקצרה (תיבה בראש המאמר)",
+   "body": "• לפני שמתחילים, שאלו מה המטרה ואיך תדעו שהגעתם אליה.\n• בררו מי בצוות, ומה קורה בשבועות שאחרי ההזרקה.\n• שאלו איך מודדים התקדמות, מה תופעות הלוואי ולמי מתקשרים.\n• אפשר לשאול את השאלות האלה בכל מקום שבו מטפלים בכם, ותוכנית טובה תעמוד בהן."
+  },
+  {
+   "k": "p02",
+   "n": "02",
+   "t": "פתיחה",
+   "body": "רוב האנשים מגיעים לפגישה הראשונה על ספסטיות עם הרבה שאלות, ויוצאים ממנה עם חצי מהתשובות: הפגישה קצרה, המונחים חדשים ולפעמים מתביישים לשאול שוב. ריכזנו במאמר הזה שאלות לרופא על ספסטיות, עשר במספר, שעוזרות להבין כל תוכנית טיפול, אצלנו או במקום אחר. אפשר להדפיס, לסמן את מה שרלוונטי ולהביא לפגישה."
+  },
+  {
+   "k": "p03",
+   "n": "03",
+   "t": "מה בדיוק רוצים להשיג?",
+   "body": "### 1. מה המטרה של הטיפול, ואיך נדע שהגענו אליה?"
+  },
+  {
+   "k": "p04",
+   "n": "04",
+   "t": "מה בדיוק רוצים להשיג?",
+   "body": "זו השאלה החשובה ברשימה. \"להפחית ספסטיות\" היא לא מטרה שאפשר לבדוק, אבל \"ללבוש חולצה בלי עזרה\", \"לפתוח את כף היד כדי לנקות אותה\" או \"ללכת מהמיטה לשירותים בלילה בלי ליפול\" הן מטרות כאלה. במילים אחרות, מטרה טובה נשמעת כמו משהו מהחיים שלכם, לא כמו מספר בבדיקה."
+  },
+  {
+   "k": "p05",
+   "n": "05",
+   "t": "מה בדיוק רוצים להשיג?",
+   "body": "ההנחיות הבריטיות לטיפול בספסטיות בבוטולינום טוקסין ממליצות לקבוע מטרות לפני הטיפול ולבדוק אחריו אם הושגו. אחת השיטות המוכרות לכך נקראת \"סולם השגת מטרות\" (Goal Attainment Scaling): מגדירים מראש איך תיראה הצלחה, ומה ייחשב פחות או יותר ממנה. ההנחיה של NICE לשיקום אחרי שבץ מוסיפה שהמטרות צריכות להיות חשובות לאדם עצמו, ושבני המשפחה יכולים להשתתף בקביעתן. אם אתם אחרי אירוע מוחי, דוגמאות למטרות כאלה תמצאו בעמוד ספסטיות אחרי אירוע מוחי (שבץ)."
+  },
+  {
+   "k": "p06",
+   "n": "06",
+   "t": "מה בדיוק רוצים להשיג?",
+   "body": "### 2. מה בעצם מגביל אותי: ספסטיות, חולשה או התקצרות?"
+  },
+  {
+   "k": "p07",
+   "n": "07",
+   "t": "מה בדיוק רוצים להשיג?",
+   "body": "יד שלא נפתחת יכולה להיות יד ספסטית, יד חלשה, או יד שהשרירים והגידים בה כבר התקצרו (קונטרקטורה), ולכל אחד מהמצבים האלה טיפול אחר. למשל, הזרקה מרככת שריר ספסטי, אבל לא מחזקת שריר חלש ולא מאריכה גיד מקוצר. ההסבר על ההבדלים נמצא במאמר מה זה ספסטיות ואיך מזהים אותה."
+  },
+  {
+   "k": "p08",
+   "n": "08",
+   "t": "מה בדיוק רוצים להשיג?",
+   "body": "שאלו גם: מה הספסטיות מפריעה לי לעשות, ומה היא אולי עוזרת לי לעשות? יש מי שנשען על נוקשות ברגל כדי לעמוד."
+  },
+  {
+   "k": "p09",
+   "n": "09",
+   "t": "מה בדיוק רוצים להשיג?",
+   "body": "ההבחנה בין המצבים נעשית בבדיקה גופנית, ולפעמים לוקח יותר ממפגש אחד להבין אותה עד הסוף. אם השרירים כבר התקצרו, ייתכן שהתוכנית תכלול סד או גיבוס הדרגתי, ולפעמים הפניה לבדיקה אורתופדית, לפני הזרקה או במקומה."
+  },
+  {
+   "k": "p10",
+   "n": "10",
+   "t": "מי מטפל, ומה האפשרויות?",
+   "body": "### 3. מי בצוות, ומי מדבר עם מי?"
+  },
+  {
+   "k": "p11",
+   "n": "11",
+   "t": "מי מטפל, ומה האפשרויות?",
+   "body": "ההנחיות הבריטיות רואות בבוטולינום טוקסין חלק מתוכנית טיפול רחבה, בהשתתפות צוות רב-מקצועי. לכן שאלו מי יבדוק אתכם, מי יזריק, מי יעבוד איתכם על התרגול אחר כך ואיך המידע עובר ביניהם. אם הפיזיותרפיסט שלכם בקופה ממשיך לטפל בכם, שאלו איך הוא יקבל את התוכנית."
+  },
+  {
+   "k": "p12",
+   "n": "12",
+   "t": "מי מטפל, ומה האפשרויות?",
+   "body": "ב-IMSC הטיפול מתחיל במפגש הערכה רב-צוותי של לפחות שעה, עם ד״ר צווקר, מרפאה בעיסוק ופיזיותרפיסט באותו חדר."
+  },
+  {
+   "k": "p13",
+   "n": "13",
+   "t": "מי מטפל, ומה האפשרויות?",
+   "body": "### 4. אילו אפשרויות יש לי, ומה יקרה אם נחכה?"
+  },
+  {
+   "k": "p14",
+   "n": "14",
+   "t": "מי מטפל, ומה האפשרויות?",
+   "body": "שירות הבריאות הבריטי מעודד מטופלים לשאול שלוש שאלות בכל החלטה: מה האפשרויות שלי, מה היתרונות והחסרונות של כל אחת עבורי ואיך אקבל עזרה להחליט. בספסטיות האפשרויות כוללות בדרך כלל תרגול, סד, תרופות בבליעה, הזרקה לשרירים מסוימים, או שילוב. גם \"לחכות ולעקוב\" היא אפשרות, ושווה לשאול מה המחיר שלה. לפעמים הוא נמוך, ולפעמים המפרק מתחיל להתקצר."
+  },
+  {
+   "k": "p15",
+   "n": "15",
+   "t": "מי מטפל, ומה האפשרויות?",
+   "body": "שאלו גם מה הצוות ממליץ, ולמה. הסבר טוב כולל את ההיגיון: למה דווקא הזרקה ולא סד, או למה כדאי להתחיל בתרגול ולחכות עם ההזרקה."
+  },
+  {
+   "k": "p16",
+   "n": "16",
+   "t": "אם ממליצים על הזרקה",
+   "body": "### 5. לאילו שרירים מזריקים, ואיך מוודאים שמגיעים אליהם?"
+  },
+  {
+   "k": "p17",
+   "n": "17",
+   "t": "אם ממליצים על הזרקה",
+   "body": "הזרקת בוטולינום טוקסין (המוכר בשם בוטוקס) ניתנת לשרירים מסוימים שנבחרו בהערכה, לא ל\"יד\" באופן כללי. לכן שאלו אילו שרירים ולמה, וגם איך מאתרים אותם. ב-IMSC מזריקים בהנחיית אולטרסאונד, ובמידת הצורך בעזרת גירוי חשמלי, כדי להגיע גם לשרירים קטנים או עמוקים. מה להביא ביום עצמו תמצאו במאמר הכנה להזרקת בוטוקס: מה להביא ומה לשאול."
+  },
+  {
+   "k": "p18",
+   "n": "18",
+   "t": "אם ממליצים על הזרקה",
+   "body": "### 6. מה קורה בשבועות ובחודשים שאחרי?"
+  },
+  {
+   "k": "p19",
+   "n": "19",
+   "t": "אם ממליצים על הזרקה",
+   "body": "ההשפעה של הזרקה מגיעה לשיא אחרי שבועיים עד שלושה ונמשכת שלושה עד ארבעה חודשים. שאלו מה מתוכנן בחלון הזה: האם יש תרגול, באיזו תדירות ומי מלווה אתכם. שאלו גם מתי אפשר להזריק בפעם הבאה: לא מזריקים שוב לפני שעברו שלושה חודשים, כי מרווח קצר מדי מעלה את הסיכוי שהגוף יפתח נוגדנים לחומר. ושאלו למי מדווחים אם עברו שלושה שבועות ולא הרגשתם שינוי. המידע הזה משפיע על תכנון הסבב הבא."
+  },
+  {
+   "k": "p20",
+   "n": "20",
+   "t": "אם ממליצים על הזרקה",
+   "body": "### 7. מה אני ובני המשפחה צריכים לעשות בבית?"
+  },
+  {
+   "k": "p21",
+   "n": "21",
+   "t": "אם ממליצים על הזרקה",
+   "body": "חלק גדול מהעבודה קורה בין המפגשים: הארכה (מתיחה) יומית, לבישת סד, תרגול של פעולה אחת שבחרתם. שאלו כמה זמן ביום זה ידרוש, והאם מישהו ידריך את בן או בת הזוג. תוכנית שלא נכנסת לשגרה שלכם לא תבוצע, ועדיף לומר את זה בפגישה מאשר לגלות אחרי חודש. אם בן משפחה עוזר בהלבשה ובמעברים, יש לנו מדריך מעשי: בן משפחה עם ספסטיות: איך עוזרים בלי להזיק."
+  },
+  {
+   "k": "p22",
+   "n": "22",
+   "t": "איך יודעים שזה עובד?",
+   "body": "### 8. איך מודדים התקדמות, ומתי בודקים שוב?"
+  },
+  {
+   "k": "p23",
+   "n": "23",
+   "t": "איך יודעים שזה עובד?",
+   "body": "שאלו מה ימדדו בהתחלה ומה ימדדו שוב בסוף: טווח תנועה, מדדי ספסטיות, ובעיקר את המטרה שקבעתם בשאלה 1. מדדים מקובלים הם למשל סולם אשוורת׳ המתוקן לכימות הספסטיות ומדידת טווח התנועה במעלות. אבל המדד הקרוב ביותר לחיים שלכם הוא המטרה עצמה. שאלו מתי תהיה פגישת הסיכום, ומה ייקבע בה. ב-IMSC כל סבב מסתיים בהערכה מסכמת: מה הושג, מה לא ומה ההמלצה להמשך. אם המטרה לא הושגה, שווה להבין למה, לפני שמחליטים על סבב נוסף."
+  },
+  {
+   "k": "p24",
+   "n": "24",
+   "t": "איך יודעים שזה עובד?",
+   "body": "### 9. מה תופעות הלוואי, ולמי מתקשרים?"
+  },
+  {
+   "k": "p25",
+   "n": "25",
+   "t": "איך יודעים שזה עובד?",
+   "body": "כמו בכל טיפול רפואי, ייתכנו תופעות לוואי. אחרי הזרקה אלה בדרך כלל כאב או רגישות מקומית, חולשה זמנית של השריר שהוזרק או של שריר סמוך ולעיתים תחושה דמוית שפעת בימים הראשונים. תופעות נדירות יותר, כמו קושי בבליעה או בנשימה, דורשות פנייה מיידית לרופא. שאלו למי מתקשרים אם משהו מדאיג, ומה עושים בערב או בסוף שבוע. אם אתם נוטלים תרופות לספסטיות בבליעה, שאלו גם אם ההזרקה משנה בהן משהו."
+  },
+  {
+   "k": "p26",
+   "n": "26",
+   "t": "מימון, הפניה ומה להביא",
+   "body": "### 10. כמה זה עולה, ומה מכוסה?"
+  },
+  {
+   "k": "p27",
+   "n": "27",
+   "t": "מימון, הפניה ומה להביא",
+   "body": "שאלה לגיטימית לגמרי, ועדיף לשאול אותה לפני שמתחילים. IMSC הוא שירות פרטי. קיימת אפשרות להחזרים מביטוחים פרטיים, הן על התייעצות עם רופא והן על טיפולי שיקום. כדאי לבדוק מול הפוליסה שלכם. את המחיר מוסרים בשיחה. הרחבה על מימון והחזרים תמצאו במאמר בוטוקס רפואי: מחיר, ביטוח והחזרים."
+  },
+  {
+   "k": "p28",
+   "n": "28",
+   "t": "מימון, הפניה ומה להביא",
+   "body": "למפגש ההערכה אין צורך בהפניה, אבל כדאי להביא תיעוד רפואי: סיכומי אשפוז ושיקום, רשימת תרופות, דו״ח מסכם טיפול של פיזיותרפיסט/ית או ריפוי בעיסוק (אם יש) ואם היו הזרקות קודמות, מתי ולאילו שרירים. אם יש סד, הביאו גם אותו."
+  },
+  {
+   "k": "p29",
+   "n": "29",
+   "t": "מתי כדאי לבקש הערכה?",
+   "body": "• הנוקשות מפריעה לפעולה מסוימת: הלבשה, רחצה, הליכה, שינה.\n• היד נסגרת או הרגל נמשכת לתנוחה שקשה לתקן.\n• יש כאב שקשור לנוקשות או לעוויתות.\n• קיבלתם הזרקה בעבר ולא ברור מה היא השיגה.\n• הסד כבר לא מתאים, או שקשה לשים אותו."
+  },
+  {
+   "k": "p30",
+   "n": "30",
+   "t": "שאלות שחוזרות",
+   "body": "לא נעים לי לשאול כל כך הרבה. זה בסדר? כן. שאלות עוזרות לצוות להבין מה חשוב לכם. אפשר לשלוח חלק מהן מראש, או לבקש מבן משפחה לרשום את התשובות."
+  },
+  {
+   "k": "p31",
+   "n": "31",
+   "t": "שאלות שחוזרות",
+   "body": "כמה זמן נמשכת הפגישה הראשונה? מפגש ההערכה ב-IMSC נמשך לפחות שעה, עם רופא, מרפאה בעיסוק ופיזיותרפיסט, ויש בו זמן לשאלות."
+  },
+  {
+   "k": "p32",
+   "n": "32",
+   "t": "שאלות שחוזרות",
+   "body": "כדאי להביא בן משפחה? אם הוא עוזר בבית, כן, כי הוא רואה דברים שאתם כבר לא שמים לב אליהם, והוא זה שילמד את התרגול הביתי."
+  },
+  {
+   "k": "p33",
+   "n": "33",
+   "t": "שאלות שחוזרות",
+   "body": "צריך הפניה מרופא? אין צורך בהפניה. כדאי להביא תיעוד רפואי רלוונטי."
+  },
+  {
+   "k": "p34",
+   "n": "34",
+   "t": "שאלות שחוזרות",
+   "body": "ומה אם אין תשובה חד-משמעית לחלק מהשאלות? זה קורה, למשל לשאלה כמה סבבים תצטרכו, ובמקרה כזה תשובה כנה כמו \"נבדוק אחרי הסבב הראשון\" עדיפה על הבטחה."
+  },
+  {
+   "k": "p35",
+   "n": "35",
+   "t": "מתחילים בשיחה",
+   "body": "ב-IMSC מפגש ההערכה הרב-צוותי הוא המקום לשאול את כל השאלות האלה, ובסופו מקבלים תוכנית עם מטרות מדידות. ההערכה וההזרקות בבני ברק, הטיפולים גם בתל אביב. אפשר להתחיל בשיחת היכרות, ולהכיר את הטיפול בספסטיות אצלנו."
+  },
+  {
+   "k": "p36",
+   "n": "36",
+   "t": "מקורות מידע (באתר: אקורדיון מקופל)",
+   "body": "• Royal College of Physicians, British Society of Rehabilitation Medicine, Chartered Society of Physiotherapy, Association of Chartered Physiotherapists in Neurology, Royal College of Occupational Therapists (2018). Spasticity in adults: management using botulinum toxin. National guidelines (2nd ed.). https://www.rcp.ac.uk/improving-care/resources/spasticity-in-adults-management-using-botulinum-toxin/\n• Turner-Stokes, L. (2009). Goal attainment scaling (GAS) in rehabilitation: a practical guide. Clinical Rehabilitation, 23(4), 362–370. https://doi.org/10.1177/0269215508101742\n• National Institute for Health and Care Excellence (2023). Stroke rehabilitation in adults (NICE guideline NG236). https://www.nice.org.uk/guidance/ng236\n• NHS Sussex. Ask 3 questions (shared decision making leaflet). https://www.sussex.ics.nhs.uk/wp-content/uploads/sites/9/2022/06/Ask-3-questions-leaflet.pdf"
+  },
+  {
+   "k": "p37",
+   "n": "37",
+   "t": "גילוי נאות",
+   "body": "המידע כללי ואינו מחליף ייעוץ רפואי אישי. התאמת טיפול נעשית על ידי רופא מטפל."
+  },
+  {
+   "k": "v1",
+   "n": "א1",
+   "t": "עובדה לאימות",
+   "body": "\"תופעות נדירות יותר, כמו קושי בבליעה או בנשימה, דורשות פנייה מיידית\". מקובל?",
+   "sub": "פסקאות 14, 25"
+  },
+  {
+   "k": "v2",
+   "n": "א2",
+   "t": "עובדה לאימות",
+   "body": "\"ב-IMSC כל סבב מסתיים בהערכה מסכמת\". כך קורה בכל סבב?",
+   "sub": "פסקה 23"
+  },
+  {
+   "k": "v3",
+   "n": "א3",
+   "t": "עובדה לאימות",
+   "body": "\"עם ד״ר צווקר, מרפאה בעיסוק ופיזיותרפיסט באותו חדר\". \"באותו חדר\" מדויק?",
+   "sub": "פסקה 12"
+  },
+  {
+   "k": "v4",
+   "n": "א4",
+   "t": "עובדה לאימות",
+   "body": "מה כדאי להביא (סיכומי אשפוז ושיקום, רשימת תרופות, פרטי הזרקות קודמות, הסד). חסר או מיותר משהו?",
+   "sub": "פסקה 28"
+  },
+  {
+   "k": "v5",
+   "n": "א5",
+   "t": "עובדה לאימות",
+   "body": "\"אם השרירים כבר התקצרו, ייתכן שהתוכנית תכלול סד או גיבוס הדרגתי, ולפעמים הפניה לבדיקה אורתופדית\". IMSC מציע גיבוס?",
+   "sub": "פסקה 09"
+  },
+  {
+   "k": "v6",
+   "n": "א6",
+   "t": "עובדה לאימות",
+   "body": "\"סולם אשוורת׳ המתוקן ומדידת טווח תנועה במעלות\" כמדדים. אלה הכלים שבהם אתם משתמשים?",
+   "sub": "פסקה 23"
+  },
+  {
+   "k": "q1",
+   "n": "ש1",
+   "t": "שאלה לראיון: השאלה שחסרה",
+   "sub": "משפט או שניים מספיקים",
+   "body": "איזו שאלה אתה מאחל שמטופלים ישאלו יותר לפני שהם מחליטים על טיפול?"
+  },
+  {
+   "k": "q2",
+   "n": "ש2",
+   "t": "שאלה לראיון: מטרה מדידה",
+   "sub": "משפט או שניים מספיקים",
+   "body": "תן דוגמה, בלי פרטים מזהים, למטרה מדידה כפי שאתם מנסחים אותה ב-IMSC, ואיך בדקתם בסוף הסבב אם הושגה."
+  },
+  {
+   "k": "q3",
+   "n": "ש3",
+   "t": "שאלה לראיון: \"כמה טיפולים אצטרך?\"",
+   "sub": "משפט או שניים מספיקים",
+   "body": "מה אתה עונה למי ששואל בפגישה הראשונה כמה סבבים או כמה זמן יימשך הטיפול?"
+  },
+  {
+   "k": "q4",
+   "n": "ש4",
+   "t": "שאלה לראיון: עבודה עם מטפלים בקהילה",
+   "sub": "משפט או שניים מספיקים",
+   "body": "כשמטופל כבר מקבל פיזיותרפיה או ריפוי בעיסוק בקופה, איך IMSC עובד איתם, ומה עובר ביניכם?"
+  }
+ ],
+ "inbox": "https://script.google.com/macros/s/AKfycbzEj4lUky1em3ctwa-hol23Hfu5F5paCqut5pzeSTKYG4oaqZSQhPhb5EfFf9ZS16u11w/exec",
+ "project": "article-d3"
+};
+/* ===================================================================================== */
+(function(){
+  document.documentElement.setAttribute('dir','rtl'); document.documentElement.setAttribute('lang','he');
+  const C=CONFIG, $=id=>document.getElementById(id);
+  $('brand').textContent=C.brand; $('h1').textContent=C.h1; $('intro').textContent=C.intro; $('general-hint').textContent=C.generalHint;
+  C.facts.forEach(f=>{ const s=document.createElement('span'); s.textContent=f; $('facts').appendChild(s); });
+  let vid=null;
+  if(C.video){ const p=$('player'); p.hidden=false; vid=document.createElement('video'); vid.src=C.video.src; if(C.video.poster) vid.poster=C.video.poster; vid.controls=true; vid.playsInline=true; vid.preload='metadata'; p.appendChild(vid); }
+  C.items.forEach(it=>{
+    const el=document.createElement('article'); el.className='item'+(it.img?'':' noimg'); el.id='i-'+it.k;
+    el.innerHTML=(it.img?'<div class="shot"><img alt="" loading="lazy"></div>':'')+'<div><div class="meta"><span class="num"></span><h2></h2><span class="sub"></span></div><div class="changed" hidden></div><button class="jump" type="button" hidden>▶ לצפות מכאן</button><div class="label lq" hidden>טקסט</div><div class="quote" hidden></div><div class="label lb" hidden>פירוט</div><div class="body" hidden></div><div class="answer"><label></label><textarea placeholder="רק מה שצריך לשנות. ריק = מאושר"></textarea><div class="status"></div></div></div>';
+    if(it.img){ const im=el.querySelector('img'); im.src=it.img; im.alt=C.itemWord+' '+it.n+': '+it.t; }
+    el.querySelector('.num').textContent=it.n||''; el.querySelector('h2').textContent=it.t; el.querySelector('.sub').textContent=it.sub||'';
+    if(it.ch){ const c=el.querySelector('.changed'); c.hidden=false; c.innerHTML='<span class="chg">שונה</span> '; c.appendChild(document.createTextNode(it.ch)); }
+    if(it.quote){ el.querySelector('.lq').hidden=false; const q=el.querySelector('.quote'); q.hidden=false; q.textContent=it.quote; }
+    if(it.body){ el.querySelector('.lb').hidden=false; const b=el.querySelector('.body'); b.hidden=false; b.textContent=it.body; }
+    if(vid && typeof it.at==='number'){ const j=el.querySelector('.jump'); j.hidden=false; j.addEventListener('click',()=>{ try{ vid.currentTime=it.at; const pr=vid.play(); if(pr&&pr.catch) pr.catch(()=>{}); }catch(e){} vid.scrollIntoView({behavior:'smooth',block:'center'}); }); }
+    const ta=el.querySelector('textarea'); ta.id='a-'+it.k; ta.dataset.key=it.k;
+    const lab=el.querySelector('label'); lab.htmlFor=ta.id; lab.textContent='הערות ל'+C.itemWord+' '+(it.n||it.t);
+    el.querySelector('.status').id='st-'+it.k;
+    $('items').appendChild(el);
+  });
+
+  const ORDER=C.items.map(i=>i.k).concat(['general']);
+  const LABEL={}; C.items.forEach(i=>LABEL[i.k]=C.itemWord+' '+(i.n?i.n+' · ':'')+i.t); LABEL.general='הערה כללית';
+  const areas={}; ORDER.forEach(k=>areas[k]=document.querySelector('textarea[data-key="'+k+'"]'));
+  let docRef=null, comments=null, state={answers:{}}; const timers={};
+  const lsLoad=()=>{ try{ const j=localStorage.getItem(C.ls); return j?JSON.parse(j):null; }catch(e){ return null; } };
+  const lsSave=()=>{ try{ localStorage.setItem(C.ls, JSON.stringify(state)); }catch(e){} };
+  function progress(){ const n=ORDER.filter(k=>(areas[k].value||'').trim()).length; $('progress').textContent=n+' מתוך '+ORDER.length+' תיבות עם הערות'; $('barfill').style.width=(n/ORDER.length*100)+'%'; }
+  function fill(){ ORDER.forEach(k=>{ const v=state.answers[k]||''; if(areas[k].value!==v && document.activeElement!==areas[k]) areas[k].value=v; }); progress(); }
+  function setStatus(k,t,c){ const el=$('st-'+k); if(!el) return; el.textContent=t; el.className='status'+(c?' '+c:''); }
+  async function persist(k){
+    state.answers[k]=areas[k].value; state.updatedAt=new Date().toISOString(); lsSave();
+    if(!docRef){ setStatus(k,'נשמר במכשיר הזה','ok'); return; }
+    try{ await docRef.set({answers:state.answers, updatedAt:state.updatedAt, submittedAt:state.submittedAt||null}); setStatus(k,'נשמר','ok'); }
+    catch(e){ setStatus(k,'השמירה המשותפת לא הצליחה, נשמר בדפדפן הזה בלבד','warn'); }
+  }
+  ORDER.forEach(k=>areas[k].addEventListener('input',()=>{ progress(); setStatus(k,'שומר...'); clearTimeout(timers[k]); timers[k]=setTimeout(()=>persist(k),800); }));
+  const local=lsLoad(); if(local&&local.answers) state=local; fill();
+
+  function collect(){ const notes=[]; ORDER.forEach(k=>{ const v=(areas[k].value||'').trim(); if(v) notes.push({item:LABEL[k], note:v}); }); return notes; }
+  function compile(){ const who=($('who').value||'').trim(); const L=[C.sendTitle+(who?' ('+who+')':'')]; const n=collect();
+    n.forEach(x=>L.push('', '• '+x.item+':', x.note)); if(!n.length) L.push('', '(הכול מאושר, בלי הערות)'); return L.join('\n'); }
+  try{ const w=localStorage.getItem(C.ls+'-who'); if(w) $('who').value=w; }catch(e){}
+  $('who').addEventListener('input',()=>{ try{ localStorage.setItem(C.ls+'-who',$('who').value); }catch(e){} if(($('who').value||'').trim()){ $('who-err').hidden=true; $('who').style.borderColor=''; $('who').removeAttribute('aria-invalid'); } });
+  async function send(){
+    const b=$('sendbtn'); if(b){ b.disabled=true; b.textContent='שומר...'; }
+    ORDER.forEach(k=>{ state.answers[k]=areas[k].value; }); state.updatedAt=new Date().toISOString(); lsSave();
+    const who=($('who').value||'').trim();
+    const box=document.querySelector('#sendwrap .box');
+    if(!who){ if(b){ b.disabled=false; b.textContent='שמור'; } $('who').setAttribute('aria-invalid','true'); $('who').style.borderColor='var(--warn)'; $('who-err').hidden=false; $('who').scrollIntoView({block:'center'}); $('who').focus(); return; }
+    $('who').removeAttribute('aria-invalid'); $('who').style.borderColor=''; $('who-err').hidden=true;
+    let ok=false;
+    if(C.inbox){ try{ await fetch(C.inbox,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({project:C.project||'',round:C.doc,name:who,notes:collect()})}); ok=true; }catch(e){} }
+    let m=box.querySelector('.sent'); if(!m){ m=document.createElement('div'); m.className='sent'; m.setAttribute('role','status'); box.prepend(m); }
+    const fb=$('fallbacktext'); if(fb) fb.remove();
+    if(ok){ m.style.cssText=''; m.textContent='נשמר, תודה '+who+'. אפשר להמשיך לערוך ולשמור שוב.'; if(b){ b.disabled=false; b.textContent='שמור שוב'; } return; }
+    m.style.cssText='background:var(--warn-soft);color:var(--warn)'; m.textContent='השמירה לא הצליחה. העתיקו את הטקסט ושלחו אותו:';
+    const ta=document.createElement('textarea'); ta.id='fallbacktext'; ta.readOnly=true; ta.value=compile(); m.after(ta);
+    if(b){ b.disabled=false; b.textContent='נסו שוב'; }
+  }
+  $('sendbtn').addEventListener('click',send);
+})();
+</script>
+
+</body></html>
