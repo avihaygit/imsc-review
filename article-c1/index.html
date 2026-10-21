@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex">
+<title>מאמר C1 · תרגילי הארכה לספסטיות · IMSC</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap">
+<style>
+/* ===== Brand tokens: swap these per project (light first, then dark) ===== */
+:root{
+  --bg:#F3F0E8; --surface:#FFFFFF; --ink:#0A2350; --muted:#4F5E78; --line:#DCD6C8;
+  --accent:#06265A; --accent-ink:#F5F1E8; --hi:#0A7D7D; --hi-soft:#DDF1EF; --chg:#8A6614; --chg-soft:#F6ECD2;
+  --field:#FFFFFF; --ok:#1E7A52; --ok-soft:#DDF1E6; --warn:#A04C0C; --warn-soft:#FBE8D6; --shadow:0 12px 30px rgba(6,38,90,.14);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#071A3A; --surface:#0E2750; --ink:#EEF2FA; --muted:#A8B7D0; --line:#23406E;
+    --accent:#12BCBC; --accent-ink:#06265A; --hi:#12BCBC; --hi-soft:#123E55; --chg:#E0BC6A; --chg-soft:#3A2F16;
+    --field:#0A2045; --ok:#5DD39E; --ok-soft:#173A2B; --warn:#F0A25E; --warn-soft:#432A12; --shadow:0 12px 30px rgba(0,0,0,.35); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#071A3A; --surface:#0E2750; --ink:#EEF2FA; --muted:#A8B7D0; --line:#23406E;
+  --accent:#12BCBC; --accent-ink:#06265A; --hi:#12BCBC; --hi-soft:#123E55; --chg:#E0BC6A; --chg-soft:#3A2F16;
+  --field:#0A2045; --ok:#5DD39E; --ok-soft:#173A2B; --warn:#F0A25E; --warn-soft:#432A12; --shadow:0 12px 30px rgba(0,0,0,.35); color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Assistant","Arial Hebrew",Arial,sans-serif;font-size:17px;line-height:1.6}
+.wrap{direction:rtl;max-width:980px;margin:0 auto;padding-inline:16px;padding-block:0 96px}
+h1,h2{font-weight:800;line-height:1.15;margin:0;text-wrap:balance}
+h1{font-size:clamp(1.9rem,4.5vw,2.6rem)} h2{font-size:1.45rem}
+p{margin:.5rem 0}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:12px 10px;border-bottom:1px solid var(--line)}
+.top .row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-weight:800;color:var(--hi);letter-spacing:.02em}
+.progress{font-size:.92rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.bar{height:5px;background:var(--line);border-radius:99px;margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--hi);transition:width .3s ease}
+.intro{padding-block:28px 12px;display:grid;gap:10px}
+.intro p{color:var(--muted);max-width:62ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.facts span{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:.9rem;font-weight:600}
+.player{margin-top:14px;max-width:340px}
+.player video{display:block;width:100%;border-radius:14px;background:#000;box-shadow:var(--shadow)}
+.items{display:grid;gap:28px;margin-top:20px}
+.item{display:grid;grid-template-columns:minmax(0,250px) minmax(0,1fr);gap:24px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.item.noimg{grid-template-columns:1fr}
+.shot img{display:block;width:100%;border-radius:12px;box-shadow:var(--shadow);max-width:100%}
+.meta{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.num{font-weight:800;color:var(--hi);font-size:1.5rem;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);font-size:.9rem;font-variant-numeric:tabular-nums}
+.chg{display:inline-block;background:var(--chg-soft);color:var(--chg);font-size:.78rem;font-weight:800;padding:.05em .6em;border-radius:99px;vertical-align:middle}
+.changed{background:var(--chg-soft);border-radius:10px;padding:8px 12px;margin-top:10px;font-size:.95rem}
+.label{font-size:.8rem;font-weight:800;letter-spacing:.06em;color:var(--muted);margin-top:14px}
+.quote{background:var(--hi-soft);border-radius:10px;padding:8px 12px;font-weight:700;margin-top:4px;white-space:pre-line}
+.body{margin-top:4px;white-space:pre-line;overflow-wrap:anywhere}
+.jump{font:inherit;font-weight:700;font-size:.9rem;color:var(--hi);background:var(--hi-soft);border:0;border-radius:999px;padding:6px 14px;margin-top:10px;cursor:pointer;min-height:36px}
+.answer{margin-top:16px}
+.answer label{display:block;font-weight:800;margin-bottom:6px}
+textarea{width:100%;min-height:96px;resize:vertical;font:inherit;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:10px;padding:10px 12px;direction:rtl}
+textarea:focus,.jump:focus-visible{outline:2px solid var(--hi);outline-offset:1px}
+.status{font-size:.85rem;color:var(--muted);margin-top:4px;min-height:1.3em}
+.status.ok{color:var(--ok)} .status.warn{color:var(--warn)}
+.general{margin-top:28px;background:var(--chg-soft);border-radius:18px;padding:18px}
+.send{margin-top:28px;padding-top:22px;border-top:2px solid var(--hi)}
+.send .box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.send .hint{color:var(--muted);font-size:.95rem;flex:1 1 240px}
+button.primary{font:inherit;font-weight:800;background:var(--accent);color:var(--accent-ink);border:0;border-radius:999px;padding:12px 32px;cursor:pointer;min-height:44px}
+button.primary:disabled{opacity:.55;cursor:default}
+button.primary:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.sent{background:var(--ok-soft);color:var(--ok);border-radius:10px;padding:10px 14px;font-weight:700}
+@media (max-width:640px){ .item{grid-template-columns:1fr;padding:14px} .shot{max-width:280px;margin-inline:auto;width:100%} }
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="row"><span class="brand" id="brand"></span><span class="progress" id="progress"></span></div>
+    <div class="bar"><i id="barfill"></i></div>
+  </header>
+  <section class="intro">
+    <h1 id="h1"></h1>
+    <p id="intro"></p>
+    <div class="facts" id="facts"></div>
+    <div class="player" id="player" hidden></div>
+  </section>
+  <div class="items" id="items"></div>
+  <section class="general">
+    <h2>הערה כללית</h2>
+    <p id="general-hint"></p>
+    <div class="answer"><label for="a-general">ההערה שלי</label><textarea id="a-general" data-key="general" placeholder="כל מה שלא שייך לפריט אחד"></textarea><div class="status" id="st-general"></div></div>
+  </section>
+  <div class="send" id="sendwrap">
+    <div class="box"><div class="hint" id="sendhint"><label for="who" style="font-weight:700;display:block;margin-bottom:4px">השם שלכם <span style="color:var(--warn)">(חובה)</span></label><input id="who" type="text" autocomplete="name" required aria-required="true" aria-describedby="who-err" style="font:inherit;width:100%;max-width:280px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--field);color:var(--ink)"><div id="who-err" role="alert" style="color:var(--warn);font-weight:700;margin-top:4px" hidden>כדי לשמור צריך לכתוב שם.</div><div style="margin-top:6px">כשסיימתם, כתבו שם ולחצו "שמור". כל ההערות יישמרו, ואנחנו נקבל עליהן הודעה. תיבה ריקה = מאושר.</div></div><button class="primary" id="sendbtn" type="button">שמור</button></div>
+  </div>
+</div>
+
+<script>
+/* ===================== CONFIG — the only part to edit per review ===================== */
+const CONFIG = {
+ "brand": "IMSC · מאגר המידע · מאמר C1 לאישור · סבב 1",
+ "h1": "תרגילי הארכה לספסטיות: איך עושים נכון בבית",
+ "intro": "זו טיוטה של מאמר C1 במאגר המידע באתר, מחולקת לפסקאות. מתחת לכל פסקה יש תיבה: כתבו רק מה שצריך לשנות, ותיבה ריקה = מאושר. בסוף יש 5 עובדות לאימות ו-2 שאלות קצרות לראיון. כשמסיימים, כותבים שם ולוחצים \"שמור\". אפשר לחזור ולהמשיך מאוחר יותר.",
+ "facts": [
+  "35 פסקאות",
+  "5 עובדות לאימות",
+  "2 שאלות לראיון",
+  "כ-1,300 מילים"
+ ],
+ "video": null,
+ "generalHint": "על המאמר כולו: הטון, האורך, מה חסר או מה מיותר.",
+ "doc": "reviews/article-c1-v1",
+ "ls": "imsc-article-c1-v1",
+ "sendTitle": "הערות למאמר C1 \"תרגילי הארכה לספסטיות\", סבב 1:",
+ "itemWord": "פריט",
+ "items": [
+  {
+   "k": "p01",
+   "n": "01",
+   "t": "בקצרה (תיבה בראש המאמר)",
+   "body": "• הארכה (מתיחה) יומיומית בבית עוזרת לשמור על אורך השריר ועל טווח התנועה. הארכה לבדה, בלי תוכנית סביבה, משנה מעט.\n• את התרגילים עצמם בוחר המטפל, לפי השרירים הספסטיים אצלכם. אין תוכנית אחת שמתאימה לכולם.\n• הארכה נכונה איטית, מוחזקת ומרגישה כמו משיכה נסבלת. כאב חד, נפיחות או נימול הם סיבה לעצור.\n• לא מושכים בזרוע הפגועה ולא משתמשים בגלגלת מעל הראש."
+  },
+  {
+   "k": "p02",
+   "n": "02",
+   "t": "פתיחה",
+   "body": "מי שנפגש עם פיזיותרפיסט או מרפאה בעיסוק יוצא בדרך כלל עם דף תרגילים ועם הרבה שאלות: כמה חזק, כמה זמן ומה עושים כשזה כואב. הדף לא עונה על רוב השאלות האלה, ובמאמר הזה תמצאו את העקרונות שעוזרים לעשות תרגילים לספסטיות בבית בצורה בטוחה, ואת הסימנים שאומרים שצריך לעצור ולשאול."
+  },
+  {
+   "k": "p03",
+   "n": "03",
+   "t": "מה הארכה עושה לשריר ספסטי, ומה היא לא עושה",
+   "body": "שריר ספסטי נמצא רוב היום בתנוחה מקוצרת: מרפק כפוף, אצבעות קפוצות, קרסול שמצביע למטה. שריר שנשאר כך שבועות וחודשים מאבד מהאורך שלו, ואז גם כשהספסטיות נרגעת, המפרק כבר לא נפתח עד הסוף. להתקצרות הקבועה הזו קוראים קונטרקטורה, ועליה יש הסבר מלא במאמר קונטרקטורה: למה המפרק מתקבע ואיך מונעים."
+  },
+  {
+   "k": "p04",
+   "n": "04",
+   "t": "מה הארכה עושה לשריר ספסטי, ומה היא לא עושה",
+   "body": "ההארכה היומיומית נועדה לתת לשריר כמה דקות ביום באורך מלא, אבל היא לא מרפאת את הספסטיות. הסיבה לספסטיות נמצאת במערכת העצבים, והשריר יחזור להתכווץ אחרי התרגיל."
+  },
+  {
+   "k": "p05",
+   "n": "05",
+   "t": "מה הארכה עושה לשריר ספסטי, ומה היא לא עושה",
+   "body": "כדאי לדעת מה המחקר אומר, כי הוא פחות אופטימי ממה שנהוג לחשוב. סקירה שיטתית גדולה של Cochrane, שכללה עשרות מחקרים, מצאה שהארכה כטיפול יחיד לא שיפרה באופן מורגש את טווח התנועה בתקופות של עד כחצי שנה. סקירה אחרת, על אנשים אחרי אירוע מוחי (שבץ מוחי), לא מצאה ראיות חד-משמעיות להפחתת ספסטיות, אבל רמזה שהארכה ממושכת עדיפה על הארכה קצרה."
+  },
+  {
+   "k": "p06",
+   "n": "06",
+   "t": "מה הארכה עושה לשריר ספסטי, ומה היא לא עושה",
+   "body": "העמדה שלנו פשוטה: הארכה היא לא טיפול שעומד לבד, ואי אפשר לוותר עליה. היא הבסיס שעליו נבנים שאר הטיפולים, והיא מה שמחזיק את ההישגים בין מפגש למפגש. כשהיא משולבת בתוכנית עם הזרקה, חיזוק ותרגול תפקודי, יש לה תפקיד ברור."
+  },
+  {
+   "k": "p07",
+   "n": "07",
+   "t": "למה התוכנית צריכה להגיע מהמטפל ולא מסרטון",
+   "body": "כל אדם עם ספסטיות מגיע עם דפוס אחר: אצל אחד הבעיה היא בכופפי שורש כף היד, אצל אחר בשרירי הכתף ואצל שלישי בשריר הסובך, שמושך את כף הרגל למטה. הסבר על השרירים ברגל ועל הקשר להליכה תמצאו במאמר ספסטיות ברגליים."
+  },
+  {
+   "k": "p08",
+   "n": "08",
+   "t": "למה התוכנית צריכה להגיע מהמטפל ולא מסרטון",
+   "body": "תרגיל שמתאים לאחד יכול להזיק לשני. למשל, אם יש כבר קונטרקטורה, לחיצה חזקה נגד מפרק מקובע לא תחזיר טווח, ועלולה לגרום לכאב או לפציעה. כתף עם תת-פריקה (כתף \"שמוטה\" אחרי שבץ) צריכה טיפול שונה לגמרי מכתף תקינה."
+  },
+  {
+   "k": "p09",
+   "n": "09",
+   "t": "למה התוכנית צריכה להגיע מהמטפל ולא מסרטון",
+   "body": "לכן בריפוי בעיסוק ובפיזיותרפיה בוחרים לכל מטופל שניים-שלושה תרגילים לשרירים הרלוונטיים, מדגימים אותם ומלמדים גם את בן המשפחה שעוזר. [לאביה – C1-ש2: איך מלמדים את בן המשפחה, ומה עוזר לתרגילים להיכנס לשגרה ולהישאר בה.]"
+  },
+  {
+   "k": "p10",
+   "n": "10",
+   "t": "למה התוכנית צריכה להגיע מהמטפל ולא מסרטון",
+   "body": "גם נוקשות שנראית דומה לא תמיד נובעת מאותה סיבה. נוקשות שרירים בפרקינסון למשל היא ריגידיות ולא ספסטיות, ותרגילי ההארכה שם נבנים לפי עקרונות אחרים."
+  },
+  {
+   "k": "p11",
+   "n": "11",
+   "t": "איך נראית הארכה נכונה בבית",
+   "body": "את התרגילים עצמם מקבלים מהמטפל, אבל העקרונות האלה נכונים כמעט לכל תרגיל:\n• לאט. מזיזים את הגף בהדרגה עד שמרגישים התנגדות, בלי תנועה מהירה ובלי קפיצות, כי תנועה כזו מעוררת את הספסטיות, והשריר נסגר.\n• מחזיקים. ברגע שמגיעים לנקודת המשיכה, נשארים שם. את משך ההחזקה ומספר החזרות קובע המטפל. [לאימות: האם לציין טווח זמן כללי להחזקה]\n• משיכה, לא כאב. התחושה הנכונה היא מתיחה נסבלת, ואילו כאב חד אומר שהגעתם רחוק מדי.\n• תמיכה משני הצדדים. כשמאריכים את שורש כף היד, מחזיקים גם את האמה, וכשמאריכים את המרפק, תומכים בזרוע העליונה. כך הכוח עובר לשריר ולא למפרק.\n• נושמים. מטופלים רבים עוצרים את הנשימה בזמן התרגיל, והשריר מתכווץ יחד איתם.\n• תנוחה יציבה. יושבים על כיסא עם משענת או שוכבים, כי הארכה בעמידה לא יציבה היא סיכון לנפילה."
+  },
+  {
+   "k": "p12",
+   "n": "12",
+   "t": "איך נראית הארכה נכונה בבית",
+   "body": "דוגמה מהבית: אחרי המקלחת, כשהיד משוחררת יותר, בן הזוג תומך במרפק ביד אחת, ובשנייה פותח לאט את האצבעות ומיישר את שורש כף היד. מחזיקים, נושמים ומשחררים לאט."
+  },
+  {
+   "k": "p13",
+   "n": "13",
+   "t": "זהירות: כתף, עור ותחושה",
+   "body": "הכתף הפגועה אחרי אירוע מוחי רגישה במיוחד, וההנחיה הקלינית הבריטית לשבץ ממליצה לטפל בזרוע בעדינות, לא למשוך בה ולא להשתמש בגלגלות שמרימות את היד מעל הראש. זה נכון גם כשעוזרים לקום מהמיטה או ללבוש חולצה."
+  },
+  {
+   "k": "p14",
+   "n": "14",
+   "t": "זהירות: כתף, עור ותחושה",
+   "body": "אצל חלק מהמטופלים התחושה בגף הפגוע ירודה. הם לא ירגישו שהמתיחה חזקה מדי, ולכן העוזר צריך להסתכל על הפנים, על צבע העור ועל התגובה של השריר, ולא לחכות לשמוע \"כואב\"."
+  },
+  {
+   "k": "p15",
+   "n": "15",
+   "t": "זהירות: כתף, עור ותחושה",
+   "body": "אם ההארכה עצמה מכאיבה בכל פעם, זה מידע שהצוות צריך לדעת. כאב משנה את התוכנית כולה, ועל הקשר בין השניים יש מאמר נפרד: ספסטיות וכאב."
+  },
+  {
+   "k": "p16",
+   "n": "16",
+   "t": "איך מכניסים את זה לשגרה",
+   "body": "הארכה פעם בשבוע במרפאה לא תשמור על מרפק. הארכה יומיומית כן. לכן השאלה המעשית היא לא איזה תרגיל, אלא מתי ביום הוא יקרה."
+  },
+  {
+   "k": "p17",
+   "n": "17",
+   "t": "איך מכניסים את זה לשגרה",
+   "body": "מה שעובד למשפחות רבות הוא לחבר את ההארכה לפעולה שכבר קורית: אחרי המקלחת, לפני ההלבשה בבוקר, מול החדשות בערב. תרגיל שאין לו שעה קבועה נעלם אחרי שבוע."
+  },
+  {
+   "k": "p18",
+   "n": "18",
+   "t": "למה יש ימים שהשריר נוקשה יותר",
+   "body": "משפחות רבות שמות לב שיש ימים שבהם היד כמעט לא נפתחת, גם כשעושים הכל כרגיל. ספסטיות עשויה להשתנות במהלך היום ובין ימים, ואצל רבים היא מתגברת בקור, בעייפות, במצבי לחץ נפשי ובשעות הבוקר המוקדמות. בטרשת נפוצה התנודות האלה בולטות במיוחד, ועליהן במאמר נוקשות ועוויתות בטרשת נפוצה."
+  },
+  {
+   "k": "p19",
+   "n": "19",
+   "t": "למה יש ימים שהשריר נוקשה יותר",
+   "body": "יש גם סיבות שכדאי לשים לב אליהן: דלקת בדרכי השתן, עצירות, פצע לחץ, ציפורן חודרנית או כאב במקום אחר בגוף. כל גירוי כזה יכול להגביר את הספסטיות. [לאימות: רשימת הגורמים] עם זאת, החמרה פתאומית, בלי סיבה ברורה, היא סיבה לדבר עם הרופא ולא להגביר את ההארכה."
+  },
+  {
+   "k": "p20",
+   "n": "20",
+   "t": "למה יש ימים שהשריר נוקשה יותר",
+   "body": "בימים הקשים עושים פחות, לאט יותר, ולא נלחמים בשריר. היד תהיה שם גם מחר."
+  },
+  {
+   "k": "p21",
+   "n": "21",
+   "t": "ומה עם הארכה אחרי הזרקת בוטולינום טוקסין?",
+   "body": "בשבועות שאחרי הזרקת בוטולינום טוקסין (המוכר בשם בוטוקס) השריר רפה יותר, ואפשר להגיע איתו רחוק יותר. זה הזמן שבו ההארכה היומיומית שווה הכי הרבה, כי היא עוזרת לשמור את הטווח החדש גם אחרי שההשפעה יורדת. איך כל החלקים מתחברים לאורך הסבב מוסבר במאמר הטיפול המשולב בספסטיות."
+  },
+  {
+   "k": "p22",
+   "n": "22",
+   "t": "תרגול בית במסגרת טיפול ב-IMSC",
+   "body": "ב-IMSC התרגול הביתי הוא חלק מהתוכנית ולא תוספת: במפגשי ריפוי בעיסוק ופיזיותרפיה מלמדים את התרגילים, בודקים איך הם מתבצעים בפועל ומעדכנים אותם כשהמצב משתנה. הטיפולים מתקיימים במרכז הספורט של אוניברסיטת תל אביב, ומפגשי ההערכה במגדלי ב.ס.ר 2 בבני ברק."
+  },
+  {
+   "k": "p23",
+   "n": "23",
+   "t": "תרגול בית במסגרת טיפול ב-IMSC",
+   "body": "השירות פרטי, וקיימת אפשרות להחזרים מביטוחים פרטיים, הן על התייעצות עם רופא והן על טיפולי שיקום. כדאי לבדוק את זה מול הפוליסה שלכם."
+  },
+  {
+   "k": "p24",
+   "n": "24",
+   "t": "מתי לעצור ולפנות לצוות המטפל",
+   "body": "• כאב חד או כאב שנמשך אחרי שמסיימים את התרגיל.\n• נפיחות, חום או אודם חדשים במפרק או בגף.\n• נימול, עקצוץ או שינוי בצבע של האצבעות.\n• ירידה בטווח התנועה למרות תרגול קבוע.\n• כאב חדש בכתף הפגועה."
+  },
+  {
+   "k": "p25",
+   "n": "25",
+   "t": "מתי לעצור ולפנות לצוות המטפל",
+   "body": "נפיחות פתאומית וכואבת ברגל, במיוחד בשוק, דורשת בדיקה רפואית באותו יום."
+  },
+  {
+   "k": "p26",
+   "n": "26",
+   "t": "שאלות שחוזרות",
+   "body": "כמה פעמים ביום צריך לעשות הארכה?\nזה נקבע אישית לפי השרירים המעורבים והמצב. מה שכמעט תמיד נכון: קביעות חשובה יותר מכמות. תרגול קצר כל יום עדיף על תרגול ארוך פעם בשבוע."
+  },
+  {
+   "k": "p27",
+   "n": "27",
+   "t": "שאלות שחוזרות",
+   "body": "האם הארכה מחמירה את הספסטיות?\nהארכה איטית ומבוקרת לא מחמירה ספסטיות, אבל תנועה מהירה או חזקה מדי יכולה לעורר את השריר להתכווץ, ולכן העיקרון הוא לאט ובהחזקה."
+  },
+  {
+   "k": "p28",
+   "n": "28",
+   "t": "שאלות שחוזרות",
+   "body": "מאוחר מדי להתחיל כשעברו שנים מהאירוע?\nלא. גם בשלב הכרוני אפשר להשיג שיפור בטווחי תנועה, בכאב ובתפקוד. אם כבר יש קונטרקטורה, ההארכה לבדה לא תחזיר את הטווח, וזה נבדק במפגש ההערכה."
+  },
+  {
+   "k": "p29",
+   "n": "29",
+   "t": "שאלות שחוזרות",
+   "body": "כדאי לחמם את השריר לפני?\nמקלחת חמימה לפני ההארכה עוזרת לרבים. לעומת זאת, כריות חימום ובקבוקי מים חמים דורשים זהירות, כי מי שהתחושה שלו ירודה עלול להיכוות בלי להרגיש."
+  },
+  {
+   "k": "p30",
+   "n": "30",
+   "t": "שאלות שחוזרות",
+   "body": "אפשר להשתמש בסרטוני תרגילים מהאינטרנט?\nסרטון יכול להזכיר איך לעשות תרגיל שהמטפל כבר הראה. עם זאת, הוא לא יכול לבחור את התרגיל או לראות אם עושים אותו נכון אצלכם."
+  },
+  {
+   "k": "p31",
+   "n": "31",
+   "t": "לבדוק אם זה מתאים לכם",
+   "body": "במפגש הערכה רב-צוותי בודקים אילו שרירים מגבילים את התנועה, ובונים תוכנית שכוללת גם את מה שעושים בבית. אפשר להתחיל בשיחת היכרות."
+  },
+  {
+   "k": "p32",
+   "n": "32",
+   "t": "לבדוק אם זה מתאים לכם",
+   "body": "<details>\n<summary>▸ מקורות מידע</summary>"
+  },
+  {
+   "k": "p33",
+   "n": "33",
+   "t": "לבדוק אם זה מתאים לכם",
+   "body": "• Harvey, L. A., et al. (2017). Stretch for the treatment and prevention of contractures. Cochrane Database of Systematic Reviews. סקירה שיטתית על השפעת הארכה על טווח תנועה. https://www.cochrane.org/evidence/CD007455_stretch-effective-treating-and-preventing-joint-deformities\n• Gomez-Cuaresma, L., et al. (2021). Effectiveness of Stretching in Post-Stroke Spasticity and Range of Motion: Systematic Review and Meta-Analysis. Journal of Personalized Medicine, 11(11), 1074. https://pmc.ncbi.nlm.nih.gov/articles/PMC8619362/\n• Intercollegiate Stroke Working Party (2023). National Clinical Guideline for Stroke for the UK and Ireland: טיפול בזרוע ובכתף אחרי שבץ. https://www.strokeguideline.org/chapter/motor-recovery-and-physical-effects-of-stroke/\n• NICE (2023). Stroke rehabilitation in adults (NG236): ניהול ספסטיות. https://www.ncbi.nlm.nih.gov/books/NBK598564/\n• Stroke Association. Spasticity and contractures: מידע למטופלים ולמשפחות. https://www.stroke.org.uk/stroke/effects/physical/spasticity-and-contractures"
+  },
+  {
+   "k": "p34",
+   "n": "34",
+   "t": "לבדוק אם זה מתאים לכם",
+   "body": "</details>"
+  },
+  {
+   "k": "p35",
+   "n": "35",
+   "t": "גילוי נאות",
+   "body": "המידע כללי ואינו מחליף ייעוץ רפואי אישי. התאמת טיפול נעשית על ידי רופא מטפל."
+  },
+  {
+   "k": "v1",
+   "n": "א1",
+   "t": "עובדה לאימות",
+   "body": "משך החזקה ומספר החזרות לא צוינו בכוונה. האם לכתוב טווח כללי (למשל \"עשרות שניות\")?",
+   "sub": "פסקאות 11, 12"
+  },
+  {
+   "k": "v2",
+   "n": "א2",
+   "t": "עובדה לאימות",
+   "body": "\"נפיחות פתאומית וכואבת ברגל, במיוחד בשוק, דורשת בדיקה באותו יום\" (חשש לקריש דם). מדויק?",
+   "sub": "פסקה 25"
+  },
+  {
+   "k": "v3",
+   "n": "א3",
+   "t": "עובדה לאימות",
+   "body": "\"הארכה איטית ומבוקרת לא מחמירה ספסטיות, אבל תנועה מהירה מעוררת אותה\". מקובל?",
+   "sub": "פסקה 27"
+  },
+  {
+   "k": "v4",
+   "n": "א4",
+   "t": "עובדה לאימות",
+   "body": "המחקר (Cochrane, Harvey 2017) לא מצא שיפור מורגש בטווח מהארכה כטיפול יחיד, ובעמוד השיקום באתר כתוב שהארכה יומיומית כן שומרת על המפרק. ניסחנו שההארכה היא חלק מתוכנית. זה לא סותר?",
+   "sub": "פסקה 05"
+  },
+  {
+   "k": "v5",
+   "n": "א5",
+   "t": "עובדה לאימות",
+   "body": "רשימת הגורמים שמגבירים ספסטיות (דלקת בדרכי השתן, עצירות, פצע לחץ, ציפורן חודרנית, כאב, קור, עייפות) והאזהרה מכוויה מכרית חימום כשהתחושה ירודה. מקובל?",
+   "sub": "פסקה 19"
+  },
+  {
+   "k": "q3",
+   "n": "ש3",
+   "t": "שאלה לראיון: גבול",
+   "sub": "משפט או שניים מספיקים",
+   "body": "באילו מצבים אתה ממליץ לא לעשות הארכה ביתית, או לעצור עד בדיקה? (למשל כתף כואבת, חשד לשבר, אוסטאופורוזיס, קריש דם, פצע) מה אתה רואה בפועל?"
+  },
+  {
+   "k": "q4",
+   "n": "ש4",
+   "t": "שאלה לראיון: מקרה",
+   "sub": "משפט או שניים מספיקים",
+   "body": "מקרה אחד בלי פרטים מזהים שממחיש מה הארכה יומיומית של המשפחה שמרה, או מה קרה כשלא הייתה."
+  }
+ ],
+ "inbox": "https://script.google.com/macros/s/AKfycbzEj4lUky1em3ctwa-hol23Hfu5F5paCqut5pzeSTKYG4oaqZSQhPhb5EfFf9ZS16u11w/exec",
+ "project": "article-c1"
+};
+/* ===================================================================================== */
+(function(){
+  document.documentElement.setAttribute('dir','rtl'); document.documentElement.setAttribute('lang','he');
+  const C=CONFIG, $=id=>document.getElementById(id);
+  $('brand').textContent=C.brand; $('h1').textContent=C.h1; $('intro').textContent=C.intro; $('general-hint').textContent=C.generalHint;
+  C.facts.forEach(f=>{ const s=document.createElement('span'); s.textContent=f; $('facts').appendChild(s); });
+  let vid=null;
+  if(C.video){ const p=$('player'); p.hidden=false; vid=document.createElement('video'); vid.src=C.video.src; if(C.video.poster) vid.poster=C.video.poster; vid.controls=true; vid.playsInline=true; vid.preload='metadata'; p.appendChild(vid); }
+  C.items.forEach(it=>{
+    const el=document.createElement('article'); el.className='item'+(it.img?'':' noimg'); el.id='i-'+it.k;
+    el.innerHTML=(it.img?'<div class="shot"><img alt="" loading="lazy"></div>':'')+'<div><div class="meta"><span class="num"></span><h2></h2><span class="sub"></span></div><div class="changed" hidden></div><button class="jump" type="button" hidden>▶ לצפות מכאן</button><div class="label lq" hidden>טקסט</div><div class="quote" hidden></div><div class="label lb" hidden>פירוט</div><div class="body" hidden></div><div class="answer"><label></label><textarea placeholder="רק מה שצריך לשנות. ריק = מאושר"></textarea><div class="status"></div></div></div>';
+    if(it.img){ const im=el.querySelector('img'); im.src=it.img; im.alt=C.itemWord+' '+it.n+': '+it.t; }
+    el.querySelector('.num').textContent=it.n||''; el.querySelector('h2').textContent=it.t; el.querySelector('.sub').textContent=it.sub||'';
+    if(it.ch){ const c=el.querySelector('.changed'); c.hidden=false; c.innerHTML='<span class="chg">שונה</span> '; c.appendChild(document.createTextNode(it.ch)); }
+    if(it.quote){ el.querySelector('.lq').hidden=false; const q=el.querySelector('.quote'); q.hidden=false; q.textContent=it.quote; }
+    if(it.body){ el.querySelector('.lb').hidden=false; const b=el.querySelector('.body'); b.hidden=false; b.textContent=it.body; }
+    if(vid && typeof it.at==='number'){ const j=el.querySelector('.jump'); j.hidden=false; j.addEventListener('click',()=>{ try{ vid.currentTime=it.at; const pr=vid.play(); if(pr&&pr.catch) pr.catch(()=>{}); }catch(e){} vid.scrollIntoView({behavior:'smooth',block:'center'}); }); }
+    const ta=el.querySelector('textarea'); ta.id='a-'+it.k; ta.dataset.key=it.k;
+    const lab=el.querySelector('label'); lab.htmlFor=ta.id; lab.textContent='הערות ל'+C.itemWord+' '+(it.n||it.t);
+    el.querySelector('.status').id='st-'+it.k;
+    $('items').appendChild(el);
+  });
+
+  const ORDER=C.items.map(i=>i.k).concat(['general']);
+  const LABEL={}; C.items.forEach(i=>LABEL[i.k]=C.itemWord+' '+(i.n?i.n+' · ':'')+i.t); LABEL.general='הערה כללית';
+  const areas={}; ORDER.forEach(k=>areas[k]=document.querySelector('textarea[data-key="'+k+'"]'));
+  let docRef=null, comments=null, state={answers:{}}; const timers={};
+  const lsLoad=()=>{ try{ const j=localStorage.getItem(C.ls); return j?JSON.parse(j):null; }catch(e){ return null; } };
+  const lsSave=()=>{ try{ localStorage.setItem(C.ls, JSON.stringify(state)); }catch(e){} };
+  function progress(){ const n=ORDER.filter(k=>(areas[k].value||'').trim()).length; $('progress').textContent=n+' מתוך '+ORDER.length+' תיבות עם הערות'; $('barfill').style.width=(n/ORDER.length*100)+'%'; }
+  function fill(){ ORDER.forEach(k=>{ const v=state.answers[k]||''; if(areas[k].value!==v && document.activeElement!==areas[k]) areas[k].value=v; }); progress(); }
+  function setStatus(k,t,c){ const el=$('st-'+k); if(!el) return; el.textContent=t; el.className='status'+(c?' '+c:''); }
+  async function persist(k){
+    state.answers[k]=areas[k].value; state.updatedAt=new Date().toISOString(); lsSave();
+    if(!docRef){ setStatus(k,'נשמר במכשיר הזה','ok'); return; }
+    try{ await docRef.set({answers:state.answers, updatedAt:state.updatedAt, submittedAt:state.submittedAt||null}); setStatus(k,'נשמר','ok'); }
+    catch(e){ setStatus(k,'השמירה המשותפת לא הצליחה, נשמר בדפדפן הזה בלבד','warn'); }
+  }
+  ORDER.forEach(k=>areas[k].addEventListener('input',()=>{ progress(); setStatus(k,'שומר...'); clearTimeout(timers[k]); timers[k]=setTimeout(()=>persist(k),800); }));
+  const local=lsLoad(); if(local&&local.answers) state=local; fill();
+
+  function collect(){ const notes=[]; ORDER.forEach(k=>{ const v=(areas[k].value||'').trim(); if(v) notes.push({item:LABEL[k], note:v}); }); return notes; }
+  function compile(){ const who=($('who').value||'').trim(); const L=[C.sendTitle+(who?' ('+who+')':'')]; const n=collect();
+    n.forEach(x=>L.push('', '• '+x.item+':', x.note)); if(!n.length) L.push('', '(הכול מאושר, בלי הערות)'); return L.join('\n'); }
+  try{ const w=localStorage.getItem(C.ls+'-who'); if(w) $('who').value=w; }catch(e){}
+  $('who').addEventListener('input',()=>{ try{ localStorage.setItem(C.ls+'-who',$('who').value); }catch(e){} if(($('who').value||'').trim()){ $('who-err').hidden=true; $('who').style.borderColor=''; $('who').removeAttribute('aria-invalid'); } });
+  async function send(){
+    const b=$('sendbtn'); if(b){ b.disabled=true; b.textContent='שומר...'; }
+    ORDER.forEach(k=>{ state.answers[k]=areas[k].value; }); state.updatedAt=new Date().toISOString(); lsSave();
+    const who=($('who').value||'').trim();
+    const box=document.querySelector('#sendwrap .box');
+    if(!who){ if(b){ b.disabled=false; b.textContent='שמור'; } $('who').setAttribute('aria-invalid','true'); $('who').style.borderColor='var(--warn)'; $('who-err').hidden=false; $('who').scrollIntoView({block:'center'}); $('who').focus(); return; }
+    $('who').removeAttribute('aria-invalid'); $('who').style.borderColor=''; $('who-err').hidden=true;
+    let ok=false;
+    if(C.inbox){ try{ await fetch(C.inbox,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({project:C.project||'',round:C.doc,name:who,notes:collect()})}); ok=true; }catch(e){} }
+    let m=box.querySelector('.sent'); if(!m){ m=document.createElement('div'); m.className='sent'; m.setAttribute('role','status'); box.prepend(m); }
+    const fb=$('fallbacktext'); if(fb) fb.remove();
+    if(ok){ m.style.cssText=''; m.textContent='נשמר, תודה '+who+'. אפשר להמשיך לערוך ולשמור שוב.'; if(b){ b.disabled=false; b.textContent='שמור שוב'; } return; }
+    m.style.cssText='background:var(--warn-soft);color:var(--warn)'; m.textContent='השמירה לא הצליחה. העתיקו את הטקסט ושלחו אותו:';
+    const ta=document.createElement('textarea'); ta.id='fallbacktext'; ta.readOnly=true; ta.value=compile(); m.after(ta);
+    if(b){ b.disabled=false; b.textContent='נסו שוב'; }
+  }
+  $('sendbtn').addEventListener('click',send);
+})();
+</script>
+
+</body></html>
