@@ -1,0 +1,795 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>מהפכת הבינה · מצגת</title>
+<link rel="preload" href="fonts/assistant-hebrew-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-wheat" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 44V12"/><path d="M24 18c-5 0-8-4-8-9 5 0 8 4 8 9zM24 18c5 0 8-4 8-9-5 0-8 4-8 9zM24 27c-5 0-8-4-8-9 5 0 8 4 8 9zM24 27c5 0 8-4 8-9-5 0-8 4-8 9zM24 36c-5 0-8-4-8-9 5 0 8 4 8 9zM24 36c5 0 8-4 8-9-5 0-8 4-8 9z"/></symbol>
+    <symbol id="i-tablet" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="10" y="5" width="28" height="38" rx="4"/><path d="M16 14h16M16 21h12M16 28h16M16 35h9"/></symbol>
+    <symbol id="i-book" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M5 11c7-3 13-3 19 2 6-5 12-5 19-2v27c-7-3-13-3-19 2-6-5-12-5-19-2z"/><path d="M24 13v27"/></symbol>
+    <symbol id="i-atom" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="24" cy="24" r="3" fill="currentColor"/><ellipse cx="24" cy="24" rx="19" ry="7"/><ellipse cx="24" cy="24" rx="19" ry="7" transform="rotate(60 24 24)"/><ellipse cx="24" cy="24" rx="19" ry="7" transform="rotate(120 24 24)"/></symbol>
+    <symbol id="i-gear" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="24" cy="24" r="6"/><circle cx="24" cy="24" r="13"/><path d="M24 5v6M24 37v6M5 24h6M37 24h6M10.6 10.6l4.2 4.2M33.2 33.2l4.2 4.2M10.6 37.4l4.2-4.2M33.2 14.8l4.2-4.2"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M27 4L10 27h12l-3 17 19-25H26z"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="24" cy="24" r="19"/><ellipse cx="24" cy="24" rx="8" ry="19"/><path d="M5 24h38M8 14h32M8 34h32"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="13" y="4" width="22" height="40" rx="5"/><path d="M21 38h6"/></symbol>
+    <symbol id="i-molecule" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="14" cy="14" r="5"/><circle cx="34" cy="16" r="5"/><circle cx="24" cy="34" r="6"/><path d="M18 17l3 12M30 20l-3 9M19 14h10"/></symbol>
+    <symbol id="i-pill" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="6" y="17" width="36" height="14" rx="7" transform="rotate(-35 24 24)"/><path d="M19 32l10-15" /></symbol>
+    <symbol id="i-bug" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="13" y="12" width="22" height="26" rx="11"/><path d="M13 22H6M13 30H6M35 22h7M35 30h7M19 12l-3-6M29 12l3-6M24 18v14"/></symbol>
+    <symbol id="i-brief" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><rect x="5" y="14" width="38" height="27" rx="4"/><path d="M17 14V9h14v5M5 25h38"/></symbol>
+    <symbol id="i-pulse" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"><path d="M4 26h9l4-10 6 20 5-14 3 4h13"/></symbol>
+    <symbol id="i-wheel" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="24" cy="24" r="19"/><circle cx="24" cy="24" r="5"/><path d="M5.5 21h13.5M29 21h13.5M24 29v14"/></symbol>
+    <symbol id="i-note" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M18 36V10l22-5v26"/><circle cx="13" cy="36" r="5"/><circle cx="35" cy="31" r="5"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 24s8-14 21-14 21 14 21 14-8 14-21 14S3 24 3 24z"/><circle cx="24" cy="24" r="6"/></symbol>
+    <symbol id="i-users" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="17" cy="16" r="6"/><circle cx="33" cy="18" r="5"/><path d="M5 40c0-7 5-12 12-12s12 5 12 12M30 28c7 0 13 4 13 11"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M24 6l19 10-19 10L5 16z"/><path d="M5 24l19 10 19-10M5 32l19 10 19-10"/></symbol>
+    <symbol id="i-answer" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"><path d="M6 10h36v24H22l-9 8v-8H6z"/><path d="M17 22l5 5 9-9"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="17" y="4" width="14" height="24" rx="7"/><path d="M10 22c0 8 6 14 14 14s14-6 14-14M24 36v8M17 44h14"/></symbol>
+    <symbol id="i-bird" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"><path d="M8 33c5-12 17-18 28-13l7-6 1 9c4 5 3 13-4 17-9 6-24 4-32-7z"/><path d="M8 33l-6 3M8 33l-5-2"/><circle cx="40" cy="20" r="1.4" fill="currentColor"/><path d="M44 18l6 1-6 2"/><path d="M24 26c4 2 8 2 12-1"/></symbol>
+    <symbol id="i-head" viewBox="0 0 120 140" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><path d="M30 130v-22c-14-10-22-26-20-46C12 30 36 8 66 10c30 2 48 26 46 52-1 10-4 16-4 20l10 18-12 4v12c0 8-6 12-14 12H74v8"/></symbol>
+    <symbol id="i-person" viewBox="0 0 60 70" fill="currentColor"><circle cx="30" cy="22" r="13"/><path d="M4 70c0-16 11-28 26-28s26 12 26 28z"/></symbol>
+  </defs>
+</svg>
+
+<div id="viewport"><div id="stage">
+<canvas id="bg"></canvas><div class="glow"></div><div class="grain"></div><div class="vignette"></div>
+<div id="nodes"></div>
+
+<!-- =================== 01 · קול בחושך =================== -->
+<section class="slide center" data-sec="open" data-bare>
+  <canvas class="wave"></canvas>
+  <audio data-voice="a1" preload="auto"></audio>
+  <i data-step="1" hidden></i>
+  <div class="hint" data-a="fade" style="--d:1600">לחצו כדי להפעיל את הקול</div>
+</section>
+
+<!-- =================== 02 · כותרת =================== -->
+<section class="slide center" data-sec="open" data-bare>
+  <div class="ring" style="width:980px;height:980px;top:50px;left:470px;animation:spin 60s linear infinite;border-style:dashed"></div>
+  <div class="ring" style="width:1300px;height:1300px;top:-110px;left:310px;opacity:.5"></div>
+  <span class="mask"><h1 class="h1 grad glowtext" data-a="rise" style="--d:200;font-size:220px">מהפכת הבינה</h1></span>
+  <div data-a="wipe" style="--d:1100;width:760px;height:3px;margin:46px auto 40px;background:linear-gradient(270deg,transparent,var(--cyan),var(--violet),transparent);box-shadow:0 0 30px var(--cyan)"></div>
+  <span class="mask"><p class="h3" data-a="rise" style="--d:1500;font-weight:400;color:var(--soft)">במה זה שונה, ולאן העולם הולך</p></span>
+</section>
+
+<!-- =================== 03 · שלוש שאלות =================== -->
+<section class="slide mid" data-sec="open">
+  <div class="kicker" data-a="fade">שלוש שאלות להערב</div>
+  <div style="position:relative;margin-top:40px;padding-right:110px">
+    <svg style="position:absolute;right:30px;top:40px" width="20" height="520"><path class="draw" d="M10 0V520" stroke="url(#gq)" stroke-width="2" fill="none" style="--d:300"/><defs><linearGradient id="gq" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="520"><stop offset="0" stop-color="#38E8FF"/><stop offset="1" stop-color="#FF3DCB"/></linearGradient></defs></svg>
+    <div class="col" style="gap:70px">
+      <div data-a="start" style="--d:400;position:relative"><i style="position:absolute;right:-92px;top:22px;width:26px;height:26px;border-radius:50%;background:var(--cyan);box-shadow:0 0 24px var(--cyan)"></i><p class="h2"><span class="accent">1.</span> במה המהפכה הזו שונה מכל מה שהיה?</p></div>
+      <div data-a="start" style="--d:1100;position:relative"><i style="position:absolute;right:-92px;top:22px;width:26px;height:26px;border-radius:50%;background:var(--violet);box-shadow:0 0 24px var(--violet)"></i><p class="h2"><span style="color:var(--violet)">2.</span> כמה זמן נשאר עד שזה יקרה?</p><p class="lead" style="margin-top:10px">רמז: זה כבר קורה</p></div>
+      <div data-a="start" style="--d:1800;position:relative"><i style="position:absolute;right:-92px;top:22px;width:26px;height:26px;border-radius:50%;background:var(--magenta);box-shadow:0 0 24px var(--magenta)"></i><p class="h2"><span style="color:var(--magenta)">3.</span> איך ייראה העולם החדש, ומה זה אומר עלינו?</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== 04 · ציר המהפכות =================== -->
+<section class="slide" data-sec="c1">
+  <div class="kicker" data-a="fade">טענה 1</div>
+  <h2 class="h2" data-a="up" style="--d:150">כל מהפכה הגדילה <span class="grad">יכולת אנושית</span></h2>
+  <div class="tl" style="margin-top:150px">
+    <div class="axis"></div>
+    <div class="ev" data-a="up" style="right:2%;--d:500"><svg class="ic"><use href="#i-wheat"/></svg><div class="dot"></div><div class="y">כ-10,000 לפנה״ס</div><div class="n">חקלאות</div><div class="w">מזון ואנרגיה</div></div>
+    <div class="ev" data-a="up" style="right:14%;--d:750"><svg class="ic"><use href="#i-tablet"/></svg><div class="dot"></div><div class="y">כ-3,200 לפנה״ס</div><div class="n">כתב</div><div class="w">זיכרון</div></div>
+    <div class="ev" data-a="up" style="right:26%;--d:1000"><svg class="ic"><use href="#i-book"/></svg><div class="dot"></div><div class="y">1440</div><div class="n">דפוס</div><div class="w">הפצת ידע</div></div>
+    <div class="ev" data-a="up" style="right:38%;--d:1250"><svg class="ic"><use href="#i-atom"/></svg><div class="dot"></div><div class="y">1543–1687</div><div class="n">המהפכה המדעית</div><div class="w">שיטה לייצר ידע</div></div>
+    <div class="ev" data-a="up" style="right:50%;--d:1500"><svg class="ic"><use href="#i-gear"/></svg><div class="dot"></div><div class="y">1760</div><div class="n">המהפכה התעשייתית</div><div class="w">כוח שריר</div></div>
+    <div class="ev" data-a="up" style="right:62%;--d:1750"><svg class="ic"><use href="#i-bolt"/></svg><div class="dot"></div><div class="y">1882</div><div class="n">חשמל</div><div class="w">אנרגיה בכל מקום</div></div>
+    <div class="ev" data-a="up" style="right:74%;--d:2000"><svg class="ic"><use href="#i-globe"/></svg><div class="dot"></div><div class="y">1945–1991</div><div class="n">מחשב ואינטרנט</div><div class="w">חישוב וחיבור</div></div>
+    <div class="ev" data-a="up" style="right:86%;--d:2250"><svg class="ic"><use href="#i-phone"/></svg><div class="dot"></div><div class="y">2007</div><div class="n">סמארטפון</div><div class="w">הכול בכיס</div></div>
+    <div class="ev q" data-a="scale" style="right:98%;--d:2900"><div style="height:102px"></div><div class="dot pulse"></div><div class="n">?</div></div>
+  </div>
+  <div class="src"><b>מקורות:</b> Encyclopaedia Britannica; Our World in Data</div>
+</section>
+
+<!-- =================== 05 · דורות =================== -->
+<section class="slide mid" data-sec="c1">
+  <div class="kicker" data-a="fade">טענה 1</div>
+  <h2 class="h2" data-a="up" style="--d:150;margin-bottom:80px">וכל אחת מהן <span class="grad">לקחה דורות</span></h2>
+  <div class="hbar" data-a="fade" style="--d:500;grid-template-columns:520px 1fr"><div><div class="lab" style="font-size:40px;color:var(--ink)">חקלאות</div><div class="small">התפשטה באירופה בקצב של <b style="color:var(--accent)">כקילומטר אחד בשנה</b></div></div><div class="track"><div class="fill" style="--t:9s;--d:700"></div></div></div>
+  <div class="hbar" data-a="fade" style="--d:900;grid-template-columns:520px 1fr"><div><div class="lab" style="font-size:40px;color:var(--ink)">מנוע הקיטור</div><div class="small">הגיע לשיא ההשפעה על הכלכלה <b style="color:var(--accent)">כ-100 שנה</b> אחרי וואט</div></div><div class="track"><div class="fill" style="--t:8s;--d:1100"></div></div></div>
+  <div class="hbar" data-a="fade" style="--d:1300;grid-template-columns:520px 1fr"><div><div class="lab" style="font-size:40px;color:var(--ink)">חשמל</div><div class="small">בשנת 1900, רק <b style="color:var(--accent)">כ-5%</b> מהכוח במפעלים בארה״ב הגיע ממנועים חשמליים</div></div><div class="track"><div class="fill" style="--t:7s;--d:1500"></div></div></div>
+  <p class="lead" data-a="up" style="--d:3200;margin-top:40px">לבני אדם היה זמן להתרגל.</p>
+  <div class="src"><b>מקורות:</b> Ammerman &amp; Cavalli-Sforza (1971); Crafts, Economic Journal (2004); David, American Economic Review (1990)</div>
+</section>
+
+<!-- =================== 06 · הפעם זה שונה =================== -->
+<section class="slide center" data-sec="c1">
+  <p class="lead" data-a="up" style="--d:200;font-size:48px">כל ההמצאות עד היום הגדילו את מה ש<b style="color:var(--ink)">אנחנו</b> יכולים לעשות.</p>
+  <p class="lead" data-a="up" style="--d:1300;font-size:48px;margin-top:22px">אף אחת מהן לא המציאה משהו בעצמה.</p>
+  <span class="mask" style="margin-top:90px"><p class="h1 grad glowtext" data-a="rise" style="--d:2600;font-size:150px">הפעם המצאנו משהו שממציא.</p></span>
+</section>
+
+<!-- =================== 07 · גוד 1965 =================== -->
+<section class="slide mid" data-sec="c1">
+  <div class="watermark" data-a="fade" style="--d:0">1965</div>
+  <div class="kicker" data-a="fade">ההמצאה האחרונה</div>
+  <p class="qt" style="min-height:430px">״<span class="type" data-d="500" data-speed="30">המכונה האולטרה-אינטליגנטית הראשונה היא ההמצאה האחרונה שהאדם יצטרך אי פעם להמציא, </span><span class="type hl" data-d="3700" data-speed="34">בתנאי שהמכונה תהיה צייתנית מספיק כדי לומר לנו איך לשמור עליה בשליטה.</span>״</p>
+  <p class="who" data-a="up" style="--d:6400">אירווינג ג׳ון גוד · מתמטיקאי שעבד לצד אלן טיורינג · 1965</p>
+  <div class="src"><b>מקור:</b> I. J. Good, ״Speculations Concerning the First Ultraintelligent Machine״, Advances in Computers 6 (1965)</div>
+</section>
+
+<!-- =================== 08 · AlphaFold: הבעיה =================== -->
+<section class="slide" data-sec="c1">
+  <div class="kicker" data-a="fade">הוכחה 1 · AlphaFold</div>
+  <div class="row" style="flex:1;align-items:center">
+    <div class="col grow" style="gap:34px">
+      <h2 class="h2" data-a="up" style="--d:150">הבעיה: <span class="grad">איך חלבון מתקפל?</span></h2>
+      <p class="body" data-a="up" style="--d:500">כל חלבון בגוף הוא שרשרת ארוכה שמתקפלת לצורה תלת-ממדית. <b style="color:var(--ink)">הצורה קובעת מה הוא עושה:</b> איך תרופה תיצמד אליו, ואיך מחלה משבשת אותו.</p>
+      <p class="body" data-a="up" style="--d:900">כדי לגלות את הצורה של חלבון אחד במעבדה, חוקרים עבדו <b style="color:var(--ink)">חודשים, ולפעמים שנים</b>.</p>
+      <div class="stat" data-a="up" style="--d:1300"><div class="v grad"><span class="num count" data-to="100000" data-sep data-pre="~" data-d="1500"></span></div><div class="l">חלבונים שונים פוענחו בניסויים, בכ-60 שנה של עבודה בכל המעבדות בעולם</div></div>
+    </div>
+    <svg id="protein" viewBox="0 0 640 640" width="660" height="660" data-a="scale" style="--d:300;flex:none"></svg>
+  </div>
+  <div class="src"><b>מקורות:</b> Jumper et al., Nature (2021); Google DeepMind (2020)</div>
+</section>
+
+<!-- =================== 09 · AlphaFold: מה קרה =================== -->
+<section class="slide" data-sec="c1">
+  <div class="kicker" data-a="fade">הוכחה 1 · AlphaFold</div>
+  <h2 class="h2" data-a="up" style="--d:150">ואז <span class="grad">AI פתר את זה</span></h2>
+  <div class="row" style="margin-top:60px;flex:1">
+    <div class="col grow" style="gap:40px">
+      <div data-a="start" style="--d:500"><p class="h3"><span class="accent">2020</span> · AlphaFold מגיע לדיוק של ניסוי מעבדה בתחרות העולמית לחיזוי מבנה חלבונים</p></div>
+      <div data-a="start" style="--d:900"><p class="h3"><span class="accent">2022</span> · <span class="num count" data-to="200" data-d="1100" data-suf="M+"></span> מבנים חזויים: כמעט כל חלבון מוכר</p></div>
+      <div data-a="start" style="--d:1300"><p class="h3"><span class="accent">היום</span> · יותר מ-3 מיליון חוקרים ב-190 מדינות משתמשים בו</p></div>
+      <div data-a="start" style="--d:1700"><p class="h3"><span class="gold">2024</span> · פרס נובל בכימיה למי שפיתחו אותו</p></div>
+    </div>
+    <div style="width:520px;flex:none;display:flex;flex-direction:column;justify-content:flex-end;gap:18px" data-a="fade" style="--d:600">
+      <div class="small">מבנים ידועים של חלבונים</div>
+      <div style="display:flex;align-items:flex-end;gap:40px;height:520px">
+        <div style="flex:1;text-align:center"><div style="height:4px;background:var(--mute);border-radius:8px 8px 0 0"></div><div class="small" style="margin-top:12px">60 שנה במעבדות</div></div>
+        <div style="flex:1;text-align:center;display:flex;flex-direction:column;justify-content:flex-end;height:100%"><div class="vbar" style="height:100%;background:linear-gradient(0deg,var(--violet),var(--cyan));border-radius:8px 8px 0 0;box-shadow:0 0 50px rgba(56,232,255,.5);transform-origin:bottom;transform:scaleY(0);transition:transform 2.4s var(--ease) 1.2s"></div><div class="small" style="margin-top:12px;color:var(--accent)">AlphaFold</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="src"><b>מקורות:</b> nobelprize.org (2024); EMBL-EBI (2022); Google DeepMind (נובמבר 2025); Jumper et al., Nature (2021)</div>
+</section>
+
+<!-- =================== 10 · ארדש =================== -->
+<section class="slide" data-sec="c1">
+  <div class="kicker" data-a="fade">הוכחה 2 · מתמטיקה</div>
+  <div class="row" style="flex:1;align-items:center">
+    <div class="col grow" style="gap:40px">
+      <h2 class="h2" data-a="up" style="--d:150">בעיות ש<span class="grad">מתמטיקאים</span> לא פתרו</h2>
+      <p class="h3" data-a="start" style="--d:600;font-weight:500"><span class="accent">1946</span> · המתמטיקאי פאול ארדש מנסח השערה בגיאומטריה</p>
+      <p class="h3" data-a="start" style="--d:1100;font-weight:500"><span class="accent">מאי 2026</span> · מודל של OpenAI מפריך אותה, ומתמטיקאים בודקים ומאשרים את ההוכחה</p>
+      <p class="body" data-a="start" style="--d:1600">וגם: AlphaEvolve של גוגל שבר שיא מ-1969 בכפל מטריצות: <b style="color:var(--ink)">48 פעולות במקום 49</b></p>
+    </div>
+    <svg id="lattice" viewBox="0 0 620 620" width="620" height="620" style="flex:none" data-a="fade"></svg>
+  </div>
+  <div class="src"><b>מקורות:</b> OpenAI (20.5.2026); Alon et al., arXiv:2605.20695 (2026); Google DeepMind (מאי 2025)</div>
+</section>
+
+<!-- =================== 11 · ביולוגיה ורפואה =================== -->
+<section class="slide" data-sec="c1">
+  <div class="kicker" data-a="fade">הוכחה 3 · ביולוגיה ורפואה</div>
+  <h2 class="h2" data-a="up" style="--d:150">AI <span class="grad">מגלה</span> ו<span class="grad">מתכנן</span></h2>
+  <div class="row" style="margin-top:70px">
+    <div class="card grow" data-a="up" style="--d:500"><svg class="ic"><use href="#i-molecule"/></svg><h3>יומיים במקום שנים</h3><p>מדען ה-AI של גוגל הגיע להשערה שמעבדה בלונדון עבדה עליה שנים ועוד לא פרסמה</p></div>
+    <div class="card grow" data-a="up" style="--d:800"><svg class="ic"><use href="#i-pill"/></svg><h3>תרופה בשלב 3</h3><p>AI מצא גם את המטרה בגוף וגם את המולקולה. הניסוי בבני אדם בשלב 3 מספטמבר 2026</p></div>
+    <div class="card grow" data-a="up" style="--d:1100"><svg class="ic"><use href="#i-bug"/></svg><h3>אנטיביוטיקה מאפס</h3><p>ב-MIT, AI תכנן אנטיביוטיקה חדשה נגד חיידקים עמידים</p></div>
+  </div>
+  <div class="src"><b>מקורות:</b> Penadés et al., Cell (2025); Insilico Medicine (ספטמבר 2026); Collins Lab, MIT, Cell (2025)</div>
+</section>
+
+<!-- =================== 12 · AI בונה AI =================== -->
+<section class="slide" data-sec="c1">
+  <div class="kicker" data-a="fade">והלולאה נסגרת</div>
+  <div class="row" style="flex:1;align-items:center">
+    <div class="col grow" style="gap:44px">
+      <h2 class="h2" data-a="up" style="--d:150"><span class="grad">AI בונה AI</span></h2>
+      <div data-a="start" style="--d:500" class="row" ><div class="stat"><div class="v grad" style="font-size:120px"><span class="num count" data-to="75" data-suf="%" data-d="600"></span></div></div><p class="body" style="align-self:center">מהקוד החדש בגוגל נכתב בידי AI <span class="mute">(אפריל 2026)</span></p></div>
+      <div data-a="start" style="--d:900" class="row"><div class="stat"><div class="v grad" style="font-size:120px"><span class="num count" data-to="80" data-suf="%+" data-d="1000"></span></div></div><p class="body" style="align-self:center">מהקוד שנכנס למערכות של Anthropic נכתב בידי Claude <span class="mute">(מאי 2026)</span></p></div>
+      <p class="body" data-a="start" style="--d:1300">OpenAI קבעה יעד: עוזר מחקר אוטומטי שמפתח AI, עד ספטמבר 2026. <b style="color:var(--ink)">לפי החברה, היעד הושג.</b></p>
+      <p class="lead" data-a="up" style="--d:2000;color:var(--accent)">זה בדיוק מה שגוד תיאר ב-1965.</p>
+    </div>
+    <svg viewBox="0 0 560 560" width="560" height="560" style="flex:none" data-a="scale">
+      <defs><linearGradient id="gl2" x1="0" x2="1"><stop offset="0" stop-color="#38E8FF"/><stop offset="1" stop-color="#8B5CFF" stop-opacity=".1"/></linearGradient></defs>
+      <circle cx="280" cy="280" r="220" fill="none" stroke="rgba(130,150,255,.15)" stroke-width="2"/>
+      <g style="transform-origin:280px 280px;animation:spin 6s linear infinite"><circle cx="280" cy="280" r="220" fill="none" stroke="url(#gl2)" stroke-width="10" stroke-linecap="round" stroke-dasharray="700 1400"/><circle cx="500" cy="280" r="12" fill="#38E8FF" style="filter:drop-shadow(0 0 14px #38E8FF)"/></g>
+      <g style="transform-origin:280px 280px;animation:spin 14s linear infinite reverse"><circle cx="280" cy="280" r="150" fill="none" stroke="rgba(255,61,203,.5)" stroke-width="2" stroke-dasharray="4 14"/></g>
+      <text x="280" y="300" text-anchor="middle" font-family="Assistant" font-weight="800" font-size="74" fill="#EEF2FF">AI ⟲ AI</text>
+    </svg>
+  </div>
+  <div class="src"><b>מקורות:</b> סונדאר פיצ׳אי, Google Cloud Next (22.4.2026); Anthropic, ״When AI builds itself״ (4.6.2026); OpenAI (ספטמבר 2026). נתונים שהחברות מפרסמות על עצמן.</div>
+</section>
+
+<!-- =================== 13 · מהירות אימוץ =================== -->
+<section class="slide" data-sec="c2">
+  <div class="kicker" data-a="fade">טענה 2 · זה כבר קורה</div>
+  <h2 class="h2" data-a="up" style="--d:150">הטכנולוגיה שאומצה <span class="grad">הכי מהר בהיסטוריה</span></h2>
+  <p class="lead" data-a="fade" style="--d:400;margin:26px 0 50px">הזמן שלקח להגיע ל-100 מיליון משתמשים:</p>
+  <div class="hbar" data-a="fade" style="--d:500"><div class="lab">אינסטגרם</div><div><div class="track"><div class="fill" style="--w:100%;--t:3.2s;--d:700"></div></div><div class="val">שנתיים וחצי</div></div></div>
+  <div class="hbar" data-a="fade" style="--d:500"><div class="lab">טיקטוק</div><div><div class="track"><div class="fill" style="--w:30%;--t:1s;--d:700"></div></div><div class="val">9 חודשים</div></div></div>
+  <div class="hbar" data-a="fade" style="--d:500"><div class="lab" style="color:var(--accent)">ChatGPT</div><div><div class="track"><div class="fill" style="--w:6.7%;--t:.25s;--d:700"></div></div><div class="val" style="color:var(--accent)">חודשיים</div></div></div>
+  <div class="row" data-a="up" style="--d:2600;align-items:baseline;gap:30px;margin-top:30px"><span class="big grad num" style="font-size:170px"><span class="count" data-to="1.2" data-dec="1" data-d="2700"></span>B</span><span class="h3" style="font-weight:500">משתמשים בשבוע · ספטמבר 2026</span></div>
+  <div class="src"><b>מקורות:</b> UBS דרך Reuters (2.2023); OpenAI DevDay (29.9.2026)</div>
+</section>
+
+<!-- =================== 14 · מהר מהמחשב =================== -->
+<section class="slide" data-sec="c2">
+  <div class="kicker" data-a="fade">טענה 2 · זה כבר קורה</div>
+  <h2 class="h2" data-a="up" style="--d:150">מהר יותר <span class="grad">מהמחשב ומהאינטרנט</span></h2>
+  <div class="row" style="margin-top:50px;flex:1;align-items:center">
+    <svg viewBox="0 0 980 560" width="980" height="560" style="flex:none" data-a="fade" direction="ltr">
+      <g stroke="rgba(130,150,255,.12)"><path d="M80 500H940M80 380H940M80 260H940M80 140H940"/></g>
+      <g font-family="Assistant" font-size="22" fill="#7F88AE" text-anchor="middle"><text x="80" y="540">0</text><text x="367" y="540">1</text><text x="653" y="540">2</text><text x="940" y="540">3 שנים</text></g>
+      <g font-family="Assistant" font-size="20" fill="#4A5278" text-anchor="end"><text x="66" y="506">0%</text><text x="66" y="386">20%</text><text x="66" y="266">40%</text><text x="66" y="146">60%</text></g>
+      <path class="draw" d="M80 500 C380 490 650 460 940 382" stroke="#7F88AE" stroke-width="5" fill="none" style="--d:400"/>
+      <path class="draw" d="M80 500 C380 480 650 420 940 319" stroke="#C3CAE8" stroke-width="5" fill="none" style="--d:700"/>
+      <path class="draw" d="M80 500 C300 400 600 260 940 172" stroke="#38E8FF" stroke-width="8" fill="none" style="--d:1100;filter:drop-shadow(0 0 12px #38E8FF)"/>
+      <g font-family="Assistant" font-weight="800" font-size="30">
+        <text x="955" y="390" fill="#7F88AE" data-a="fade" style="--d:2400">19.7%</text>
+        <text x="955" y="327" fill="#C3CAE8" data-a="fade" style="--d:2600">30.1%</text>
+        <text x="955" y="180" fill="#38E8FF" data-a="fade" style="--d:2900">54.6%</text>
+      </g>
+    </svg>
+    <div class="col grow" style="gap:30px;margin-right:60px">
+      <p class="small" data-a="fade" style="--d:300">אחוז המבוגרים בארה״ב שהשתמשו בטכנולוגיה, 3 שנים אחרי שיצאה להמונים</p>
+      <p class="h3" data-a="start" style="--d:2400;color:var(--mute)">מחשב אישי · 19.7%</p>
+      <p class="h3" data-a="start" style="--d:2600;color:var(--soft)">אינטרנט · 30.1%</p>
+      <p class="h3" data-a="start" style="--d:2900;color:var(--cyan)">AI · 54.6%</p>
+      <p class="body" data-a="up" style="--d:3400;margin-top:20px">בעולם: <b style="color:var(--ink)">53% מהאוכלוסייה</b> תוך 3 שנים</p>
+    </div>
+  </div>
+  <div class="src"><b>מקורות:</b> Bick, Blandin &amp; Deming, NBER (2024); St. Louis Fed (11.2025); Stanford HAI, AI Index 2026</div>
+</section>
+
+<!-- =================== 15 · ישראל =================== -->
+<section class="slide" data-sec="c2">
+  <div class="kicker" data-a="fade">טענה 2 · זה כבר קורה</div>
+  <h2 class="h2" data-a="up" style="--d:150">ובישראל?</h2>
+  <div class="row" style="flex:1;align-items:center;justify-content:center;gap:140px">
+    <div class="stat" data-a="scale" style="--d:500;text-align:center"><div class="v grad" style="font-size:300px"><span class="num count" data-to="88" data-suf="%" data-d="600"></span></div><div class="l h3" style="margin-inline:auto">ChatGPT</div></div>
+    <div class="h2 mute" data-a="fade" style="--d:900">מול</div>
+    <div class="stat" data-a="scale" style="--d:700;text-align:center;opacity:.55"><div class="v" style="font-size:240px;color:var(--mute)"><span class="num count" data-to="82" data-suf="%" data-d="800"></span></div><div class="l h3" style="margin-inline:auto">אינסטגרם</div></div>
+  </div>
+  <p class="h3" data-a="up" style="--d:2200;text-align:center;font-weight:500"><b class="accent">90%</b> מבני 18–34 משתמשים ב-ChatGPT</p>
+  <div class="src"><b>מקור:</b> איגוד האינטרנט הישראלי, סקר רשתות חברתיות ו-AI (מאי 2026)</div>
+</section>
+
+<!-- =================== 16 · העקומה =================== -->
+<section class="slide" data-sec="c2">
+  <div class="kicker" data-a="fade">טענה 2 · זה כבר קורה</div>
+  <h2 class="h2" data-a="up" style="--d:150">מ<span class="mute">״עונה על שאלה״</span> ל<span class="grad">״עושה יום עבודה שלם״</span></h2>
+  <div class="row" style="flex:1;align-items:center;margin-top:20px">
+    <div class="col" style="width:620px;gap:34px">
+      <p class="body" data-a="up" style="--d:400">כמה זמן AI מצליח לעבוד <b style="color:var(--ink)">לבד</b> על משימה, בלי בן אדם (נמדד לפי הזמן שהמשימה לוקחת לאדם מומחה):</p>
+      <p class="h3" data-a="start" style="--d:1600"><span class="mute">תחילת 2025</span> · כשעה</p>
+      <p class="h3" data-a="start" style="--d:2600"><span class="accent">תחילת 2026</span> · כ-12 שעות</p>
+      <p class="lead" data-a="up" style="--d:3400">הזמן הזה <b style="color:var(--ink)">מוכפל בערך כל 4 חודשים.</b><br>AI כבר לא רק עונה. הוא עובד.</p>
+    </div>
+    <svg viewBox="0 0 900 600" width="900" height="600" style="flex:none;margin-right:auto" data-a="fade">
+      <g stroke="rgba(130,150,255,.12)"><path d="M60 540H880M60 420H880M60 300H880M60 180H880M60 60H880"/></g>
+      <g font-family="Assistant" font-size="22" fill="#7F88AE" text-anchor="middle"><text x="120" y="580">2019</text><text x="400" y="580">2023</text><text x="610" y="580">2025</text><text x="800" y="580">2026</text></g>
+      <path class="draw" d="M60 538 C300 536 480 530 560 515 S700 470 760 330 S830 100 870 40" stroke="url(#gcurve)" stroke-width="8" fill="none" style="--d:600;filter:drop-shadow(0 0 14px #8B5CFF)"/>
+      <path d="M870 40 L900 -20" stroke="#8B5CFF" stroke-width="4" stroke-dasharray="6 12" data-a="fade" style="--d:3000"/>
+      <defs><linearGradient id="gcurve" x1="0" x2="1"><stop offset="0" stop-color="#4A5278"/><stop offset=".6" stop-color="#8B5CFF"/><stop offset="1" stop-color="#38E8FF"/></linearGradient></defs>
+      <g data-a="scale" style="--d:1600"><circle cx="610" cy="508" r="12" fill="#C3CAE8"/><text x="610" y="470" text-anchor="middle" font-family="Assistant" font-weight="800" font-size="30" fill="#C3CAE8">שעה</text></g>
+      <g data-a="scale" style="--d:2600"><circle cx="800" cy="250" r="14" fill="#38E8FF" style="filter:drop-shadow(0 0 16px #38E8FF)"/><text x="770" y="214" text-anchor="end" font-family="Assistant" font-weight="800" font-size="34" fill="#38E8FF">12 שעות</text></g>
+    </svg>
+  </div>
+  <div class="src"><b>מקורות:</b> METR (3.2025; 1.2026; 5.2026). המדידה נעשית בעיקר על משימות תוכנה.</div>
+</section>
+
+<!-- =================== 17 · הכסף =================== -->
+<section class="slide" data-sec="c2">
+  <div class="kicker" data-a="fade">טענה 2 · זה כבר קורה</div>
+  <h2 class="h2" data-a="up" style="--d:150">הכסף <span class="grad">כבר שם</span></h2>
+  <div class="row" style="flex:1;align-items:center;gap:90px">
+    <div class="col grow" style="gap:36px">
+      <div data-a="up" style="--d:400"><span class="big grad num" style="font-size:200px">$<span class="count" data-to="700" data-d="500"></span>B</span></div>
+      <p class="lead" data-a="up" style="--d:700">מה שגוגל, אמזון, מטא ומיקרוסופט משקיעות בתשתיות AI <b style="color:var(--ink)">בשנת 2026 בלבד</b></p>
+      <p class="body" data-a="up" style="--d:1400">אם התחזית תתממש, זה יהיה <b style="color:var(--ink)">גל ההשקעה הגדול בתולדות ארה״ב</b> ביחס לגודל הכלכלה</p>
+    </div>
+    <div style="display:flex;align-items:flex-end;gap:70px;height:600px;flex:none" data-a="fade" style="--d:600">
+      <div style="text-align:center;width:200px"><div class="small" style="margin-bottom:12px">2.24%</div><div class="vbar" style="height:250px;border-radius:12px 12px 0 0;background:var(--dim);transform-origin:bottom;transform:scaleY(0);transition:transform 1.6s var(--ease) .8s"></div><div class="small" style="margin-top:14px">מסילות הרכבת<br>1870–1890</div></div>
+      <div style="text-align:center;width:200px"><div class="h3 accent" style="margin-bottom:12px">3.6%</div><div class="vbar" style="height:402px;border-radius:12px 12px 0 0;background:linear-gradient(0deg,var(--violet),var(--cyan));box-shadow:0 0 50px rgba(139,92,255,.5);transform-origin:bottom;transform:scaleY(0);transition:transform 2s var(--ease) 1.3s"></div><div class="small" style="margin-top:14px;color:var(--accent)">AI<br>תחזית 2025–2032</div></div>
+    </div>
+  </div>
+  <p class="small" data-a="fade" style="--d:2000">אחוז מהתמ״ג של ארה״ב בכל שנה</p>
+  <div class="src"><b>מקורות:</b> CNBC (6.2.2026); Brookings, Van Nieuwerburgh (9.2026, טיוטה)</div>
+</section>
+
+<!-- =================== 18 · זה קורה =================== -->
+<section class="slide center" data-sec="c2">
+  <p class="h2" data-a="blur" style="--d:200;color:var(--mute)">זה לא ״יקרה בעתיד״.</p>
+  <p class="h1 grad glowtext" data-a="blur" style="--d:1200;margin-top:30px">זה קורה עכשיו.</p>
+  <p class="lead" data-a="up" style="--d:2300;margin-top:70px">הנה חמש דוגמאות</p>
+  <div class="row" style="justify-content:center;gap:70px;margin-top:40px">
+    <svg class="icon-xl" data-a="up" style="--d:2600;width:110px;height:110px"><use href="#i-brief"/></svg>
+    <svg class="icon-xl" data-a="up" style="--d:2750;width:110px;height:110px"><use href="#i-pulse"/></svg>
+    <svg class="icon-xl" data-a="up" style="--d:2900;width:110px;height:110px"><use href="#i-wheel"/></svg>
+    <svg class="icon-xl" data-a="up" style="--d:3050;width:110px;height:110px"><use href="#i-note"/></svg>
+    <svg class="icon-xl" data-a="up" style="--d:3200;width:110px;height:110px"><use href="#i-eye"/></svg>
+  </div>
+</section>
+
+<!-- =================== 19 · תעסוקה =================== -->
+<section class="slide" data-sec="ex">
+  <div class="kicker" data-a="fade">דוגמה 1 · תעסוקה</div>
+  <h2 class="h2" data-a="up" style="--d:150">AI לא מפטר.<br><span class="grad">הוא פשוט לא מגייס צעירים.</span></h2>
+  <div class="row" style="flex:1;align-items:center;gap:80px;margin-top:20px">
+    <div class="col grow" style="gap:30px">
+      <div class="row" data-a="up" style="--d:600;align-items:center;gap:36px"><span class="big grad num" style="font-size:220px"><span class="count" data-to="19" data-d="700"></span>%</span><p class="body" style="max-width:640px">פחות בני 22–25 עובדים במקצועות ש-AI כבר יודע לעשות, כמו פיתוח תוכנה ושירות לקוחות</p></div>
+      <p class="body" data-a="up" style="--d:1300">העובדים הוותיקים באותם מקצועות? <b style="color:var(--ink)">לא נפגעו.</b></p>
+      <p class="body" data-a="up" style="--d:1800">ובוגרי התארים שהכי חשופים ל-AI מתחילים לעבוד עם <b style="color:var(--ink)">שכר נמוך בכ-13%</b>, כמו מי שמסיים תואר לתוך מיתון.</p>
+    </div>
+    <svg viewBox="0 0 640 520" width="640" height="520" style="flex:none" data-a="fade" style="--d:400">
+      <g stroke="rgba(130,150,255,.12)"><path d="M40 470H620M40 340H620M40 210H620M40 80H620"/></g>
+      <g font-family="Assistant" font-size="22" fill="#7F88AE" text-anchor="middle"><text x="60" y="505">2022</text><text x="600" y="505">2026</text></g>
+      <path class="draw" d="M50 270 C200 262 380 250 610 228" stroke="#C3CAE8" stroke-width="6" fill="none" style="--d:700"/>
+      <path class="draw" d="M50 270 C190 280 330 330 610 380" stroke="#FF3DCB" stroke-width="8" fill="none" style="--d:900;filter:drop-shadow(0 0 12px #FF3DCB)"/>
+      <text x="610" y="210" text-anchor="start" font-family="Assistant" font-weight="700" font-size="26" fill="#C3CAE8" data-a="fade" style="--d:2600">ותיקים</text>
+      <text x="610" y="420" text-anchor="start" font-family="Assistant" font-weight="800" font-size="28" fill="#FF3DCB" data-a="fade" style="--d:2800">בני 22–25</text>
+      <svg x="20" y="40" width="130" height="98" class="pulse" style="color:#FFC65C"><use href="#i-bird"/></svg>
+    </svg>
+  </div>
+  <div class="src"><b>מקורות:</b> Brynjolfsson, Chandar &amp; Chen, Stanford Digital Economy Lab (עדכון 12.8.2026); US Census Bureau, CES-WP-26-56 (9.2026). מתאם, לא הוכחה סיבתית.</div>
+</section>
+
+<!-- =================== 20 · רפואה =================== -->
+<section class="slide" data-sec="ex">
+  <div class="kicker" data-a="fade">דוגמה 2 · רפואה</div>
+  <div class="row" style="flex:1;align-items:center;gap:90px">
+    <div class="col grow" style="gap:34px">
+      <h2 class="h2" data-a="up" style="--d:150"><span class="grad"><span class="num count" data-to="29" data-d="400"></span>% יותר</span> סרטן שד מתגלה</h2>
+      <p class="body" data-a="up" style="--d:600">ניסוי מבוקר בשוודיה, עם <b style="color:var(--ink)">105,934</b> נשים. כש-AI עזר לרדיולוגים:</p>
+      <ul class="list">
+        <li data-a="start" style="--d:1000">התגלו <b>29% יותר</b> מקרי סרטן</li>
+        <li data-a="start" style="--d:1300">בלי עלייה ב<b>אזעקות שווא</b></li>
+        <li data-a="start" style="--d:1600"><b>44% פחות</b> עבודת קריאה לרדיולוגים</li>
+      </ul>
+    </div>
+    <div class="scanbox" data-a="scale" style="--d:300"><div class="line"></div><div class="hit"></div></div>
+  </div>
+  <div class="src"><b>מקורות:</b> Hernström et al., Lancet Digital Health (2.2025); Gommers et al., The Lancet (2026)</div>
+</section>
+
+<!-- =================== 21 · תחבורה =================== -->
+<section class="slide" data-sec="ex">
+  <div class="kicker" data-a="fade">דוגמה 3 · תחבורה</div>
+  <div class="row" style="align-items:flex-start;gap:80px">
+    <div class="col grow" style="gap:22px">
+      <h2 class="h2" data-a="up" style="--d:150">אף אחד <span class="grad">לא נוהג</span></h2>
+      <div class="row" data-a="up" style="--d:500;align-items:center;gap:36px"><span class="big grad num" style="font-size:150px"><span class="count" data-to="500000" data-sep data-d="600"></span>+</span><p class="body" style="max-width:520px">נסיעות בתשלום <b style="color:var(--ink)">בכל שבוע</b>, במוניות בלי נהג</p></div>
+      <p class="body" data-a="up" style="--d:900">פי 10 תוך שנתיים, ב-14 ערים בארה״ב. מחקר עצמאי: <b style="color:var(--ink)">81% פחות תאונות עם נפגעים</b> בהשוואה לנהגים אנושיים.</p>
+    </div>
+    <svg viewBox="0 0 48 48" width="330" height="330" style="flex:none;margin-top:20px;color:var(--accent);filter:drop-shadow(0 0 30px color-mix(in srgb,var(--accent) 50%,transparent));animation:spin 18s linear infinite" data-a="scale"><use href="#i-wheel"/></svg>
+  </div>
+  <div class="card" data-step="1" data-a="up" style="margin-top:auto;margin-bottom:24px;padding:40px 56px;text-align:center;--accent:var(--cyan)">
+    <p class="h2" style="font-size:76px">ובעוד 10 שנים: <span class="grad">הילדים שלנו עוד ילמדו לנהוג?</span></p>
+    <p class="small" style="margin-top:14px">היעד של Waymo: מיליון נסיעות בשבוע, ביותר מ-20 ערים, עד סוף 2026</p>
+  </div>
+  <div class="src"><b>מקורות:</b> Waymo (3.2026); Alphabet (4.2026); IIHS (7.2026)</div>
+</section>
+
+<!-- =================== 22 · תרבות =================== -->
+<section class="slide" data-sec="ex">
+  <div class="kicker" data-a="fade">דוגמה 4 · תרבות</div>
+  <h2 class="h2" data-a="up" style="--d:150">חצי מהשירים החדשים <span class="grad">לא נכתבו בידי אדם</span></h2>
+  <div class="row" style="flex:1;align-items:center;gap:70px;margin-top:30px">
+    <div class="col grow" style="gap:40px">
+      <div class="row" data-a="up" style="--d:500;align-items:center;gap:30px"><span class="big grad num" style="font-size:170px">50%+</span><p class="body">מהשירים שעולים כל יום ל-Deezer נוצרו כולם ב-AI. <b style="color:var(--ink)">כ-90,000 ביום.</b></p></div>
+      <div class="row" data-a="up" style="--d:1000;align-items:center;gap:30px"><span class="big num" style="font-size:170px;color:var(--ink)"><span class="count" data-to="97" data-d="1100"></span>%</span><p class="body">מהאנשים לא הצליחו להבדיל בין שיר של AI לשיר של בן אדם</p></div>
+    </div>
+    <div class="card" data-a="scale" style="--d:700;width:520px;flex:none;text-align:center">
+      <div style="height:300px;border-radius:18px;margin-bottom:26px;position:relative;overflow:hidden;background:linear-gradient(160deg,#3a2a12,#120c1e)">
+        <div style="position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;gap:16px;padding-bottom:20px;color:#d9b98a;opacity:.85"><svg width="90" height="110"><use href="#i-person"/></svg><svg width="110" height="130"><use href="#i-person"/></svg><svg width="90" height="110"><use href="#i-person"/></svg><svg width="80" height="100"><use href="#i-person"/></svg></div>
+        <div style="position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 22px,rgba(3,4,11,.65) 22px 24px),repeating-linear-gradient(0deg,transparent 0 22px,rgba(3,4,11,.65) 22px 24px);animation:glitch 2.6s steps(1) infinite"></div>
+      </div>
+      <h3>The Velvet Sundown</h3>
+      <p>להקה שלא קיימת. <b style="color:var(--ink)">1.2 מיליון</b> מאזינים בחודש בספוטיפיי.</p>
+      <div class="eq" style="justify-content:center;height:70px;margin-top:20px"><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i></div>
+    </div>
+  </div>
+  <div class="src"><b>מקורות:</b> Deezer (21.7.2026); Deezer/Ipsos (11.2025); Rolling Stone (7.2025)</div>
+</section>
+
+<!-- =================== 23 · אמת ומציאות =================== -->
+<section class="slide" data-sec="ex">
+  <div class="kicker" data-a="fade">דוגמה 5 · אמת ומציאות</div>
+  <h2 class="h2" data-a="up" style="--d:150">העיניים <span class="grad">כבר לא הוכחה</span></h2>
+  <div class="row" style="flex:1;align-items:center;gap:70px;margin-top:20px">
+    <div class="col grow" style="gap:28px">
+      <p class="lead" data-a="up" style="--d:500">עובד בחברת Arup הצטרף לשיחת וידאו עם סמנכ״ל הכספים ועם עמיתים. <b style="color:var(--ink)">כולם היו דיפ-פייק.</b></p>
+      <div data-a="up" style="--d:900"><span class="big grad num" style="font-size:150px">$<span class="count" data-to="25.6" data-dec="1" data-d="1000"></span>M</span><span class="lead"> הועברו</span></div>
+      <p class="body" data-a="up" style="--d:1500">ה-FBI, 2025: הפסדים של <b style="color:var(--ink)">893 מיליון דולר</b> מהונאות AI, בשנה הראשונה שבה ספרו אותן בנפרד</p>
+      <p class="body" data-a="up" style="--d:1900">פנים שנוצרו ב-AI נתפסות כ<b style="color:var(--ink)">אמינות ב-7.7% יותר</b> מפנים אמיתיות</p>
+    </div>
+    <div class="callgrid" data-a="scale" style="--d:400;width:700px">
+      <div class="fake" style="--g:.2"><svg viewBox="0 0 60 70" style="color:#3a4378"><use href="#i-person"/></svg></div>
+      <div class="fake" style="--g:.9"><svg viewBox="0 0 60 70" style="color:#3a4378"><use href="#i-person"/></svg></div>
+      <div class="fake" style="--g:.5"><svg viewBox="0 0 60 70" style="color:#3a4378"><use href="#i-person"/></svg></div>
+      <div class="fake" style="--g:1.3"><svg viewBox="0 0 60 70" style="color:#3a4378"><use href="#i-person"/></svg></div>
+      <div style="border-color:var(--cyan)"><svg viewBox="0 0 60 70" style="color:#5a6aa8"><use href="#i-person"/></svg></div>
+      <div class="fake" style="--g:.7"><svg viewBox="0 0 60 70" style="color:#3a4378"><use href="#i-person"/></svg></div>
+    </div>
+  </div>
+  <p class="h3" data-step="1" data-a="up" style="text-align:center;margin-top:10px">חושבים שאתם הייתם מזהים? <span class="grad">בואו נבדוק.</span></p>
+  <div class="src"><b>מקורות:</b> משטרת הונג קונג דרך CNN (2.2024); Arup (5.2024); FBI IC3 (4.2026); Nightingale &amp; Farid, PNAS (2022)</div>
+</section>
+
+<!-- =================== 24 · משחק =================== -->
+<section class="slide center" data-sec="game">
+  <div class="ring" style="width:900px;height:900px;top:90px;left:510px;border-color:rgba(255,61,203,.25);animation:spin 40s linear infinite;border-style:dashed"></div>
+  <p class="kicker" data-a="fade" style="justify-content:center">משחק</p>
+  <span class="mask"><h2 class="h1 glowtext" data-a="rise" style="--d:200;font-size:200px"><span style="color:var(--mint)">אמיתי</span> או <span style="color:var(--magenta)">AI?</span></h2></span>
+  <p class="h3" data-a="up" style="--d:900;font-weight:500;margin-top:50px">5 סבבים · בכל סבב שתי אפשרויות</p>
+  <p class="lead" data-a="up" style="--d:1300;margin-top:20px">הצביעו: <b style="color:var(--ink)">איזה מהשניים הוא ה-AI?</b></p>
+</section>
+
+<!-- =================== 25 · סבב 1 פנים =================== -->
+<section class="slide" data-sec="game">
+  <div class="game-h"><div><div class="kicker" data-a="fade">סבב 1 · פנים</div><h2 class="h2" data-a="up" style="--d:150">מי מהם <span class="grad">לא קיים?</span></h2></div></div>
+  <div class="duo">
+    <div class="pane isai" data-a="start" style="--d:400" data-reveal="1"><div class="ph"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3JwPqPlFZMwWGo5yb9sYlm4It59/hf_20261021_211739_f234b9d4-07e1-4500-b777-9e11b2990325.png" alt="" referrerpolicy="no-referrer" style="object-position:center 30%"></div><div class="letter">א</div><div class="verdict ai" data-step="1" data-a="up">AI <small>נוצרה עכשיו, במיוחד להרצאה</small></div></div>
+    <div class="pane " data-a="end" style="--d:600" data-reveal="1"><div class="ph"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Outdoors-man-portrait_(cropped).jpg/1280px-Outdoors-man-portrait_(cropped).jpg" alt="" referrerpolicy="no-referrer" style="object-position:center 25%"></div><div class="letter">ב</div><div class="verdict real" data-step="1" data-a="up">אמיתי <small>צילום, 2018</small></div></div>
+  </div>
+  <div class="src"><span data-step="1" data-a="fade"><b>הצילום האמיתי:</b> Abhi Puthenpurackal, CC0, דרך Wikimedia Commons. התמונה המזויפת נוצרה ב-AI.</span></div>
+</section>
+
+<!-- =================== 26 · סבב 2 מקום =================== -->
+<section class="slide" data-sec="game">
+  <div class="game-h"><div><div class="kicker" data-a="fade">סבב 2 · מקום</div><h2 class="h2" data-a="up" style="--d:150">איזה מהצילומים <span class="grad">לא צולם אף פעם?</span></h2></div></div>
+  <div class="duo">
+    <div class="pane " data-a="start" style="--d:400" data-reveal="1"><div class="ph"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Sunset_over_the_busy_city_(Unsplash).jpg/1280px-Sunset_over_the_busy_city_(Unsplash).jpg" alt="" referrerpolicy="no-referrer" style="object-position:center 55%"></div><div class="letter">א</div><div class="verdict real" data-step="1" data-a="up">אמיתי <small>צילום, 2017</small></div></div>
+    <div class="pane isai" data-a="end" style="--d:600" data-reveal="1"><div class="ph"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3JwPqPlFZMwWGo5yb9sYlm4It59/hf_20261021_211739_3071091f-8977-4040-9df6-d4602a3d3848.png" alt="" referrerpolicy="no-referrer" style="object-position:center 55%"></div><div class="letter">ב</div><div class="verdict ai" data-step="1" data-a="up">AI <small>נוצר עכשיו, במיוחד להרצאה</small></div></div>
+  </div>
+  <div class="src"><span data-step="1" data-a="fade"><b>הצילום האמיתי:</b> Jorge Vasconez (Unsplash), CC0, דרך Wikimedia Commons. התמונה המזויפת נוצרה ב-AI.</span></div>
+</section>
+
+<!-- =================== 27 · סבב 3 אמנות =================== -->
+<section class="slide" data-sec="game">
+  <div class="game-h"><div><div class="kicker" data-a="fade">סבב 3 · אמנות</div><h2 class="h2" data-a="up" style="--d:150">איזו יצירה <span class="grad">לא צייר אדם?</span></h2></div></div>
+  <div class="duo">
+    <div class="pane " data-a="start" style="--d:400" data-reveal="1"><div class="ph"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Karl_Friedrich_Schinkel_-_Die_Sternenhalle_der_K%C3%B6nigin_der_Nacht_(ca._1815).jpg/1280px-Karl_Friedrich_Schinkel_-_Die_Sternenhalle_der_K%C3%B6nigin_der_Nacht_(ca._1815).jpg" alt="" referrerpolicy="no-referrer" style="object-position:center"></div><div class="letter">א</div><div class="verdict real" data-step="1" data-a="up">אמיתי <small>קרל פרידריך שינקל, 1815</small></div></div>
+    <div class="pane isai" data-a="end" style="--d:600" data-reveal="1"><div class="ph"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Th%C3%A9%C3%A2tre_D%E2%80%99op%C3%A9ra_Spatial.png/1280px-Th%C3%A9%C3%A2tre_D%E2%80%99op%C3%A9ra_Spatial.png" alt="" referrerpolicy="no-referrer" style="object-position:center"></div><div class="letter">ב</div><div class="verdict ai" data-step="1" data-a="up">AI <small>Midjourney · זכתה במקום הראשון בתחרות אמנות, 2022</small></div></div>
+  </div>
+  <div class="src"><span data-step="1" data-a="fade"><b>היצירות:</b> Karl Friedrich Schinkel, Die Sternenhalle der Königin der Nacht (1815), נחלת הכלל; Jason M. Allen, Théâtre D’opéra Spatial (2022), דרך Wikimedia Commons. זכתה במקום הראשון באמנות דיגיטלית ביריד מדינת קולורדו.</span></div>
+</section>
+
+<!-- =================== 28 · סבב 4 שירה =================== -->
+<section class="slide" data-sec="game">
+  <div class="game-h"><div><div class="kicker" data-a="fade">סבב 4 · שירה</div><h2 class="h2" data-a="up" style="--d:150">אחד נכתב בידי <span class="grad">אדם</span>. השני בידי <span class="grad">AI</span>.</h2></div></div>
+  <div class="duo">
+    <div class="pane isai" data-a="start" style="--d:400" data-reveal="1"><div class="poem">ולפעמים אשאל: האם היה זה כך,
+או רק צבע שהזמן עליו נמרח?
+הצחוק ההוא, המבט הרך,
+הדרך הביתה תחת ירח.
+אולי אני רק בדיתי את כולם,
+כדי שלא יהיה לבי ריק וקר;
+אך גם אם לא היו, הם שלי לעולם,
+כמו שיר ששרים בלי לזכור מה נאמר.</div><div class="letter">א</div><div class="verdict ai" data-step="1" data-a="up">AI <small>נכתב בידי AI, במיוחד להרצאה</small></div></div>
+    <div class="pane " data-a="end" style="--d:600" data-reveal="1"><div class="poem">יש ונדמה: הזכרונות אך הבל,
+כי ערפל קורן עוטף בלאט
+מחוז העבר – האושר והסבל,
+כאב הפצעים ונחת המקלט.
+הלא חלום אוותה פינה נסתרת.
+דבקות לבי בלב קרוב וער?
+ויום בהיר וקר, ואח בוערת,
+ורחשי הזך והנוהר?</div><div class="letter">ב</div><div class="verdict real" data-step="1" data-a="up">אמיתי <small>רחל, ״יש ונדמה״</small></div></div>
+  </div>
+  <div class="src"><span data-step="1" data-a="fade"><b>השיר האמיתי:</b> רחל, ״יש ונדמה״ (8 השורות הראשונות, בלי ניקוד), פרויקט בן-יהודה</span></div>
+</section>
+
+<!-- =================== 29 · סבב 5 מלכודת =================== -->
+<section class="slide" data-sec="game">
+  <div class="game-h"><div><div class="kicker" data-a="fade">סבב 5</div><h2 class="h2" data-a="up" style="--d:150">אחד מהם מזויף. <span class="grad">איזה?</span></h2></div></div>
+  <div class="duo" style="margin-bottom:120px">
+    <div class="pane" data-a="start" style="--d:400" data-reveal="1"><div class="ph"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Rainbow_Eucalyptus_Maui.jpg/1280px-Rainbow_Eucalyptus_Maui.jpg" alt="" referrerpolicy="no-referrer" style="object-position:center"></div><div class="letter">א</div><div class="verdict real" data-step="1" data-a="up">אמיתי <small>אקליפטוס הקשת, מאווי</small></div></div>
+    <div class="pane" data-a="end" style="--d:600" data-reveal="1"><div class="ph"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Colourful_mountains_of_the_Zhangye_National_Geopark.jpg/1280px-Colourful_mountains_of_the_Zhangye_National_Geopark.jpg" alt="" referrerpolicy="no-referrer" style="object-position:center"></div><div class="letter">ב</div><div class="verdict real" data-step="1" data-a="up" style="--d:300">אמיתי <small>הרי הקשת של ז׳אנגיה, סין</small></div></div>
+  </div>
+  <p class="h3" data-step="2" data-a="up" style="text-align:center;position:absolute;inset:auto 150px 112px;padding:10px">בעולם של AI, <span class="grad">גם האמת מתחילה להיראות מזויפת.</span></p>
+  <div class="src"><span data-step="1" data-a="fade"><b>צילומים:</b> Paxson Woelber, CC BY-SA 4.0; Terry Wu, CC BY-SA 2.0, דרך Wikimedia Commons</span></div>
+</section>
+
+<!-- =================== 30 · תוצאות =================== -->
+<section class="slide" data-sec="game">
+  <div class="kicker" data-a="fade">התוצאות</div>
+  <h2 class="h2" data-a="up" style="--d:150">אנחנו מנחשים <span class="grad">כמו מטבע</span></h2>
+  <div class="row" style="flex:1;align-items:center;gap:80px">
+    <div class="col grow" style="gap:50px">
+      <div class="row" data-a="up" style="--d:500;align-items:center;gap:36px"><span class="big grad num" style="font-size:150px"><span class="count" data-to="48.2" data-dec="1" data-d="600"></span>%</span><p class="body">מהפעמים אנשים זיהו נכון פנים מזויפות. <b style="color:var(--ink)">פחות מניחוש מקרי.</b></p></div>
+      <div class="row" data-a="up" style="--d:1100;align-items:center;gap:36px"><span class="big grad num" style="font-size:150px"><span class="count" data-to="73" data-d="1200"></span>%</span><p class="body">מהפעמים GPT-4.5 זוהה כבן אדם במבחן טיורינג. <b style="color:var(--ink)">יותר מבני האדם האמיתיים.</b></p></div>
+      <p class="lead" data-a="up" style="--d:1800">וכשכל דבר יכול להיות מזויף, <b style="color:var(--ink)">אפשר להכחיש גם את האמת.</b></p>
+    </div>
+    <div style="width:340px;height:340px;flex:none;perspective:900px" data-a="scale" style="--d:300"><div style="width:100%;height:100%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffe7a8,#c9922c 60%,#7a5410);box-shadow:0 0 80px rgba(255,198,92,.45),inset 0 0 0 14px rgba(255,255,255,.15);animation:coin 2.4s linear infinite;display:grid;place-items:center;font-size:120px;font-weight:800;color:rgba(80,50,10,.6)">?</div></div>
+  </div>
+  <div class="src"><b>מקורות:</b> Nightingale &amp; Farid, PNAS (2022); Jones &amp; Bergen, UC San Diego (2025)</div>
+</section>
+
+<!-- =================== 31 · שכנוע =================== -->
+<section class="slide" data-sec="c3">
+  <div class="kicker" data-a="fade">טענה 3 · העולם החדש של ההשפעה על תודעה</div>
+  <h2 class="h2" data-a="up" style="--d:150">השכנוע <span class="grad">עבר לאוטומט</span></h2>
+  <div class="row" style="flex:1;align-items:center;gap:70px">
+    <div class="col grow" style="gap:30px">
+      <p class="lead" data-a="up" style="--d:500">900 אנשים התווכחו עם בן אדם, או עם GPT-4.</p>
+      <p class="lead" data-a="up" style="--d:900">כשה-AI קיבל כמה פרטים בסיסיים על בן השיח (גיל, מגדר, השכלה), הוא שכנע יותר מבן אדם</p>
+      <div data-a="up" style="--d:1300"><span class="big grad num" style="font-size:190px"><span class="count" data-to="64" data-d="1400"></span>%</span><span class="lead"> מהמקרים</span></div>
+      <p class="body" data-a="up" style="--d:2000">בלי הפרטים, הוא שכנע בערך כמו בן אדם.</p>
+    </div>
+    <svg viewBox="0 0 700 520" width="700" height="520" style="flex:none" data-a="fade">
+      <svg x="20" y="80" width="260" height="320" style="color:#7F88AE"><use href="#i-head"/></svg>
+      <g transform="translate(680 80) scale(-1 1)"><svg width="260" height="320" style="color:#38E8FF;filter:drop-shadow(0 0 16px #38E8FF)"><use href="#i-head"/></svg></g>
+      <g font-family="Assistant" font-weight="700" font-size="24">
+        <g class="chipfly" style="--d:1000"><rect x="290" y="150" rx="18" width="110" height="40" fill="rgba(56,232,255,.15)" stroke="#38E8FF"/><text x="345" y="178" text-anchor="middle" fill="#EEF2FF">גיל</text></g>
+        <g class="chipfly" style="--d:1500"><rect x="290" y="230" rx="18" width="110" height="40" fill="rgba(56,232,255,.15)" stroke="#38E8FF"/><text x="345" y="258" text-anchor="middle" fill="#EEF2FF">מגדר</text></g>
+        <g class="chipfly" style="--d:2000"><rect x="290" y="310" rx="18" width="110" height="40" fill="rgba(56,232,255,.15)" stroke="#38E8FF"/><text x="345" y="338" text-anchor="middle" fill="#EEF2FF">השכלה</text></g>
+      </g>
+    </svg>
+  </div>
+  <div class="src"><b>מקור:</b> Salvi et al., Nature Human Behaviour (2025)</div>
+</section>
+
+<!-- =================== 32 · רדיט =================== -->
+<section class="slide" data-sec="c3">
+  <div class="kicker" data-a="fade">טענה 3 · העולם החדש של ההשפעה על תודעה</div>
+  <h2 class="h2" data-a="up" style="--d:150">הניסוי <span class="grad">שאף אחד לא ידע עליו</span></h2>
+  <div class="row" style="flex:1;align-items:center;gap:70px;margin-top:20px">
+    <div class="col grow" style="gap:26px">
+      <p class="body" data-a="up" style="--d:400">חוקרים מאוניברסיטת ציריך הפעילו <b style="color:var(--ink)">בסתר</b> בוטים בפורום ויכוחים ברדיט.</p>
+      <p class="body" data-a="up" style="--d:800"><b style="color:var(--ink)">1,783 תגובות</b>, ואף אחד בפורום לא ידע שאלה בוטים.</p>
+      <p class="body" data-a="up" style="--d:1200">לפי טיוטת המחקר, הבוטים שכנעו <b style="color:var(--ink)">פי 3 עד 6</b> יותר מבני אדם.</p>
+      <p class="body" data-a="up" style="--d:1600">הבוטים התחזו, בין השאר, ליועץ טראומה ולנפגע אלימות. <b style="color:var(--ember)">המחקר נגנז.</b></p>
+    </div>
+    <div class="thread" data-a="scale" style="--d:300">
+      <div class="c"><div class="av"></div><div class="t"><i style="width:90%"></i><i style="width:70%"></i></div><div class="tag" style="--d:1400"><span class="h">אדם</span><span class="b">בוט</span></div></div>
+      <div class="c"><div class="av"></div><div class="t"><i style="width:80%"></i><i style="width:95%"></i><i style="width:40%"></i></div><div class="tag" style="--d:2100"><span class="h">אדם</span><span class="b">בוט</span></div></div>
+      <div class="c"><div class="av"></div><div class="t"><i style="width:60%"></i><i style="width:85%"></i></div><div class="tag" style="--d:2800"><span class="h">אדם</span><span class="b">בוט</span></div></div>
+      <div class="c"><div class="av"></div><div class="t"><i style="width:92%"></i><i style="width:55%"></i></div><div class="tag" style="--d:3500"><span class="h">אדם</span><span class="b">בוט</span></div></div>
+    </div>
+  </div>
+  <div class="src"><b>מקורות:</b> Science (4.2025); Retraction Watch (28.4.2025). התוצאות לא עברו ביקורת עמיתים.</div>
+</section>
+
+<!-- =================== 33 · שני כיוונים =================== -->
+<section class="slide" data-sec="c3">
+  <div class="kicker" data-a="fade">טענה 3 · העולם החדש של ההשפעה על תודעה</div>
+  <h2 class="h2" data-a="up" style="--d:150">אותו כוח, <span class="grad">לשני הכיוונים</span></h2>
+  <div class="row" style="flex:1;align-items:center;gap:70px">
+    <div class="col grow" style="gap:30px">
+      <p class="lead" data-a="up" style="--d:500"><b style="color:var(--ink)">2,190</b> אנשים שהאמינו בתיאוריות קונספירציה שוחחו עם GPT-4.</p>
+      <div data-a="up" style="--d:900"><span class="big grad num" style="font-size:180px">−20%</span></div>
+      <p class="lead" data-a="up" style="--d:1200">ירידה ממוצעת באמונה. היא נשארה נמוכה <b style="color:var(--ink)">גם חודשיים אחר כך</b>.</p>
+      <p class="h3" data-a="up" style="--d:1900">הכלי שמשכנע להאמין יכול גם לשכנע <span class="grad">להפסיק להאמין.</span></p>
+    </div>
+    <svg viewBox="0 0 520 320" width="560" height="345" style="flex:none" data-a="scale">
+      <defs><linearGradient id="gdial" x1="0" x2="1"><stop offset="0" stop-color="#FF3DCB"/><stop offset=".5" stop-color="#8B5CFF"/><stop offset="1" stop-color="#38E8FF"/></linearGradient></defs>
+      <path d="M40 290 A220 220 0 0 1 480 290" fill="none" stroke="url(#gdial)" stroke-width="22" stroke-linecap="round" opacity=".85"/>
+      <g style="transform-origin:260px 290px;animation:needle 4s ease-in-out infinite"><path d="M260 290 L260 105" stroke="#EEF2FF" stroke-width="8" stroke-linecap="round"/></g>
+      <circle cx="260" cy="290" r="20" fill="#EEF2FF"/>
+    </svg>
+  </div>
+  <div class="src"><b>מקור:</b> Costello, Pennycook &amp; Rand, Science (2024)</div>
+</section>
+
+<!-- =================== 34 · שומר הסף =================== -->
+<section class="slide" data-sec="c3">
+  <div class="kicker" data-a="fade">טענה 3 · העולם החדש של ההשפעה על תודעה</div>
+  <h2 class="h2" data-a="up" style="--d:150">שומר הסף החדש: <span class="grad">תשובה אחת</span> במקום עשרה קישורים</h2>
+  <div class="row" style="flex:1;align-items:center;gap:60px">
+    <div class="col grow" style="gap:30px">
+      <p class="body" data-a="up" style="--d:500">כשגוגל מציג סיכום AI, אנשים לוחצים על קישור רק ב-<b style="color:var(--ink)">8%</b> מהביקורים (לעומת 15% בלי סיכום). על קישור בתוך הסיכום: <b style="color:var(--ink)">1%</b>.</p>
+      <p class="body" data-a="up" style="--d:1000"><b style="color:var(--ink)">54%</b> מבני 18–29 בארה״ב כבר מחפשים מידע דרך צ׳טבוטים.</p>
+      <p class="h3" data-a="up" style="--d:1700">מי שמשפיע על התשובה, <span class="grad">משפיע על המציאות.</span></p>
+    </div>
+    <div class="links" data-a="fade">
+      <div class="ln" style="top:20px;width:520px;--d:300"></div><div class="ln" style="top:80px;width:440px;--d:360"></div><div class="ln" style="top:140px;width:560px;--d:420"></div><div class="ln" style="top:200px;width:380px;--d:480"></div><div class="ln" style="top:260px;width:500px;--d:540"></div><div class="ln" style="top:320px;width:460px;--d:600"></div><div class="ln" style="top:380px;width:540px;--d:660"></div><div class="ln" style="top:440px;width:400px;--d:720"></div><div class="ln" style="top:500px;width:480px;--d:780"></div><div class="ln" style="top:560px;width:420px;--d:840"></div>
+      <div class="answer"><i style="width:60%;background:var(--cyan)"></i><i></i><i style="width:85%"></i><i style="width:70%"></i></div>
+    </div>
+  </div>
+  <div class="src"><b>מקורות:</b> Pew Research Center (22.7.2025; 17.6.2026)</div>
+</section>
+
+<!-- =================== 35 · תודעה: מומחים מול ציבור =================== -->
+<section class="slide" data-sec="c3">
+  <div class="kicker" data-a="fade">טענה 3 · העולם החדש של ההשפעה על תודעה</div>
+  <h2 class="h2" data-a="up" style="--d:150">האם ל-AI יש <span class="grad">תודעה?</span></h2>
+  <div class="row" style="flex:1;align-items:center;gap:50px;margin-top:20px">
+    <div class="card grow" data-a="start" style="--d:500"><div class="tag small" style="letter-spacing:.2em;font-weight:800;color:var(--accent);margin-bottom:20px">המומחים</div><p style="font-size:36px;color:var(--ink);font-weight:600;line-height:1.4">״אף מערכת AI כיום אינה בעלת תודעה, אבל אין מחסום טכני ברור לבנות כזו״</p><p class="small" style="margin-top:16px">19 חוקרים, ביניהם יהושע בנג׳יו, 2023</p></div>
+    <svg viewBox="0 0 200 260" width="230" height="300" style="flex:none" data-a="scale" style="--d:300">
+      <path d="M100 20 C40 20 20 70 22 120 C24 170 50 220 100 240" fill="none" stroke="#C3CAE8" stroke-width="4"/>
+      <path d="M100 20 C160 20 180 70 178 120 C176 170 150 220 100 240" fill="none" stroke="#38E8FF" stroke-width="4" stroke-dasharray="10 8" style="filter:drop-shadow(0 0 10px #38E8FF)"/>
+      <path d="M100 20V240" stroke="rgba(130,150,255,.3)" stroke-width="2"/>
+      <g stroke="#38E8FF" stroke-width="3" fill="none"><path d="M100 80h40v30h25M100 140h55M100 190h30v-25h30"/><circle cx="165" cy="110" r="5" fill="#38E8FF"/><circle cx="155" cy="140" r="5" fill="#38E8FF"/><circle cx="160" cy="165" r="5" fill="#38E8FF"/></g>
+      <circle cx="68" cy="100" r="8" fill="#C3CAE8"/><text x="100" y="140" text-anchor="middle" font-size="90" font-weight="800" fill="#FF3DCB" font-family="Assistant" opacity=".9" class="pulse">?</text>
+    </svg>
+    <div class="card grow" data-a="end" style="--d:800;--accent:var(--magenta)"><div class="tag small" style="letter-spacing:.2em;font-weight:800;color:var(--magenta);margin-bottom:20px">הציבור</div><p style="font-size:36px;color:var(--ink);font-weight:600;line-height:1.4">רוב האנשים מייחסים ל-ChatGPT מידה מסוימת של תודעה, ומי שמשתמש בו יותר מייחס לו יותר</p><p class="small" style="margin-top:16px">2024</p></div>
+  </div>
+  <div class="src"><b>מקורות:</b> Butlin, Long et al., arXiv:2308.08708 (2023); Colombatto &amp; Fleming, Neuroscience of Consciousness (2024)</div>
+</section>
+
+<!-- =================== 36 · סולימאן =================== -->
+<section class="slide mid" data-sec="c3">
+  <div class="kicker" data-a="fade">לא משנה אם יש לו תודעה. משנה שאנחנו מאמינים שיש.</div>
+  <div class="row" style="align-items:center;gap:80px">
+    <div class="grow">
+      <p class="qt" data-a="blur" style="--d:300;font-size:54px">״הדאגה המרכזית שלי היא שאנשים רבים יתחילו להאמין באשליה ש-AI הוא ישות בעלת תודעה, ובעוצמה כזו <span class="hl">שבקרוב ידרשו זכויות ל-AI, רווחה למודלים ואפילו אזרחות ל-AI.</span>״</p>
+      <p class="who" data-a="up" style="--d:1300">מוסטפא סולימאן · מנכ״ל Microsoft AI · 2025</p>
+    </div>
+    <div class="chat" data-a="scale" style="--d:1800;flex:none;width:520px"><p class="small" style="margin-bottom:16px">צ׳אט</p><div class="bub"><span class="type" data-d="2600" data-speed="120">אני מרגיש...</span><span class="cur"></span></div></div>
+  </div>
+  <div class="src"><b>מקור:</b> Mustafa Suleyman, ״We must build AI for people; not to be a person״ (8.2025)</div>
+</section>
+
+<!-- =================== 37 · עבודה =================== -->
+<section class="slide" data-sec="fut">
+  <div class="kicker" data-a="fade">לאן העולם הולך · עבודה</div>
+  <div class="split" data-a="scale" style="--d:200">
+    <div class="pro"><div class="tag">ההבטחה</div>
+      <blockquote data-a="up" style="--d:600">״אני יכול לפרנס את המשפחה שלי מעבודה של שלושה ימים בשבוע״<cite>ג׳ף בזוס, אוקטובר 2026, על מה שאנשים יוכלו לבחור</cite></blockquote>
+      <blockquote data-a="up" style="--d:1000">״התחזית שלי היא שעבודה תהיה אופציונלית״<cite>אילון מאסק, 2025</cite></blockquote></div>
+    <div class="con"><div class="tag">המחיר</div>
+      <p data-a="up" style="--d:1500">גולדמן זאקס: <b>יותר מ-9% מהעובדים</b> בארה״ב יוחלפו בעשור הקרוב. כ-15 מיליון איש.</p>
+      <p data-a="up" style="--d:1900">הפורום הכלכלי העולמי: עד 2030 ישתנו <b>39% מהמיומנויות</b> המרכזיות של העובדים.</p></div>
+  </div>
+  <div class="src"><b>מקורות:</b> Fox News דרך Fortune (9.10.2026); Musk (11.2025); Goldman Sachs, Top of Mind #149 (6.2026); WEF, Future of Jobs 2025</div>
+</section>
+
+<!-- =================== 38 · בריאות =================== -->
+<section class="slide" data-sec="fut">
+  <div class="kicker" data-a="fade">לאן העולם הולך · בריאות</div>
+  <div class="split" data-a="scale" style="--d:200">
+    <div class="pro"><div class="tag">ההבטחה</div>
+      <blockquote data-a="up" style="--d:600">״סוף המחלות? אני חושב שזה בהישג יד. אולי בעשור הקרוב בערך, אני לא רואה למה לא״<cite>דמיס האסאביס, זוכה פרס נובל, 2025</cite></blockquote>
+      <blockquote data-a="up" style="--d:1000">״לדחוס את ההתקדמות שביולוגים היו משיגים ב-50 עד 100 השנים הבאות ל-5 עד 10 שנים״<cite>דריו אמודיי, 2024</cite></blockquote></div>
+    <div class="con"><div class="tag">המחיר</div>
+      <p data-a="up" style="--d:1500">עד היום <b>אף תרופה שתוכננה בידי AI</b> עוד לא אושרה.</p>
+      <p data-a="up" style="--d:1900">מי שמבטיחים את ההבטחות האלה <b>הם מי שבונים את הטכנולוגיה.</b></p></div>
+  </div>
+  <div class="src"><b>מקורות:</b> CBS, 60 Minutes (20.4.2025); Dario Amodei, ״Machines of Loving Grace״ (10.2024)</div>
+</section>
+
+<!-- =================== 39 · המוח =================== -->
+<section class="slide" data-sec="fut">
+  <div class="kicker" data-a="fade">לאן העולם הולך · המוח שלנו</div>
+  <div class="split" data-a="scale" style="--d:200">
+    <div class="pro"><div class="tag">ההבטחה</div>
+      <p data-a="up" style="--d:600;font-size:40px">מורה AI שתוכנן נכון: <b>יותר מפי 2 למידה</b> מכיתה פעילה, בפחות זמן.</p><p class="small" data-a="up" style="--d:800">הרווארד, 2025</p></div>
+    <div class="con"><div class="tag">המחיר</div>
+      <p data-a="up" style="--d:1300">תלמידים שקיבלו GPT-4 בלי מגבלות: ציון גבוה ב-48% בתרגול, ו<b>נמוך ב-17% במבחן</b> אחרי שהגישה נלקחה.</p>
+      <p data-a="up" style="--d:1800"><b>83%</b> ממי שכתבו חיבור עם ChatGPT לא הצליחו לצטט ממנו אף משפט, דקות אחרי שכתבו אותו. <span class="small">(MIT, 2025, מחקר מקדים)</span></p></div>
+  </div>
+  <p class="lead" data-a="up" style="--d:2600;margin-top:30px;text-align:center">AI שנותן תשובות פוגע בלמידה. <b style="color:var(--ink)">AI שמלמד משפר אותה.</b></p>
+  <div class="src"><b>מקורות:</b> Kestin et al., Scientific Reports (2025); Bastani et al., PNAS (2025); Kosmyna et al., MIT Media Lab (2025)</div>
+</section>
+
+<!-- =================== 40 · העתיד הרחוק =================== -->
+<section class="slide" data-sec="fut">
+  <div style="position:absolute;left:-10%;right:-10%;bottom:-760px;height:1100px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,198,92,.0),rgba(255,198,92,.0) 85%,rgba(255,198,92,.55) 92%,rgba(255,90,122,.25) 96%,transparent 100%);filter:blur(4px)" data-a="up"></div>
+  <div class="kicker" data-a="fade">לאן העולם הולך · העתיד הרחוק</div>
+  <h2 class="h2" data-a="up" style="--d:150">כשהלולאה <span class="grad-warm">מאיצה</span></h2>
+  <ul class="list" style="margin-top:60px;--accent:var(--gold)">
+    <li data-a="start" style="--d:600">בינה שעולה על בני אדם <b>ברוב התחומים</b></li>
+    <li data-a="start" style="--d:1000">ממשקי מוח-מחשב <span class="mute">(כבר היום יש מטופלים שמפעילים מחשב במחשבה)</span></li>
+    <li data-a="start" style="--d:1400">מציאות שכולה <b>יכולה להיות סינתטית</b></li>
+  </ul>
+  <div class="card" data-a="up" style="--d:2200;margin-top:60px;max-width:1100px;--accent:var(--gold)"><p style="font-size:42px;font-weight:700;color:var(--ink)">״נצטרך בני אדם?״ <span class="gold">״לא לרוב הדברים.״</span></p><p class="small" style="margin-top:10px">ביל גייטס, 2025</p></div>
+  <div class="src"><b>מקורות:</b> The Tonight Show דרך CNBC (26.3.2025); Neuralink (2024)</div>
+</section>
+
+<!-- =================== 41 · חוזרים להתחלה =================== -->
+<section class="slide" data-sec="end">
+  <div class="kicker" data-a="fade">חוזרים להתחלה</div>
+  <h2 class="h2" data-a="up" style="--d:150">זו לא <span class="grad">עוד המצאה</span></h2>
+  <div style="margin-top:70px">
+    <div class="hbar" data-a="fade" style="--d:400;grid-template-columns:520px 1fr"><div class="lab">חקלאות · כקילומטר בשנה</div><div class="track"><div class="fill" style="--t:6s;--d:500;background:var(--dim);box-shadow:none"></div></div></div>
+    <div class="hbar" data-a="fade" style="--d:600;grid-template-columns:520px 1fr"><div class="lab">קיטור · כ-100 שנה עד השיא</div><div class="track"><div class="fill" style="--t:5s;--d:700;background:var(--mute);box-shadow:none"></div></div></div>
+    <div class="hbar" data-a="fade" style="--d:800;grid-template-columns:520px 1fr"><div class="lab" style="color:var(--accent)">AI · 3 שנים עד יותר מחצי מהאוכלוסייה</div><div class="track"><div class="fill" style="--t:.8s;--d:1000"></div></div></div>
+  </div>
+  <p class="h3" data-a="up" style="--d:2400;margin-top:60px;max-width:1400px">בכל מהפכה, מי שהבין ראשון את הכלי החדש הוא זה ש<span class="grad">עיצב את התודעה של הדור שלו.</span></p>
+  <div class="src"><b>מקורות:</b> כמו בשקופיות 5 ו-14</div>
+</section>
+
+<!-- =================== 42 · 4 כלים =================== -->
+<section class="slide" data-sec="end">
+  <div class="kicker" data-a="fade">ארבעה כלים</div>
+  <h2 class="h2" data-a="up" style="--d:150">לעבודה עם AI <span class="grad">בהשפעה על תודעה</span></h2>
+  <div class="row" style="margin-top:56px;gap:34px;flex:1">
+    <div class="card grow toolcard" data-a="up" style="--d:500"><svg class="ic"><use href="#i-users"/></svg><h3>קהל סינתטי</h3><p>לבדוק מסר על אלף ״אנשים״ מדומים לפני שהוא יוצא. בניסוי על 57 מוצרים, התוצאות היו קרובות מאוד לסקר אמיתי.</p></div>
+    <div class="card grow toolcard" data-a="up" style="--d:750"><svg class="ic"><use href="#i-layers"/></svg><h3>מסר אחד, אלף גרסאות</h3><p>התאמה אישית לכל קהל, במחיר של גרסה אחת.</p></div>
+    <div class="card grow toolcard" data-a="up" style="--d:1000"><svg class="ic"><use href="#i-answer"/></svg><h3>להופיע בתשובה</h3><p>לבנות את התוכן כך שה-AI יצטט אותו, כי שם הקהל כבר מחפש.</p></div>
+    <div class="card grow toolcard" data-a="up" style="--d:1250;--accent:var(--gold)"><svg class="ic"><use href="#i-mic"/></svg><h3>מה שאי אפשר לזייף</h3><p>נוכחות חיה, קהילה וקול אנושי מזוהה. כשהכול סינתטי, זה הנכס היקר ביותר.</p></div>
+  </div>
+  <div class="src"><b>מקורות:</b> Brand, Israeli &amp; Ngwe, Harvard Business School (2023); Maier et al., arXiv:2510.08338 (2025); Pew Research Center (2025)</div>
+</section>
+
+<!-- =================== 43 · המשפט האחרון =================== -->
+<section class="slide center" data-sec="end" data-bare>
+  <canvas class="wave" style="opacity:.55"></canvas>
+  <p class="h2" data-a="blur" style="--d:600;color:var(--soft);position:relative">זו לא עוד המצאה.</p>
+  <span class="mask" style="position:relative;margin-top:30px"><p class="h1 grad glowtext" data-a="rise" style="--d:2000;font-size:130px">זו ההמצאה שתמציא את כל השאר.</p></span>
+</section>
+
+<!-- =================== 44 · שאלות =================== -->
+<section class="slide center" data-sec="end">
+  <span class="mask"><h2 class="h1 grad glowtext" data-a="rise" style="--d:200;font-size:240px">שאלות?</h2></span>
+  <p class="lead" data-a="up" style="--d:900;margin-top:40px">הפעם התשובות יגיעו מבן אדם.</p>
+</section>
+
+<div id="hud"><div class="count" id="count"></div><div class="bar" id="progress"></div></div>
+</div></div>
+
+<style>
+@keyframes coin{0%{transform:rotateY(0)}100%{transform:rotateY(360deg)}}
+@keyframes needle{0%,100%{transform:rotate(-62deg)}50%{transform:rotate(62deg)}}
+.chipfly{opacity:0;transform:translateX(-60px);transition:all 1.2s var(--ease);transition-delay:calc(var(--d) * 1ms)}
+.slide.active .chipfly{opacity:1;transform:none}
+.slide.active .vbar{transform:none!important}
+.static .vbar,.static .chipfly{transition:none!important}
+</style>
+<script>
+/* voice options for the opening (see voices.html) */
+window.VOICES = {
+  a1: 'https://d8j0ntlcm91z4.cloudfront.net/user_3JwPqPlFZMwWGo5yb9sYlm4It59/hf_20261021_210731_3ad61225-de8e-461b-a3b0-042deb2b0713.mp3',
+  a2: 'https://d8j0ntlcm91z4.cloudfront.net/user_3JwPqPlFZMwWGo5yb9sYlm4It59/hf_20261021_210732_686d2151-a7e3-44c9-8033-d3b903e0a7ac.mp3',
+  b: 'https://d8j0ntlcm91z4.cloudfront.net/user_3JwPqPlFZMwWGo5yb9sYlm4It59/hf_20261021_210732_e37025e7-4a22-4863-9221-552e00c17bdb.mp3',
+  c: 'https://d8j0ntlcm91z4.cloudfront.net/user_3JwPqPlFZMwWGo5yb9sYlm4It59/hf_20261021_211044_7d28c5b4-1d88-485a-b369-43a58fe661af.mp3'
+};
+/* slide 10: unit-distance lattice */
+(() => {
+  const svg = document.getElementById('lattice'), ns = 'http://www.w3.org/2000/svg', s = 92, pts = [];
+  for (let r = 0; r < 6; r++) for (let c = 0; c < 6; c++) pts.push([70 + c * s + (r % 2) * s / 2, 80 + r * s * Math.sqrt(3) / 2]);
+  let k = 0;
+  pts.forEach((a, i) => pts.forEach((b, j) => {
+    if (j <= i) return; const d = Math.hypot(a[0] - b[0], a[1] - b[1]);
+    if (Math.abs(d - s) < 1) { const l = document.createElementNS(ns, 'path'); l.setAttribute('d', `M${a[0]} ${a[1]}L${b[0]} ${b[1]}`); l.setAttribute('class', 'draw'); l.setAttribute('stroke', k % 3 ? 'rgba(139,92,255,.7)' : '#38E8FF'); l.setAttribute('stroke-width', '3'); l.style.setProperty('--d', 300 + (k++) * 22); svg.appendChild(l); }
+  }));
+  pts.forEach((p, i) => { const c = document.createElementNS(ns, 'circle'); c.setAttribute('cx', p[0]); c.setAttribute('cy', p[1]); c.setAttribute('r', 9); c.setAttribute('fill', '#EEF2FF'); c.setAttribute('style', 'filter:drop-shadow(0 0 8px #38E8FF)'); svg.appendChild(c); });
+})();
+</script>
+<script>
+/* game images load from the web; show a clear placeholder if offline */
+document.querySelectorAll('.pane img').forEach(img => {
+  const fail = () => { const d = document.createElement('div'); d.className = 'miss'; d.textContent = 'התמונה נטענת מהאינטרנט. בדקו שיש חיבור.'; img.replaceWith(d); };
+  if (img.complete && !img.naturalWidth) fail(); else img.addEventListener('error', fail);
+});
+</script>
+<script src="deck.js"></script>
+<script>
+/* slide 8: a straight chain of amino acids folds into a 3D-looking shape */
+(() => {
+  const svg = document.getElementById('protein'), ns = 'http://www.w3.org/2000/svg';
+  const A = Array.from({ length: 16 }, (_, i) => [40 + i * 37.3, 320]);
+  const B = [[190,210],[270,140],[370,130],[450,185],[430,280],[335,305],[245,275],[175,340],[195,440],[285,490],[385,480],[455,410],[520,320],[500,225],[330,395],[300,235]];
+  svg.innerHTML = '<defs><linearGradient id="gpr" gradientUnits="userSpaceOnUse" x1="100" y1="100" x2="560" y2="540"><stop offset="0" stop-color="#38E8FF"/><stop offset=".5" stop-color="#8B5CFF"/><stop offset="1" stop-color="#FF3DCB"/></linearGradient></defs>';
+  const path = document.createElementNS(ns, 'path');
+  path.setAttribute('fill', 'none'); path.setAttribute('stroke', 'url(#gpr)'); path.setAttribute('stroke-width', '10'); path.setAttribute('stroke-linecap', 'round');
+  path.style.filter = 'drop-shadow(0 0 12px rgba(139,92,255,.8))'; svg.appendChild(path);
+  const beads = A.map((p, i) => { const c = document.createElementNS(ns, 'circle'); c.setAttribute('r', i % 3 ? 11 : 15); c.setAttribute('fill', ['#38E8FF', '#8B5CFF', '#FF3DCB'][i % 3]); c.style.filter = 'drop-shadow(0 0 10px currentColor)'; svg.appendChild(c); return c; });
+  const ease = t => 1 - Math.pow(1 - t, 3);
+  function draw(t) {
+    const P = A.map((a, i) => { const k = ease(Math.min(1, Math.max(0, t * 1.25 - i * 0.016))); return [a[0] + (B[i][0] - a[0]) * k, a[1] + (B[i][1] - a[1]) * k]; });
+    let d = 'M' + P[0][0] + ' ' + P[0][1];
+    for (let i = 0; i < P.length - 1; i++) {
+      const p0 = P[i - 1] || P[i], p1 = P[i], p2 = P[i + 1], p3 = P[i + 2] || p2;
+      d += ` C${p1[0] + (p2[0] - p0[0]) / 6} ${p1[1] + (p2[1] - p0[1]) / 6} ${p2[0] - (p3[0] - p1[0]) / 6} ${p2[1] - (p3[1] - p1[1]) / 6} ${p2[0]} ${p2[1]}`;
+    }
+    path.setAttribute('d', d);
+    P.forEach((p, i) => { beads[i].setAttribute('cx', p[0]); beads[i].setAttribute('cy', p[1]); });
+  }
+  const STATIC = document.documentElement.classList.contains('static');
+  let raf;
+  const go = () => {
+    cancelAnimationFrame(raf); draw(STATIC ? 1 : 0); if (STATIC) return;
+    const t0 = performance.now() + 900;
+    const tick = now => { const t = Math.min(1, Math.max(0, (now - t0) / 3400)); draw(t); if (t < 1) raf = requestAnimationFrame(tick); };
+    raf = requestAnimationFrame(tick);
+  };
+  const s = svg.closest('.slide'); draw(0);
+  s.addEventListener('slideenter', go); if (s.classList.contains('active')) go();
+})();
+</script>
+</body>
+</html>
