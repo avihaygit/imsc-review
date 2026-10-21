@@ -44,7 +44,7 @@
 <!-- =================== 01 · קול בחושך =================== -->
 <section class="slide center" data-sec="open" data-bare>
   <canvas class="wave"></canvas>
-  <audio data-voice="a1" preload="auto"></audio>
+  <audio data-voice="m1" preload="auto"></audio>
   <i data-step="1" hidden></i>
   <div class="hint" data-a="fade" style="--d:1600">לחצו כדי להפעיל את הקול</div>
 </section>
@@ -60,7 +60,7 @@
 
 <!-- =================== 03 · שלוש שאלות =================== -->
 <section class="slide mid" data-sec="open">
-  <div class="kicker" data-a="fade">שלוש שאלות להערב</div>
+  <div class="kicker" data-a="fade">שלוש שאלות לבוקר הזה</div>
   <div style="position:relative;margin-top:40px;padding-right:110px">
     <svg style="position:absolute;right:30px;top:40px" width="20" height="520"><path class="draw" d="M10 0V520" stroke="url(#gq)" stroke-width="2" fill="none" style="--d:300"/><defs><linearGradient id="gq" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="520"><stop offset="0" stop-color="#38E8FF"/><stop offset="1" stop-color="#FF3DCB"/></linearGradient></defs></svg>
     <div class="col" style="gap:70px">
@@ -732,6 +732,8 @@
 <script>
 /* voice options for the opening (see voices.html) */
 window.VOICES = {
+  m1: 'https://d8j0ntlcm91z4.cloudfront.net/user_3JwPqPlFZMwWGo5yb9sYlm4It59/hf_20261021_214008_cd2ceeb4-fe76-4588-bf71-4a5b0b53b666.mp3',
+  m2: 'https://d8j0ntlcm91z4.cloudfront.net/user_3JwPqPlFZMwWGo5yb9sYlm4It59/hf_20261021_214007_b32c6bc1-cdf7-4d92-a1c2-4dd92d187b69.mp3',
   a1: 'https://d8j0ntlcm91z4.cloudfront.net/user_3JwPqPlFZMwWGo5yb9sYlm4It59/hf_20261021_210731_3ad61225-de8e-461b-a3b0-042deb2b0713.mp3',
   a2: 'https://d8j0ntlcm91z4.cloudfront.net/user_3JwPqPlFZMwWGo5yb9sYlm4It59/hf_20261021_210732_686d2151-a7e3-44c9-8033-d3b903e0a7ac.mp3',
   b: 'https://d8j0ntlcm91z4.cloudfront.net/user_3JwPqPlFZMwWGo5yb9sYlm4It59/hf_20261021_210732_e37025e7-4a22-4863-9221-552e00c17bdb.mp3',
