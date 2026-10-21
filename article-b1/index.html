@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex">
+<title>מאמר B1 · איך עובד בוטוקס לספסטיות · IMSC</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap">
+<style>
+/* ===== Brand tokens: swap these per project (light first, then dark) ===== */
+:root{
+  --bg:#F3F0E8; --surface:#FFFFFF; --ink:#0A2350; --muted:#4F5E78; --line:#DCD6C8;
+  --accent:#06265A; --accent-ink:#F5F1E8; --hi:#0A7D7D; --hi-soft:#DDF1EF; --chg:#8A6614; --chg-soft:#F6ECD2;
+  --field:#FFFFFF; --ok:#1E7A52; --ok-soft:#DDF1E6; --warn:#A04C0C; --warn-soft:#FBE8D6; --shadow:0 12px 30px rgba(6,38,90,.14);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#071A3A; --surface:#0E2750; --ink:#EEF2FA; --muted:#A8B7D0; --line:#23406E;
+    --accent:#12BCBC; --accent-ink:#06265A; --hi:#12BCBC; --hi-soft:#123E55; --chg:#E0BC6A; --chg-soft:#3A2F16;
+    --field:#0A2045; --ok:#5DD39E; --ok-soft:#173A2B; --warn:#F0A25E; --warn-soft:#432A12; --shadow:0 12px 30px rgba(0,0,0,.35); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#071A3A; --surface:#0E2750; --ink:#EEF2FA; --muted:#A8B7D0; --line:#23406E;
+  --accent:#12BCBC; --accent-ink:#06265A; --hi:#12BCBC; --hi-soft:#123E55; --chg:#E0BC6A; --chg-soft:#3A2F16;
+  --field:#0A2045; --ok:#5DD39E; --ok-soft:#173A2B; --warn:#F0A25E; --warn-soft:#432A12; --shadow:0 12px 30px rgba(0,0,0,.35); color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Assistant","Arial Hebrew",Arial,sans-serif;font-size:17px;line-height:1.6}
+.wrap{direction:rtl;max-width:980px;margin:0 auto;padding-inline:16px;padding-block:0 96px}
+h1,h2{font-weight:800;line-height:1.15;margin:0;text-wrap:balance}
+h1{font-size:clamp(1.9rem,4.5vw,2.6rem)} h2{font-size:1.45rem}
+p{margin:.5rem 0}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:12px 10px;border-bottom:1px solid var(--line)}
+.top .row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-weight:800;color:var(--hi);letter-spacing:.02em}
+.progress{font-size:.92rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.bar{height:5px;background:var(--line);border-radius:99px;margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--hi);transition:width .3s ease}
+.intro{padding-block:28px 12px;display:grid;gap:10px}
+.intro p{color:var(--muted);max-width:62ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.facts span{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:.9rem;font-weight:600}
+.player{margin-top:14px;max-width:340px}
+.player video{display:block;width:100%;border-radius:14px;background:#000;box-shadow:var(--shadow)}
+.items{display:grid;gap:28px;margin-top:20px}
+.item{display:grid;grid-template-columns:minmax(0,250px) minmax(0,1fr);gap:24px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.item.noimg{grid-template-columns:1fr}
+.shot img{display:block;width:100%;border-radius:12px;box-shadow:var(--shadow);max-width:100%}
+.meta{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.num{font-weight:800;color:var(--hi);font-size:1.5rem;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);font-size:.9rem;font-variant-numeric:tabular-nums}
+.chg{display:inline-block;background:var(--chg-soft);color:var(--chg);font-size:.78rem;font-weight:800;padding:.05em .6em;border-radius:99px;vertical-align:middle}
+.changed{background:var(--chg-soft);border-radius:10px;padding:8px 12px;margin-top:10px;font-size:.95rem}
+.label{font-size:.8rem;font-weight:800;letter-spacing:.06em;color:var(--muted);margin-top:14px}
+.quote{background:var(--hi-soft);border-radius:10px;padding:8px 12px;font-weight:700;margin-top:4px;white-space:pre-line}
+.body{margin-top:4px;white-space:pre-line;overflow-wrap:anywhere}
+.jump{font:inherit;font-weight:700;font-size:.9rem;color:var(--hi);background:var(--hi-soft);border:0;border-radius:999px;padding:6px 14px;margin-top:10px;cursor:pointer;min-height:36px}
+.answer{margin-top:16px}
+.answer label{display:block;font-weight:800;margin-bottom:6px}
+textarea{width:100%;min-height:96px;resize:vertical;font:inherit;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:10px;padding:10px 12px;direction:rtl}
+textarea:focus,.jump:focus-visible{outline:2px solid var(--hi);outline-offset:1px}
+.status{font-size:.85rem;color:var(--muted);margin-top:4px;min-height:1.3em}
+.status.ok{color:var(--ok)} .status.warn{color:var(--warn)}
+.general{margin-top:28px;background:var(--chg-soft);border-radius:18px;padding:18px}
+.send{margin-top:28px;padding-top:22px;border-top:2px solid var(--hi)}
+.send .box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.send .hint{color:var(--muted);font-size:.95rem;flex:1 1 240px}
+button.primary{font:inherit;font-weight:800;background:var(--accent);color:var(--accent-ink);border:0;border-radius:999px;padding:12px 32px;cursor:pointer;min-height:44px}
+button.primary:disabled{opacity:.55;cursor:default}
+button.primary:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.sent{background:var(--ok-soft);color:var(--ok);border-radius:10px;padding:10px 14px;font-weight:700}
+@media (max-width:640px){ .item{grid-template-columns:1fr;padding:14px} .shot{max-width:280px;margin-inline:auto;width:100%} }
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="row"><span class="brand" id="brand"></span><span class="progress" id="progress"></span></div>
+    <div class="bar"><i id="barfill"></i></div>
+  </header>
+  <section class="intro">
+    <h1 id="h1"></h1>
+    <p id="intro"></p>
+    <div class="facts" id="facts"></div>
+    <div class="player" id="player" hidden></div>
+  </section>
+  <div class="items" id="items"></div>
+  <section class="general">
+    <h2>הערה כללית</h2>
+    <p id="general-hint"></p>
+    <div class="answer"><label for="a-general">ההערה שלי</label><textarea id="a-general" data-key="general" placeholder="כל מה שלא שייך לפריט אחד"></textarea><div class="status" id="st-general"></div></div>
+  </section>
+  <div class="send" id="sendwrap">
+    <div class="box"><div class="hint" id="sendhint"><label for="who" style="font-weight:700;display:block;margin-bottom:4px">השם שלכם <span style="color:var(--warn)">(חובה)</span></label><input id="who" type="text" autocomplete="name" required aria-required="true" aria-describedby="who-err" style="font:inherit;width:100%;max-width:280px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--field);color:var(--ink)"><div id="who-err" role="alert" style="color:var(--warn);font-weight:700;margin-top:4px" hidden>כדי לשמור צריך לכתוב שם.</div><div style="margin-top:6px">כשסיימתם, כתבו שם ולחצו "שמור". כל ההערות יישמרו, ואנחנו נקבל עליהן הודעה. תיבה ריקה = מאושר.</div></div><button class="primary" id="sendbtn" type="button">שמור</button></div>
+  </div>
+</div>
+
+<script>
+/* ===================== CONFIG — the only part to edit per review ===================== */
+const CONFIG = {
+ "brand": "IMSC · מאגר המידע · מאמר B1 לאישור · סבב 1",
+ "h1": "איך עובד בוטוקס לספסטיות? הסבר פשוט",
+ "intro": "זו טיוטה של מאמר B1 במאגר המידע באתר, מחולקת לפסקאות. מתחת לכל פסקה יש תיבה: כתבו רק מה שצריך לשנות, ותיבה ריקה = מאושר. בסוף יש 8 עובדות לאימות ו-3 שאלות קצרות לראיון. כשמסיימים, כותבים שם ולוחצים \"שמור\". אפשר לחזור ולהמשיך מאוחר יותר.",
+ "facts": [
+  "29 פסקאות",
+  "8 עובדות לאימות",
+  "3 שאלות לראיון",
+  "כ-1,300 מילים"
+ ],
+ "video": null,
+ "generalHint": "על המאמר כולו: הטון, האורך, מה חסר או מה מיותר.",
+ "doc": "reviews/article-b1-v1",
+ "ls": "imsc-article-b1-v1",
+ "sendTitle": "הערות למאמר B1 \"איך עובד בוטוקס לספסטיות\", סבב 1:",
+ "itemWord": "פריט",
+ "items": [
+  {
+   "k": "p01",
+   "n": "01",
+   "t": "בקצרה (תיבה בראש המאמר)",
+   "body": "• בוטולינום טוקסין (המוכר בשם בוטוקס) חוסם באופן זמני את האות שהעצב שולח לשריר. השריר הספסטי מתכווץ פחות.\n• הוא פועל רק בשרירים שהוזרקו, וההשפעה הפיכה.\n• ההשפעה מגיעה לשיא אחרי שבועיים עד שלושה ונמשכת שלושה עד ארבעה חודשים.\n• הוא לא מחזק שרירים ולא מלמד את היד לעבוד. את זה בונים בשיקום."
+  },
+  {
+   "k": "p02",
+   "n": "02",
+   "t": "פתיחה",
+   "body": "הרופא הציע זריקה לשריר הנוקשה, ומשהו בזה מרגיש לכם מוזר, כי בוטולינום טוקסין (בוטוקס) מוכר מקליניקות קוסמטיות, והשם שלו מזכיר רעל. במאמר הזה תמצאו הסבר פשוט על הזרקת בוטולינום טוקסין לספסטיות: מה החומר עושה בתוך השריר, מה הוא לא עושה ולמה מזריקים אותו דווקא לשריר מסוים ולא לאחר."
+  },
+  {
+   "k": "p03",
+   "n": "03",
+   "t": "למה השריר הספסטי מתכווץ גם כשלא רוצים?",
+   "body": "אחרי פגיעה במוח או בחוט השדרה, למשל אירוע מוחי (שבץ מוחי), פגיעת ראש או טרשת נפוצה, הבקרה על השרירים משתבשת: המוח כבר לא מרסן את הרפלקסים כמו פעם. לכן השריר מקבל יותר מדי אותות \"להתכווץ\", והוא מגיב למתיחה בהתכווצות מוגזמת, במיוחד כשמזיזים את הגף מהר. כך נוצרת יד שנסגרת לאגרוף, מרפק שנשאר כפוף, או כף רגל שמצביעה למטה בזמן ההליכה."
+  },
+  {
+   "k": "p04",
+   "n": "04",
+   "t": "למה השריר הספסטי מתכווץ גם כשלא רוצים?",
+   "body": "הסבר מלא על הסיבות ועל הסימנים תמצאו במאמר מה זה ספסטיות ואיך מזהים אותה. כאן חשוב דבר אחד: הבעיה מתחילה במערכת העצבים, אבל היא מתבטאת בשריר. בוטולינום טוקסין עובד בדיוק בנקודה שבה העצב פוגש את השריר."
+  },
+  {
+   "k": "p05",
+   "n": "05",
+   "t": "מה בוטולינום טוקסין עושה בשריר ספסטי?",
+   "body": "כדי שהשריר יתכווץ, קצה העצב משחרר חומר שנקרא אצטילכולין, שהוא השליח שמעביר את ההוראה מהעצב לשריר. בוטולינום טוקסין נכנס לקצה העצב ופוגע בחלבון שהעצב צריך כדי לשחרר את השליח הזה, וכתוצאה מכך פחות שליח יוצא, פחות אותות מגיעים לשריר, והשריר נרגע."
+  },
+  {
+   "k": "p06",
+   "n": "06",
+   "t": "מה בוטולינום טוקסין עושה בשריר ספסטי?",
+   "body": "אפשר לחשוב על זה כמו על הנמכת ווליום בשריר אחד. החשמל בבית ממשיך לעבוד, והעצב עצמו לא נפגע. רק העוצמה שמגיעה לשריר הזה יורדת."
+  },
+  {
+   "k": "p07",
+   "n": "07",
+   "t": "מה בוטולינום טוקסין עושה בשריר ספסטי?",
+   "body": "שתי תכונות הופכות את החומר לשימושי בספסטיות. הראשונה היא מיקוד: החומר נשאר בעיקר באזור שהוזרק, ולכן אפשר לבחור לרכך את השרירים שסוגרים את כף היד בלי לגעת בשרירים שפותחים אותה. השנייה היא הפיכות: הגוף משקם את קצות העצבים, וההשפעה נעלמת בהדרגה."
+  },
+  {
+   "k": "p08",
+   "n": "08",
+   "t": "מה בוטולינום טוקסין עושה בשריר ספסטי?",
+   "body": "המיקוד הזה הוא גם הסיבה שבחירת השרירים כל כך חשובה. אגרוף סגור, למשל, יכול לנבוע משרירים שונים: חלקם מכופפים את האצבעות, חלקם את שורש כף היד, וחלקם יושבים עמוק באמה. אם מזריקים לשריר הלא נכון, היד עלולה להיחלש בלי שהבעיה תיפתר. בגלל זה, לפני הזרקה בודקים איזה שריר מושך, באיזו תנוחה ובאיזו פעולה."
+  },
+  {
+   "k": "p09",
+   "n": "09",
+   "t": "מה בוטולינום טוקסין עושה בשריר ספסטי?",
+   "body": "זה ההבדל העיקרי מתרופות בבליעה כמו בקלופן. תרופה בכדור מגיעה לכל הגוף, ולעיתים גורמת לישנוניות או לחולשה כללית. לעומת זאת, זריקה מקומית מתאימה יותר כשהבעיה מרוכזת בכמה שרירים. על התרופות בבליעה, ומתי משלבים ביניהן, תמצאו במאמר ספסטיות ובקלופן: מה התרופה עושה ומה לא."
+  },
+  {
+   "k": "p10",
+   "n": "10",
+   "t": "כמה זמן לוקח עד שמרגישים, ולמה ההשפעה זמנית?",
+   "body": "ההשפעה לא מיידית, כי החומר צריך זמן כדי לפעול בתוך קצות העצבים. השינוי נבנה בהדרגה, והשיא מגיע בדרך כלל שבועיים עד שלושה אחרי ההזרקה. מה מרגישים בכל שלב, ומה נחשב תקין, מפורט במאמר מה מרגישים אחרי בוטוקס לספסטיות."
+  },
+  {
+   "k": "p11",
+   "n": "11",
+   "t": "כמה זמן לוקח עד שמרגישים, ולמה ההשפעה זמנית?",
+   "body": "ההשפעה נמשכת שלושה עד ארבעה חודשים, שבמהלכם העצב בונה מחדש את היכולת להעביר אותות, והנוקשות חוזרת לאט. למה זה קורה, ואיך מחליטים אם להזריק שוב, מוסבר במאמר כמה זמן בוטוקס מחזיק ולמה חוזרים."
+  },
+  {
+   "k": "p12",
+   "n": "12",
+   "t": "מה ההזרקה לא עושה?",
+   "body": "החומר מרפה שריר, אבל הוא לא מחזק את השרירים החלשים שמולו, לא משפר שיווי משקל ולא מרפא את הפגיעה במוח שגרמה לספסטיות. אם השריר או הגיד כבר התקצרו והתקבעו (קונטרקטורה), הרפיית השריר לא תפתח את המפרק."
+  },
+  {
+   "k": "p13",
+   "n": "13",
+   "t": "מה ההזרקה לא עושה?",
+   "body": "גם תנועה שלא הייתה קודם לא תופיע מעצמה. אם לפני ההזרקה לא הצלחתם ליישר את האצבעות בכוחות עצמכם, הרפיית השרירים שסוגרים אותן תקל על מי שעוזר לכם לפתוח את היד, אבל לא בהכרח יחזיר לכם את היכולת לפתוח אותה לבד."
+  },
+  {
+   "k": "p14",
+   "n": "14",
+   "t": "מה ההזרקה לא עושה?",
+   "body": "לכן ההזרקה היא נקודת התחלה. כשהשריר מושך פחות, נפתח זמן לעבוד: להאריך את השריר, לתרגל תנועה בטווח החדש ולהתאים סד. במחקר מבוקר שנערך אצל מטופלים עם ספסטיות ביד אחרי שבץ, מי שקיבלו הזרקה יחד עם תוכנית שיקום השתפרו בתפקוד המוטורי, ואילו מי שקיבלו הזרקה בלבד נשארו במקום."
+  },
+  {
+   "k": "p15",
+   "n": "15",
+   "t": "מה ההזרקה לא עושה?",
+   "body": "יש גם ממצא מעניין מתחום הדימות: מחקר שבדק פעילות מוח ב-MRI תפקודי מצא שאחרי הזרקה לשרירי היד משתנה זמנית הפעילות באזורים במוח שמעבדים תחושה ותנועה. ההסבר המשוער הוא שהשריר הרך שולח למוח מידע אחר. עם זאת, המחקר קטן, והמשמעות המעשית שלו עוד לא ברורה."
+  },
+  {
+   "k": "p16",
+   "n": "16",
+   "t": "באילו מצבים ההזרקה מתאימה?",
+   "body": "הטיפול מתאים בעיקר כשהספסטיות ממוקדת בכמה שרירים ומפריעה לתפקוד כלשהו. הדוגמאות הנפוצות: כף יד סגורה שקשה לפתוח כדי לנקות אותה, מרפק כפוף שמקשה להכניס יד לשרוול, או כף רגל שמצביעה למטה ונתקעת ברצפה בזמן ההליכה. על היד בפירוט, מהכתף ועד האצבעות, תמצאו במאמר ספסטיות ביד. על הקרסול וההליכה, במאמר ספסטיות ברגליים."
+  },
+  {
+   "k": "p17",
+   "n": "17",
+   "t": "באילו מצבים ההזרקה מתאימה?",
+   "body": "המטרה יכולה להיות קטנה ומדידה: שהבת תצליח לגזור ציפורניים בלי מאבק, שהעקב ייגע ברצפה בתוך הנעל או שהשריר יפסיק להתכווץ בכאב בלילה. כשהכאב קשור לעוויתות ולנוקשות, הרפיית השריר יכולה להקל. על הקשר בין השניים תמצאו במאמר ספסטיות וכאב: מה הקשר ומה עוזר."
+  },
+  {
+   "k": "p18",
+   "n": "18",
+   "t": "באילו מצבים ההזרקה מתאימה?",
+   "body": "הזמן שעבר מהפגיעה לא פוסל את הטיפול. גם שנים אחרי אירוע מוחי אפשר לשפר טווח תנועה, כאב ותפקוד. מה שכן משתנה עם הזמן הוא הסיכוי שהשריר כבר התקצר, ולכן כדאי לבדוק מוקדם ולא לחכות."
+  },
+  {
+   "k": "p19",
+   "n": "19",
+   "t": "באילו מצבים ההזרקה מתאימה?",
+   "body": "יש גם מצבים שבהם הזריקה היא לא הכלי הנכון. למשל, כשהספסטיות מפושטת בכל הגוף, אי אפשר להזריק לכל השרירים, ולרוב שוקלים טיפול אחר. יש מטופלים שנשענים על הנוקשות ברגל כדי לעמוד, ואז הרפיית יתר עלולה להזיק. משום כך, ההחלטה אילו שרירים להזריק, ואם בכלל, מתקבלת רק אחרי הערכה תפקודית מקיפה של צוות רב-תחומי שכולל פיזיותרפיסט ומרפאה בעיסוק."
+  },
+  {
+   "k": "p20",
+   "n": "20",
+   "t": "האם הטיפול בטוח?",
+   "body": "בוטולינום טוקסין נמצא בשימוש רפואי בספסטיות כבר עשרות שנים. תופעות הלוואי הנפוצות קלות וחולפות: רגישות במקום הדקירה, חולשה זמנית בשריר שהוזרק או בשריר סמוך ולפעמים תחושה דמוית שפעת בימים הראשונים."
+  },
+  {
+   "k": "p21",
+   "n": "21",
+   "t": "האם הטיפול בטוח?",
+   "body": "במקרים נדירים החומר משפיע גם הרחק ממקום ההזרקה, ויכול לגרום לקושי בבליעה, בדיבור או בנשימה. זה יכול לקרות שעות עד שבועות אחרי ההזרקה, ודורש פנייה מיידית לעזרה רפואית. את רשימת הסימנים המלאה, ומה לעשות, תמצאו במאמר על מה מרגישים אחרי בוטוקס לספסטיות."
+  },
+  {
+   "k": "p22",
+   "n": "22",
+   "t": "מה חשוב לדעת בישראל?",
+   "body": "ב-IMSC אין צורך בהפניה כדי להגיע, אבל כן כדאי להביא תיעוד רפואי, כי ההחלטה על הזרקה מתבססת על כל התמונה: האבחנה, התרופות והטיפולים הקודמים. ההחלטה מתקבלת במפגש הערכה רב-צוותי שנמשך לפחות שעה, עם ד״ר צווקר, מרפאה בעיסוק ופיזיותרפיסט. ההזרקות נעשות בהנחיית אולטרסאונד, ובמידת הצורך גם תחת גירוי חשמלי, במגדלי ב.ס.ר 2 בבני ברק. מה להביא ומה לשאול לפני המפגש מפורט במאמר הכנה להזרקת בוטוקס: מה להביא ומה לשאול."
+  },
+  {
+   "k": "p23",
+   "n": "23",
+   "t": "מתי כדאי לבדוק אם ההזרקה מתאימה לכם?",
+   "body": "• כף היד נסגרת והעור בתוכה מגורה או קשה לניקוי.\n• הלבשה, רחצה או החלפת חיתול נעשות מאבק יומיומי בגלל נוקשות.\n• כף הרגל מצביעה למטה או פונה פנימה, והנעל או הסד לא נכנסים כמו פעם.\n• עוויתות או כאב בשריר מעירים משינה.\n• הנוקשות החמירה למרות תרגול קבוע או תרופות בבליעה."
+  },
+  {
+   "k": "p24",
+   "n": "24",
+   "t": "שאלות שחוזרות",
+   "body": "האם ההזרקה כואבת?\nמדובר בהזרקות עדינות עם מחט דקה. רוב המטופלים מדווחים על אי-נוחות קצרה ולא על כאב משמעותי."
+  },
+  {
+   "k": "p25",
+   "n": "25",
+   "t": "שאלות שחוזרות",
+   "body": "האם החומר נכנס לכל הגוף?\nהחומר פועל בעיקר בשריר שהוזרק ובסביבתו הקרובה. התפשטות של ההשפעה למקום רחוק היא נדירה, ולכן חשוב להכיר את סימני האזהרה ולפנות מיד לעזרה רפואית אם הם מופיעים."
+  },
+  {
+   "k": "p26",
+   "n": "26",
+   "t": "שאלות שחוזרות",
+   "body": "אם ההזרקה עובדת, אפשר להפסיק את התרופות בכדורים?\nלפעמים כן, ולפעמים משלבים. ההחלטה על שינוי תרופות היא של הרופא המטפל, ולכן לא מפסיקים בקלופן בבת אחת על דעת עצמכם."
+  },
+  {
+   "k": "p27",
+   "n": "27",
+   "t": "שאלות שחוזרות",
+   "body": "האם השריר נחלש לתמיד?\nלא, ההשפעה הפיכה: הגוף משקם את קצות העצבים, והשריר חוזר בהדרגה למצבו אחרי שלושה עד ארבעה חודשים.\nאם אתם שוקלים הזרקת בוטולינום טוקסין ורוצים לדעת אם היא מתאימה לכם, אפשר להתחיל בשיחת היכרות קצרה. מידע על הטיפול אצלנו תמצאו בעמוד הזרקות בוטוקס רפואי לספסטיות."
+  },
+  {
+   "k": "p28",
+   "n": "28",
+   "t": "מקורות מידע (באתר: אקורדיון מקופל)",
+   "body": "• Royal College of Physicians, British Society of Rehabilitation Medicine, Chartered Society of Physiotherapy, Association of Chartered Physiotherapists in Neurology & Royal College of Occupational Therapists (2018). Spasticity in adults: management using botulinum toxin. National guidelines. https://www.rcp.ac.uk/improving-care/resources/spasticity-in-adults-management-using-botulinum-toxin/\n• Ayoub, N. (2025). Botulinum toxin therapy: A comprehensive review on clinical and pharmacological insights. Journal of Clinical Medicine, 14(6), 2021. https://doi.org/10.3390/jcm14062021\n• Devier, D., Harnar, J., Lopez, L., Brashear, A., & Graham, G. (2017). Rehabilitation plus onabotulinumtoxinA improves motor function over onabotulinumtoxinA alone in post-stroke upper limb spasticity: A single-blind, randomized trial. Toxins, 9(7), 216. https://doi.org/10.3390/toxins9070216\n• Veverka, T., Hok, P., Otruba, P., et al. (2019). Botulinum toxin modulates posterior parietal cortex activation in post-stroke spasticity of the upper limb. Frontiers in Neurology, 10, 495. https://doi.org/10.3389/fneur.2019.00495\n• U.S. Food and Drug Administration (2023). OnabotulinumtoxinA: Prescribing information (boxed warning: distant spread of toxin effect). https://www.accessdata.fda.gov/drugsatfda_docs/label/2023/103000s5327lbl.pdf"
+  },
+  {
+   "k": "p29",
+   "n": "29",
+   "t": "גילוי נאות",
+   "body": "המידע כללי ואינו מחליף ייעוץ רפואי אישי. התאמת טיפול נעשית על ידי רופא מטפל."
+  },
+  {
+   "k": "v1",
+   "n": "א1",
+   "t": "עובדה לאימות",
+   "body": "הסבר המנגנון (אצטילכולין, פגיעה בחלבון בקצה העצב, שיקום קצות העצבים) פושט לקורא. האם הפישוט מקובל עליך?",
+   "sub": "פסקה 05"
+  },
+  {
+   "k": "v2",
+   "n": "א2",
+   "t": "עובדה לאימות",
+   "body": "\"החומר פועל בעיקר בשריר שהוזרק\", והתפשטות להשפעה רחוקה \"נדירה\" ויכולה להופיע \"שעות עד שבועות\" אחרי ההזרקה (לפי תווית ה-FDA). האם המילה \"נדירה\" מדויקת?",
+   "sub": "פסקאות 07, 16, 25"
+  },
+  {
+   "k": "v3",
+   "n": "א3",
+   "t": "עובדה לאימות",
+   "body": "המחקר על שיקום אחרי הזרקה (Devier 2017: 31 מטופלים, שיקום שבועי 24 שבועות, שיפור רק בקבוצת השיקום). האם הניסוח \"נשארו במקום\" נכון?",
+   "sub": "פסקה 14"
+  },
+  {
+   "k": "v4",
+   "n": "א4",
+   "t": "עובדה לאימות",
+   "body": "הפסקה על מחקר ה-MRI התפקודי (Veverka 2019, שינוי זמני בפעילות המוח). מחקר קטן: להשאיר את הפסקה או להוריד?",
+   "sub": "פסקה 15"
+  },
+  {
+   "k": "v5",
+   "n": "א5",
+   "t": "עובדה לאימות",
+   "body": "\"יש מטופלים שנשענים על הנוקשות ברגל כדי לעמוד\" (לפי עמוד השירות). מדויק?",
+   "sub": "פסקה 19"
+  },
+  {
+   "k": "v6",
+   "n": "א6",
+   "t": "עובדה לאימות",
+   "body": "\"אם לפני ההזרקה לא הצלחתם ליישר את האצבעות בכוחות עצמכם\", ההרפיה לא בהכרח תחזיר יכולת לפתוח לבד. מדויק?",
+   "sub": "פסקה 13"
+  },
+  {
+   "k": "v7",
+   "n": "א7",
+   "t": "עובדה לאימות",
+   "body": "דוגמת האגרוף (כופפי האצבעות, כופפי שורש כף היד ושרירים עמוקים באמה) היא פישוט אנטומי. מקובל?",
+   "sub": "פסקאות 03, 08"
+  },
+  {
+   "k": "v8",
+   "n": "א8",
+   "t": "עובדה לאימות",
+   "body": "בשאלות הנפוצות: \"לא מפסיקים בקלופן בבת אחת על דעת עצמכם\". מקובל?",
+   "sub": "פסקה 26"
+  },
+  {
+   "k": "q1",
+   "n": "ש1",
+   "t": "שאלה לראיון: ההסבר בפגישה הראשונה",
+   "sub": "משפט או שניים מספיקים",
+   "body": "כשמטופל ומשפחה שומעים בפעם הראשונה שההמלצה היא הזרקה, מה אתה אומר להם על מה שהזריקה תעשה ומה היא לא תעשה? אפשר לכתוב את המשפטים כמו שאתה אומר אותם."
+  },
+  {
+   "k": "q2",
+   "n": "ש2",
+   "t": "שאלה לראיון: \"זה רעל\"",
+   "sub": "משפט או שניים מספיקים",
+   "body": "מה החששות שאתה שומע ממטופלים ומשפחות כשהם מבינים שבוטולינום טוקסין הוא רעלן, ומה אתה עונה להם?"
+  },
+  {
+   "k": "q3",
+   "n": "ש3",
+   "t": "שאלה לראיון: מתי לא מזריקים",
+   "sub": "משפט או שניים מספיקים",
+   "body": "באילו מצבים אתה אומר למטופל שהזרקה לא תעזור לו כרגע? מה אתה ממליץ במקום, ולאן אתה מפנה?"
+  }
+ ],
+ "inbox": "https://script.google.com/macros/s/AKfycbzEj4lUky1em3ctwa-hol23Hfu5F5paCqut5pzeSTKYG4oaqZSQhPhb5EfFf9ZS16u11w/exec",
+ "project": "article-b1"
+};
+/* ===================================================================================== */
+(function(){
+  document.documentElement.setAttribute('dir','rtl'); document.documentElement.setAttribute('lang','he');
+  const C=CONFIG, $=id=>document.getElementById(id);
+  $('brand').textContent=C.brand; $('h1').textContent=C.h1; $('intro').textContent=C.intro; $('general-hint').textContent=C.generalHint;
+  C.facts.forEach(f=>{ const s=document.createElement('span'); s.textContent=f; $('facts').appendChild(s); });
+  let vid=null;
+  if(C.video){ const p=$('player'); p.hidden=false; vid=document.createElement('video'); vid.src=C.video.src; if(C.video.poster) vid.poster=C.video.poster; vid.controls=true; vid.playsInline=true; vid.preload='metadata'; p.appendChild(vid); }
+  C.items.forEach(it=>{
+    const el=document.createElement('article'); el.className='item'+(it.img?'':' noimg'); el.id='i-'+it.k;
+    el.innerHTML=(it.img?'<div class="shot"><img alt="" loading="lazy"></div>':'')+'<div><div class="meta"><span class="num"></span><h2></h2><span class="sub"></span></div><div class="changed" hidden></div><button class="jump" type="button" hidden>▶ לצפות מכאן</button><div class="label lq" hidden>טקסט</div><div class="quote" hidden></div><div class="label lb" hidden>פירוט</div><div class="body" hidden></div><div class="answer"><label></label><textarea placeholder="רק מה שצריך לשנות. ריק = מאושר"></textarea><div class="status"></div></div></div>';
+    if(it.img){ const im=el.querySelector('img'); im.src=it.img; im.alt=C.itemWord+' '+it.n+': '+it.t; }
+    el.querySelector('.num').textContent=it.n||''; el.querySelector('h2').textContent=it.t; el.querySelector('.sub').textContent=it.sub||'';
+    if(it.ch){ const c=el.querySelector('.changed'); c.hidden=false; c.innerHTML='<span class="chg">שונה</span> '; c.appendChild(document.createTextNode(it.ch)); }
+    if(it.quote){ el.querySelector('.lq').hidden=false; const q=el.querySelector('.quote'); q.hidden=false; q.textContent=it.quote; }
+    if(it.body){ el.querySelector('.lb').hidden=false; const b=el.querySelector('.body'); b.hidden=false; b.textContent=it.body; }
+    if(vid && typeof it.at==='number'){ const j=el.querySelector('.jump'); j.hidden=false; j.addEventListener('click',()=>{ try{ vid.currentTime=it.at; const pr=vid.play(); if(pr&&pr.catch) pr.catch(()=>{}); }catch(e){} vid.scrollIntoView({behavior:'smooth',block:'center'}); }); }
+    const ta=el.querySelector('textarea'); ta.id='a-'+it.k; ta.dataset.key=it.k;
+    const lab=el.querySelector('label'); lab.htmlFor=ta.id; lab.textContent='הערות ל'+C.itemWord+' '+(it.n||it.t);
+    el.querySelector('.status').id='st-'+it.k;
+    $('items').appendChild(el);
+  });
+
+  const ORDER=C.items.map(i=>i.k).concat(['general']);
+  const LABEL={}; C.items.forEach(i=>LABEL[i.k]=C.itemWord+' '+(i.n?i.n+' · ':'')+i.t); LABEL.general='הערה כללית';
+  const areas={}; ORDER.forEach(k=>areas[k]=document.querySelector('textarea[data-key="'+k+'"]'));
+  let docRef=null, comments=null, state={answers:{}}; const timers={};
+  const lsLoad=()=>{ try{ const j=localStorage.getItem(C.ls); return j?JSON.parse(j):null; }catch(e){ return null; } };
+  const lsSave=()=>{ try{ localStorage.setItem(C.ls, JSON.stringify(state)); }catch(e){} };
+  function progress(){ const n=ORDER.filter(k=>(areas[k].value||'').trim()).length; $('progress').textContent=n+' מתוך '+ORDER.length+' תיבות עם הערות'; $('barfill').style.width=(n/ORDER.length*100)+'%'; }
+  function fill(){ ORDER.forEach(k=>{ const v=state.answers[k]||''; if(areas[k].value!==v && document.activeElement!==areas[k]) areas[k].value=v; }); progress(); }
+  function setStatus(k,t,c){ const el=$('st-'+k); if(!el) return; el.textContent=t; el.className='status'+(c?' '+c:''); }
+  async function persist(k){
+    state.answers[k]=areas[k].value; state.updatedAt=new Date().toISOString(); lsSave();
+    if(!docRef){ setStatus(k,'נשמר במכשיר הזה','ok'); return; }
+    try{ await docRef.set({answers:state.answers, updatedAt:state.updatedAt, submittedAt:state.submittedAt||null}); setStatus(k,'נשמר','ok'); }
+    catch(e){ setStatus(k,'השמירה המשותפת לא הצליחה, נשמר בדפדפן הזה בלבד','warn'); }
+  }
+  ORDER.forEach(k=>areas[k].addEventListener('input',()=>{ progress(); setStatus(k,'שומר...'); clearTimeout(timers[k]); timers[k]=setTimeout(()=>persist(k),800); }));
+  const local=lsLoad(); if(local&&local.answers) state=local; fill();
+
+  function collect(){ const notes=[]; ORDER.forEach(k=>{ const v=(areas[k].value||'').trim(); if(v) notes.push({item:LABEL[k], note:v}); }); return notes; }
+  function compile(){ const who=($('who').value||'').trim(); const L=[C.sendTitle+(who?' ('+who+')':'')]; const n=collect();
+    n.forEach(x=>L.push('', '• '+x.item+':', x.note)); if(!n.length) L.push('', '(הכול מאושר, בלי הערות)'); return L.join('\n'); }
+  try{ const w=localStorage.getItem(C.ls+'-who'); if(w) $('who').value=w; }catch(e){}
+  $('who').addEventListener('input',()=>{ try{ localStorage.setItem(C.ls+'-who',$('who').value); }catch(e){} if(($('who').value||'').trim()){ $('who-err').hidden=true; $('who').style.borderColor=''; $('who').removeAttribute('aria-invalid'); } });
+  async function send(){
+    const b=$('sendbtn'); if(b){ b.disabled=true; b.textContent='שומר...'; }
+    ORDER.forEach(k=>{ state.answers[k]=areas[k].value; }); state.updatedAt=new Date().toISOString(); lsSave();
+    const who=($('who').value||'').trim();
+    const box=document.querySelector('#sendwrap .box');
+    if(!who){ if(b){ b.disabled=false; b.textContent='שמור'; } $('who').setAttribute('aria-invalid','true'); $('who').style.borderColor='var(--warn)'; $('who-err').hidden=false; $('who').scrollIntoView({block:'center'}); $('who').focus(); return; }
+    $('who').removeAttribute('aria-invalid'); $('who').style.borderColor=''; $('who-err').hidden=true;
+    let ok=false;
+    if(C.inbox){ try{ await fetch(C.inbox,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({project:C.project||'',round:C.doc,name:who,notes:collect()})}); ok=true; }catch(e){} }
+    let m=box.querySelector('.sent'); if(!m){ m=document.createElement('div'); m.className='sent'; m.setAttribute('role','status'); box.prepend(m); }
+    const fb=$('fallbacktext'); if(fb) fb.remove();
+    if(ok){ m.style.cssText=''; m.textContent='נשמר, תודה '+who+'. אפשר להמשיך לערוך ולשמור שוב.'; if(b){ b.disabled=false; b.textContent='שמור שוב'; } return; }
+    m.style.cssText='background:var(--warn-soft);color:var(--warn)'; m.textContent='השמירה לא הצליחה. העתיקו את הטקסט ושלחו אותו:';
+    const ta=document.createElement('textarea'); ta.id='fallbacktext'; ta.readOnly=true; ta.value=compile(); m.after(ta);
+    if(b){ b.disabled=false; b.textContent='נסו שוב'; }
+  }
+  $('sendbtn').addEventListener('click',send);
+})();
+</script>
+
+</body></html>
