@@ -212,7 +212,9 @@
   slides.forEach(s => {
     const a = s.querySelector('audio');
     if (!a) return;
-    s.addEventListener('slidestep', e => { if (e.detail.step === 1) { a.currentTime = 0; a.play().catch(() => {}); } });
+    const hint = s.querySelector('.hint');
+    s.addEventListener('slidestep', e => { if (e.detail.step === 1) { a.currentTime = 0; a.play().catch(() => {}); if (hint) hint.style.opacity = '0'; } });
+    s.addEventListener('slideenter', () => { if (hint) hint.style.opacity = ''; });
     s.addEventListener('slideleave', () => a.pause());
   });
 

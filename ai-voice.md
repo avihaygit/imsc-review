@@ -45,6 +45,8 @@
 - הקלטה 2, ״בוקר טוב״: https://d8j0ntlcm91z4.cloudfront.net/user_3JwPqPlFZMwWGo5yb9sYlm4It59/hf_20261021_214007_b32c6bc1-cdf7-4d92-a1c2-4dd92d187b69.mp3
 - ההקלטה המקורית שנבחרה, ״ערב טוב״: https://d8j0ntlcm91z4.cloudfront.net/user_3JwPqPlFZMwWGo5yb9sYlm4It59/hf_20261021_210731_3ad61225-de8e-461b-a3b0-042deb2b0713.mp3
 
+עותקים מקומיים במאגר: `ai-revolution-lecture/deck/audio/intro-morning-1.mp3` ו-`intro-morning-2.mp3` (כ-26 שניות כל אחת).
+
 ## הוראה ל-Claude בשיחה הבאה
 
 ״תשתמש בקול ה-AI מהקובץ ai-voice.md במאגר avihaygit/imsc-review״. כל מה שצריך כדי להקליט שוב באותו קול נמצא כאן.
