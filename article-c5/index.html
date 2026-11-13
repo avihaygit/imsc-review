@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex">
+<title>ביקורת מאמר C5 · IMSC</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap">
+<style>
+/* ===== Brand tokens: swap these per project (light first, then dark) ===== */
+:root{
+  --bg:#F3F0E8; --surface:#FFFFFF; --ink:#0A2350; --muted:#4F5E78; --line:#DCD6C8;
+  --accent:#06265A; --accent-ink:#F5F1E8; --hi:#0A7D7D; --hi-soft:#DDF1EF; --chg:#8A6614; --chg-soft:#F6ECD2;
+  --field:#FFFFFF; --ok:#1E7A52; --ok-soft:#DDF1E6; --warn:#A04C0C; --warn-soft:#FBE8D6; --shadow:0 12px 30px rgba(6,38,90,.14);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#071A3A; --surface:#0E2750; --ink:#EEF2FA; --muted:#A8B7D0; --line:#23406E;
+    --accent:#12BCBC; --accent-ink:#06265A; --hi:#12BCBC; --hi-soft:#123E55; --chg:#E0BC6A; --chg-soft:#3A2F16;
+    --field:#0A2045; --ok:#5DD39E; --ok-soft:#173A2B; --warn:#F0A25E; --warn-soft:#432A12; --shadow:0 12px 30px rgba(0,0,0,.35); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#071A3A; --surface:#0E2750; --ink:#EEF2FA; --muted:#A8B7D0; --line:#23406E;
+  --accent:#12BCBC; --accent-ink:#06265A; --hi:#12BCBC; --hi-soft:#123E55; --chg:#E0BC6A; --chg-soft:#3A2F16;
+  --field:#0A2045; --ok:#5DD39E; --ok-soft:#173A2B; --warn:#F0A25E; --warn-soft:#432A12; --shadow:0 12px 30px rgba(0,0,0,.35); color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Assistant","Arial Hebrew",Arial,sans-serif;font-size:17px;line-height:1.6}
+.wrap{direction:rtl;max-width:980px;margin:0 auto;padding-inline:16px;padding-block:0 96px}
+h1,h2{font-weight:800;line-height:1.15;margin:0;text-wrap:balance}
+h1{font-size:clamp(1.9rem,4.5vw,2.6rem)} h2{font-size:1.45rem}
+p{margin:.5rem 0}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:12px 10px;border-bottom:1px solid var(--line)}
+.top .row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-weight:800;color:var(--hi);letter-spacing:.02em}
+.progress{font-size:.92rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.bar{height:5px;background:var(--line);border-radius:99px;margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--hi);transition:width .3s ease}
+.intro{padding-block:28px 12px;display:grid;gap:10px}
+.intro p{color:var(--muted);max-width:62ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.facts span{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:.9rem;font-weight:600}
+.player{margin-top:14px;max-width:340px}
+.player video{display:block;width:100%;border-radius:14px;background:#000;box-shadow:var(--shadow)}
+.items{display:grid;gap:28px;margin-top:20px}
+.item{display:grid;grid-template-columns:minmax(0,250px) minmax(0,1fr);gap:24px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.item.noimg{grid-template-columns:1fr}
+.shot img{display:block;width:100%;border-radius:12px;box-shadow:var(--shadow);max-width:100%}
+.meta{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.num{font-weight:800;color:var(--hi);font-size:1.5rem;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);font-size:.9rem;font-variant-numeric:tabular-nums}
+.chg{display:inline-block;background:var(--chg-soft);color:var(--chg);font-size:.78rem;font-weight:800;padding:.05em .6em;border-radius:99px;vertical-align:middle}
+.changed{background:var(--chg-soft);border-radius:10px;padding:8px 12px;margin-top:10px;font-size:.95rem}
+.label{font-size:.8rem;font-weight:800;letter-spacing:.06em;color:var(--muted);margin-top:14px}
+.quote{background:var(--hi-soft);border-radius:10px;padding:8px 12px;font-weight:700;margin-top:4px;white-space:pre-line}
+.body{margin-top:4px;white-space:pre-line;overflow-wrap:anywhere}
+.jump{font:inherit;font-weight:700;font-size:.9rem;color:var(--hi);background:var(--hi-soft);border:0;border-radius:999px;padding:6px 14px;margin-top:10px;cursor:pointer;min-height:36px}
+.answer{margin-top:16px}
+.answer label{display:block;font-weight:800;margin-bottom:6px}
+textarea{width:100%;min-height:96px;resize:vertical;font:inherit;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:10px;padding:10px 12px;direction:rtl}
+textarea:focus,.jump:focus-visible{outline:2px solid var(--hi);outline-offset:1px}
+.status{font-size:.85rem;color:var(--muted);margin-top:4px;min-height:1.3em}
+.status.ok{color:var(--ok)} .status.warn{color:var(--warn)}
+.general{margin-top:28px;background:var(--chg-soft);border-radius:18px;padding:18px}
+.send{margin-top:28px;padding-top:22px;border-top:2px solid var(--hi)}
+.send .box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.send .hint{color:var(--muted);font-size:.95rem;flex:1 1 240px}
+button.primary{font:inherit;font-weight:800;background:var(--accent);color:var(--accent-ink);border:0;border-radius:999px;padding:12px 32px;cursor:pointer;min-height:44px}
+button.primary:disabled{opacity:.55;cursor:default}
+button.primary:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.sent{background:var(--ok-soft);color:var(--ok);border-radius:10px;padding:10px 14px;font-weight:700}
+@media (max-width:640px){ .item{grid-template-columns:1fr;padding:14px} .shot{max-width:280px;margin-inline:auto;width:100%} }
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="row"><span class="brand" id="brand"></span><span class="progress" id="progress"></span></div>
+    <div class="bar"><i id="barfill"></i></div>
+  </header>
+  <section class="intro">
+    <h1 id="h1"></h1>
+    <p id="intro"></p>
+    <div class="facts" id="facts"></div>
+    <div class="player" id="player" hidden></div>
+  </section>
+  <div class="items" id="items"></div>
+  <section class="general">
+    <h2>הערה כללית</h2>
+    <p id="general-hint"></p>
+    <div class="answer"><label for="a-general">ההערה שלי</label><textarea id="a-general" data-key="general" placeholder="כל מה שלא שייך לפריט אחד"></textarea><div class="status" id="st-general"></div></div>
+  </section>
+  <div class="send" id="sendwrap">
+    <div class="box"><div class="hint" id="sendhint"><label for="who" style="font-weight:700;display:block;margin-bottom:4px">השם שלכם</label><input id="who" type="text" autocomplete="name" style="font:inherit;width:100%;max-width:280px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--field);color:var(--ink)"><div style="margin-top:6px">כשסיימתם, לחצו "שמור" וכל ההערות יישמרו. תיבה ריקה = מאושר.</div></div><button class="primary" id="sendbtn" type="button">שמור</button></div>
+  </div>
+</div>
+
+<script>
+/* ===================== CONFIG — the only part to edit per review ===================== */
+const CONFIG = {
+ "brand": "IMSC · ביקורת מאמר C5 · סבב 1",
+ "h1": "סד קרסול-רגל (AFO): מתי צריך, איך בוחרים ואיך מתרגלים ללכת איתו",
+ "intro": "המאמר לאישור ד״ר מנואל צווקר. כתבו רק מה שצריך לשנות, ותיבה ריקה = מאושר. אחרי הפסקאות יש עובדות לבדיקה (א) ושאלות קצרות (ש), שהתשובות עליהן ייכנסו למאמר. בסוף כתבו את שמכם ולחצו \"שמור\".",
+ "facts": [
+  "32 פסקאות",
+  "1 עובדות לאימות",
+  "2 שאלות"
+ ],
+ "video": null,
+ "generalHint": "על המאמר כולו: מבנה, טון, מה חסר או מיותר.",
+ "doc": "reviews/article-c5-v1",
+ "ls": "imsc-article-c5-v1",
+ "sendTitle": "הערות למאמר C5, סבב 1:",
+ "itemWord": "פריט",
+ "items": [
+  {
+   "k": "p01",
+   "n": "01",
+   "t": "בקצרה",
+   "body": "• סד קרסול-רגל הוא סד לרגל שמחזיק את הקרסול ואת כף הרגל בזווית שמאפשרת ללכת בלי להיתקל.\n• הוא מתאים בעיקר לכף רגל שמוטה, ולקרסול שהספסטיות מושכת למטה ופנימה.\n• סקירה שיטתית מצאה שאנשים אחרי אירוע מוחי (שבץ מוחי) הולכים עם הסד מהר יותר ובאופן עצמאי יותר.\n• מתרגלים אליו בהדרגה, עם נעל רחבה וגרב, ובודקים את העור אחרי כל שימוש."
+  },
+  {
+   "k": "p02",
+   "n": "02",
+   "t": "פתיח",
+   "body": "אדם שנתקל בשטיח, מרים את הברך גבוה מדי כדי שהבוהן לא תיגרר או מרגיש שהקרסול \"מתהפך\" בכל צעד, שומע בשלב מסוים את המילים סד לרגל. במאמר הזה תמצאו מתי סד קרסול-רגל (באנגלית AFO, Ankle-Foot Orthosis) באמת עוזר, אילו סוגים יש ואיך עוברים את השבועות הראשונים איתו."
+  },
+  {
+   "k": "p03",
+   "n": "03",
+   "t": "מתי צריך סד קרסול-רגל?",
+   "body": "שתי בעיות עיקריות מביאות אנשים לסד. הראשונה היא כף רגל שמוטה: השרירים שמרימים את כף הרגל חלשים, והבוהן נגררת על הרצפה כשהרגל עוברת קדימה. התוצאה היא היתקלויות, ולעיתים נפילות."
+  },
+  {
+   "k": "p04",
+   "n": "04",
+   "t": "מתי צריך סד קרסול-רגל?",
+   "body": "הבעיה השנייה היא ספסטיות בשרירי השוק. השריר הסובך מושך את העקב למעלה ואת כף הרגל למטה ופנימה, כך שהצעד נוחת על קדמת כף הרגל או על צדה החיצוני. הברך גם נדחפת לאחור, והמשקל לא מתחלק נכון. הסבר מלא על הדפוסים האלה, ועל ההבדל ביניהם, תמצאו במאמר ספסטיות ברגליים [→ /articles/leg-spasticity]."
+  },
+  {
+   "k": "p05",
+   "n": "05",
+   "t": "מתי צריך סד קרסול-רגל?",
+   "body": "ההנחיה של NICE לשיקום אחרי שבץ ממליצה לשקול סד קרסול-רגל לאנשים שנתקלים כשהרגל עוברת קדימה, או שמתקשים לשלוט בקרסול כשהם עומדים עליו. ההנחיה הבריטית לשבץ מוסיפה שכל סד צריך להיבדק ולהיות מותאם לאדם המסוים לפני שימוש ממושך."
+  },
+  {
+   "k": "p06",
+   "n": "06",
+   "t": "מתי צריך סד קרסול-רגל?",
+   "body": "סקירה שיטתית ומטא-אנליזה של 19 מחקרים על אנשים אחרי שבץ מצאה שהליכה עם סד שיפרה את מהירות ההליכה, את אורך הצעד ואת היכולת ללכת באופן עצמאי. עם זאת, היציבות של הגוף בעמידה לא השתפרה באופן מובהק."
+  },
+  {
+   "k": "p07",
+   "n": "07",
+   "t": "איזה סד לרגל מתאים?",
+   "body": "יש כמה משפחות של סדים, ואין סוג אחד שמתאים לכולם."
+  },
+  {
+   "k": "p08",
+   "n": "08",
+   "t": "איזה סד לרגל מתאים?",
+   "body": "סד קשיח מחזיק את הקרסול בזווית קבועה. הוא נותן הכי הרבה יציבות, ומתאים כשהקרסול לא יציב או כשהספסטיות חזקה. סד עם ציר בקרסול, לעומת זאת, מאפשר תנועה מסוימת למעלה ומגביל את הירידה למטה, כך שקל יותר לקום מכיסא ולעלות במדרגות. סד גמיש, מפלסטיק דק או מסיבי פחמן, מרים את כף הרגל בזמן הצעד ומתאים יותר כשהבעיה העיקרית היא חולשה ולא ספסטיות. [לאימות: אילו סוגים מתאימים ב-IMSC בפועל]"
+  },
+  {
+   "k": "p09",
+   "n": "09",
+   "t": "איזה סד לרגל מתאים?",
+   "body": "גם כאן, כמו בסדי יד, יש סדי מדף וסדים שמיוצרים לפי הרגל. סד מדף זמין מהר ויכול להתאים לכף רגל שמוטה פשוטה, אבל כשיש ספסטיות, עיוות בכף הרגל או תחושה ירודה, סד אישי מפזר את הלחץ טוב יותר."
+  },
+  {
+   "k": "p10",
+   "n": "10",
+   "t": "איזה סד לרגל מתאים?",
+   "body": "ההחלטה נעשית אחרי שרואים את המטופל הולך, ובודקים כמה אפשר להזיז את הקרסול, מה חזק ומה חלש ואיך נראה העור. [ד״ר צווקר – C5-ש1: איך הוא מחליט בין סד, הזרקה לשרירי השוק או שילוב של שניהם.]"
+  },
+  {
+   "k": "p11",
+   "n": "11",
+   "t": "סד, הזרקה או שניהם?",
+   "body": "כשהקרסול נמשך למטה בגלל ספסטיות בשריר הסובך, הזרקת בוטולינום טוקסין (המוכר בשם בוטוקס) יכולה להרפות את השריר. כך, אחרי ההזרקה הרגל נכנסת לסד בקלות רבה יותר, ולעיתים צריך לכוון את הסד מחדש לזווית החדשה. איך משתלבים זריקה, סד ותרגול לאורך הסבב מוסבר במאמר הטיפול המשולב בספסטיות [→ /articles/combined-spasticity-treatment]."
+  },
+  {
+   "k": "p12",
+   "n": "12",
+   "t": "איך מתרגלים ללכת עם הסד",
+   "body": "הגוף צריך זמן להתרגל, ולכן בימים הראשונים לובשים את הסד בבית, לפרקי זמן קצרים, ומאריכים בהדרגה לפי ההוראות. רק אחרי שהעור נראה טוב והרגל מרגישה בנוח יוצאים איתו מהבית, ואחר כך ליום שלם. [לאימות: האם לתת דוגמת שעות לשבוע הראשון]"
+  },
+  {
+   "k": "p13",
+   "n": "13",
+   "t": "איך מתרגלים ללכת עם הסד",
+   "body": "הלבישה עצמה נעשית בישיבה. מכופפים את הברך, מכניסים את העקב עמוק לתוך הסד עד שהוא נוגע בחלק האחורי, ורק אז סוגרים את הרצועות, בדרך כלל קודם את זו שמחזיקה את העקב. אחר כך נועלים את הנעל על הסד. עקב שלא ישב עד הסוף יחליק בזמן ההליכה ויגרום לשפשוף. כשהספסטיות חזקה, כדאי להאריך קודם לאט את השוק, כדי שכף הרגל תיכנס בלי מאבק. אצל חלק מהסדים הסדר שונה, ולכן לומדים אותו בפגישת ההתאמה."
+  },
+  {
+   "k": "p14",
+   "n": "14",
+   "t": "איך מתרגלים ללכת עם הסד",
+   "body": "ההליכה עצמה משתנה: הברך מתכופפת אחרת, והצעד מרגיש בהתחלה נוקשה. פיזיותרפיסט עובד עם המטופל על הצעד עם הסד: עמידה, הליכה על משטחים שונים, עלייה וירידה במדרגות, קימה מכיסא."
+  },
+  {
+   "k": "p15",
+   "n": "15",
+   "t": "איך מתרגלים ללכת עם הסד",
+   "body": "לא כל מי שמקבל סד ילבש אותו כל החיים. למשל, מי שהשרירים שמרימים את כף הרגל מתחזקים אצלו עם הזמן עשוי להשתמש בסד רק בהליכות ארוכות, או לעבור לסד קל יותר. ומי שיש לו חולשה קבועה ימשיך ללכת איתו, ויחליף אותו כשהוא נשחק או כשהרגל משתנה. ההחלטה נעשית בהערכה חוזרת, לא לפי תחושה ביום טוב."
+  },
+  {
+   "k": "p16",
+   "n": "16",
+   "t": "נעליים, גרביים וקיץ ישראלי",
+   "body": "הסד נכנס לתוך הנעל, ולכן הנעל חשובה כמעט כמו הסד:"
+  },
+  {
+   "k": "p17",
+   "n": "17",
+   "t": "נעליים, גרביים וקיץ ישראלי",
+   "body": "• נעל רחבה ועמוקה, עם פתח גדול וסגירה בשרוכים או בסקוץ׳. לעיתים צריך מידה גדולה יותר ברגל של הסד.\n• מוציאים את המדרס הפנימי של הנעל, כדי לפנות מקום.\n• עקב נמוך ורחב. לא כפכפים, לא נעליים בלי עורף ולא נעלי עקב.\n• גרב ארוכה, שעולה מעל גובה הסד, כדי שהפלסטיק לא ישפשף את העור."
+  },
+  {
+   "k": "p18",
+   "n": "18",
+   "t": "נעליים, גרביים וקיץ ישראלי",
+   "body": "הקיץ בישראל הוא המבחן הקשה של הסד: בחום הרגל מזיעה מתחת לפלסטיק, ורבים מתפתים ללכת בסנדלים. בחודשים האלה כדאי להחליף גרב באמצע היום, ולנגב את הסד. הסד לא נשאר ברכב בשמש, ולא מתקרב לתנור או לדוד."
+  },
+  {
+   "k": "p19",
+   "n": "19",
+   "t": "בדיקת העור",
+   "body": "בודקים את העור לפני הלבישה ואחרי שמורידים את הסד, ובמידת הצורך במראה. המקומות הרגישים הם העצמות הבולטות בקרסול, העקב ובסיס הבוהן הגדולה. אצל מי שיש ירידה בתחושה ברגל, או סוכרת, הבדיקה חשובה עוד יותר, כי פצע יכול להיווצר בלי כאב."
+  },
+  {
+   "k": "p20",
+   "n": "20",
+   "t": "בדיקת העור",
+   "body": "אודם קל שחולף זמן קצר אחרי הסרת הסד הוא תגובה צפויה. אבל אודם שלא חולף, שלפוחית או עור פתוח הם סיבה להפסיק ללבוש את הסד ולפנות להתאמה. [לאימות: פרק הזמן שבו אודם אמור לחלוף]"
+  },
+  {
+   "k": "p21",
+   "n": "21",
+   "t": "בדיקת העור",
+   "body": "את הסד עצמו מנקים בספוג עם מים פושרים וסבון, ומייבשים באוויר. לא מדביקים עליו ריפוד, לא מחממים אותו ולא מנסים לתקן אותו בבית, כי כל שינוי כזה משנה את הלחץ על הרגל. במקום זה, ריפוד או רצועה שנשחקו מחליפים דרך מי שהתאים את הסד."
+  },
+  {
+   "k": "p22",
+   "n": "22",
+   "t": "סד לרגל ב-IMSC",
+   "body": "המרפאה מתאימה סדי יד, ובהם סד ליד ספסטית [→ /articles/hand-splint-spasticity], וגם סדי רגל, ובהם סד קרסול-רגל. ההתאמה היא חלק משירות הסדים ואביזרי העזר [→ /services/orthotics], ונעשית בתוך אותו צוות שמזריק ומתרגל. [לאביה – C5-ש2: מי מתאים את סד הקרסול-רגל, אילו סוגים מתאימים במרפאה, ומה נעשה מחוץ לה.]"
+  },
+  {
+   "k": "p23",
+   "n": "23",
+   "t": "סד לרגל ב-IMSC",
+   "body": "מי שהגיע אלינו אחרי אירוע מוחי ימצא את התמונה המלאה בעמוד ספסטיות אחרי אירוע מוחי (שבץ) [→ /conditions/stroke]. מפגשי ההערכה מתקיימים במגדלי ב.ס.ר 2 בבני ברק, והפיזיותרפיה במרכז הספורט של אוניברסיטת תל אביב."
+  },
+  {
+   "k": "p24",
+   "n": "24",
+   "t": "סד לרגל ב-IMSC",
+   "body": "קיימת אפשרות להחזרים מביטוחים פרטיים, הן על התייעצות עם רופא והן על טיפולי שיקום. כדאי לבדוק מול הפוליסה שלכם."
+  },
+  {
+   "k": "p25",
+   "n": "25",
+   "t": "מתי לפנות",
+   "body": "• אתם נתקלים, נגררים או נופלים, עם סד או בלעדיו.\n• הסד מכאיב, משפשף או משאיר סימנים שלא עוברים.\n• הרגל לא נכנסת לסד כמו קודם, למשל אחרי שינוי במשקל או נפיחות.\n• הסד נסדק, או שהרצועות נקרעו."
+  },
+  {
+   "k": "p26",
+   "n": "26",
+   "t": "מתי לפנות",
+   "body": "רגל שנעשית פתאום נפוחה, חמה וכואבת צריכה בדיקה רפואית באותו יום."
+  },
+  {
+   "k": "p27",
+   "n": "27",
+   "t": "שאלה נפוצה: אפשר ללכת עם הסד יחף?",
+   "body": "לא, כי הסד בנוי לעבוד בתוך נעל. בלי נעל הרגל מחליקה, הסד נשחק והעור נפגע."
+  },
+  {
+   "k": "p28",
+   "n": "28",
+   "t": "שאלה נפוצה: צריך לישון עם סד קרסול-רגל?",
+   "body": "סד הליכה לא נועד לשינה, אבל לפעמים מתאימים סד נפרד ללילה, שמחזיק את השוק מוארכת. זה נקבע בהערכה."
+  },
+  {
+   "k": "p29",
+   "n": "29",
+   "t": "שאלה נפוצה: אפשר לנהוג עם סד ברגל?",
+   "body": "זו שאלה שצריך לברר מול הרופא המטפל ומול הגורמים המוסמכים, לפי הרגל הפגועה וסוג הסד. [לאימות]"
+  },
+  {
+   "k": "p30",
+   "n": "30",
+   "t": "שאלה נפוצה: כמה זמן סד מחזיק?",
+   "body": "זה תלוי בחומר ובשימוש. עם זאת, כשהרגל משתנה, הסד צריך בדיקה גם אם הוא נראה שלם."
+  },
+  {
+   "k": "p31",
+   "n": "31",
+   "t": "לבדוק אם זה מתאים לכם",
+   "body": "במפגש הערכה רב-צוותי רואים איך אתם הולכים, בודקים את הקרסול ומחליטים אם סד, הזרקה או שניהם יעזרו. אפשר להתחיל בשיחת היכרות."
+  },
+  {
+   "k": "p32",
+   "n": "32",
+   "t": "מקורות מידע",
+   "body": "• Choo, Y. J., & Chang, M. C. (2021). Effectiveness of an ankle–foot orthosis on walking in patients with stroke: a systematic review and meta-analysis. Scientific Reports, 11, 15879. https://www.nature.com/articles/s41598-021-95449-x\n• NICE (2023). Stroke rehabilitation in adults (NG236): סדי קרסול-רגל. https://www.ncbi.nlm.nih.gov/books/NBK598564/\n• Intercollegiate Stroke Working Party (2023). National Clinical Guideline for Stroke for the UK and Ireland: הליכה. https://www.strokeguideline.org/chapter/motor-recovery-and-physical-effects-of-stroke/\n• Guy's and St Thomas' NHS Foundation Trust. Ankle foot orthosis: מידע למטופלים על לבישה, נעליים ועור. https://www.guysandstthomas.nhs.uk/health-information/ankle-foot-orthosis\n• Royal National Orthopaedic Hospital NHS Trust. A patient's guide to ankle foot orthosis (AFO). https://www.rnoh.nhs.uk/patients-and-visitors/patient-information-guides/ankle-foot-orthosis-afo-patients-guide\nהמידע כללי ואינו מחליף ייעוץ רפואי אישי. התאמת טיפול נעשית על ידי רופא מטפל."
+  },
+  {
+   "k": "v1",
+   "n": "א1",
+   "t": "עובדה לאימות",
+   "body": "עובדות לאימות רפואי: סוגי הסדים (קשיח / עם ציר / גמיש-פחמן) ומתי כל אחד מתאים – ידע כללי מקובל,  מול אביה/ד״ר צווקר ומה המרפאה מתאימה בפועל. פרק הזמן שבו אודם אמור לחלוף: מקורות NHS נותנים 30 דקות (Guy's and St Thomas') וכ-20 דקות (RNOH) – לכן לא צוין מספר . \"מידה גדולה יותר ברגל של הסד\" – . \"סד לילה נפרד לשוק\" – . נהיגה עם סד – ; אפשר למחוק את השאלה. \"רגל נפוחה, חמה וכואבת = בדיקה באותו יום\" (חשש לקריש דם) – לאישור ניסוח."
+  },
+  {
+   "k": "q1",
+   "n": "ש1",
+   "t": "סד, הזרקה או שניהם",
+   "body": "כשהקרסול נמשך למטה, איך אתה מחליט בין סד קרסול-רגל, הזרקה לשרירי השוק או שילוב? מה מכריע אצלך?"
+  },
+  {
+   "k": "q4",
+   "n": "ש4",
+   "t": "חשש מתלות",
+   "body": "מטופלים חוששים שהסד \"יחליש את הרגל\" או שלא יוכלו ללכת בלעדיו. מה אתה עונה להם?"
+  }
+ ],
+ "inbox": "https://script.google.com/macros/s/AKfycbzEj4lUky1em3ctwa-hol23Hfu5F5paCqut5pzeSTKYG4oaqZSQhPhb5EfFf9ZS16u11w/exec",
+ "project": "article-c5"
+};
+/* ===================================================================================== */
+(function(){
+  document.documentElement.setAttribute('dir','rtl'); document.documentElement.setAttribute('lang','he');
+  const C=CONFIG, $=id=>document.getElementById(id);
+  $('brand').textContent=C.brand; $('h1').textContent=C.h1; $('intro').textContent=C.intro; $('general-hint').textContent=C.generalHint;
+  C.facts.forEach(f=>{ const s=document.createElement('span'); s.textContent=f; $('facts').appendChild(s); });
+  let vid=null;
+  if(C.video){ const p=$('player'); p.hidden=false; vid=document.createElement('video'); vid.src=C.video.src; if(C.video.poster) vid.poster=C.video.poster; vid.controls=true; vid.playsInline=true; vid.preload='metadata'; p.appendChild(vid); }
+  C.items.forEach(it=>{
+    const el=document.createElement('article'); el.className='item'+(it.img?'':' noimg'); el.id='i-'+it.k;
+    el.innerHTML=(it.img?'<div class="shot"><img alt="" loading="lazy"></div>':'')+'<div><div class="meta"><span class="num"></span><h2></h2><span class="sub"></span></div><div class="changed" hidden></div><button class="jump" type="button" hidden>▶ לצפות מכאן</button><div class="label lq" hidden>טקסט</div><div class="quote" hidden></div><div class="label lb" hidden>פירוט</div><div class="body" hidden></div><div class="answer"><label></label><textarea placeholder="רק מה שצריך לשנות. ריק = מאושר"></textarea><div class="status"></div></div></div>';
+    if(it.img){ const im=el.querySelector('img'); im.src=it.img; im.alt=C.itemWord+' '+it.n+': '+it.t; }
+    el.querySelector('.num').textContent=it.n||''; el.querySelector('h2').textContent=it.t; el.querySelector('.sub').textContent=it.sub||'';
+    if(it.ch){ const c=el.querySelector('.changed'); c.hidden=false; c.innerHTML='<span class="chg">שונה</span> '; c.appendChild(document.createTextNode(it.ch)); }
+    if(it.quote){ el.querySelector('.lq').hidden=false; const q=el.querySelector('.quote'); q.hidden=false; q.textContent=it.quote; }
+    if(it.body){ el.querySelector('.lb').hidden=false; const b=el.querySelector('.body'); b.hidden=false; b.textContent=it.body; }
+    if(vid && typeof it.at==='number'){ const j=el.querySelector('.jump'); j.hidden=false; j.addEventListener('click',()=>{ try{ vid.currentTime=it.at; const pr=vid.play(); if(pr&&pr.catch) pr.catch(()=>{}); }catch(e){} vid.scrollIntoView({behavior:'smooth',block:'center'}); }); }
+    const ta=el.querySelector('textarea'); ta.id='a-'+it.k; ta.dataset.key=it.k;
+    const lab=el.querySelector('label'); lab.htmlFor=ta.id; lab.textContent='הערות ל'+C.itemWord+' '+(it.n||it.t);
+    el.querySelector('.status').id='st-'+it.k;
+    $('items').appendChild(el);
+  });
+
+  const ORDER=C.items.map(i=>i.k).concat(['general']);
+  const LABEL={}; C.items.forEach(i=>LABEL[i.k]=C.itemWord+' '+(i.n?i.n+' · ':'')+i.t); LABEL.general='הערה כללית';
+  const areas={}; ORDER.forEach(k=>areas[k]=document.querySelector('textarea[data-key="'+k+'"]'));
+  let docRef=null, comments=null, state={answers:{}}; const timers={};
+  const lsLoad=()=>{ try{ const j=localStorage.getItem(C.ls); return j?JSON.parse(j):null; }catch(e){ return null; } };
+  const lsSave=()=>{ try{ localStorage.setItem(C.ls, JSON.stringify(state)); }catch(e){} };
+  function progress(){ const n=ORDER.filter(k=>(areas[k].value||'').trim()).length; $('progress').textContent=n+' מתוך '+ORDER.length+' תיבות עם הערות'; $('barfill').style.width=(n/ORDER.length*100)+'%'; }
+  function fill(){ ORDER.forEach(k=>{ const v=state.answers[k]||''; if(areas[k].value!==v && document.activeElement!==areas[k]) areas[k].value=v; }); progress(); }
+  function setStatus(k,t,c){ const el=$('st-'+k); if(!el) return; el.textContent=t; el.className='status'+(c?' '+c:''); }
+  async function persist(k){
+    state.answers[k]=areas[k].value; state.updatedAt=new Date().toISOString(); lsSave();
+    if(!docRef){ setStatus(k,'נשמר במכשיר הזה','ok'); return; }
+    try{ await docRef.set({answers:state.answers, updatedAt:state.updatedAt, submittedAt:state.submittedAt||null}); setStatus(k,'נשמר','ok'); }
+    catch(e){ setStatus(k,'השמירה המשותפת לא הצליחה, נשמר בדפדפן הזה בלבד','warn'); }
+  }
+  ORDER.forEach(k=>areas[k].addEventListener('input',()=>{ progress(); setStatus(k,'שומר...'); clearTimeout(timers[k]); timers[k]=setTimeout(()=>persist(k),800); }));
+  const local=lsLoad(); if(local&&local.answers) state=local; fill();
+
+  function collect(){ const notes=[]; ORDER.forEach(k=>{ const v=(areas[k].value||'').trim(); if(v) notes.push({item:LABEL[k], note:v}); }); return notes; }
+  function compile(){ const who=($('who').value||'').trim(); const L=[C.sendTitle+(who?' ('+who+')':'')]; const n=collect();
+    n.forEach(x=>L.push('', '• '+x.item+':', x.note)); if(!n.length) L.push('', '(הכול מאושר, בלי הערות)'); return L.join('\n'); }
+  try{ const w=localStorage.getItem(C.ls+'-who'); if(w) $('who').value=w; }catch(e){}
+  $('who').addEventListener('input',()=>{ try{ localStorage.setItem(C.ls+'-who',$('who').value); }catch(e){} });
+  async function send(){
+    const b=$('sendbtn')||$('sendbtn2'); if(b){ b.disabled=true; b.textContent='שומר...'; }
+    ORDER.forEach(k=>{ state.answers[k]=areas[k].value; }); state.updatedAt=new Date().toISOString(); lsSave();
+    const who=($('who').value||'').trim();
+    const box=document.querySelector('#sendwrap .box');
+    if(!who){ if(b){ b.disabled=false; b.textContent='שמור'; } $('who').focus(); $('who').style.borderColor='var(--warn)'; return; }
+    let ok=false;
+    if(C.inbox){ try{ await fetch(C.inbox,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({project:C.project||'',round:C.doc,name:who,notes:collect()})}); ok=true; }catch(e){} }
+    if(ok){ box.innerHTML='<div class="sent"></div><button class="primary" id="sendbtn2" type="button">שמור שוב</button>'; box.querySelector('.sent').textContent='נשמר, תודה '+who+'. אפשר להמשיך לערוך ולשמור שוב.'; $('sendbtn2').addEventListener('click',send); return; }
+    box.innerHTML='<div class="sent" style="background:var(--warn-soft);color:var(--warn)">השמירה לא הצליחה. העתיקו את הטקסט ושלחו אותו:</div><textarea id="fallbacktext" readonly></textarea><button class="primary" id="sendbtn2" type="button">נסו שוב</button>';
+    $('fallbacktext').value=compile(); $('sendbtn2').addEventListener('click',send);
+  }
+  $('sendbtn').addEventListener('click',send);
+})();
+</script>
+
+</body></html>
