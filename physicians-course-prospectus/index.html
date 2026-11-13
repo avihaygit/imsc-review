@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex">
+<title>IMSC · פרוספקט קורס הרופאים</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap">
+<style>
+/* ===== Brand tokens: swap these per project (light first, then dark) ===== */
+:root{
+  --bg:#F3F0E8; --surface:#FFFFFF; --ink:#0A2350; --muted:#4F5E78; --line:#DCD6C8;
+  --accent:#06265A; --accent-ink:#F5F1E8; --hi:#0A7D7D; --hi-soft:#DDF1EF; --chg:#8A6614; --chg-soft:#F6ECD2;
+  --field:#FFFFFF; --ok:#1E7A52; --ok-soft:#DDF1E6; --warn:#A04C0C; --warn-soft:#FBE8D6; --shadow:0 12px 30px rgba(6,38,90,.14);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#071A3A; --surface:#0E2750; --ink:#EEF2FA; --muted:#A8B7D0; --line:#23406E;
+    --accent:#12BCBC; --accent-ink:#06265A; --hi:#12BCBC; --hi-soft:#123E55; --chg:#E0BC6A; --chg-soft:#3A2F16;
+    --field:#0A2045; --ok:#5DD39E; --ok-soft:#173A2B; --warn:#F0A25E; --warn-soft:#432A12; --shadow:0 12px 30px rgba(0,0,0,.35); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#071A3A; --surface:#0E2750; --ink:#EEF2FA; --muted:#A8B7D0; --line:#23406E;
+  --accent:#12BCBC; --accent-ink:#06265A; --hi:#12BCBC; --hi-soft:#123E55; --chg:#E0BC6A; --chg-soft:#3A2F16;
+  --field:#0A2045; --ok:#5DD39E; --ok-soft:#173A2B; --warn:#F0A25E; --warn-soft:#432A12; --shadow:0 12px 30px rgba(0,0,0,.35); color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Assistant","Arial Hebrew",Arial,sans-serif;font-size:17px;line-height:1.6}
+.wrap{direction:rtl;max-width:980px;margin:0 auto;padding-inline:16px;padding-block:0 96px}
+h1,h2{font-weight:800;line-height:1.15;margin:0;text-wrap:balance}
+h1{font-size:clamp(1.9rem,4.5vw,2.6rem)} h2{font-size:1.45rem}
+p{margin:.5rem 0}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:12px 10px;border-bottom:1px solid var(--line)}
+.top .row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-weight:800;color:var(--hi);letter-spacing:.02em}
+.progress{font-size:.92rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.bar{height:5px;background:var(--line);border-radius:99px;margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--hi);transition:width .3s ease}
+.intro{padding-block:28px 12px;display:grid;gap:10px}
+.intro p{color:var(--muted);max-width:62ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.facts span{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:.9rem;font-weight:600}
+.player{margin-top:14px;max-width:340px}
+.player video{display:block;width:100%;border-radius:14px;background:#000;box-shadow:var(--shadow)}
+.items{display:grid;gap:28px;margin-top:20px}
+.item{display:grid;grid-template-columns:minmax(0,250px) minmax(0,1fr);gap:24px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.item.noimg{grid-template-columns:1fr}
+.shot img{display:block;width:100%;border-radius:12px;box-shadow:var(--shadow);max-width:100%}
+.meta{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.num{font-weight:800;color:var(--hi);font-size:1.5rem;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);font-size:.9rem;font-variant-numeric:tabular-nums}
+.chg{display:inline-block;background:var(--chg-soft);color:var(--chg);font-size:.78rem;font-weight:800;padding:.05em .6em;border-radius:99px;vertical-align:middle}
+.changed{background:var(--chg-soft);border-radius:10px;padding:8px 12px;margin-top:10px;font-size:.95rem}
+.label{font-size:.8rem;font-weight:800;letter-spacing:.06em;color:var(--muted);margin-top:14px}
+.quote{background:var(--hi-soft);border-radius:10px;padding:8px 12px;font-weight:600;margin-top:4px;white-space:pre-line}
+.body{margin-top:4px;white-space:pre-line}
+.jump{font:inherit;font-weight:700;font-size:.9rem;color:var(--hi);background:var(--hi-soft);border:0;border-radius:999px;padding:6px 14px;margin-top:10px;cursor:pointer;min-height:36px}
+.answer{margin-top:16px}
+.answer label{display:block;font-weight:800;margin-bottom:6px}
+textarea{width:100%;min-height:96px;resize:vertical;font:inherit;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:10px;padding:10px 12px;direction:rtl}
+textarea:focus,.jump:focus-visible{outline:2px solid var(--hi);outline-offset:1px}
+.status{font-size:.85rem;color:var(--muted);margin-top:4px;min-height:1.3em}
+.status.ok{color:var(--ok)} .status.warn{color:var(--warn)}
+.general{margin-top:28px;background:var(--chg-soft);border-radius:18px;padding:18px}
+.send{margin-top:28px;padding-top:22px;border-top:2px solid var(--hi)}
+.send .box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.send .hint{color:var(--muted);font-size:.95rem;flex:1 1 240px}
+button.primary{font:inherit;font-weight:800;background:var(--accent);color:var(--accent-ink);border:0;border-radius:999px;padding:12px 32px;cursor:pointer;min-height:44px}
+button.primary:disabled{opacity:.55;cursor:default}
+button.primary:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.sent{background:var(--ok-soft);color:var(--ok);border-radius:10px;padding:10px 14px;font-weight:700}
+@media (max-width:640px){ .item{grid-template-columns:1fr;padding:14px} .shot{max-width:280px;margin-inline:auto;width:100%} }
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="row"><span class="brand" id="brand"></span><span class="progress" id="progress"></span></div>
+    <div class="bar"><i id="barfill"></i></div>
+  </header>
+  <section class="intro">
+    <h1 id="h1"></h1>
+    <p id="intro"></p>
+    <div class="facts" id="facts"></div>
+    <div class="player" id="player" hidden></div>
+  </section>
+  <div class="items" id="items"></div>
+  <section class="general">
+    <h2>הערה כללית</h2>
+    <p id="general-hint"></p>
+    <div class="answer"><label for="a-general">ההערה שלי</label><textarea id="a-general" data-key="general" placeholder="כל מה שלא שייך לפריט אחד"></textarea><div class="status" id="st-general"></div></div>
+  </section>
+  <div class="send" id="sendwrap">
+    <div class="box"><div class="hint" id="sendhint"><label for="who" style="font-weight:700;display:block;margin-bottom:4px">השם שלכם <span style="font-weight:400;color:var(--muted)">(לא חובה)</span></label><input id="who" type="text" autocomplete="name" style="font:inherit;width:100%;max-width:280px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--field);color:var(--ink)"><div style="margin-top:6px">כשסיימתם, לחצו "שמור" וכל ההערות יישמרו. תיבה ריקה = מאושר.</div></div><button class="primary" id="sendbtn" type="button">שמור</button></div>
+  </div>
+</div>
+
+<script>
+/* ===================== CONFIG — the only part to edit per review ===================== */
+const CONFIG = {
+  "inbox": "https://script.google.com/macros/s/AKfycbzEj4lUky1em3ctwa-hol23Hfu5F5paCqut5pzeSTKYG4oaqZSQhPhb5EfFf9ZS16u11w/exec",
+  "project": "physicians-course-prospectus",
+  "brand": "IMSC · פרוספקט קורס הרופאים · מלל · סבב 1",
+  "h1": "המלל של פרוספקט קורס הרופאים לאישור",
+  "intro": "זה המלל של פרוספקט קורס הרופאים, מותאם ל-IMSC מתוך הפרוספקט של שיבא. ד״ר צווקר מעביר את כל הקורס. העיצוב יבוא אחרי שהמלל יאושר. בכל חלק מופיע הנוסח המוצע, ומתחתיו מה שונה מהמקור ומה עוד צריך החלטה. כתבו רק מה שצריך לשנות, ותיבה ריקה = מאושר.",
+  "facts": [
+    "טיוטה 1",
+    "10 חלקים",
+    "מלל בלבד, לפני עיצוב"
+  ],
+  "video": null,
+  "generalHint": "על המלל כולו: טון, סדר, אורך, או כל דבר שלא שייך לחלק אחד.",
+  "doc": "reviews/physicians-prospectus-v1",
+  "ls": "imsc-physicians-prospectus-v1",
+  "sendTitle": "הערות למלל של פרוספקט קורס הרופאים, סבב 1:",
+  "itemWord": "חלק",
+  "items": [
+    {
+      "k": "c01",
+      "n": "01",
+      "t": "ראש הדף",
+      "sub": "תווית, כותרת, כותרת משנה ופרטים",
+      "quote": "תווית: IMSC · קורס לרופאים\n\nכותרת: קורס הכשרה לרופאים: טיפול בספסטיות\n\nכותרת משנה: הערכה, הזרקת בוטולינום טוקסין ופנול בהנחיית אולטרסאונד, וטיפול במשאבת בקלופן תוך-תקאלית\n\nמרצה: ד״ר מנואל צווקר\nמשך: שלושה ימים, 08:00–16:00\nמקום: IMSC, מגדלי ב.ס.ר 2, בני ברק\nפתיחת הקורס: המועד ייקבע בתיאום עם המשתתפים",
+      "body": "מה שונה מהמקור:\n• הלוגו, המקום והתעודה של IMSC במקום שיבא.\n• \"מנחה\" הפך ל\"מרצה\", כי ד״ר צווקר מעביר את כל הקורס.\n• בכל הדף תוקנו שגיאות כתיב, למשל \"תוכנת\", \"פיזיקאלי\", \"בוטולוניום\", \"צוהריים\" ו\"וכול׳\".\n\nלאישור:\n• כותרת: הנוסח המוצע, או \"קורס הכשרה לרופאים להזרקת בוטולינום טוקסין\" (השם שכתוב היום בקובץ ההדרכות), או השם המקורי, \"תוכנית הדרכה לטיפול בהפרעת תנועה ספסטית\".\n• מקום: מגדלי ב.ס.ר 2 בבני ברק? שם נעשות ההזרקות במרכז, וזה נדרש להזרקות המודרכות עם מטופלים."
+    },
+    {
+      "k": "c02",
+      "n": "02",
+      "t": "מטרות הקורס",
+      "sub": "פסקת פתיחה וארבעה נושאי לימוד",
+      "quote": "הקורס עוסק בחסימה כימית של עצב ושריר, בסקירה מעודכנת של הטיפול התרופתי והפיזיקלי, ובטיפול במשאבת בקלופן תוך-תקאלית. נושאי הלימוד:\n\n1. הערכה של מטופל עם ספסטיות.\n2. קביעת מטרות טיפול.\n3. בניית תוכנית טיפול:\n– בחירת השרירים להזרקה.\n– קביעת מינון וריכוז לתכשירי בוטולינום טוקסין A ולפנול.\n– שילוב ההזרקה עם טיפולים משלימים (adjuvant therapies) ותרופות נוספות, כחלק מתוכנית שיקום.\n4. מיומנויות מעשיות:\n– איתור שרירים ועצבים להזרקה מקומית של בוטולינום טוקסין, פנול ולידוקאין, בעזרת גירוי חשמלי של העצב, EMG ואולטרסאונד.\n– טכניקות להכוונת המחט אל המטרה בהנחיית אולטרסאונד.\n– טיפול במשאבת בקלופן תוך-תקאלית (ITB): ניסיון טיפולי (trial) להערכת המטופל לפני השתלת המשאבה, מילוי המשאבה ותכנות שלה.",
+      "body": "מה שונה מהמקור:\n• המטרות מנוסחות כנושאי לימוד, בלי הבטחה שהמשתתף \"ירכוש\" או \"יתמחה\".\n• נוסף \"כחלק מתוכנית שיקום\" בסעיף 3.\n• \"US\" נכתב \"אולטרסאונד\", ו-INTRATHECAL BACLOFEN נכתב \"משאבת בקלופן תוך-תקאלית (ITB)\".\n\nלבדיקת ד״ר צווקר: \"לידוקאין\" בסעיף 4. במקור הוא מופיע בסוגריים אחרי פנול."
+    },
+    {
+      "k": "c03",
+      "n": "03",
+      "t": "למי הקורס מיועד",
+      "sub": "קהל היעד",
+      "quote": "לקבוצה קטנה של רופאים מתחומים שונים, כמו שיקום, כאב ונוירולוגיה, שמטפלים באנשים עם ספסטיות.",
+      "body": "לאישור: במקור כתוב \"קבוצה קטנה\" בלי מספר. לציין מספר משתתפים?"
+    },
+    {
+      "k": "c04",
+      "n": "04",
+      "t": "איך לומדים",
+      "sub": "שיטות הלימוד",
+      "quote": "• החומר העיוני מועבר בהרצאות פרונטליות.\n• התנסות מעשית (hands-on) בגירוי חשמלי של העצב, ב-EMG ובאולטרסאונד, לאיתור מקום ההזרקה.\n• זיהוי הטופוגרפיה האנטומית של השרירים להזרקה, הערכה, דיון במקרה, והזרקה מודרכת בנוכחות מטופלים ובהסכמתם.",
+      "body": "מה שונה מהמקור: נוסף \"ובהסכמתם\" אחרי ההזרקה בנוכחות מטופלים."
+    },
+    {
+      "k": "c05",
+      "n": "05",
+      "t": "תוכנית הקורס: יום א׳",
+      "sub": "08:00–16:00",
+      "quote": "08:00–08:30 · התכנסות וכיבוד\n08:30–08:45 · פתיחה\n08:45–10:00 · למה לטפל בספסטיות?\n10:00–10:45 · איך קובעים מטרות טיפול?\n10:45–11:00 · הפסקה\n11:00–12:15 · שיטות להערכת תוצאות הטיפול\n12:15–13:00 · הפסקת צהריים\n13:00–14:15 · הצגת מקרים ודיון קליני\n• מקרה 1: ספסטיות מפושטת אחרי פגיעה בחוט השדרה (SCI)\n• מקרה 2: ספסטיות מפושטת במבוגר עם שיתוק מוחין (CP)\n• מקרה 3: ספסטיות מפושטת בטרשת נפוצה (MS)\n14:15–14:30 · הפסקה\n14:30–15:45\n• מקרה 4: ספסטיות מפושטת אחרי פגיעת ראש (TBI)\n• מקרה 5: ספסטיות מוקדית בגפה העליונה אחרי אירוע מוחי (CVA)\n• מקרה 6: ספסטיות מוקדית בגפה התחתונה אחרי אירוע מוחי (CVA)\n15:45–16:00 · סיכום היום",
+      "body": "מה שונה מהמקור:\n• הברכות של פרופ׳ זייליג ופרופ׳ דודקביץ ירדו, ובמקומן יש \"פתיחה\".\n• \"שבץ מוחי\" נכתב \"אירוע מוחי\", ו\"פוקלית\" נכתב \"מוקדית\", כמו בשם הסדנה באתר.\n• \"כללית\" נכתב \"מפושטת\", כמו ביום ג׳.\n• \"שיתוק ילדים [CP]\" נכתב \"מבוגר עם שיתוק מוחין (CP)\". \"שיתוק ילדים\" בעברית הוא פוליו, והמרכז מטפל במבוגרים בלבד.\n• \"פגיעת ראש נרכשת\" נכתב \"פגיעת ראש (TBI)\", ו\"לאחר טרשת נפוצה\" נכתב \"בטרשת נפוצה\".\n\nלבדיקת ד״ר צווקר: האיחוד ל\"מפושטת\"."
+    },
+    {
+      "k": "c06",
+      "n": "06",
+      "t": "תוכנית הקורס: יום ב׳",
+      "sub": "08:00–16:00",
+      "quote": "08:00–09:45\n• טכנולוגיות לאיתור שרירים ועצבים להזרקה מקומית של בוטולינום טוקסין ופנול: אולטרסאונד, EMG וגירוי חשמלי של העצב\n• מינונים וריכוזים של בוטולינום טוקסין A להזרקה לשריר ספסטי\n09:45–10:00 · הפסקה\n10:00–11:00 · תרגול: טכניקות הזרקה לשריר בהנחיית אולטרסאונד\n11:00–12:45 · אנטומיה פונקציונלית וטופוגרפית של הגפה העליונה, ואיתור שרירים להזרקה באולטרסאונד\n12:45–13:30 · הפסקת צהריים\n13:30–15:45 · הזרקות מודרכות: שלושה מקרים של הזרקת בוטולינום טוקסין לגפה העליונה בהנחיית אולטרסאונד\n15:45–16:00 · סיכום היום",
+      "body": "מה שונה מהמקור:\n• שלוש שורות זהות של \"מקרה 1–3\" אוחדו לשורה אחת.\n• תוקנו \"11:00:10:00\" ו\"התכנות מינונים\".\n\nלבדיקת ד״ר צווקר: במקור לא כתוב לאיזו גפה ההזרקות המודרכות. השלמתי \"לגפה העליונה\", לפי האנטומיה שנלמדת לפניהן."
+    },
+    {
+      "k": "c07",
+      "n": "07",
+      "t": "תוכנית הקורס: יום ג׳",
+      "sub": "08:00–16:00",
+      "quote": "08:00–10:00 · טיפול בספסטיות מפושטת במשאבת בקלופן תוך-תקאלית (ITB)\n10:00–10:15 · הפסקה\n10:15–11:00 · טיפולים משלימים לטיפול התרופתי (adjuvant therapies): עקרונות וסקירה\n11:00–11:30 · ההזרקה כחלק מתוכנית שיקום: הגישה הרב-תחומית ב-IMSC\n11:30–13:00 · תרגול: אנטומיה פונקציונלית וטופוגרפית של הגפה התחתונה, ואיתור שרירים להזרקה באולטרסאונד\n13:00–13:45 · הפסקת צהריים\n13:45–15:45 · הזרקות מודרכות: שלושה מקרים של הזרקת בוטולינום טוקסין לגפה התחתונה בהנחיית אולטרסאונד\n15:45–16:00 · סיכום היום וחלוקת תעודות השתתפות",
+      "body": "מה שונה מהמקור:\n• הסיור באשפוז היום בשיבא ירד. במקומו, ב-11:00–11:30, הצעתי הרצאה על ההזרקה כחלק מתוכנית שיקום. זה העיקרון שכתוב באתר: המרכז לא נותן הזרקה כטיפול שעומד לבדו.\n\nלאישור: ההרצאה ב-11:00–11:30, או להוריד את החצי שעה ולקצר את היום.\n\nלבדיקת ד״ר צווקר: במקור כתוב רק \"לגפה\". השלמתי \"לגפה התחתונה\", לפי האנטומיה שנלמדת לפניהן."
+    },
+    {
+      "k": "c08",
+      "n": "08",
+      "t": "המרצה",
+      "sub": "ד״ר מנואל צווקר",
+      "quote": "ד״ר מנואל צווקר, מנהל רפואי של IMSC, מומחה בשיקום וברפואה פיזיקלית. מלמד ומכשיר רופאים בבית הספר לרפואה של אוניברסיטת תל אביב.",
+      "body": "מה שונה מהמקור: התואר לקוח מהאתר.\n\nלאישור: באתר כתוב שד״ר צווקר מנהל את המרכז לשיקום הפרעות תנועה ספסטית ואת המרפאה האלקטרודיאגנוסטית בשיבא. להוסיף את זה כאן?"
+    },
+    {
+      "k": "c09",
+      "n": "09",
+      "t": "בסיום הקורס, פרטים והרשמה",
+      "sub": "תעודה ופרטי קשר",
+      "quote": "בסיום הקורס\nתעודת השתתפות מטעם IMSC.\n\nפרטים והרשמה\nטלפון ווואטסאפ 055-2690670 · Office@imsc.co.il",
+      "body": "מה שונה מהמקור: שני החלקים נוספו. התעודה היא תעודת השתתפות בלבד, בלי נקודות זכות או הכרה. אין מחיר."
+    },
+    {
+      "k": "c10",
+      "n": "10",
+      "t": "שורת התחתית",
+      "sub": "הפס בתחתית הדף",
+      "quote": "המרכז הישראלי הרב-תחומי לטיפול בספסטיות · מענה שלם תחת קורת גג אחת",
+      "body": "מה שונה מהמקור: נוספה."
+    }
+  ]
+};
+/* ===================================================================================== */
+(function(){
+  document.documentElement.setAttribute('dir','rtl'); document.documentElement.setAttribute('lang','he');
+  const C=CONFIG, $=id=>document.getElementById(id);
+  $('brand').textContent=C.brand; $('h1').textContent=C.h1; $('intro').textContent=C.intro; $('general-hint').textContent=C.generalHint;
+  C.facts.forEach(f=>{ const s=document.createElement('span'); s.textContent=f; $('facts').appendChild(s); });
+  let vid=null;
+  if(C.video){ const p=$('player'); p.hidden=false; vid=document.createElement('video'); vid.src=C.video.src; if(C.video.poster) vid.poster=C.video.poster; vid.controls=true; vid.playsInline=true; vid.preload='metadata'; p.appendChild(vid); }
+  C.items.forEach(it=>{
+    const el=document.createElement('article'); el.className='item'+(it.img?'':' noimg'); el.id='i-'+it.k;
+    el.innerHTML=(it.img?'<div class="shot"><img alt="" loading="lazy"></div>':'')+'<div><div class="meta"><span class="num"></span><h2></h2><span class="sub"></span></div><div class="changed" hidden></div><button class="jump" type="button" hidden>▶ לצפות מכאן</button><div class="label lq" hidden>הנוסח המוצע</div><div class="quote" hidden></div><div class="label lb" hidden>מה שונה ומה פתוח</div><div class="body" hidden></div><div class="answer"><label></label><textarea placeholder="רק מה שצריך לשנות. ריק = מאושר"></textarea><div class="status"></div></div></div>';
+    if(it.img){ const im=el.querySelector('img'); im.src=it.img; im.alt=C.itemWord+' '+it.n+': '+it.t; }
+    el.querySelector('.num').textContent=it.n||''; el.querySelector('h2').textContent=it.t; el.querySelector('.sub').textContent=it.sub||'';
+    if(it.ch){ const c=el.querySelector('.changed'); c.hidden=false; c.innerHTML='<span class="chg">שונה</span> '; c.appendChild(document.createTextNode(it.ch)); }
+    if(it.quote){ el.querySelector('.lq').hidden=false; const q=el.querySelector('.quote'); q.hidden=false; q.textContent=it.quote; }
+    if(it.body){ el.querySelector('.lb').hidden=false; const b=el.querySelector('.body'); b.hidden=false; b.textContent=it.body; }
+    if(vid && typeof it.at==='number'){ const j=el.querySelector('.jump'); j.hidden=false; j.addEventListener('click',()=>{ try{ vid.currentTime=it.at; const pr=vid.play(); if(pr&&pr.catch) pr.catch(()=>{}); }catch(e){} vid.scrollIntoView({behavior:'smooth',block:'center'}); }); }
+    const ta=el.querySelector('textarea'); ta.id='a-'+it.k; ta.dataset.key=it.k;
+    const lab=el.querySelector('label'); lab.htmlFor=ta.id; lab.textContent='הערות ל'+C.itemWord+' '+(it.n||it.t);
+    el.querySelector('.status').id='st-'+it.k;
+    $('items').appendChild(el);
+  });
+
+  const ORDER=C.items.map(i=>i.k).concat(['general']);
+  const LABEL={}; C.items.forEach(i=>LABEL[i.k]=C.itemWord+' '+(i.n?i.n+' · ':'')+i.t); LABEL.general='הערה כללית';
+  const areas={}; ORDER.forEach(k=>areas[k]=document.querySelector('textarea[data-key="'+k+'"]'));
+  let docRef=null, comments=null, state={answers:{}}; const timers={};
+  const lsLoad=()=>{ try{ const j=localStorage.getItem(C.ls); return j?JSON.parse(j):null; }catch(e){ return null; } };
+  const lsSave=()=>{ try{ localStorage.setItem(C.ls, JSON.stringify(state)); }catch(e){} };
+  function progress(){ const n=ORDER.filter(k=>(areas[k].value||'').trim()).length; $('progress').textContent=n+' מתוך '+ORDER.length+' תיבות עם הערות'; $('barfill').style.width=(n/ORDER.length*100)+'%'; }
+  function fill(){ ORDER.forEach(k=>{ const v=state.answers[k]||''; if(areas[k].value!==v && document.activeElement!==areas[k]) areas[k].value=v; }); progress(); }
+  function setStatus(k,t,c){ const el=$('st-'+k); if(!el) return; el.textContent=t; el.className='status'+(c?' '+c:''); }
+  async function persist(k){
+    state.answers[k]=areas[k].value; state.updatedAt=new Date().toISOString(); lsSave();
+    if(!docRef){ setStatus(k,'נשמר במכשיר הזה','ok'); return; }
+    try{ await docRef.set({answers:state.answers, updatedAt:state.updatedAt, submittedAt:state.submittedAt||null}); setStatus(k,'נשמר','ok'); }
+    catch(e){ setStatus(k,'השמירה המשותפת לא הצליחה, נשמר בדפדפן הזה בלבד','warn'); }
+  }
+  ORDER.forEach(k=>areas[k].addEventListener('input',()=>{ progress(); setStatus(k,'שומר...'); clearTimeout(timers[k]); timers[k]=setTimeout(()=>persist(k),800); }));
+  const local=lsLoad(); if(local&&local.answers) state=local; fill();
+
+  function collect(){ const notes=[]; ORDER.forEach(k=>{ const v=(areas[k].value||'').trim(); if(v) notes.push({item:LABEL[k], note:v}); }); return notes; }
+  function compile(){ const who=($('who').value||'').trim(); const L=[C.sendTitle+(who?' ('+who+')':'')]; const n=collect();
+    n.forEach(x=>L.push('', '• '+x.item+':', x.note)); if(!n.length) L.push('', '(הכול מאושר, בלי הערות)'); return L.join('\n'); }
+  try{ const w=localStorage.getItem(C.ls+'-who'); if(w) $('who').value=w; }catch(e){}
+  $('who').addEventListener('input',()=>{ try{ localStorage.setItem(C.ls+'-who',$('who').value); }catch(e){} });
+  async function send(){
+    const b=$('sendbtn')||$('sendbtn2'); if(b){ b.disabled=true; b.textContent='שומר...'; }
+    ORDER.forEach(k=>{ state.answers[k]=areas[k].value; }); state.updatedAt=new Date().toISOString(); lsSave();
+    const who=($('who').value||'').trim();
+    const box=document.querySelector('#sendwrap .box');
+    let ok=false;
+    if(C.inbox){ try{ await fetch(C.inbox,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({project:C.project||'',round:C.doc,name:who||'ללא שם',notes:collect()})}); ok=true; }catch(e){} }
+    if(ok){ box.innerHTML='<div class="sent"></div><button class="primary" id="sendbtn2" type="button">שמור שוב</button>'; box.querySelector('.sent').textContent='נשמר'+(who?', תודה '+who:'')+'. אפשר להמשיך לערוך ולשמור שוב.'; $('sendbtn2').addEventListener('click',send); return; }
+    box.innerHTML='<div class="sent" style="background:var(--warn-soft);color:var(--warn)">השמירה לא הצליחה. העתיקו את הטקסט ושלחו אותו:</div><textarea id="fallbacktext" readonly></textarea><button class="primary" id="sendbtn2" type="button">נסו שוב</button>';
+    $('fallbacktext').value=compile(); $('sendbtn2').addEventListener('click',send);
+  }
+  $('sendbtn').addEventListener('click',send);
+})();
+</script>
+
+</body></html>
