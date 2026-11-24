@@ -23,16 +23,16 @@
 <div id="hud"></div>
 
 <!-- 01 · קול בחושך -->
-<section class="slide" data-sec="open" data-bare>
+<section data-title="קול בחושך" data-part="פתיחה" class="slide" data-sec="open" data-bare>
   <canvas class="wave"></canvas>
   <audio data-voice="a" preload="auto"></audio>
   <i data-step="1" hidden></i>
   <div class="hint mono" data-a="fade" style="--d:1400">פתיח קולי · הגרסה והקול ייבחרו בסוף</div>
-  <aside class="notes"></aside>
+  <aside class="notes">__VOICE_NOTES__</aside>
 </section>
 
 <!-- 02 · שער -->
-<section class="slide" data-sec="open" data-bare>
+<section data-title="שער" data-part="פתיחה" class="slide" data-sec="open" data-bare>
   <svg style="position:absolute;left:120px;top:190px;width:700px;height:700px" viewBox="0 0 700 700" data-a="fade" >
     <defs><radialGradient id="sw" cx="350" cy="350" r="330" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#F2A93B" stop-opacity="0"/><stop offset="1" stop-color="#F2A93B" stop-opacity=".32"/></radialGradient></defs>
     <g fill="none" stroke="#33443A" stroke-width="2">
@@ -53,33 +53,28 @@
     <div class="t7"><span>01</span>הנחיית מנהלים</div><div class="t7"><span>02</span>משימת ההשפעה</div><div class="t7"><span>03</span>צי״ח לקמ״ן</div><div class="t7"><span>04</span>איסוף ומחקר</div><div class="t7"><span>05</span>תכנון</div><div class="t7"><span>06</span>ביצוע</div><div class="t7"><span>07</span>מדידה ותיקון</div>
   </div>
   <style>.t7{padding-top:18px;font-size:25px;font-weight:500;color:#C9D3CC;display:flex;gap:12px;align-items:baseline}.t7 span{font-family:'Plex Mono',monospace;color:var(--amber);font-size:22px;font-weight:600}</style>
-  <aside class="notes"></aside>
+  <aside class="notes">פתיחה קצרה: מה יהיה ב-45 הדקות. מודל עבודה בשבעה שלבים, דוגמאות מהעולם, ובסוף מעבר לשאלות ולסדנה.</aside>
 </section>
 
-<!-- 03 · רוב ההשפעה לא משפיעה -->
-<section class="slide" data-sec="open">
+<!-- 03 · השפעה עובדת -->
+<section class="slide" data-sec="open" data-title="השפעה עובדת" data-part="פתיחה">
   <div class="kick" data-a="start">פתיחה</div>
-  <h2 class="h2" data-a="up" style="--d:150">רוב ההשפעה לא משפיעה</h2>
-  <div class="row" style="margin-top:60px;align-items:center;gap:90px">
-    <div class="col grow" style="gap:0">
-      <div class="rows" style="font-size:38px">
-        <div data-a="start" style="--d:500"><b>49</b>מודעות מהבחירות לנשיאות ארה״ב, 2016</div>
-        <div data-a="start" style="--d:750"><b>59</b>ניסויים</div>
-        <div data-a="start" style="--d:1000"><b>34K</b>משתתפים, בערך</div>
-      </div>
-      <p class="body" data-a="up" style="--d:2600;margin-top:34px;font-size:30px">ומחקר אחר, על 49 ניסויי שטח: ההשפעה של פנייה לבוחרים בבחירות כלליות בארה״ב <b class="amber">היא אפס</b>.</p>
-    </div>
-    <div style="width:640px;text-align:center" data-a="scale" style="--d:800">
-      <div class="big" style="font-size:380px"><span class="num count-up" data-to="0.7" data-dec="1" data-d="1100" data-dur="2200">0.7</span></div>
-      <div class="lead" style="font-size:32px;margin-top:6px">נקודות אחוז: השינוי הממוצע בהצבעה<br><span class="mute">ולא מובהק</span></div>
-    </div>
+  <h2 class="h2" data-a="up" style="--d:150">השפעה עובדת</h2>
+  <div class="proof" style="margin-top:50px">
+    <div data-a="up" style="--d:500"><em>__P1_TAG__</em><b class="num">__P1_V__</b><h3>__P1_H__</h3><p>__P1_P__</p></div>
+    <div data-a="up" style="--d:900"><em>__P2_TAG__</em><b class="num">__P2_V__</b><h3>__P2_H__</h3><p>__P2_P__</p></div>
+    <div data-a="up" style="--d:1300"><em>__P3_TAG__</em><b class="num">__P3_V__</b><h3>__P3_H__</h3><p>__P3_P__</p></div>
   </div>
-  <div class="src"><b>מקורות:</b> Coppock, Hill &amp; Vavreck, Science Advances, 2020 · Kalla &amp; Broockman, American Political Science Review, 2018</div>
-  <aside class="notes"></aside>
+  <style>.proof{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}.proof>div{background:rgba(18,25,21,.92);border:1.5px solid var(--line);border-top:6px solid var(--amber);padding:26px 30px}
+  .proof em{font-style:normal;font-family:'Plex Mono',monospace;font-size:21px;color:var(--mute)}.proof b{display:block;font-family:'Karantina',sans-serif;font-size:150px;line-height:.85;color:var(--amber);font-weight:700;margin:10px 0 6px}
+  .proof h3{font-size:34px;line-height:1.2;margin:0 0 10px}.proof p{font-size:25px;line-height:1.45;color:var(--soft);margin:0}</style>
+  <p class="lead" data-a="up" style="--d:2000;margin-top:40px">השפעה מזיזה התנהגות, הצבעה ואפילו אלימות. ההבדל בין קמפיין שעובד לקמפיין שלא: התכנון.</p>
+  <div class="src"><b>מקורות:</b> __P_SRC__</div>
+  <aside class="notes">__P_NOTES__</aside>
 </section>
 
 <!-- 04 · המודל -->
-<section class="slide" data-sec="open">
+<section data-title="המודל" data-part="פתיחה" class="slide" data-sec="open">
   <div class="kick" data-a="start">המודל</div>
   <h2 class="h2" data-a="up" style="--d:120">תהליך מבצעי להשפעה</h2>
   <div class="model">
@@ -99,19 +94,19 @@
     <div class="mc" data-a="start" style="--d:550;left:1500px;top:450px;width:360px;height:120px"><div class="t"><span class="n">02</span>&nbsp; משימת ההשפעה</div><div class="c">התרגום</div></div>
     <div class="mc" data-a="start" style="--d:800;left:1500px;top:600px;width:360px;height:120px"><div class="t"><span class="n">03</span>&nbsp; צי״ח לקמ״ן</div><div class="c">מה צריך לדעת</div></div>
     <div class="mc" data-a="scale" style="--d:1300;left:1090px;top:585px;width:350px;height:150px"><div class="n">04</div><div class="t">איסוף ומחקר</div><div class="c">אנליזה: קהל, יריב, תובנה</div></div>
-    <div class="mc" data-a="scale" style="--d:1700;left:470px;top:286px;width:450px"><div class="n">05</div><div class="t" style="font-size:38px;font-weight:800">תכנון</div>
-      <div class="sub"><div><b>א</b>קהל יעד והישגים מול כל קהל</div><div><b>ב</b>נרטיב ומסרים</div><div><b>ג</b>שיטת פעולה</div></div></div>
+    <div class="mc" data-a="scale" style="--d:1700;left:470px;top:262px;width:450px"><div class="n">05</div><div class="t" style="font-size:38px;font-weight:800">תכנון</div>
+      <div class="sub"><div><b>א</b>קהל יעד והישגים מול כל קהל</div><div><b>ב</b>נרטיב ומסרים</div><div><b>ג</b>שיטת פעולה</div><div><b>ד</b>הגדרת מדדים</div></div></div>
     <div class="mc" data-a="scale" style="--d:2100;left:70px;top:600px;width:460px"><div class="n">06</div><div class="t" style="font-size:38px;font-weight:800">ביצוע</div>
       <div class="sub"><div><b>א</b>הפקת התוכן</div><div><b>ב</b>הפצת התוכן ומימוש הפעילות</div></div></div>
     <div class="mc" data-a="scale" style="--d:2500;left:540px;top:855px;width:380px;height:130px"><div class="n">07</div><div class="t">מדידה, הערכה ותיקון</div></div>
     <div class="midl" data-a="fade" style="--d:2900;left:560px;top:640px"><strong>במעגל</strong>חוזרים לאיסוף וממשיכים</div>
     <div style="position:absolute;left:1180px;top:993px;font-size:21px;color:var(--amber)" data-a="fade" style="--d:3800">הערכת מצב בנקודות קבועות: חזרה להנחיה</div>
   </div>
-  <aside class="notes"></aside>
+  <aside class="notes">שלושה שלבים קורים פעם אחת: הנחיית מנהלים, משימת ההשפעה, וצי״ח לקמ״ן. משם עובדים במעגל: איסוף ומחקר, תכנון, ביצוע, ומדידה, הערכה ותיקון, ומשם חוזרים לאיסוף. בתכנון ארבעה תתי-שלבים: קהלים והישגים, נרטיב ומסרים, שיטת פעולה, והגדרת מדדים. בנקודות קבועות חוזרים למקבל ההחלטות להערכת מצב. מכאן עוברים שלב אחרי שלב.</aside>
 </section>
 
 <!-- 05 · שלב 1 -->
-<section class="slide gate" data-sec="s1">
+<section data-title="שלב 1: הנחיית מנהלים" data-part="שלב 1" class="slide gate" data-sec="s1">
   <div class="gnum" data-a="fade" style="--d:100">01</div>
   <div class="of" data-a="start">שלב 01 מתוך 07</div>
   <h2 class="h1"><span class="mask"><span data-a="rise" style="display:block;--d:200">הנחיית מנהלים</span></span></h2>
@@ -120,11 +115,11 @@
     <div class="quote" data-a="start" style="--d:1300">״תקשורת אסטרטגית מוצלחת מתחילה בכוונה ובהנחיה ברורות.״<small>נאט״ו, AJP-10 · 2023</small></div>
     <div class="quote" data-a="start" style="--d:1700">״תמיד מתחילים מהמטרה של המדיניות.״<small>ממשלת בריטניה, OASIS</small></div>
   </div>
-  <aside class="notes"></aside>
+  <aside class="notes">כל קמפיין מתחיל בהחלטה של מישהו אחר. צוות ההשפעה לא ממציא את המטרה. בדוקטרינה של נאט״ו: תקשורת אסטרטגית מוצלחת מתחילה בכוונה ובהנחיה ברורות. ובממשלת בריטניה: תמיד מתחילים מהמטרה של המדיניות.</aside>
 </section>
 
 <!-- 06 · מה צריך להיות בהנחיה -->
-<section class="slide" data-sec="s1">
+<section data-title="מה צריך להיות בהנחיה" data-part="שלב 1" class="slide" data-sec="s1">
   <div class="kick" data-a="start">הנחיית מנהלים</div>
   <h2 class="h2" data-a="up" style="--d:120">מה צריך להיות בהנחיה</h2>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:26px 70px;margin-top:56px">
@@ -138,11 +133,11 @@
   <style>.chk{display:flex;gap:24px;align-items:center;font-size:40px;font-weight:500;padding:18px 0;border-bottom:1px solid var(--line)}.chk .box{font-style:normal}</style>
   <div class="quote" data-a="up" style="--d:1700;margin-top:60px;font-size:34px;max-width:1300px">״איזה אפקט ביקשו ממני לייצר, ואיזה חלק הוא בתוכנית הכוללת?״<small>נקודת המוצא של כל תכנון, לפי נאט״ו</small></div>
   <div class="src"><b>מקור:</b> NATO AJP-3.10.1, Psychological Operations, 2014</div>
-  <aside class="notes"></aside>
+  <aside class="notes">אם ההנחיה לא עונה על השאלות האלה, שואלים לפני שמתחילים: מה המצב הרצוי בסוף, איך זה משרת את המערכה כולה, מה אסור, עד מתי, מי עוד פועל באותו מרחב, ומי מאשר. בדוקטרינת הלוחמה הפסיכולוגית של נאט״ו, נקודת המוצא היא שאלה אחת: איזה אפקט ביקשו ממני לייצר, ואיזה חלק הוא בתוכנית הכוללת.</aside>
 </section>
 
 <!-- 07 · פתרון זה לא הנחיה -->
-<section class="slide" data-sec="s1">
+<section data-title="פתרון זה לא הנחיה" data-part="שלב 1" class="slide" data-sec="s1">
   <div class="kick" data-a="start">הנחיית מנהלים</div>
   <h2 class="h2" data-a="up" style="--d:120">פתרון זה לא הנחיה</h2>
   <div class="row" style="margin-top:80px;gap:60px">
@@ -159,108 +154,86 @@
   </div>
   <p class="body" data-a="up" style="--d:2200;margin-top:50px">הערוצים והתוצרים נקבעים רק בשלב התכנון.</p>
   <div class="src">דוגמה כללית, לא ממבצע אמיתי</div>
-  <aside class="notes"></aside>
+  <aside class="notes">מקבלי החלטות נוטים לבקש מוצר: סרטון, קמפיין, דובר. התפקיד של צוות ההשפעה הוא להחזיר את השיחה לאפקט המבוקש: מי, מה ישתנה, ועד מתי. הערוצים והתוצרים נקבעים רק בשלב התכנון.</aside>
 </section>
 
 <!-- 08 · שלב 2 -->
-<section class="slide gate" data-sec="s2">
+<section class="slide gate" data-sec="s2" data-title="שלב 2: משימת ההשפעה" data-part="שלב 2">
   <div class="gnum" data-a="fade" style="--d:100">02</div>
   <div class="of" data-a="start">שלב 02 מתוך 07</div>
   <h2 class="h1"><span class="mask"><span data-a="rise" style="display:block;--d:200">משימת ההשפעה</span></span></h2>
   <p class="lead" data-a="up" style="--d:700;margin-top:26px;max-width:1000px">התרגום של הכוונה למשימה שאפשר לתכנן ולמדוד</p>
-  <div style="display:flex;gap:22px;align-items:center;margin-top:70px">
-    <div class="tag" data-a="start" style="--d:1200;font-size:32px;padding:14px 26px"><b>1</b>כוונה · מקבל ההחלטות</div>
-    <svg width="70" height="20" class="dash-draw" style="--d:1500"><path d="M64 10 H6" stroke="#F2A93B" stroke-width="3" marker-end="url(#ah)"/></svg>
-    <div class="tag" data-a="start" style="--d:1600;font-size:32px;padding:14px 26px;border-color:var(--amber)"><b>2</b>תרגום · צוות ההשפעה</div>
-    <svg width="70" height="20" class="dash-draw" style="--d:1900"><path d="M64 10 H6" stroke="#F2A93B" stroke-width="3" marker-end="url(#ah)"/></svg>
-    <div class="tag" data-a="start" style="--d:2000;font-size:32px;padding:14px 26px"><b>3</b>אישור · מקבל ההחלטות</div>
+  <div style="display:flex;gap:22px;align-items:center;margin-top:56px">
+    <div class="tag" data-a="start" style="--d:1100;font-size:32px;padding:14px 26px"><b>1</b>כוונה · מקבל ההחלטות</div>
+    <svg width="70" height="20" class="dash-draw" style="--d:1400"><path d="M64 10 H6" stroke="#F2A93B" stroke-width="3" marker-end="url(#ah)"/></svg>
+    <div class="tag" data-a="start" style="--d:1500;font-size:32px;padding:14px 26px;border-color:var(--amber)"><b>2</b>תרגום · צוות ההשפעה</div>
+    <svg width="70" height="20" class="dash-draw" style="--d:1800"><path d="M64 10 H6" stroke="#F2A93B" stroke-width="3" marker-end="url(#ah)"/></svg>
+    <div class="tag" data-a="start" style="--d:1900;font-size:32px;padding:14px 26px"><b>3</b>אישור · מקבל ההחלטות</div>
   </div>
-  <div class="src"><b>מקור:</b> US Joint Publication 3-13.2, Military Information Support Operations, 2010</div>
-  <aside class="notes"></aside>
+  <div class="quote" data-a="up" style="--d:2400;margin-top:50px;font-size:44px;max-width:1100px">המשימה תמיד לאור המטרה.<small style="font-size:28px;color:var(--soft)">והמטרה היא המשימה של הדרג הפוקד.</small></div>
+  <aside class="notes">השלב השני הוא התרגום. מקבל ההחלטות נותן כוונה, צוות ההשפעה מתרגם אותה למשימה שאפשר לתכנן ולמדוד, ומקבל ההחלטות מאשר. וכלל אחד שלא מוותרים עליו: המשימה תמיד לאור המטרה. המטרה היא המשימה של הדרג הפוקד. משימת השפעה שלא משרתת אותה, גם אם היא מבריקה, היא לא משימה.</aside>
 </section>
 
-<!-- 09 · משימה טובה -->
-<section class="slide" data-sec="s2">
+<!-- 09 · מהנחיה למשימה -->
+<section class="slide" data-sec="s2" data-title="מהנחיה למשימה: תהליך הניסוח" data-part="שלב 2">
   <div class="kick" data-a="start">משימת ההשפעה</div>
-  <h2 class="h2" data-a="up" style="--d:120">איך נראית משימה טובה</h2>
-  <div class="mis" style="margin-top:50px">
-    <div data-a="start" style="--d:400"><b>מי</b><span>איזה קהל</span><code>צעירים בני 18 עד 25 במחוז מסוים</code></div>
-    <div data-a="start" style="--d:650"><b>מה</b><span>מה ישתנה: בתודעה, בהתנהגות, או בשתיהן</span><code>פחות פניות להצטרפות</code></div>
-    <div data-a="start" style="--d:900"><b>עד מתי</b><span>מסגרת זמן</span><code>שנה</code></div>
-    <div data-a="start" style="--d:1150"><b>איך נדע</b><span>מה נמדוד, ומול איזו נקודת פתיחה</span><code>נתוני הצטרפות, וסקר</code></div>
+  <h2 class="h2" data-a="up" style="--d:120">מהנחיה למשימה</h2>
+  <div class="steps5" style="margin-top:44px">
+    <div data-a="start" style="--d:400"><b>01</b><h3>מזהים את המטרה</h3><p>מה הדרג הפוקד צריך שיקרה. זו המשימה שלו</p></div>
+    <div data-a="start" style="--d:650"><b>02</b><h3>גוזרים את האפקט בתודעה</h3><p>מה צריך להשתנות אצל אנשים, כדי שהמטרה תושג</p></div>
+    <div data-a="start" style="--d:900"><b>03</b><h3>תוחמים</h3><p>בקרב מי, עד מתי, ובאילו מגבלות</p></div>
+    <div data-a="start" style="--d:1150"><b>04</b><h3>מנסחים במשפט אחד</h3><p>מה, בקרב מי, עד מתי, וכדי מה</p></div>
+    <div data-a="start" style="--d:1400"><b>05</b><h3>מאשרים</h3><p>מול מקבל ההחלטות</p></div>
   </div>
-  <style>.mis{border-top:2px solid var(--line2)}.mis>div{display:grid;grid-template-columns:230px 1fr 560px;gap:30px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--line)}
-  .mis b{font-family:'Karantina',sans-serif;font-size:76px;line-height:.9;color:var(--amber);font-weight:700}.mis span{font-size:36px}.mis code{font-family:'Heebo';font-size:27px;color:var(--mute);border-right:3px solid var(--line2);padding-right:18px}</style>
-  <p class="body" data-a="up" style="--d:1700;margin-top:34px;font-size:30px">עמדה והתנהגות הן שני יעדים שונים. לפעמים רוצים את שתיהן, ולא תמיד בשרשרת.</p>
-  <div class="src"><b>מקור:</b> UK Government Communication Service, OASIS · הדוגמאות כלליות</div>
-  <aside class="notes"></aside>
+  <style>.steps5{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}.steps5>div{padding:0 22px 0 0;border-right:3px solid var(--line2);margin-left:18px}.steps5>div:first-child{border-right-color:var(--amber)}
+  .steps5 b{font-family:'Plex Mono',monospace;color:var(--amber);font-size:26px;font-weight:600}.steps5 h3{font-size:36px;line-height:1.15;margin:10px 0 12px}.steps5 p{font-size:26px;line-height:1.45;color:var(--soft);margin:0}</style>
+  <p class="lead" data-a="up" style="--d:1900;margin-top:50px">המשימה מתארת אפקט בתודעה, לא את מה שנפיק. התוצרים מגיעים רק בתכנון.</p>
+  <aside class="notes">איך מתרגמים הנחיה למשימה. קודם מזהים את המטרה: מה הדרג הפוקד צריך שיקרה. אחר כך גוזרים ממנה את האפקט בתודעה: מה צריך להשתנות אצל אנשים כדי שהמטרה תושג. אחר כך תוחמים: בקרב מי, עד מתי ובאילו מגבלות. מנסחים את כל זה במשפט אחד, ומאשרים מול מקבל ההחלטות. והעיקרון: המשימה מתארת אפקט בתודעה, ולא את מה שנפיק. סרטונים, פוסטים ושליחים מגיעים רק בשלב התכנון.</aside>
 </section>
 
-<!-- 10 · המדידה מתחילה כאן -->
-<section class="slide" data-sec="s2">
+<!-- 10 · איך מנסחים -->
+<section class="slide" data-sec="s2" data-title="איך מנסחים, ואיך לא" data-part="שלב 2">
   <div class="kick" data-a="start">משימת ההשפעה</div>
-  <div class="row" style="margin-top:40px;align-items:center;gap:80px">
+  <h2 class="h2" data-a="up" style="--d:120">איך מנסחים, ואיך לא</h2>
+  <div class="tmpl" data-a="up" style="--d:400">
+    <span>לעצב / לחזק / לערער</span> בקרב <span>קהל</span> את התפיסה ש<span>...</span>, עד <span>מועד</span>, כדי <span>המטרה של הדרג הפוקד</span>
+  </div>
+  <style>.tmpl{margin-top:34px;font-size:36px;line-height:1.7;background:rgba(10,14,12,.9);border:1.5px solid var(--line);padding:18px 30px}.tmpl span{color:var(--amber);border-bottom:2px dashed var(--amber);padding:0 6px}</style>
+  <div class="row" style="margin-top:30px;gap:30px">
+    <div class="card grow" data-a="start" style="--d:900"><div class="n">כך</div>
+      <p style="font-size:30px;line-height:1.5;color:var(--ink)">״לעצב בקרב צעירים במחוז מסוים את התפיסה שהצטרפות לארגון פוגעת במשפחה, עד סוף השנה, כדי לצמצם את הגיוס לארגון.״</p></div>
+    <div class="card gray grow" data-a="start" style="--d:1300"><div class="n">לא כך</div>
+      <div class="nots">
+        <div><s>״להפיק קמפיין ברשתות״</s><span>מוצר, לא אפקט</span></div>
+        <div><s>״להגביר מודעות״</s><span>לא מדיד, ולא קשור למטרה</span></div>
+        <div><s>״להפריך כל טענה של היריב״</s><span>תגובה, לא משימה</span></div>
+        <div><s>״לשכנע את כולם בכל הנושאים״</s><span>כמה משימות, בלי קהל</span></div>
+      </div></div>
+  </div>
+  <style>.nots div{display:flex;justify-content:space-between;gap:20px;font-size:27px;padding:8px 0;border-bottom:1px solid var(--line)}.nots s{color:var(--mute);text-decoration-color:var(--red);text-decoration-thickness:3px}.nots span{color:var(--soft);font-size:24px}</style>
+  <div class="src">הדוגמאות כלליות, לא ממבצע אמיתי</div>
+  <aside class="notes">תבנית לניסוח: פועל של אפקט, לעצב, לחזק או לערער, בקרב מי, את התפיסה ש..., עד מתי, וכדי מה. החלק האחרון הוא הקשר למטרה של הדרג הפוקד, ובלעדיו אין משימה. דוגמה: לעצב בקרב צעירים במחוז מסוים את התפיסה שהצטרפות לארגון פוגעת במשפחה, עד סוף השנה, כדי לצמצם את הגיוס לארגון. ומה לא: ״להפיק קמפיין ברשתות״ זה מוצר ולא אפקט. ״להגביר מודעות״ לא מדיד ולא קשור למטרה. ״להפריך כל טענה של היריב״ זו תגובה, לא משימה. ו״לשכנע את כולם בכל הנושאים״ אלה כמה משימות, בלי קהל.</aside>
+</section>
+
+<!-- 11 · המדידה מתחילה כאן -->
+<section class="slide" data-sec="s2" data-title="המדידה מתחילה כאן" data-part="שלב 2">
+  <div class="kick" data-a="start">משימת ההשפעה</div>
+  <div class="row" style="margin-top:30px;align-items:center;gap:70px">
     <div class="grow">
-      <h2 class="h2" style="font-size:170px;line-height:.92"><span class="mask"><span data-a="rise" style="display:block;--d:200">״הערכה טובה</span></span><span class="mask"><span data-a="rise" class="amber" style="display:block;--d:450">מתחילה בתכנון״</span></span></h2>
-      <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:54px">
-        <span class="tag" data-a="up" style="--d:1100"><b>1</b>מטרה ברורה ומדידה</span>
-        <span class="tag" data-a="up" style="--d:1300"><b>2</b>תיאוריה של שינוי</span>
-        <span class="tag" data-a="up" style="--d:1500"><b>3</b>נקודת פתיחה</span>
+      <h2 class="h2" style="font-size:160px;line-height:.92"><span class="mask"><span data-a="rise" style="display:block;--d:200">״הערכה טובה</span></span><span class="mask"><span data-a="rise" class="amber" style="display:block;--d:450">מתחילה בתכנון״</span></span></h2>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:40px">
+        <span class="tag" data-a="up" style="--d:1000"><b>1</b>מטרה ברורה ומדידה</span>
+        <span class="tag" data-a="up" style="--d:1150"><b>2</b>נקודת פתיחה</span>
+        <span class="tag" data-a="up" style="--d:1300"><b>3</b>איך נראה שינוי</span>
       </div>
     </div>
-    <div class="stat" style="width:520px;border-right:2px solid var(--line2);padding-right:50px" data-a="fade" style="--d:1800">
-      <div class="v"><span class="num count-up" data-pre="$" data-to="250" data-suf="M+" data-d="1900">$250M+</span></div>
-      <div class="l">בשנה, על מאמצי השפעה של משרד ההגנה האמריקאי. ולא ברור מה עבד.</div>
+    <div class="card" style="width:640px" data-a="start" style="--d:1500">
+      <div class="n">__T_TAG__</div>
+      <h3 style="font-size:34px">__T_H__</h3>
+      <p>__T_P__</p>
+      <div class="stat" style="margin-top:14px"><div class="v" style="font-size:120px"><span class="num">__T_V__</span></div><div class="l">__T_L__</div></div>
     </div>
   </div>
-  <div class="src"><b>מקור:</b> RAND, Paul, Yeats, Clarke &amp; Matthews, Assessing and Evaluating DoD Efforts to Inform, Influence, and Persuade, 2015</div>
-  <aside class="notes"></aside>
-</section>
-
-<!-- 11 · שלב 3 -->
-<section class="slide gate" data-sec="s3">
-  <div class="gnum" data-a="fade" style="--d:100">03</div>
-  <div class="of" data-a="start">שלב 03 מתוך 07</div>
-  <h2 class="h1"><span class="mask"><span data-a="rise" style="display:block;--d:200">צי״ח לקמ״ן</span></span></h2>
-  <p class="lead" data-a="up" style="--d:700;margin-top:26px;max-width:1000px">מה צריך לדעת כדי לתכנן, וממי מבקשים את זה</p>
-  <p class="body" data-a="up" style="--d:1300;margin-top:60px;color:var(--mute);font-size:28px">מה שהמודיעין הצבאי בדרך כלל לא מחזיק:</p>
-  <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:18px;max-width:1080px">
-    <span class="tag" data-a="up" style="--d:1500">טאבו</span><span class="tag" data-a="up" style="--d:1650">מסורות</span><span class="tag" data-a="up" style="--d:1800">דמויות נערצות</span><span class="tag" data-a="up" style="--d:1950">מיתוסים</span><span class="tag" data-a="up" style="--d:2100">עמדות עכשוויות</span>
-  </div>
-  <div class="src"><b>מקור:</b> JP 3-13.2, פרק 7</div>
-  <aside class="notes"></aside>
-</section>
-
-<!-- 12 · מה שואלים -->
-<section class="slide" data-sec="s3">
-  <div class="kick" data-a="start">צי״ח לקמ״ן</div>
-  <h2 class="h2" data-a="up" style="--d:120">מה שואלים</h2>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:50px">
-    <div class="card" data-a="scale" style="--d:350"><div class="n">01</div><h3>תנאים</h3><p>מה קורה בחיים של הקהל</p></div>
-    <div class="card" data-a="scale" style="--d:500"><div class="n">02</div><h3>עמדות והתנהגויות</h3><p>מה הם חושבים, ומה הם עושים</p></div>
-    <div class="card" data-a="scale" style="--d:650"><div class="n">03</div><h3>פגיעויות</h3><p>פחדים, צרכים, מתחים</p></div>
-    <div class="card" data-a="scale" style="--d:800"><div class="n">04</div><h3>רגישות להשפעה</h3><p>על מה אפשר להשפיע</p></div>
-    <div class="card" data-a="scale" style="--d:950"><div class="n">05</div><h3>נגישות</h3><p>איך מגיעים אליהם</p></div>
-    <div class="card" data-a="scale" style="--d:1100"><div class="n">06</div><h3>סמלים ואמון</h3><p>שפה, סמלים, ובמי הם סומכים</p></div>
-  </div>
-  <p class="body" data-a="up" style="--d:1600;margin-top:36px;font-size:27px;color:var(--mute)">ניתוח קהל יעד: ״מחקר שיטתי של אנשים, כדי להבין עד כמה הם נגישים, פגיעים ורגישים להשפעה על התנהגות ועמדות.״</p>
-  <div class="src"><b>מקור:</b> NATO AJP-3.10.1</div>
-  <aside class="notes"></aside>
-</section>
-
-<!-- 13 · צי"ח חלש, צי"ח טוב -->
-<section class="slide" data-sec="s3">
-  <div class="kick" data-a="start">צי״ח לקמ״ן</div>
-  <h2 class="h2" data-a="up" style="--d:120">צי״ח חלש, צי״ח טוב</h2>
-  <div class="vs" style="margin-top:50px">
-    <div class="hd"><span class="mute">חלש</span><span class="amber">טוב</span></div>
-    <div data-a="up" style="--d:500"><span>״מה דעת הקהל על הנושא?״</span><span>״אילו שלושה מקורות מידע הקהל סומך עליהם בנושא, ומי מפיץ אותם?״</span></div>
-    <div data-a="up" style="--d:1100"><span>״מי המשפיענים?״</span><span>״למי פונים צעירים בני 18 עד 25 כשהם מתלבטים אם להצטרף?״</span></div>
-  </div>
-  <style>.vs>div{display:grid;grid-template-columns:1fr 1.5fr;gap:50px;padding:26px 0;border-bottom:1px solid var(--line);font-size:38px;line-height:1.35}
-  .vs .hd{font-family:'Plex Mono',monospace;font-size:24px;font-weight:600;border-bottom:2px solid var(--line2);padding:0 0 14px}.vs>div:not(.hd) span:first-child{color:var(--mute)}
-  .vs>div:not(.hd) span:last-child{border-right:5px solid var(--amber);padding-right:24px}</style>
-  <p class="body" data-a="up" style="--d:1800;margin-top:40px;font-size:29px">ניתוח קהל היעד הוא ״אבן הפינה״, וגם התחום שנמצא שוב ושוב לא מספק.</p>
-  <div class="src"><b>מקור:</b> Spitaletta, Seese &amp; McCulloh, Johns Hopkins APL, בערך 2017 · הדוגמאות כלליות</div>
-  <aside class="notes"></aside>
+  <div class="src"><b>מקורות:</b> RAND, Paul ועוד, 2015 · __T_SRC__</div>
+  <aside class="notes">__T_NOTES__</aside>
 </section>
