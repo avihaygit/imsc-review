@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex">
+<title>איך מתכננים השפעה · המפרט</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap">
+<style>
+/* ===== Brand tokens: swap these per project (light first, then dark) ===== */
+:root{
+  --bg:#F2F3F9; --surface:#FFFFFF; --ink:#0B1026; --muted:#4A5272; --line:#D9DCEA;
+  --accent:#2B1B8F; --accent-ink:#F2F3F9; --hi:#4B3BD6; --hi-soft:#E6E3FB; --chg:#8A6614; --chg-soft:#F6ECD2;
+  --field:#FFFFFF; --ok:#1E7A52; --ok-soft:#DDF1E6; --warn:#A04C0C; --warn-soft:#FBE8D6; --shadow:0 12px 30px rgba(11,16,38,.14);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#070A18; --surface:#10152E; --ink:#EAF0FF; --muted:#A3ACCB; --line:#252C52;
+    --accent:#3BE3F5; --accent-ink:#070A18; --hi:#3BE3F5; --hi-soft:#12304A; --chg:#E0BC6A; --chg-soft:#3A2F16;
+    --field:#0B1024; --ok:#5DD39E; --ok-soft:#173A2B; --warn:#F0A25E; --warn-soft:#432A12; --shadow:0 12px 30px rgba(0,0,0,.45); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#070A18; --surface:#10152E; --ink:#EAF0FF; --muted:#A3ACCB; --line:#252C52;
+    --accent:#3BE3F5; --accent-ink:#070A18; --hi:#3BE3F5; --hi-soft:#12304A; --chg:#E0BC6A; --chg-soft:#3A2F16;
+    --field:#0B1024; --ok:#5DD39E; --ok-soft:#173A2B; --warn:#F0A25E; --warn-soft:#432A12; --shadow:0 12px 30px rgba(0,0,0,.45); color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Assistant","Arial Hebrew",Arial,sans-serif;font-size:17px;line-height:1.6}
+.wrap{direction:rtl;max-width:980px;margin:0 auto;padding-inline:16px;padding-block:0 96px}
+h1,h2{font-weight:800;line-height:1.15;margin:0;text-wrap:balance}
+h1{font-size:clamp(1.9rem,4.5vw,2.6rem)} h2{font-size:1.45rem}
+p{margin:.5rem 0}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:12px 10px;border-bottom:1px solid var(--line)}
+.top .row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-weight:800;color:var(--hi);letter-spacing:.02em}
+.progress{font-size:.92rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.bar{height:5px;background:var(--line);border-radius:99px;margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--hi);transition:width .3s ease}
+.intro{padding-block:28px 12px;display:grid;gap:10px}
+.intro p{color:var(--muted);max-width:62ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.facts span{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:.9rem;font-weight:600}
+.player{margin-top:14px;max-width:340px}
+.player video{display:block;width:100%;border-radius:14px;background:#000;box-shadow:var(--shadow)}
+.items{display:grid;gap:28px;margin-top:20px}
+.item{display:grid;grid-template-columns:minmax(0,440px) minmax(0,1fr);gap:24px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.item.noimg{grid-template-columns:1fr}
+.shot img{display:block;width:100%;border-radius:12px;box-shadow:var(--shadow);max-width:100%}
+.meta{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.num{font-weight:800;color:var(--hi);font-size:1.5rem;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);font-size:.9rem;font-variant-numeric:tabular-nums}
+.chg{display:inline-block;background:var(--chg-soft);color:var(--chg);font-size:.78rem;font-weight:800;padding:.05em .6em;border-radius:99px;vertical-align:middle}
+.changed{background:var(--chg-soft);border-radius:10px;padding:8px 12px;margin-top:10px;font-size:.95rem}
+.label{font-size:.8rem;font-weight:800;letter-spacing:.06em;color:var(--muted);margin-top:14px}
+.quote{background:var(--hi-soft);border-radius:10px;padding:8px 12px;font-weight:700;margin-top:4px;white-space:pre-line}
+.body{margin-top:4px;white-space:pre-line}
+.jump{font:inherit;font-weight:700;font-size:.9rem;color:var(--hi);background:var(--hi-soft);border:0;border-radius:999px;padding:6px 14px;margin-top:10px;cursor:pointer;min-height:36px}
+.answer{margin-top:16px}
+.answer label{display:block;font-weight:800;margin-bottom:6px}
+textarea{width:100%;min-height:96px;resize:vertical;font:inherit;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:10px;padding:10px 12px;direction:rtl}
+textarea:focus,.jump:focus-visible{outline:2px solid var(--hi);outline-offset:1px}
+.status{font-size:.85rem;color:var(--muted);margin-top:4px;min-height:1.3em}
+.status.ok{color:var(--ok)} .status.warn{color:var(--warn)}
+.general{margin-top:28px;background:var(--chg-soft);border-radius:18px;padding:18px}
+.send{margin-top:28px;padding-top:22px;border-top:2px solid var(--hi)}
+.send .box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.send .hint{color:var(--muted);font-size:.95rem;flex:1 1 240px}
+button.primary{font:inherit;font-weight:800;background:var(--accent);color:var(--accent-ink);border:0;border-radius:999px;padding:12px 32px;cursor:pointer;min-height:44px}
+button.primary:disabled{opacity:.55;cursor:default}
+button.primary:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.sent{background:var(--ok-soft);color:var(--ok);border-radius:10px;padding:10px 14px;font-weight:700}
+@media (max-width:760px){ .item{grid-template-columns:1fr;padding:14px} .shot{max-width:100%;margin-inline:auto;width:100%} }
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="row"><span class="brand" id="brand"></span><span class="progress" id="progress"></span></div>
+    <div class="bar"><i id="barfill"></i></div>
+  </header>
+  <section class="intro">
+    <h1 id="h1"></h1>
+    <p id="intro"></p>
+    <div class="facts" id="facts"></div>
+    <div class="player" id="player" hidden></div>
+  </section>
+  <div class="items" id="items"></div>
+  <section class="general">
+    <h2>הערה כללית</h2>
+    <p id="general-hint"></p>
+    <div class="answer"><label for="a-general">ההערה שלי</label><textarea id="a-general" data-key="general" placeholder="כל מה שלא שייך לפריט אחד"></textarea><div class="status" id="st-general"></div></div>
+  </section>
+  <div class="send" id="sendwrap">
+    <div class="box"><div class="hint" id="sendhint"><label for="who" style="font-weight:700;display:block;margin-bottom:4px">השם שלכם</label><input id="who" type="text" autocomplete="name" style="font:inherit;width:100%;max-width:280px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--field);color:var(--ink)"><div style="margin-top:6px">כשסיימתם, לחצו "שמור" וכל ההערות יישמרו. תיבה ריקה = מאושר.</div></div><button class="primary" id="sendbtn" type="button">שמור</button></div>
+  </div>
+</div>
+
+<script>
+/* ===================== CONFIG — the only part to edit per review ===================== */
+const CONFIG = {
+ "brand": "איך מתכננים השפעה · מפרט · גרסה 1",
+ "h1": "המפרט, שקופית אחרי שקופית",
+ "intro": "כל 44 השקופיות של ההרצאה. ב״טקסט״ מופיע מה שכתוב על השקופית, וב״פירוט״ מה רואים, מה המרצה אומר ומאיפה המידע. המודל בנוי בשבעה שלבים, בעיצוב א׳ (חדר מבצעים). כל הדוגמאות מהעולם, וכל מספר מגיע עם מקור. במקומות שבהם המקור הוא מי שעשה את הקמפיין, ולא בדיקה עצמאית, זה כתוב. כתבו הערות לכל שקופית, ובסוף לחצו ״שמור״.",
+ "facts": [
+  "44 שקופיות",
+  "45 דקות ועוד רבע שעה שאלות",
+  "7 שלבים",
+  "עיצוב א׳: חדר מבצעים"
+ ],
+ "video": null,
+ "generalHint": "על הכול יחד: הסדר, האורך, האיזון בין השלבים, הדוגמאות, או כל דבר שלא שייך לשקופית אחת. אם כבר בחרת פתיח קולי (א׳ או ב׳) או קול, כתוב כאן.",
+ "doc": "reviews/influence-spec-v1",
+ "ls": "influence-spec-v1",
+ "sendTitle": "הערות למפרט, גרסה 1:",
+ "itemWord": "שקופית",
+ "items": [
+  {
+   "k": "s01",
+   "n": "01",
+   "t": "קול בחושך",
+   "sub": "פתיחה · 0:00",
+   "quote": "על המסך רק גל קול, בלי טקסט.",
+   "body": "הקול נשמע באולם לפני שהמרצה מדבר, כ-45 שניות. על הגרסה נחליט בסוף:\nא׳: הקול מפעיל על הקהל חמש טכניקות (מחמאה, הוכחה חברתית, נתון בלי מקור, דחיפות וחזרה), ואז חושף מה עשה.\nב׳: ניסוי המסגור: ״תשעים אחוז מחלימים״ מול ״אחד מעשרה מת״.\nאת הקול בוחרים מתוך חמשת הקולות.\nויזואל: הרשת הדקה של העיצוב, וגל קול בענבר שזז עם הקול."
+  },
+  {
+   "k": "s02",
+   "n": "02",
+   "t": "שער",
+   "sub": "פתיחה · 1:00",
+   "img": "img/title.jpg",
+   "quote": "איך מתכננים השפעה\nתהליך מבצעי, שלב אחרי שלב",
+   "body": "ויזואל: מכ״ם שסורק, ובתחתית שבע התחנות של המודל. בלי פרטים על המרצה.\nמה אומרים: מה יהיה ב-45 הדקות: מודל עבודה, דוגמאות מהעולם, ובסוף מעבר לסדנה."
+  },
+  {
+   "k": "s03",
+   "n": "03",
+   "t": "רוב ההשפעה לא משפיעה",
+   "sub": "פתיחה · 2:00",
+   "quote": "49 מודעות מהבחירות לנשיאות ארה״ב, 2016\n59 ניסויים · כ-34,000 משתתפים\nהשינוי הממוצע בהצבעה: 0.7 נקודות אחוז, ולא מובהק",
+   "body": "ויזואל: המספר 0.7 ענק. מונה שעולה מאפס ונעצר הרבה לפני מה שהקהל מצפה.\nמה אומרים: גם קמפיינים עם תקציבים עצומים מזיזים מעט מאוד. מחקר אחר, על 49 ניסויי שטח, העריך שההשפעה של פנייה לבוחרים בבחירות כלליות בארה״ב היא אפס. כלומר: ההבדל בין קמפיין שעובד לקמפיין שלא נמצא בתכנון, ובבדיקה. בשביל זה צריך תהליך.\nמקורות: Coppock, Hill & Vavreck, Science Advances, 2020. Kalla & Broockman, American Political Science Review, 2018."
+  },
+  {
+   "k": "s04",
+   "n": "04",
+   "t": "המודל",
+   "sub": "פתיחה · 3:00",
+   "img": "img/model.jpg",
+   "quote": "תהליך מבצעי להשפעה\nפעם אחת: 1 הנחיית מנהלים · 2 משימת ההשפעה · 3 צי״ח לקמ״ן\nבמעגל: 4 איסוף ומחקר · 5 תכנון · 6 ביצוע · 7 מדידה, הערכה ותיקון",
+   "body": "ויזואל: המודל כמסלול, כמו בתמונה. בכניסה לשקופית שלושת השלבים הראשונים נדלקים אחד אחרי השני, ואחריהם המעגל.\nמה אומרים: שלושה שלבים קורים פעם אחת, ומשם עובדים במעגל. בנקודות קבועות חוזרים למקבל ההחלטות להערכת מצב. מכאן עוברים שלב אחרי שלב.\nהמודל: מבוסס על הניסיון של המרצה."
+  },
+  {
+   "k": "s05",
+   "n": "05",
+   "t": "שלב 1: הנחיית מנהלים",
+   "sub": "שלב 1 · 4:00",
+   "quote": "01 · הנחיית מנהלים\nהכוונה של מקבל ההחלטות: מה רוצים שיקרה, ולמה",
+   "body": "ויזואל: שקופית מעבר. המספר 01 ענק בענבר, והמסלול של המודל קטן בפינה, עם התחנה הראשונה דולקת. כל שקופיות המעבר בנויות כך.\nמה אומרים: כל קמפיין מתחיל בהחלטה של מישהו אחר. צוות ההשפעה לא ממציא את המטרה. בדוקטרינה של נאט״ו: ״תקשורת אסטרטגית מוצלחת מתחילה בכוונה ובהנחיה ברורות.״ ובממשלת בריטניה: ״תמיד מתחילים מהמטרה של המדיניות.״\nמקורות: NATO AJP-10, Strategic Communications, 2023. UK Government Communication Service, OASIS."
+  },
+  {
+   "k": "s06",
+   "n": "06",
+   "t": "מה צריך להיות בהנחיה",
+   "sub": "שלב 1 · 5:00",
+   "quote": "מה המצב הרצוי בסוף?\nאיך זה משרת את המערכה כולה?\nמה אסור: נושאים, קהלים, שיטות\nעד מתי?\nמי עוד פועל באותו מרחב?\nמי מאשר?",
+   "body": "ויזואל: רשימת בדיקה. שש שורות נכנסות אחת אחרי השנייה, עם תיבת סימון בענבר.\nמה אומרים: אם ההנחיה לא עונה על השאלות האלה, שואלים לפני שמתחילים. בדוקטרינת הלוחמה הפסיכולוגית של נאט״ו, נקודת המוצא היא שאלה אחת: ״איזה אפקט ביקשו ממני לייצר, ואיזה חלק הוא בתוכנית הכוללת?״\nמקור: NATO AJP-3.10.1, Psychological Operations, 2014."
+  },
+  {
+   "k": "s07",
+   "n": "07",
+   "t": "פתרון זה לא הנחיה",
+   "sub": "שלב 1 · 6:00",
+   "quote": "״תעשו לנו קמפיין ברשתות״: זה פתרון\n״רוצים שפחות צעירים יצטרפו לארגון בשנה הקרובה״: זו הנחיה",
+   "body": "ויזואל: שני כרטיסים זה מול זה. הראשון באפור עם התווית ״פתרון״, השני בענבר עם התווית ״הנחיה״.\nמה אומרים: מקבלי החלטות נוטים לבקש מוצר: סרטון, קמפיין, דובר. התפקיד של צוות ההשפעה הוא להחזיר את השיחה לאפקט המבוקש. הערוצים והתוצרים נקבעים רק בשלב התכנון.\nהדוגמה כללית, ולא ממבצע אמיתי."
+  },
+  {
+   "k": "s08",
+   "n": "08",
+   "t": "שלב 2: משימת ההשפעה",
+   "sub": "שלב 2 · 7:00",
+   "quote": "02 · משימת ההשפעה\nהתרגום של הכוונה למשימה שאפשר לתכנן ולמדוד\nצוות ההשפעה מנסח, מקבל ההחלטות מאשר",
+   "body": "ויזואל: שקופית מעבר, והתחנה השנייה דולקת.\nמה אומרים: בדוקטרינה האמריקאית זה בדיוק המבנה. הדרג הבכיר קובע את המטרות, והמתכננים גוזרים מהן מטרות משנה שעוברות אישור. התוכנית כוללת גם נושאים להדגיש ונושאים להימנע מהם.\nמקור: US Joint Publication 3-13.2, Military Information Support Operations, 2010."
+  },
+  {
+   "k": "s09",
+   "n": "09",
+   "t": "איך נראית משימה טובה",
+   "sub": "שלב 2 · 8:00",
+   "quote": "מי: איזה קהל\nמה: מה ישתנה בתודעה, בהתנהגות, או בשתיהן\nעד מתי\nאיך נדע שזה קרה",
+   "body": "ויזואל: ארבע שורות, ולצד כל אחת דוגמה קצרה בכתב מכונה.\nמה אומרים: עמדה והתנהגות הן שני יעדים שונים. לפעמים רוצים את שתיהן, ולא תמיד בשרשרת: אפשר לשנות התנהגות בלי לשנות עמדה. ממשלת בריטניה דורשת שהמטרות יתארו תוצאה ולא פעילות, ושיהיו מדידות.\nמקור: UK Government Communication Service, OASIS."
+  },
+  {
+   "k": "s10",
+   "n": "10",
+   "t": "המדידה מתחילה כאן",
+   "sub": "שלב 2 · 9:00",
+   "quote": "״הערכה טובה מתחילה בתכנון״\nמטרה ברורה ומדידה · תיאוריה של שינוי · נקודת פתיחה",
+   "body": "ויזואל: הציטוט גדול, ומתחתיו שלושה רכיבים כתגיות.\nמה אומרים: משרד ההגנה האמריקאי מוציא יותר מ-250 מיליון דולר בשנה על מאמצי השפעה, ומתקשה לדעת מה עבד. המסקנה של ראנד: אם לא הגדרתם כבר במשימה מה ייחשב הצלחה ומה המצב היום, לא תוכלו למדוד בשלב 7.\nמקור: RAND, Paul, Yeats, Clarke & Matthews, Assessing and Evaluating DoD Efforts to Inform, Influence, and Persuade, 2015."
+  },
+  {
+   "k": "s11",
+   "n": "11",
+   "t": "שלב 3: צי״ח לקמ״ן",
+   "sub": "שלב 3 · 10:00",
+   "quote": "03 · צי״ח לקמ״ן\nמה צריך לדעת כדי לתכנן, וממי מבקשים את זה",
+   "body": "ויזואל: שקופית מעבר, והתחנה השלישית דולקת.\nמה אומרים: בדוקטרינה האמריקאית, כבר בשלב התכנון מגדירים דרישות מידע ומבקשים אותן דרך גורמי המודיעין. צרכים של ההשפעה יכולים להפוך לדרישות מודיעין בעדיפות עליונה. ויש מידע שהמודיעין הצבאי בדרך כלל לא מחזיק: טאבו, מסורות, דמויות נערצות, מיתוסים ועמדות עכשוויות.\nמקור: JP 3-13.2, פרק 7."
+  },
+  {
+   "k": "s12",
+   "n": "12",
+   "t": "מה שואלים",
+   "sub": "שלב 3 · 11:00",
+   "quote": "תנאים: מה קורה בחיים של הקהל\nעמדות, תפיסות והתנהגויות\nפגיעויות: פחדים, צרכים, מתחים\nרגישות להשפעה: על מה אפשר להשפיע\nנגישות: איך מגיעים אליהם\nסמלים, שפה, ובמי הם סומכים",
+   "body": "ויזואל: שש קטגוריות כרשת של כרטיסים קטנים.\nמה אומרים: אלה הרכיבים של ניתוח קהל יעד בדוקטרינה של נאט״ו, ובעצם זו רשימת הצי״ח. נאט״ו מגדירה ניתוח קהל יעד כ״מחקר שיטתי של אנשים, כדי להבין עד כמה הם נגישים, פגיעים ורגישים להשפעה על התנהגות ועמדות.״\nמקור: NATO AJP-3.10.1."
+  },
+  {
+   "k": "s13",
+   "n": "13",
+   "t": "צי״ח חלש, צי״ח טוב",
+   "sub": "שלב 3 · 12:00",
+   "quote": "חלש: ״מה דעת הקהל על הנושא?״\nטוב: ״אילו שלושה מקורות מידע הקהל סומך עליהם בנושא, ומי מפיץ אותם?״\nחלש: ״מי המשפיענים?״\nטוב: ״למי פונים צעירים בני 18 עד 25 כשהם מתלבטים אם להצטרף?״",
+   "body": "ויזואל: טבלה בשני טורים: ״חלש״ באפור, ״טוב״ בענבר.\nמה אומרים: צי״ח טוב ממוקד, עונה על שאלה שתשנה החלטה בתכנון, ואפשר לאסוף עליו מידע. חוקרים מהמעבדה לפיזיקה שימושית של ג׳ונס הופקינס כתבו שניתוח קהל היעד הוא ״אבן הפינה״, ובאותה נשימה התחום שנמצא שוב ושוב לא מספק.\nמקור: Spitaletta, Seese & McCulloh, Johns Hopkins APL, בערך 2017. הדוגמאות כלליות."
+  },
+  {
+   "k": "s14",
+   "n": "14",
+   "t": "שלב 4: איסוף ומחקר",
+   "sub": "שלב 4 · 13:00",
+   "quote": "04 · איסוף ומחקר\nהכול מגיע דרך הקמ״ן: מודיעין, סקרים, קבוצות מיקוד וניטור שיח\nצוות ההשפעה מנתח",
+   "body": "ויזואל: שקופית מעבר. התחנה הרביעית דולקת, ומכאן המעגל מסומן. בצד: שלוש מדרגות של אמינות המידע.\nמה אומרים: זה השלב הראשון במעגל, ולכאן חוזרים אחרי כל סבב מדידה. נאט״ו מדרגת את המידע על הקהל לשלוש רמות: מחקר מדעי בשטח, מגע ישיר עם הקהל בלי שיטה מדעית, ומחקר משני או מהאינטרנט, שהוא ״מידע שהוא הנחה״. כדאי לסמן בתכנון מה נשען על מה.\nמקור: NATO AJP-3.10.1."
+  },
+  {
+   "k": "s15",
+   "n": "15",
+   "t": "התובנה",
+   "sub": "שלב 4 · 14:00",
+   "quote": "קולומביה: משרד ההגנה מול ה-FARC\nכ-60 ראיונות עם עריקים\n״הם אסירים של הארגון שלהם, כמו החטופים שהם מחזיקים״\nהפחד שלהם: לא למות, אלא להידחות\nשיא העריקות: בחג המולד",
+   "body": "ויזואל: ג׳ונגל כהה, וחמש שורות שנחשפות אחת אחרי השנייה, כמו תמליל.\nמה אומרים: הסוכנות שעבדה עם משרד ההגנה הקולומביאני לא התחילה ברעיון יצירתי. היא ביקשה גישה לעריקים, דיברה עם כ-60 מהם, והגיעה למסקנה שצריך ״לדבר עם האדם, ולא עם הלוחם״. מכאן נולדו מבצעי חג המולד. לתוצאות שלהם נחזור בשלב 7.\nמקור: חוסה מיגל סוקולוף, הרצאת TED, 2014. אלה דברי הסוכנות עצמה."
+  },
+  {
+   "k": "s16",
+   "n": "16",
+   "t": "היריב: קודם מנתחים",
+   "sub": "שלב 4 · 15:00",
+   "quote": "״צינור השקר״ הרוסי, לפי ראנד:\nכמות גדולה, בהרבה ערוצים · מהיר, רציף וחוזר על עצמו · בלי מחויבות למציאות · בלי מחויבות לעקביות\n״אל תצפו לנצח צינור כיבוי של שקר עם אקדח מים של אמת״",
+   "body": "ויזואל: ארבעה מאפיינים כארבעה מדים, ומתחתם הציטוט.\nמה אומרים: ראנד לא ממליצה להפריך כל טענה. ההמלצות: להזהיר את הקהל מראש, להתמקד בקהל ולא בצינור, ולפעול נגד האפקט שהיריב רוצה ולא נגד הטענה עצמה.\nמקור: RAND, Paul & Matthews, The Russian \"Firehose of Falsehood\" Propaganda Model, 2016."
+  },
+  {
+   "k": "s17",
+   "n": "17",
+   "t": "הניתוח משנה את מה שמפיקים",
+   "sub": "שלב 4 · 16:00",
+   "quote": "דאעש, חודש אחד ב-2015: 1,146 פריטי תעמולה\nאוטופיה 53% · מלחמה 37% · קורבנות 7% · אכזריות 2%",
+   "body": "ויזואל: גרף עמודות. האכזריות, שהמערב התמקד בה, היא העמודה הקטנה ביותר.\nמה אומרים: מחקר שספר את התעמולה של דאעש מצא שהיא מוכרת בעיקר חיים טובים, ולא אכזריות. באותה תקופה מחלקת המדינה האמריקאית הפיקה סרטון שמתמקד באכזריות, וספגה ביקורת שהוא רק נותן לג׳יהאדיסטים במה. המסקנה של החוקר: צריך נרטיב חלופי, לא נרטיב נגדי.\nמקורות: Charlie Winter, Documenting the Virtual \"Caliphate\", Quilliam, 2015. Rita Katz, TIME, 2014."
+  },
+  {
+   "k": "s18",
+   "n": "18",
+   "t": "שלב 5: תכנון",
+   "sub": "שלב 5 · 17:00",
+   "quote": "05 · תכנון\nא. קהל יעד והישגים מול כל קהל\nב. נרטיב ומסרים\nג. שיטת פעולה",
+   "body": "ויזואל: שקופית מעבר. התחנה החמישית דולקת, ושלושת תתי-השלבים נפתחים מתחתיה.\nמה אומרים: זה הלב של התהליך, והחלק הארוך ביותר בהרצאה."
+  },
+  {
+   "k": "s19",
+   "n": "19",
+   "t": "א. איך מפלחים",
+   "sub": "שלב 5א · 18:00",
+   "quote": "לפי עמדה: תומכים · מתנגדים · מתלבטים\nלפי תפקיד השפעה: מובילי דעה מול הקהל הרחב\nלפי זהות ותרבות\nלפי נתונים דמוגרפיים",
+   "body": "ויזואל: ארבעה צירים שחוצים קהל אחד (עיגול גדול מנוקד), וכל ציר צובע אותו אחרת.\nמה אומרים: כל ציר עונה על שאלה אחרת. העמדה אומרת במי כדאי להשקיע, תפקיד ההשפעה אומר דרך מי, הזהות אומרת באיזו שפה, והדמוגרפיה אומרת איפה למצוא אותם."
+  },
+  {
+   "k": "s20",
+   "n": "20",
+   "t": "במי שווה להשקיע",
+   "sub": "שלב 5א · 19:00",
+   "quote": "אובמה 2012: לכל בוחר ציון מ-0 עד 10\nעד כמה שיחה אחת תזיז אותו\nהבדיקה בשטח: חלק מה״מתלבטים״ בכלל לא זזו",
+   "body": "ויזואל: סקאלה של 0 עד 10 עם נקודות של בוחרים, והאמצע מסומן בסימן שאלה.\nמה אומרים: הקמפיין של אובמה לא הסתפק בהנחה ש״המתלבטים״ הם הקהל. הוא בנה מודל ובדק אותו בניסויים. בניסוי משנת 2006 התברר שמי שקיבל ציון באמצע כמעט לא זז. בצוות האנליטי עבדו 54 אנשים.\nמקור: Sasha Issenberg, MIT Technology Review, דצמבר 2012."
+  },
+  {
+   "k": "s21",
+   "n": "21",
+   "t": "דרך מי משפיעים",
+   "sub": "שלב 5א · 20:00",
+   "quote": "56 בתי ספר · 24,191 תלמידים\nקבוצה קטנה של תלמידים יצאה בגלוי נגד סכסוכים\nהדיווחים על סכסוכים ירדו ב-25% בתוך שנה\nהאפקט היה חזק יותר כשהשליחים היו מי שכולם מסתכלים עליהם",
+   "body": "ויזואל: רשת של תלמידים. כמה צמתים בולטים מוארים, וההשפעה מתפשטת מהם.\nמה אומרים: כבר בשנות החמישים תיארו את ״הזרימה בשני שלבים״: מהתקשורת למובילי הדעה, ומהם לציבור. הניסוי הזה מראה שזה עובד גם על התנהגות, ושחשוב לבחור נכון את מי שמשפיעים דרכו.\nמקורות: Paluck, Shepherd & Aronow, PNAS, 2016. Katz & Lazarsfeld, Personal Influence, 1955."
+  },
+  {
+   "k": "s22",
+   "n": "22",
+   "t": "הישגים מול כל קהל",
+   "sub": "שלב 5א · 21:00",
+   "quote": "קהל ← הישג בתודעה ← הישג בהתנהגות ← איך נדע",
+   "body": "ויזואל: טבלה בארבעה טורים. שורה אחת מלאה כדוגמה כללית: קהל: צעירים בני 18 עד 25 שמתלבטים. הישג בתודעה: ההצטרפות נתפסת כבגידה במשפחה. הישג בהתנהגות: פחות פניות להצטרפות. איך נדע: סקר, ונתוני הצטרפות. שאר השורות ריקות.\nמה אומרים: לכל קהל הישג משלו. קהל אחד צריך לשנות עמדה, וקהל אחר רק לעשות משהו. טבלה כזו תעזור בסדנה."
+  },
+  {
+   "k": "s23",
+   "n": "23",
+   "t": "ב. נרטיב ומסרים",
+   "sub": "שלב 5ב · 22:00",
+   "quote": "נרטיב: הסיפור הגדול, שנותן משמעות למציאות\nמסרים: מה אומרים לכל קהל, בתוך הסיפור\nמי ששקוע בסיפור מאמין לו יותר, ומוצא בו פחות ״זיופים״",
+   "body": "ויזואל: עיגול גדול (הנרטיב), ובתוכו כמה עיגולים קטנים (המסרים לקהלים השונים).\nמה אומרים: ארבעה ניסויים הראו שככל שהקורא ״נסחף״ לתוך הסיפור, הוא מאמץ יותר מהאמונות שבו. וזה כמעט לא משנה אם אמרו לו שהסיפור אמיתי או בדיוני.\nמקור: Green & Brock, Journal of Personality and Social Psychology, 2000."
+  },
+  {
+   "k": "s24",
+   "n": "24",
+   "t": "שלוש מילים",
+   "sub": "שלב 5ב · 23:00",
+   "quote": "Take Back Control\nברקזיט, 2016\n״׳בחזרה׳ נוגע ביצר עמוק: אנחנו שונאים לאבד דברים, במיוחד שליטה״\nדומיניק קאמינגס, מנהל הקמפיין",
+   "body": "ויזואל: שלוש המילים באנגלית, ענקיות, והמילה Back בענבר.\nמה אומרים: נרטיב שלם בשלוש מילים, שנשען על השנאה שלנו להפסיד. לצד הסיסמה, הקמפיין השתמש בטענה ש-350 מיליון ליש״ט בשבוע הולכים לאיחוד האירופי. רשות הסטטיסטיקה הבריטית קבעה שהשימוש במספר הזה מטעה, וקאמינגס עצמו כתב שבלעדיו כנראה לא היו מנצחים.\nמקורות: הבלוג של Dominic Cummings, ינואר 2017. UK Statistics Authority, מאי 2016."
+  },
+  {
+   "k": "s25",
+   "n": "25",
+   "t": "עקביות וחזרה",
+   "sub": "שלב 5ב · 24:00",
+   "quote": "כל חזרה מעלה את האמינות, גם של טענה שקרית\nהקפיצה הגדולה: בפעם השנייה\nוידע מוקדם לא מגן",
+   "body": "ויזואל: גרף: האמינות עולה חזק בחשיפה השנייה, ואז ממשיכה לעלות לאט.\nמה אומרים: אפקט ״האמת המדומה״ ידוע מ-1977. מחקר מ-2015 הראה שהוא עובד גם כשהמשתתפים יודעים את התשובה הנכונה, ומחקר מ-2021 מצא שעיקר הקפיצה קורה כבר בחזרה השנייה. בשביל המתכנן זה אומר: נרטיב אחד, עקבי, לאורך זמן. אם נבחר פתיח א׳, כאן מזכירים שזו הטכניקה החמישית שהקול הפעיל.\nמקורות: Hasher, Goldstein & Toppino, 1977. Fazio ועוד, 2015. Hassan & Barber, 2021."
+  },
+  {
+   "k": "s26",
+   "n": "26",
+   "t": "ג. שיטת פעולה",
+   "sub": "שלב 5ג · 25:00",
+   "quote": "ערוצים וכלים · שליחים ומשפיענים · ייחוס · תזמון ותבנית מערכה",
+   "body": "ויזואל: ארבעה כרטיסים. כל אחד מהם מקבל שקופית משלו.\nמה אומרים: הערוצים כוללים גם פעולות בשטח, כי גם מעשה הוא מסר. את תבנית המערכה בוחרים לפי המשימה."
+  },
+  {
+   "k": "s27",
+   "n": "27",
+   "t": "שליחים",
+   "sub": "שלב 5ג · 26:00",
+   "quote": "סרטונים קצרים של רופאים ואחיות בפייסבוק, לפני החגים\n820 מחוזות בארה״ב\nפחות נסיעות, ו-3.5% פחות הדבקות",
+   "body": "ויזואל: צללית של רופא בחלוק, והמספרים נכנסים אחד אחרי השני.\nמה אומרים: הסרטונים הגיעו לכ-12 מיליון משתמשים בחג ההודיה ולכ-23 מיליון בחג המולד. מי שאומר את המסר משנה. באינדונזיה, ציוצים על חיסונים שנכתבו בשם סלבס קיבלו הרבה יותר לייקים, ודווקא ציון המקור הקטין את ההפצה. ובקולומביה השליחות היו האמהות של הלוחמים: ״לפני שהיית לוחם, היית הבן שלי.״ אם נבחר פתיח א׳, כאן חוזרת ״ההוכחה החברתית״.\nמקורות: Breza ועוד, Nature Medicine, 2021. Alatas ועוד, NBER, 2019. PRI The World, דצמבר 2013."
+  },
+  {
+   "k": "s28",
+   "n": "28",
+   "t": "ייחוס: מי חתום על המסר",
+   "sub": "שלב 5ג · 27:00",
+   "quote": "לבן: המקור גלוי ומאשר\nאפור: המקור לא מזוהה\nשחור: המסר מתחזה למקור אחר\n״אפור ושחור תמיד סמויים״",
+   "body": "ויזואל: שלושה מלבנים: לבן, אפור ושחור.\nמה אומרים: זו החלטה תכנונית, כמו כל החלטה אחרת. גלוי בונה אמינות לאורך זמן. סמוי מאפשר להגיע לקהל שלא מקשיב לנו, במחיר של סיכון חשיפה. הדוקטרינה האמריקאית מזהירה ששקר שנחשף פוגע באמינות המקור ״באופן בלתי הפיך״, ומציינת שרוב הפעילות היא גלויה. אם נבחר פתיח א׳, כאן חוזר ״הנתון בלי מקור״.\nמקורות: US Army FM 3-05.30, Psychological Operations, 2005. JP 3-13.2."
+  },
+  {
+   "k": "s29",
+   "n": "29",
+   "t": "סמוי בפועל: רוסיה 2016",
+   "sub": "שלב 5ג · 28:00",
+   "quote": "סוכנות חקר האינטרנט הרוסית\nכ-1.25 מיליון דולר בחודש · עד 126 מיליון אמריקאים נחשפו\n1% מהמשתמשים קיבלו 70% מהחשיפות\nולא נמצא קשר לשינוי בעמדות או בהצבעה",
+   "body": "ויזואל: המספר 126,000,000 ענק, ומתכווץ בהדרגה ל-1%.\nמה אומרים: המבצע הסמוי המפורסם ביותר היה גדול מאוד, אבל רוב החשיפות הגיעו לאנשים שכבר היו בצד שלו. התוכן של התקשורת והפוליטיקאים האמריקאים היה גדול ממנו בהרבה. כשמתכננים פעולה סמויה, השאלה היא לא כמה ייחשפו, אלא את מי היא תזיז.\nמקורות: ועדת המודיעין של הסנאט האמריקאי, כרך 2, 2019. Eady ועוד, Nature Communications, 2023."
+  },
+  {
+   "k": "s30",
+   "n": "30",
+   "t": "סמוי בפועל: עוד ארבעה מקרים",
+   "sub": "שלב 5ג · 29:00",
+   "quote": "דופלגנגר (רוסיה): אתרי חדשות משובטים · 32 דומיינים נתפסו ב-2024\nספאמופלאז׳ (סין): ״המבצע הסמוי הגדול בעולם״, כמעט בלי מעורבות אמיתית\nרומניה 2024: כ-25 אלף חשבונות טיקטוק, והבחירות בוטלו\nהפיליפינים (ארה״ב): קמפיין סמוי נגד החיסון הסיני, נחשף ב-2024",
+   "body": "ויזואל: ארבעה כרטיסי ״תיק״, ועל כל אחד חותמת ״נחשף״ בענבר.\nמה אומרים: ״סולם הפריצה״ של בן נימו מדרג מבצעים לפי כמה רחוק הם הגיעו: מפלטפורמה אחת וקהילה אחת, ועד תגובה של מקבלי החלטות. רוב המבצעים הסמויים שנחשפו נשארו בדרגות הנמוכות. היוצא מן הכלל הוא רומניה, שם בית המשפט החוקתי ביטל את הסיבוב הראשון.\nמקורות: EU DisinfoLab, 2022. משרד המשפטים האמריקאי, 2024. Meta, 2023. Graphika, 2024. מסמכי המודיעין הרומני שהותרו לפרסום, 2024. Reuters, 2024. Ben Nimmo, Brookings, 2020."
+  },
+  {
+   "k": "s31",
+   "n": "31",
+   "t": "תזמון ותבנית מערכה",
+   "sub": "שלב 5ג · 30:00",
+   "quote": "שלבים עם אבני דרך: קולומביה, מבצע בכל חג מולד, שנה אחרי שנה\nנוכחות קבועה עם שיאים: זלנסקי, נאום כל ערב, ו״סיבוב״ בפרלמנטים של העולם\nתגובה לאירועים: יחידת התגובה המהירה של ממשלת בריטניה, עד 70 אירועים בשבוע",
+   "body": "ויזואל: שלושה צירי זמן זה מתחת לזה, כל אחד בתבנית אחרת: מדרגות, קו עם שיאים, ונקודות פזורות.\nמה אומרים: אין תבנית אחת נכונה. בוחרים לפי המשימה, ולפעמים משלבים. אם נבחר פתיח א׳, כאן חוזרת ״הדחיפות״.\nמקורות: Wikipedia, מבצעי חג המולד בקולומביה. Reuters, מרץ 2022. GOV.UK, מרץ 2020."
+  },
+  {
+   "k": "s32",
+   "n": "32",
+   "t": "שלב 6: ביצוע",
+   "sub": "שלב 6 · 31:00",
+   "quote": "06 · ביצוע\nא. הפקת התוכן\nב. הפצת התוכן ומימוש הפעילות",
+   "body": "ויזואל: שקופית מעבר, והתחנה השישית דולקת.\nמה אומרים: התכנון נגמר, ועכשיו כל החלטה הופכת לתוצר ולפעולה."
+  },
+  {
+   "k": "s33",
+   "n": "33",
+   "t": "א. הפקה: בודקים לפני שמפיצים",
+   "sub": "שלב 6א · 32:00",
+   "quote": "אותו מסר, גרסאות שונות: הטובה יכולה להיות משכנעת בחצי יותר מהממוצע, והחלשה בחצי פחות\nאי אפשר לדעת מראש איזו\nההמלצה: יותר מ-10% מהתקציב לבדיקות",
+   "body": "ויזואל: שלוש גרסאות של אותה מודעה, ומעליהן מד שמראה איזו ניצחה.\nמה אומרים: מחקר על 617 מודעות מ-51 קמפיינים, עם יותר מחצי מיליון משתתפים, מצא שהתיאוריות המקובלות כמעט לא חוזות איזו מודעה תשכנע. גם הדוקטרינה האמריקאית קובעת שכל תוצר ״מתורגם, נבדק מראש, משתנה לפי התוצאות, ורק אז מופק.״\nמקורות: Hewitt, Broockman, Coppock ועוד, American Political Science Review, 2024. FM 3-05.30, פרק 6."
+  },
+  {
+   "k": "s34",
+   "n": "34",
+   "t": "ב. גם מעשה הוא מסר",
+   "sub": "שלב 6ב · 33:00",
+   "quote": "״אני כאן. לא נניח את הנשק.״\nזלנסקי, סרטון סלפי מחוץ למשרדו, בימים הראשונים של המלחמה",
+   "body": "ויזואל: מסגרת של טלפון אנכי, בלי התמונה עצמה, והציטוט בתוכה.\nמה אומרים: הסרטון הפריך את הטענה שזלנסקי ברח, בלי להתווכח איתה. נאט״ו קובעת שהנרטיב וכוונת המפקד צריכים להניע את התכנון של כל הפעולות, כדי למנוע ״פער בין האמירה לעשייה״. כל פעולה בשטח משדרת מסר, ולכן מתכננים אותה כחלק מהקמפיין.\nמקורות: AFP, דרך The Moscow Times, פברואר 2022. NATO AJP-10, 2023."
+  },
+  {
+   "k": "s35",
+   "n": "35",
+   "t": "ב. מפיצים איפה שהקהל נמצא",
+   "sub": "שלב 6ב · 34:00",
+   "quote": "קולומביה, 2011: ״נהרות של אור״\nהנהרות הם ״הכבישים של הג׳ונגל״\nאלפי כדורים מוארים, עם מכתבים ומתנות מהמשפחות, נשלחו במורד הנהרות",
+   "body": "ויזואל: נהר כהה, ונקודות אור בענבר שזזות לאורכו.\nמה אומרים: התובנה, שהפחד הוא להידחות, קבעה את המסר. המחקר על הקהל קבע את דרך ההפצה. זה ביצוע שנשען על כל השלבים שלפניו.\nמקור: חוסה מיגל סוקולוף, TED, 2014. לפי הסוכנות נשלחו יותר מ-6,000 הודעות."
+  },
+  {
+   "k": "s36",
+   "n": "36",
+   "t": "שלב 7: מדידה, הערכה ותיקון",
+   "sub": "שלב 7 · 35:00",
+   "quote": "07 · מדידה, הערכה ותיקון\nמה עשינו · מה השתנה · מה משנים",
+   "body": "ויזואל: שקופית מעבר. התחנה השביעית דולקת, וחץ חוזר ממנה לתחנה 4.\nמה אומרים: המדידה לא בודקת אם עבדנו, אלא אם הקהל השתנה. ובשביל זה צריך את מה שהגדרנו כבר בשלב 2."
+  },
+  {
+   "k": "s37",
+   "n": "37",
+   "t": "עשינו, או השתנה?",
+   "sub": "שלב 7 · 36:00",
+   "quote": "מדד ביצוע: מה עשינו. כמה פרסמנו, כמה נחשפו\nמדד אפקט: מה השתנה בקהל. עמדה, התנהגות\nכשל ביצוע: לא הפקנו את מה שתכננו\nכשל תיאוריה: הפקנו, והקהל לא זז",
+   "body": "ויזואל: שני טורים, ״עשינו״ ו״השתנה״, וביניהם חץ עם סימן שאלה.\nמה אומרים: ראנד מבחינה בין שני סוגי כישלון. בכשל ביצוע מתקנים את הביצוע. בכשל תיאוריה חוזרים לתובנה, ומשנים את ההנחה על מה יזיז את הקהל. ראנד גם מזהירה לא לסגור מאמץ מבטיח על סמך מדד אחד, וממליצה להקצות להערכה כ-5% מהמשאבים.\nוכל ערוצי המדידה מוגבלים. ברשתות: 66% מהקישורים לאתרים פופולריים בטוויטר הגיעו מחשבונות שחשודים כבוטים. בסקרים פתוחים באינטרנט: 12% מהצעירים טענו שיש להם רישיון להפעיל צוללת גרעינית. ומה שמבצע מדווח על עצמו לא מקבלים כמו שהוא.\nמקורות: RAND, Paul ועוד, Handbook for Practitioners, 2015. Pew Research Center, 2018 ו-2024. OpenAI, 2026."
+  },
+  {
+   "k": "s38",
+   "n": "38",
+   "t": "הבדיקה החיצונית: קולומביה",
+   "sub": "שלב 7 · 37:00",
+   "quote": "הסוכנות: 331 עריקים בחג המולד הראשון\nמחקר עצמאי על יותר מ-19,000 עריקים: לא נמצא קשר בין מבצעי חג המולד לבין היקף העריקות\nמחקר אחר: יותר מ-1,000 עריקים בזכות מסרים משפחתיים ששודרו במשחקי כדורגל, אחרי הפסד מפתיע",
+   "body": "ויזואל: שלוש שורות, כל אחת עם תווית מקור: ״הסוכנות״, ״מחקר עצמאי״, ״מחקר נוסף״. המספרים נכנסים אחד אחרי השני.\nמה אומרים: הקמפיין הזה זכה בפרסים בכל העולם, ובכל זאת הבדיקה העצמאית לא מצאה שהוא הזיז את המספרים. מחקר אחר דווקא מצא אפקט, אבל רק למסרים משפחתיים, ורק כשהם הגיעו ברגע רגשי. הלקח למתכנן: לא סומכים על המדידה של מי שהפיק את הקמפיין, ובודקים את התובנה ואת התזמון.\nמקורות: חוסה מיגל סוקולוף, TED, 2014. Nussio & Ugarriza, International Security, 2021. Aparicio, Jetter & Parsons, IZA, 2023 (מאמר עבודה)."
+  },
+  {
+   "k": "s39",
+   "n": "39",
+   "t": "תיקון, ומתי חוזרים למעלה",
+   "sub": "שלב 7 · 38:00",
+   "quote": "חוזרים לשלב 4: אוספים שוב, ומתקנים קהל, מסר, שליח, ערוץ או תזמון\nבנקודות קבועות: הערכת מצב מול מקבל ההחלטות. שם מחליטים על המשימה עצמה",
+   "body": "ויזואל: המעגל של המודל מסתובב פעם אחת, ואז קו מקווקו עולה לתחנה 1.\nמה אומרים: הקמפיין של אובמה ב-2012 בדק בניסויים מי באמת זז, והעביר תקציבים כבר תוך כדי הקמפיין. לעומתו, Think Again Turn Away, הקמפיין של מחלקת המדינה האמריקאית נגד דאעש, נכשל. ״אנחנו לא השליח הכי אמין,״ אמר אחד הבכירים. ב-2016 החליפו אותו במרכז חדש שעובד דרך שותפים מקומיים, והמדידה נכתבה כבר בצו שהקים אותו. וגם היריב מתקן: יממה אחרי שארה״ב תפסה את הדומיינים של דופלגנגר, הופיעו 12 אתרים חלופיים.\nמקורות: MIT Technology Review, 2012. New York Times, יולי 2016. צו נשיאותי 13721, 2016. DFRLab, אוקטובר 2024."
+  },
+  {
+   "k": "s40",
+   "n": "40",
+   "t": "בינה מלאכותית: מה השתנה",
+   "sub": "בינה מלאכותית · 39:00",
+   "quote": "״כל אחת מהרשתות שפירקנו השתמשה בבינה מלאכותית יוצרת״ (Meta, 2026)\nאבל בבחירות 2024 היא הייתה פחות מ-1% מהמידע הכוזב שנבדק\n״אף אחד מהניסיונות לא יצר יכולת פורצת דרך״ (Google, 2026)",
+   "body": "ויזואל: שער לחלק החדש. שלוש שורות ציטוט, ושם החברה בכתב מכונה ליד כל אחת.\nמה אומרים: הבינה המלאכותית הפכה לכלי עבודה רגיל של מבצעי השפעה: תרגום, תגובות, תסריטים, ואפילו דוחות פנימיים. היא חוסכת זמן וכסף. אבל לפי הדוחות של החברות עצמן, היא עוד לא שינתה את התוצאה.\nמקורות: Meta, Adversarial Threat Report, 2026. Meta, דצמבר 2024. Google Threat Intelligence Group, פברואר 2026."
+  },
+  {
+   "k": "s41",
+   "n": "41",
+   "t": "מה קובע את התפוצה",
+   "sub": "בינה מלאכותית · 40:00",
+   "quote": "רוסיה, 2026: שבעה פוסטים מאותה הנחיה לבינה מלאכותית\nאחד קיבל יותר מ-150,000 צפיות, ואחר 57\nההבדל: כמה עוקבים היו לחשבון שפרסם",
+   "body": "ויזואל: שני מספרים זה מול זה, 150,000 ו-57, ומתחתם ״אותה הנחיה״.\nמה אומרים: מה שקובע את ההצלחה הוא לא התוכן שהבינה המלאכותית מייצרת, אלא הרשת, השליח וההפצה, כלומר השלבים שדיברנו עליהם. המבצע הראשון ש-OpenAI עצרה ברמה 5 בסולם הפריצה נשען על מכון מחקר מזויף, על עובדים מקומיים שלא ידעו למי הם עובדים ועל פרסום בתקשורת המרכזית. הבינה המלאכותית כתבה בו בעיקר דוחות פנימיים. לפי OpenAI הוא ״דמה מאוד למבצעי השפעה מורכבים מהתקופה שלפני הבינה המלאכותית.״\nמקורות: OpenAI, פברואר 2026 (Fish Food). OpenAI, אוקטובר 2026 (Dark Clark)."
+  },
+  {
+   "k": "s42",
+   "n": "42",
+   "t": "המחקר: היא משכנעת",
+   "sub": "בינה מלאכותית · 41:00",
+   "quote": "כ-77,000 משתתפים · 19 מודלים · 707 נושאים\nאימון ממוקד: עד 51% יותר שכנוע\nהתאמה אישית: פחות מנקודת אחוז\nמה שמשכנע: הרבה טענות עובדתיות. וככל שהמודל משכנע יותר, הוא פחות מדויק",
+   "body": "ויזואל: ארבעה מדים. המד של ״התאמה אישית״ כמעט ריק.\nמה אומרים: זה המחקר הגדול ביותר עד היום, של מכון בטיחות הבינה המלאכותית הבריטי עם אוקספורד ומוסדות נוספים. כ-40% מהאפקט נשאר אחרי חודש. מחקר מקביל ב-Nature מצא שבבחירות 2024 בארה״ב, שיחה עם צ׳טבוט הזיזה מצביעים בערך פי ארבעה ממודעות טלוויזיה. וזה עובד גם בכיוון ההפוך: שיחות עם צ׳טבוט הורידו אמונה בתיאוריות קונספירציה ב-20%, לפחות לחודשיים.\nמקורות: Hackenburg, Tappin ועוד, Science, דצמבר 2025. Rand, Pennycook ועוד, Nature, דצמבר 2025. Costello, Pennycook & Rand, Science, 2024."
+  },
+  {
+   "k": "s43",
+   "n": "43",
+   "t": "כלי למתכנן, וקהל חדש",
+   "sub": "בינה מלאכותית · 42:00",
+   "quote": "בכל שלב: ניתוח קהל · כתיבת גרסאות · בדיקה מקדימה · ניטור\nאבל ״קהל סינתטי״ לא מחליף קהל אמיתי\nוקהל חדש: הצ׳טבוטים עצמם",
+   "body": "ויזואל: המודל בקטן, ועל כל תחנה סימן קטן של בינה מלאכותית. בצד: כרטיס ״קהל חדש: צ׳טבוטים״.\nמה אומרים: אפשר לדמות סקר בעזרת מודל שפה, ובממוצע הוא מתקרב לתוצאה האמיתית. אבל הפיזור יוצא חצי מהאמיתי, וכמעט מחצית מהקשרים שנמדדו יצאו שונים מהסקר. כלומר: טוב לבדיקה ראשונית, לא במקום הקהל.\nועוד שינוי: רשת ״פרבדה״ הרוסית מפרסמת מיליוני כתבות בשנה, כנראה כדי להשפיע על הצ׳טבוטים ולא על בני אדם. בדיקה אחת מצאה שצ׳טבוטים חזרו על הנרטיבים שלה ב-33% מהמקרים. בדיקה אחרת מצאה רק 5%, וייחסה את זה למחסור במקורות אמינים. כך או כך, מי שמתכנן השפעה היום צריך לחשוב גם על מה שהצ׳טבוטים יגידו לקהל.\nמקורות: Argyle ועוד, Political Analysis, 2023. Bisbee ועוד, Political Analysis, 2024. NewsGuard, מרץ 2025. Alyukov ועוד, HKS Misinformation Review, 2025."
+  },
+  {
+   "k": "s44",
+   "n": "44",
+   "t": "לסדנה",
+   "sub": "סיום · 43:00",
+   "quote": "תהליך מבצעי להשפעה\n1 הנחיית מנהלים · 2 משימת ההשפעה · 3 צי״ח לקמ״ן\n4 איסוף ומחקר · 5 תכנון · 6 ביצוע · 7 מדידה, הערכה ותיקון\nשאלות",
+   "body": "ויזואל: המודל המלא שוב, והפעם כל התחנות דולקות. מתחת: ״שאלות״.\nמה אומרים: סיכום של משפט אחד לכל שלב, ומעבר לשאלות (רבע שעה). אחר כך הסדנה, שבה מתכננים לפי המודל."
+  }
+ ],
+ "inbox": "https://script.google.com/macros/s/AKfycbzEj4lUky1em3ctwa-hol23Hfu5F5paCqut5pzeSTKYG4oaqZSQhPhb5EfFf9ZS16u11w/exec",
+ "project": "influence-lecture"
+};
+/* ===================================================================================== */
+(function(){
+  document.documentElement.setAttribute('dir','rtl'); document.documentElement.setAttribute('lang','he');
+  const C=CONFIG, $=id=>document.getElementById(id);
+  $('brand').textContent=C.brand; $('h1').textContent=C.h1; $('intro').textContent=C.intro; $('general-hint').textContent=C.generalHint;
+  C.facts.forEach(f=>{ const s=document.createElement('span'); s.textContent=f; $('facts').appendChild(s); });
+  let vid=null;
+  if(C.video){ const p=$('player'); p.hidden=false; vid=document.createElement('video'); vid.src=C.video.src; if(C.video.poster) vid.poster=C.video.poster; vid.controls=true; vid.playsInline=true; vid.preload='metadata'; p.appendChild(vid); }
+  C.items.forEach(it=>{
+    const el=document.createElement('article'); el.className='item'+(it.img?'':' noimg'); el.id='i-'+it.k;
+    el.innerHTML=(it.img?'<div class="shot"><img alt="" loading="lazy"></div>':'')+'<div><div class="meta"><span class="num"></span><h2></h2><span class="sub"></span></div><div class="changed" hidden></div><button class="jump" type="button" hidden>▶ לצפות מכאן</button><div class="label lq" hidden>טקסט</div><div class="quote" hidden></div><div class="label lb" hidden>פירוט</div><div class="body" hidden></div><div class="answer"><label></label><textarea placeholder="רק מה שצריך לשנות. ריק = מאושר"></textarea><div class="status"></div></div></div>';
+    if(it.img){ const im=el.querySelector('img'); im.src=it.img; im.alt=C.itemWord+' '+it.n+': '+it.t; }
+    el.querySelector('.num').textContent=it.n||''; el.querySelector('h2').textContent=it.t; el.querySelector('.sub').textContent=it.sub||'';
+    if(it.ch){ const c=el.querySelector('.changed'); c.hidden=false; c.innerHTML='<span class="chg">שונה</span> '; c.appendChild(document.createTextNode(it.ch)); }
+    if(it.quote){ el.querySelector('.lq').hidden=false; const q=el.querySelector('.quote'); q.hidden=false; q.textContent=it.quote; }
+    if(it.body){ el.querySelector('.lb').hidden=false; const b=el.querySelector('.body'); b.hidden=false; b.textContent=it.body; }
+    if(vid && typeof it.at==='number'){ const j=el.querySelector('.jump'); j.hidden=false; j.addEventListener('click',()=>{ try{ vid.currentTime=it.at; const pr=vid.play(); if(pr&&pr.catch) pr.catch(()=>{}); }catch(e){} vid.scrollIntoView({behavior:'smooth',block:'center'}); }); }
+    const ta=el.querySelector('textarea'); ta.id='a-'+it.k; ta.dataset.key=it.k;
+    const lab=el.querySelector('label'); lab.htmlFor=ta.id; lab.textContent='הערות ל'+C.itemWord+' '+(it.n||it.t);
+    el.querySelector('.status').id='st-'+it.k;
+    $('items').appendChild(el);
+  });
+
+  const ORDER=C.items.map(i=>i.k).concat(['general']);
+  const LABEL={}; C.items.forEach(i=>LABEL[i.k]=C.itemWord+' '+(i.n?i.n+' · ':'')+i.t); LABEL.general='הערה כללית';
+  const areas={}; ORDER.forEach(k=>areas[k]=document.querySelector('textarea[data-key="'+k+'"]'));
+  let docRef=null, comments=null, state={answers:{}}; const timers={};
+  const lsLoad=()=>{ try{ const j=localStorage.getItem(C.ls); return j?JSON.parse(j):null; }catch(e){ return null; } };
+  const lsSave=()=>{ try{ localStorage.setItem(C.ls, JSON.stringify(state)); }catch(e){} };
+  function progress(){ const n=ORDER.filter(k=>(areas[k].value||'').trim()).length; $('progress').textContent=n+' מתוך '+ORDER.length+' תיבות עם הערות'; $('barfill').style.width=(n/ORDER.length*100)+'%'; }
+  function fill(){ ORDER.forEach(k=>{ const v=state.answers[k]||''; if(areas[k].value!==v && document.activeElement!==areas[k]) areas[k].value=v; }); progress(); }
+  function setStatus(k,t,c){ const el=$('st-'+k); if(!el) return; el.textContent=t; el.className='status'+(c?' '+c:''); }
+  async function persist(k){
+    state.answers[k]=areas[k].value; state.updatedAt=new Date().toISOString(); lsSave();
+    if(!docRef){ setStatus(k,'נשמר במכשיר הזה','ok'); return; }
+    try{ await docRef.set({answers:state.answers, updatedAt:state.updatedAt, submittedAt:state.submittedAt||null}); setStatus(k,'נשמר','ok'); }
+    catch(e){ setStatus(k,'השמירה המשותפת לא הצליחה, נשמר בדפדפן הזה בלבד','warn'); }
+  }
+  ORDER.forEach(k=>areas[k].addEventListener('input',()=>{ progress(); setStatus(k,'שומר...'); clearTimeout(timers[k]); timers[k]=setTimeout(()=>persist(k),800); }));
+  const local=lsLoad(); if(local&&local.answers) state=local; fill();
+
+  function collect(){ const notes=[]; ORDER.forEach(k=>{ const v=(areas[k].value||'').trim(); if(v) notes.push({item:LABEL[k], note:v}); }); return notes; }
+  function compile(){ const who=($('who').value||'').trim(); const L=[C.sendTitle+(who?' ('+who+')':'')]; const n=collect();
+    n.forEach(x=>L.push('', '• '+x.item+':', x.note)); if(!n.length) L.push('', '(הכול מאושר, בלי הערות)'); return L.join('\n'); }
+  try{ const w=localStorage.getItem(C.ls+'-who'); if(w) $('who').value=w; }catch(e){}
+  $('who').addEventListener('input',()=>{ try{ localStorage.setItem(C.ls+'-who',$('who').value); }catch(e){} });
+  async function send(){
+    const b=$('sendbtn')||$('sendbtn2'); if(b){ b.disabled=true; b.textContent='שומר...'; }
+    ORDER.forEach(k=>{ state.answers[k]=areas[k].value; }); state.updatedAt=new Date().toISOString(); lsSave();
+    const who=($('who').value||'').trim();
+    const box=document.querySelector('#sendwrap .box');
+    if(!who){ if(b){ b.disabled=false; b.textContent='שמור'; } $('who').focus(); $('who').style.borderColor='var(--warn)'; return; }
+    let ok=false;
+    if(C.inbox){ try{ await fetch(C.inbox,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({project:C.project||'',round:C.doc,name:who,notes:collect()})}); ok=true; }catch(e){} }
+    if(ok){ box.innerHTML='<div class="sent"></div><button class="primary" id="sendbtn2" type="button">שמור שוב</button>'; box.querySelector('.sent').textContent='נשמר, תודה '+who+'. אפשר להמשיך לערוך ולשמור שוב.'; $('sendbtn2').addEventListener('click',send); return; }
+    box.innerHTML='<div class="sent" style="background:var(--warn-soft);color:var(--warn)">השמירה לא הצליחה. העתיקו את הטקסט ושלחו אותו:</div><textarea id="fallbacktext" readonly></textarea><button class="primary" id="sendbtn2" type="button">נסו שוב</button>';
+    $('fallbacktext').value=compile(); $('sendbtn2').addEventListener('click',send);
+  }
+  $('sendbtn').addEventListener('click',send);
+})();
+</script>
+
+</body></html>
