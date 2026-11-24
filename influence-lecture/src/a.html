@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head><meta charset="utf-8">
+<link rel="stylesheet" href="fonts.css">
+<style>
+:root{--bg:#0C100E;--panel:#121915;--line:#27322B;--ink:#E7EDE7;--mute:#8E9F94;--amber:#F2A93B;--amber-soft:rgba(242,169,59,.14)}
+.a{background:radial-gradient(70% 80% at 30% 55%,#121A15 0%,var(--bg) 70%);color:var(--ink);font-family:'Heebo',sans-serif}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(150,190,160,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(150,190,160,.055) 1px,transparent 1px);background-size:60px 60px}
+.mono{font-family:'Plex Mono',monospace;letter-spacing:.04em}
+.corner{position:absolute;width:44px;height:44px;border-color:var(--mute);border-style:solid;opacity:.7}
+.c1{top:44px;right:44px;border-width:2px 2px 0 0}.c2{top:44px;left:44px;border-width:2px 0 0 2px}
+.c3{bottom:44px;right:44px;border-width:0 2px 2px 0}.c4{bottom:44px;left:44px;border-width:0 0 2px 2px}
+.meta{position:absolute;top:84px;right:110px;left:110px;display:flex;justify-content:space-between;font-size:22px;color:var(--mute)}
+.meta b{color:var(--amber);font-weight:600}
+/* title slide */
+.tb{position:absolute;right:110px;top:250px;width:1000px}
+.kick{display:flex;align-items:center;gap:18px;font-size:28px;font-weight:600;color:var(--amber);letter-spacing:.06em}
+.kick i{display:block;width:70px;height:6px;background:var(--amber)}
+h1{font-family:'Karantina',sans-serif;font-weight:700;font-size:290px;line-height:.82;margin-top:34px;letter-spacing:-.005em}
+h1 span{display:block}
+h1 .am{color:var(--amber)}
+.sub{margin-top:40px;font-size:46px;font-weight:400;color:#C9D3CC}
+.radar{position:absolute;left:120px;top:190px;width:700px;height:700px}
+.strip{position:absolute;bottom:110px;right:110px;left:110px;display:grid;grid-template-columns:repeat(7,1fr);border-top:2px solid var(--line)}
+.strip div{padding-top:18px;font-size:25px;font-weight:500;color:#C9D3CC;display:flex;gap:14px;align-items:baseline}
+.strip div span{font-family:'Plex Mono',monospace;color:var(--amber);font-size:22px;font-weight:600}
+.strip div:first-child{border-top:6px solid var(--amber);margin-top:-4px}
+/* model slide */
+.hd{position:absolute;right:110px;top:78px}
+.hd .lbl{font-size:24px;color:var(--amber);font-weight:600}
+.hd h2{font-family:'Karantina',sans-serif;font-weight:700;font-size:128px;line-height:.9;margin-top:6px}
+.card{position:absolute;background:rgba(18,25,21,.96);border:1.5px solid var(--line);border-right:6px solid var(--amber);padding:18px 24px 18px 20px}
+.card .n{font-family:'Plex Mono',monospace;font-weight:600;font-size:28px;color:var(--amber)}
+.card .t{font-size:33px;font-weight:700;line-height:1.15;margin-top:2px}
+.card .c{font-size:21px;color:var(--mute);margin-top:4px}
+.card .t .n{font-size:26px}
+.colhead{position:absolute;font-size:22px;font-weight:600;color:var(--amber);letter-spacing:.05em}
+.big .t{font-size:40px;font-weight:800}
+.sublist{margin-top:16px;display:grid;gap:13px}
+.sublist div{display:flex;gap:16px;align-items:center;font-size:26px;font-weight:500}
+.sublist b{display:grid;place-items:center;width:44px;height:44px;border:2px solid var(--amber);color:var(--amber);font-weight:700;font-size:25px;flex:none}
+.mid{position:absolute;font-size:23px;color:var(--mute);text-align:center;width:420px}
+.mid strong{display:block;font-family:'Karantina',sans-serif;font-size:82px;color:#2E3A33;line-height:1;font-weight:700}
+.ret{position:absolute;font-size:21px;color:var(--amber);font-weight:500}
+</style></head><body>
+
+<section class="slide a" id="s1">
+  <div class="grid"></div>
+  <div class="corner c1"></div><div class="corner c2"></div><div class="corner c3"></div><div class="corner c4"></div>
+  <div class="meta"><span>הרצאה מקצועית</span><span class="mono"><b>01</b> / 44</span></div>
+  <svg class="radar" viewBox="0 0 700 700">
+    <defs>
+      <radialGradient id="sw" cx="350" cy="350" r="330" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#F2A93B" stop-opacity=".0"/><stop offset="1" stop-color="#F2A93B" stop-opacity=".32"/></radialGradient>
+      <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#F2A93B" stop-opacity="0"/><stop offset="1" stop-color="#F2A93B" stop-opacity=".45"/></linearGradient>
+    </defs>
+    <g fill="none" stroke="#33443A" stroke-width="2">
+      <circle cx="350" cy="350" r="330"/><circle cx="350" cy="350" r="245"/><circle cx="350" cy="350" r="160"/><circle cx="350" cy="350" r="75"/>
+      <line x1="350" y1="0" x2="350" y2="700"/><line x1="0" y1="350" x2="700" y2="350"/>
+    </g>
+    <g stroke="#33443A" stroke-width="2">
+      <line x1="350" y1="20" x2="350" y2="44" transform="rotate(30 350 350)"/><line x1="350" y1="20" x2="350" y2="44" transform="rotate(60 350 350)"/><line x1="350" y1="20" x2="350" y2="44" transform="rotate(120 350 350)"/><line x1="350" y1="20" x2="350" y2="44" transform="rotate(150 350 350)"/><line x1="350" y1="20" x2="350" y2="44" transform="rotate(210 350 350)"/><line x1="350" y1="20" x2="350" y2="44" transform="rotate(240 350 350)"/><line x1="350" y1="20" x2="350" y2="44" transform="rotate(300 350 350)"/><line x1="350" y1="20" x2="350" y2="44" transform="rotate(330 350 350)"/>
+    </g>
+    <path d="M350 350 L350 20 A330 330 0 0 1 635.8 185 Z" fill="url(#sw)"/>
+    <line x1="350" y1="350" x2="635.8" y2="185" stroke="#F2A93B" stroke-width="3"/>
+    <g fill="#F2A93B"><circle cx="520" cy="240" r="9"/><circle cx="455" cy="120" r="6" opacity=".7"/><circle cx="210" cy="470" r="6" opacity=".35"/><circle cx="560" cy="430" r="5" opacity=".3"/></g>
+    <circle cx="520" cy="240" r="22" fill="none" stroke="#F2A93B" stroke-width="2" opacity=".6"/>
+    <circle cx="350" cy="350" r="7" fill="#E7EDE7"/>
+  </svg>
+  <div class="tb">
+    <div class="kick"><i></i>תהליך מבצעי להשפעה</div>
+    <h1><span>איך מתכננים</span><span class="am">השפעה</span></h1>
+    <p class="sub">תהליך מבצעי, שלב אחרי שלב</p>
+  </div>
+  <div class="strip">
+    <div><span>01</span>הנחיית מנהלים</div><div><span>02</span>משימת ההשפעה</div><div><span>03</span>צי״ח לקמ״ן</div>
+    <div><span>04</span>איסוף ומחקר</div><div><span>05</span>תכנון</div><div><span>06</span>ביצוע</div><div><span>07</span>מדידה ותיקון</div>
+  </div>
+</section>
+
+<section class="slide a" id="s2">
+  <div class="grid"></div>
+  <div class="corner c1"></div><div class="corner c2"></div><div class="corner c3"></div><div class="corner c4"></div>
+  <div class="hd"><div class="lbl">המודל</div><h2>תהליך מבצעי להשפעה</h2></div>
+  <svg style="position:absolute;inset:0" width="1920" height="1080" viewBox="0 0 1920 1080">
+    <defs>
+      <marker id="ah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#F2A93B"/></marker>
+      <marker id="am" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8E9F94"/></marker>
+    </defs>
+    <path d="M380 400 H1000 A260 260 0 0 1 1000 920 H380 A260 260 0 0 1 380 400 Z" fill="none" stroke="#3A4A40" stroke-width="3"/>
+    <g fill="none" stroke="#F2A93B" stroke-width="3">
+      <path d="M1000 400 H936" marker-end="url(#ah)"/>
+      <path d="M466 400 H404" marker-end="url(#ah)"/>
+      <path d="M404 920 H500" marker-end="url(#ah)"/>
+      <path d="M920 920 H990" marker-end="url(#ah)"/>
+    </g>
+    <g fill="none" stroke="#8E9F94" stroke-width="2.5">
+      <path d="M1680 422 V444" marker-end="url(#am)"/><path d="M1680 572 V594" marker-end="url(#am)"/>
+      <path d="M1500 660 H1450" marker-end="url(#am)"/>
+    </g>
+    <path d="M850 985 V1040 H1886 V360 H1868" fill="none" stroke="#F2A93B" stroke-width="2" stroke-dasharray="9 9" opacity=".8" marker-end="url(#ah)"/>
+  </svg>
+  <div class="colhead" style="right:60px;top:258px">פעם אחת</div>
+  <div class="card" style="left:1500px;top:300px;width:360px;height:120px"><div class="t" style="display:flex;gap:16px;align-items:baseline"><span class="n">01</span>הנחיית מנהלים</div><div class="c">הכוונה</div></div>
+  <div class="card" style="left:1500px;top:450px;width:360px;height:120px"><div class="t" style="display:flex;gap:16px;align-items:baseline"><span class="n">02</span>משימת ההשפעה</div><div class="c">התרגום</div></div>
+  <div class="card" style="left:1500px;top:600px;width:360px;height:120px"><div class="t" style="display:flex;gap:16px;align-items:baseline"><span class="n">03</span>צי״ח לקמ״ן</div><div class="c">מה צריך לדעת</div></div>
+  <div class="card" style="left:1090px;top:585px;width:350px;height:150px"><div class="n">04</div><div class="t">איסוף ומחקר</div><div class="c">אנליזה: קהל, יריב, תובנה</div></div>
+  <div class="card big" style="left:470px;top:286px;width:450px"><div class="n">05</div><div class="t">תכנון</div>
+    <div class="sublist"><div><b>א</b>קהל יעד והישגים מול כל קהל</div><div><b>ב</b>נרטיב ומסרים</div><div><b>ג</b>שיטת פעולה</div></div></div>
+  <div class="card big" style="left:70px;top:600px;width:400px"><div class="n">06</div><div class="t">ביצוע</div>
+    <div class="sublist"><div><b>א</b>הפקת התוכן</div><div><b>ב</b>הפצת התוכן ומימוש הפעילות</div></div></div>
+  <div class="card" style="left:520px;top:855px;width:400px;height:130px"><div class="n">07</div><div class="t">מדידה, הערכה ותיקון</div></div>
+  <div class="mid" style="left:560px;top:640px"><strong>במעגל</strong>חוזרים לאיסוף וממשיכים</div>
+  <div class="ret" style="left:1180px;top:996px">הערכת מצב בנקודות קבועות: חזרה להנחיה</div>
+</section>
+</body></html>
