@@ -23,16 +23,16 @@
 <div id="hud"></div>
 
 <!-- 01 · קול בחושך -->
-<section class="slide" data-sec="open" data-bare>
+<section data-title="קול בחושך" data-part="פתיחה" class="slide" data-sec="open" data-bare>
   <canvas class="wave"></canvas>
   <audio data-voice="a" preload="auto"></audio>
   <i data-step="1" hidden></i>
   <div class="hint mono" data-a="fade" style="--d:1400">פתיח קולי · הגרסה והקול ייבחרו בסוף</div>
-  <aside class="notes">הקול נשמע באולם לפני שהמרצה מדבר, כ-45 שניות. על הגרסה נחליט בסוף: א׳: הקול מפעיל על הקהל חמש טכניקות (מחמאה, הוכחה חברתית, נתון בלי מקור, דחיפות וחזרה), ואז חושף מה עשה. ב׳: ניסוי המסגור: ״תשעים אחוז מחלימים״ מול ״אחד מעשרה מת״. את הקול בוחרים מתוך חמשת הקולות. ויזואל: הרשת הדקה של העיצוב, וגל קול בענבר שזז עם הקול.</aside>
+  <aside class="notes">הקול נשמע באולם לפני שהמרצה מדבר. הגרסה והקול ייבחרו לפני ההקלטה.</aside>
 </section>
 
 <!-- 02 · שער -->
-<section class="slide" data-sec="open" data-bare>
+<section data-title="שער" data-part="פתיחה" class="slide" data-sec="open" data-bare>
   <svg style="position:absolute;left:120px;top:190px;width:700px;height:700px" viewBox="0 0 700 700" data-a="fade" >
     <defs><radialGradient id="sw" cx="350" cy="350" r="330" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#F2A93B" stop-opacity="0"/><stop offset="1" stop-color="#F2A93B" stop-opacity=".32"/></radialGradient></defs>
     <g fill="none" stroke="#33443A" stroke-width="2">
@@ -53,33 +53,28 @@
     <div class="t7"><span>01</span>הנחיית מנהלים</div><div class="t7"><span>02</span>משימת ההשפעה</div><div class="t7"><span>03</span>צי״ח לקמ״ן</div><div class="t7"><span>04</span>איסוף ומחקר</div><div class="t7"><span>05</span>תכנון</div><div class="t7"><span>06</span>ביצוע</div><div class="t7"><span>07</span>מדידה ותיקון</div>
   </div>
   <style>.t7{padding-top:18px;font-size:25px;font-weight:500;color:#C9D3CC;display:flex;gap:12px;align-items:baseline}.t7 span{font-family:'Plex Mono',monospace;color:var(--amber);font-size:22px;font-weight:600}</style>
-  <aside class="notes">מה יהיה ב-45 הדקות: מודל עבודה, דוגמאות מהעולם, ובסוף מעבר לסדנה.</aside>
+  <aside class="notes">פתיחה קצרה: מה יהיה ב-45 הדקות. מודל עבודה בשבעה שלבים, דוגמאות מהעולם, ובסוף מעבר לשאלות ולסדנה.</aside>
 </section>
 
-<!-- 03 · רוב ההשפעה לא משפיעה -->
-<section class="slide" data-sec="open">
+<!-- 03 · השפעה עובדת -->
+<section class="slide" data-sec="open" data-title="השפעה עובדת" data-part="פתיחה">
   <div class="kick" data-a="start">פתיחה</div>
-  <h2 class="h2" data-a="up" style="--d:150">רוב ההשפעה לא משפיעה</h2>
-  <div class="row" style="margin-top:60px;align-items:center;gap:90px">
-    <div class="col grow" style="gap:0">
-      <div class="rows" style="font-size:38px">
-        <div data-a="start" style="--d:500"><b>49</b>מודעות מהבחירות לנשיאות ארה״ב, 2016</div>
-        <div data-a="start" style="--d:750"><b>59</b>ניסויים</div>
-        <div data-a="start" style="--d:1000"><b>34K</b>משתתפים, בערך</div>
-      </div>
-      <p class="body" data-a="up" style="--d:2600;margin-top:34px;font-size:30px">ומחקר אחר, על 49 ניסויי שטח: ההשפעה של פנייה לבוחרים בבחירות כלליות בארה״ב <b class="amber">היא אפס</b>.</p>
-    </div>
-    <div style="width:640px;text-align:center;--d:800" data-a="scale">
-      <div class="big" style="font-size:380px"><span class="num count-up" data-to="0.7" data-dec="1" data-d="1100" data-dur="2200">0.7</span></div>
-      <div class="lead" style="font-size:32px;margin-top:6px">נקודות אחוז: השינוי הממוצע בהצבעה<br><span class="mute">ולא מובהק</span></div>
-    </div>
+  <h2 class="h2" data-a="up" style="--d:150">השפעה עובדת</h2>
+  <div class="proof" style="margin-top:50px">
+    <div data-a="up" style="--d:500"><em>ארה״ב · 2000 עד 2002</em><b class="num">22%</b><h3>מהירידה בעישון של בני נוער</h3><p>קמפיין Truth נגד עישון: כ-300,000 מעשנים צעירים פחות.</p></div>
+    <div data-a="up" style="--d:900"><em>ארה״ב · 1996 עד 2000</em><b class="num">3–28%</b><h3>מהצופים שוכנעו להצביע לרפובליקנים</h3><p>כשפוקס ניוז נכנס לכבלים בעיירה, הרפובליקנים עלו שם בחצי נקודה בערך.</p></div>
+    <div data-a="up" style="--d:1300"><em>רואנדה · 1994</em><b class="num">10%</b><h3>מההשתתפות באלימות ברצח העם</h3><p>מיוחסים לתחנת רדיו אחת, RTLM. כ-51,000 מבצעים.</p></div>
   </div>
-  <div class="src"><b>מקורות:</b> Coppock, Hill &amp; Vavreck, Science Advances, 2020 · Kalla &amp; Broockman, American Political Science Review, 2018</div>
-  <aside class="notes">גם קמפיינים עם תקציבים עצומים מזיזים מעט מאוד. מחקר אחר, על 49 ניסויי שטח, העריך שההשפעה של פנייה לבוחרים בבחירות כלליות בארה״ב היא אפס. כלומר: ההבדל בין קמפיין שעובד לקמפיין שלא נמצא בתכנון, ובבדיקה. בשביל זה צריך תהליך.</aside>
+  <style>.proof{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}.proof>div{background:rgba(18,25,21,.92);border:1.5px solid var(--line);border-top:6px solid var(--amber);padding:26px 30px}
+  .proof em{font-style:normal;font-family:'Plex Mono',monospace;font-size:21px;color:var(--mute)}.proof b{display:block;font-family:'Karantina',sans-serif;font-size:150px;line-height:.85;color:var(--amber);font-weight:700;margin:10px 0 6px}
+  .proof h3{font-size:34px;line-height:1.2;margin:0 0 10px}.proof p{font-size:25px;line-height:1.45;color:var(--soft);margin:0}</style>
+  <p class="lead" data-a="up" style="--d:2000;margin-top:40px">השפעה מזיזה התנהגות, הצבעה ואפילו אלימות. ההבדל בין קמפיין שעובד לקמפיין שלא: התכנון.</p>
+  <div class="src"><b>מקורות:</b> Farrelly ועוד, AJPH, 2005 · DellaVigna &amp; Kaplan, QJE, 2007 · Yanagizawa-Drott, QJE, 2014</div>
+  <aside class="notes">נתחיל מהמסקנה: השפעה עובדת. שלוש דוגמאות מהמחקר. בארה״ב, קמפיין Truth נגד עישון בקרב בני נוער אחראי לכ-22% מהירידה בעישון בין 1999 ל-2002, בערך 300 אלף מעשנים צעירים פחות. בבחירות: כשערוץ פוקס ניוז נכנס לרשת הכבלים בעיירה, הרפובליקנים עלו שם בכחצי נקודת אחוז, והחוקרים מעריכים שבין 3% ל-28% מהצופים שוכנעו. והדוגמה הקשה ביותר: ברצח העם ברואנדה, כ-10% מההשתתפות באלימות, כ-51 אלף מבצעים, מיוחסים לתחנת רדיו אחת. השפעה מזיזה התנהגות, הצבעה ואפילו אלימות. ההבדל בין קמפיין שעובד לקמפיין שלא, הוא התכנון. וזה הנושא של הבוקר.</aside>
 </section>
 
 <!-- 04 · המודל -->
-<section class="slide" data-sec="open">
+<section data-title="המודל" data-part="פתיחה" class="slide" data-sec="open">
   <div class="kick" data-a="start">המודל</div>
   <h2 class="h2" data-a="up" style="--d:120">תהליך מבצעי להשפעה</h2>
   <div class="model">
@@ -99,19 +94,19 @@
     <div class="mc" data-a="start" style="--d:550;left:1500px;top:450px;width:360px;height:120px"><div class="t"><span class="n">02</span>&nbsp; משימת ההשפעה</div><div class="c">התרגום</div></div>
     <div class="mc" data-a="start" style="--d:800;left:1500px;top:600px;width:360px;height:120px"><div class="t"><span class="n">03</span>&nbsp; צי״ח לקמ״ן</div><div class="c">מה צריך לדעת</div></div>
     <div class="mc" data-a="scale" style="--d:1300;left:1090px;top:585px;width:350px;height:150px"><div class="n">04</div><div class="t">איסוף ומחקר</div><div class="c">אנליזה: קהל, יריב, תובנה</div></div>
-    <div class="mc" data-a="scale" style="--d:1700;left:470px;top:286px;width:450px"><div class="n">05</div><div class="t" style="font-size:38px;font-weight:800">תכנון</div>
-      <div class="sub"><div><b>א</b>קהל יעד והישגים מול כל קהל</div><div><b>ב</b>נרטיב ומסרים</div><div><b>ג</b>שיטת פעולה</div></div></div>
+    <div class="mc" data-a="scale" style="--d:1700;left:470px;top:262px;width:450px"><div class="n">05</div><div class="t" style="font-size:38px;font-weight:800">תכנון</div>
+      <div class="sub"><div><b>א</b>קהל יעד והישגים מול כל קהל</div><div><b>ב</b>נרטיב ומסרים</div><div><b>ג</b>שיטת פעולה</div><div><b>ד</b>הגדרת מדדים</div></div></div>
     <div class="mc" data-a="scale" style="--d:2100;left:70px;top:600px;width:460px"><div class="n">06</div><div class="t" style="font-size:38px;font-weight:800">ביצוע</div>
       <div class="sub"><div><b>א</b>הפקת התוכן</div><div><b>ב</b>הפצת התוכן ומימוש הפעילות</div></div></div>
     <div class="mc" data-a="scale" style="--d:2500;left:540px;top:855px;width:380px;height:130px"><div class="n">07</div><div class="t">מדידה, הערכה ותיקון</div></div>
     <div class="midl" data-a="fade" style="--d:2900;left:560px;top:640px"><strong>במעגל</strong>חוזרים לאיסוף וממשיכים</div>
     <div style="position:absolute;left:1180px;top:993px;font-size:21px;color:var(--amber);--d:3800" data-a="fade">הערכת מצב בנקודות קבועות: חזרה להנחיה</div>
   </div>
-  <aside class="notes">שלושה שלבים קורים פעם אחת, ומשם עובדים במעגל. בנקודות קבועות חוזרים למקבל ההחלטות להערכת מצב. מכאן עוברים שלב אחרי שלב.</aside>
+  <aside class="notes">שלושה שלבים קורים פעם אחת: הנחיית מנהלים, משימת ההשפעה, וצי״ח לקמ״ן. משם עובדים במעגל: איסוף ומחקר, תכנון, ביצוע, ומדידה, הערכה ותיקון, ומשם חוזרים לאיסוף. בתכנון ארבעה תתי-שלבים: קהלים והישגים, נרטיב ומסרים, שיטת פעולה, והגדרת מדדים. בנקודות קבועות חוזרים למקבל ההחלטות להערכת מצב. מכאן עוברים שלב אחרי שלב.</aside>
 </section>
 
 <!-- 05 · שלב 1 -->
-<section class="slide gate" data-sec="s1">
+<section data-title="שלב 1: הנחיית מנהלים" data-part="שלב 1" class="slide gate" data-sec="s1">
   <div class="gnum" data-a="fade" style="--d:100">01</div>
   <div class="of" data-a="start">שלב 01 מתוך 07</div>
   <h2 class="h1"><span class="mask"><span data-a="rise" style="display:block;--d:200">הנחיית מנהלים</span></span></h2>
@@ -120,11 +115,11 @@
     <div class="quote" data-a="start" style="--d:1300">״תקשורת אסטרטגית מוצלחת מתחילה בכוונה ובהנחיה ברורות.״<small>נאט״ו, AJP-10 · 2023</small></div>
     <div class="quote" data-a="start" style="--d:1700">״תמיד מתחילים מהמטרה של המדיניות.״<small>ממשלת בריטניה, OASIS</small></div>
   </div>
-  <aside class="notes">כל קמפיין מתחיל בהחלטה של מישהו אחר. צוות ההשפעה לא ממציא את המטרה. בדוקטרינה של נאט״ו: ״תקשורת אסטרטגית מוצלחת מתחילה בכוונה ובהנחיה ברורות.״ ובממשלת בריטניה: ״תמיד מתחילים מהמטרה של המדיניות.״</aside>
+  <aside class="notes">כל קמפיין מתחיל בהחלטה של מישהו אחר. צוות ההשפעה לא ממציא את המטרה. בדוקטרינה של נאט״ו: תקשורת אסטרטגית מוצלחת מתחילה בכוונה ובהנחיה ברורות. ובממשלת בריטניה: תמיד מתחילים מהמטרה של המדיניות.</aside>
 </section>
 
 <!-- 06 · מה צריך להיות בהנחיה -->
-<section class="slide" data-sec="s1">
+<section data-title="מה צריך להיות בהנחיה" data-part="שלב 1" class="slide" data-sec="s1">
   <div class="kick" data-a="start">הנחיית מנהלים</div>
   <h2 class="h2" data-a="up" style="--d:120">מה צריך להיות בהנחיה</h2>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:26px 70px;margin-top:56px">
@@ -138,11 +133,11 @@
   <style>.chk{display:flex;gap:24px;align-items:center;font-size:40px;font-weight:500;padding:18px 0;border-bottom:1px solid var(--line)}.chk .box{font-style:normal}</style>
   <div class="quote" data-a="up" style="--d:1700;margin-top:60px;font-size:34px;max-width:1300px">״איזה אפקט ביקשו ממני לייצר, ואיזה חלק הוא בתוכנית הכוללת?״<small>נקודת המוצא של כל תכנון, לפי נאט״ו</small></div>
   <div class="src"><b>מקור:</b> NATO AJP-3.10.1, Psychological Operations, 2014</div>
-  <aside class="notes">אם ההנחיה לא עונה על השאלות האלה, שואלים לפני שמתחילים. בדוקטרינת הלוחמה הפסיכולוגית של נאט״ו, נקודת המוצא היא שאלה אחת: ״איזה אפקט ביקשו ממני לייצר, ואיזה חלק הוא בתוכנית הכוללת?״</aside>
+  <aside class="notes">אם ההנחיה לא עונה על השאלות האלה, שואלים לפני שמתחילים: מה המצב הרצוי בסוף, איך זה משרת את המערכה כולה, מה אסור, עד מתי, מי עוד פועל באותו מרחב, ומי מאשר. בדוקטרינת הלוחמה הפסיכולוגית של נאט״ו, נקודת המוצא היא שאלה אחת: איזה אפקט ביקשו ממני לייצר, ואיזה חלק הוא בתוכנית הכוללת.</aside>
 </section>
 
 <!-- 07 · פתרון זה לא הנחיה -->
-<section class="slide" data-sec="s1">
+<section data-title="פתרון זה לא הנחיה" data-part="שלב 1" class="slide" data-sec="s1">
   <div class="kick" data-a="start">הנחיית מנהלים</div>
   <h2 class="h2" data-a="up" style="--d:120">פתרון זה לא הנחיה</h2>
   <div class="row" style="margin-top:80px;gap:60px">
@@ -159,66 +154,92 @@
   </div>
   <p class="body" data-a="up" style="--d:2200;margin-top:50px">הערוצים והתוצרים נקבעים רק בשלב התכנון.</p>
   <div class="src">דוגמה כללית, לא ממבצע אמיתי</div>
-  <aside class="notes">מקבלי החלטות נוטים לבקש מוצר: סרטון, קמפיין, דובר. התפקיד של צוות ההשפעה הוא להחזיר את השיחה לאפקט המבוקש. הערוצים והתוצרים נקבעים רק בשלב התכנון.</aside>
+  <aside class="notes">מקבלי החלטות נוטים לבקש מוצר: סרטון, קמפיין, דובר. התפקיד של צוות ההשפעה הוא להחזיר את השיחה לאפקט המבוקש: מי, מה ישתנה, ועד מתי. הערוצים והתוצרים נקבעים רק בשלב התכנון.</aside>
 </section>
 
 <!-- 08 · שלב 2 -->
-<section class="slide gate" data-sec="s2">
+<section class="slide gate" data-sec="s2" data-title="שלב 2: משימת ההשפעה" data-part="שלב 2">
   <div class="gnum" data-a="fade" style="--d:100">02</div>
   <div class="of" data-a="start">שלב 02 מתוך 07</div>
   <h2 class="h1"><span class="mask"><span data-a="rise" style="display:block;--d:200">משימת ההשפעה</span></span></h2>
   <p class="lead" data-a="up" style="--d:700;margin-top:26px;max-width:1000px">התרגום של הכוונה למשימה שאפשר לתכנן ולמדוד</p>
-  <div style="display:flex;gap:22px;align-items:center;margin-top:70px">
-    <div class="tag" data-a="start" style="--d:1200;font-size:32px;padding:14px 26px"><b>1</b>כוונה · מקבל ההחלטות</div>
-    <svg width="70" height="20" class="dash-draw" style="--d:1500"><path d="M64 10 H6" stroke="#F2A93B" stroke-width="3" marker-end="url(#ah)"/></svg>
-    <div class="tag" data-a="start" style="--d:1600;font-size:32px;padding:14px 26px;border-color:var(--amber)"><b>2</b>תרגום · צוות ההשפעה</div>
-    <svg width="70" height="20" class="dash-draw" style="--d:1900"><path d="M64 10 H6" stroke="#F2A93B" stroke-width="3" marker-end="url(#ah)"/></svg>
-    <div class="tag" data-a="start" style="--d:2000;font-size:32px;padding:14px 26px"><b>3</b>אישור · מקבל ההחלטות</div>
+  <div style="display:flex;gap:22px;align-items:center;margin-top:56px">
+    <div class="tag" data-a="start" style="--d:1100;font-size:32px;padding:14px 26px"><b>1</b>כוונה · מקבל ההחלטות</div>
+    <svg width="70" height="20" class="dash-draw" style="--d:1400"><path d="M64 10 H6" stroke="#F2A93B" stroke-width="3" marker-end="url(#ah)"/></svg>
+    <div class="tag" data-a="start" style="--d:1500;font-size:32px;padding:14px 26px;border-color:var(--amber)"><b>2</b>תרגום · צוות ההשפעה</div>
+    <svg width="70" height="20" class="dash-draw" style="--d:1800"><path d="M64 10 H6" stroke="#F2A93B" stroke-width="3" marker-end="url(#ah)"/></svg>
+    <div class="tag" data-a="start" style="--d:1900;font-size:32px;padding:14px 26px"><b>3</b>אישור · מקבל ההחלטות</div>
   </div>
-  <div class="src"><b>מקור:</b> US Joint Publication 3-13.2, Military Information Support Operations, 2010</div>
-  <aside class="notes">בדוקטרינה האמריקאית זה בדיוק המבנה. הדרג הבכיר קובע את המטרות, והמתכננים גוזרים מהן מטרות משנה שעוברות אישור. התוכנית כוללת גם נושאים להדגיש ונושאים להימנע מהם.</aside>
+  <div class="quote" data-a="up" style="--d:2400;margin-top:50px;font-size:44px;max-width:1100px">המשימה תמיד לאור המטרה.<small style="font-size:28px;color:var(--soft)">והמטרה היא המשימה של הדרג הפוקד.</small></div>
+  <aside class="notes">השלב השני הוא התרגום. מקבל ההחלטות נותן כוונה, צוות ההשפעה מתרגם אותה למשימה שאפשר לתכנן ולמדוד, ומקבל ההחלטות מאשר. וכלל אחד שלא מוותרים עליו: המשימה תמיד לאור המטרה. המטרה היא המשימה של הדרג הפוקד. משימת השפעה שלא משרתת אותה, גם אם היא מבריקה, היא לא משימה.</aside>
 </section>
 
-<!-- 09 · משימה טובה -->
-<section class="slide" data-sec="s2">
+<!-- 09 · מהנחיה למשימה -->
+<section class="slide" data-sec="s2" data-title="מהנחיה למשימה: תהליך הניסוח" data-part="שלב 2">
   <div class="kick" data-a="start">משימת ההשפעה</div>
-  <h2 class="h2" data-a="up" style="--d:120">איך נראית משימה טובה</h2>
-  <div class="mis" style="margin-top:50px">
-    <div data-a="start" style="--d:400"><b>מי</b><span>איזה קהל</span><code>צעירים בני 18 עד 25 במחוז מסוים</code></div>
-    <div data-a="start" style="--d:650"><b>מה</b><span>מה ישתנה: בתודעה, בהתנהגות, או בשתיהן</span><code>פחות פניות להצטרפות</code></div>
-    <div data-a="start" style="--d:900"><b>עד מתי</b><span>מסגרת זמן</span><code>שנה</code></div>
-    <div data-a="start" style="--d:1150"><b>איך נדע</b><span>מה נמדוד, ומול איזו נקודת פתיחה</span><code>נתוני הצטרפות, וסקר</code></div>
+  <h2 class="h2" data-a="up" style="--d:120">מהנחיה למשימה</h2>
+  <div class="steps5" style="margin-top:44px">
+    <div data-a="start" style="--d:400"><b>01</b><h3>מזהים את המטרה</h3><p>מה הדרג הפוקד צריך שיקרה. זו המשימה שלו</p></div>
+    <div data-a="start" style="--d:650"><b>02</b><h3>גוזרים את האפקט בתודעה</h3><p>מה צריך להשתנות אצל אנשים, כדי שהמטרה תושג</p></div>
+    <div data-a="start" style="--d:900"><b>03</b><h3>תוחמים</h3><p>בקרב מי, עד מתי, ובאילו מגבלות</p></div>
+    <div data-a="start" style="--d:1150"><b>04</b><h3>מנסחים במשפט אחד</h3><p>מה, בקרב מי, עד מתי, וכדי מה</p></div>
+    <div data-a="start" style="--d:1400"><b>05</b><h3>מאשרים</h3><p>מול מקבל ההחלטות</p></div>
   </div>
-  <style>.mis{border-top:2px solid var(--line2)}.mis>div{display:grid;grid-template-columns:230px 1fr 560px;gap:30px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--line)}
-  .mis b{font-family:'Karantina',sans-serif;font-size:76px;line-height:.9;color:var(--amber);font-weight:700}.mis span{font-size:36px}.mis code{font-family:'Heebo';font-size:27px;color:var(--mute);border-right:3px solid var(--line2);padding-right:18px}</style>
-  <p class="body" data-a="up" style="--d:1700;margin-top:34px;font-size:30px">עמדה והתנהגות הן שני יעדים שונים. לפעמים רוצים את שתיהן, ולא תמיד בשרשרת.</p>
-  <div class="src"><b>מקור:</b> UK Government Communication Service, OASIS · הדוגמאות כלליות</div>
-  <aside class="notes">עמדה והתנהגות הן שני יעדים שונים. לפעמים רוצים את שתיהן, ולא תמיד בשרשרת: אפשר לשנות התנהגות בלי לשנות עמדה. ממשלת בריטניה דורשת שהמטרות יתארו תוצאה ולא פעילות, ושיהיו מדידות.</aside>
+  <style>.steps5{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}.steps5>div{padding:0 22px 0 0;border-right:3px solid var(--line2);margin-left:18px}.steps5>div:first-child{border-right-color:var(--amber)}
+  .steps5 b{font-family:'Plex Mono',monospace;color:var(--amber);font-size:26px;font-weight:600}.steps5 h3{font-size:36px;line-height:1.15;margin:10px 0 12px}.steps5 p{font-size:26px;line-height:1.45;color:var(--soft);margin:0}</style>
+  <p class="lead" data-a="up" style="--d:1900;margin-top:50px">המשימה מתארת אפקט בתודעה, לא את מה שנפיק. התוצרים מגיעים רק בתכנון.</p>
+  <aside class="notes">איך מתרגמים הנחיה למשימה. קודם מזהים את המטרה: מה הדרג הפוקד צריך שיקרה. אחר כך גוזרים ממנה את האפקט בתודעה: מה צריך להשתנות אצל אנשים כדי שהמטרה תושג. אחר כך תוחמים: בקרב מי, עד מתי ובאילו מגבלות. מנסחים את כל זה במשפט אחד, ומאשרים מול מקבל ההחלטות. והעיקרון: המשימה מתארת אפקט בתודעה, ולא את מה שנפיק. סרטונים, פוסטים ושליחים מגיעים רק בשלב התכנון.</aside>
 </section>
 
-<!-- 10 · המדידה מתחילה כאן -->
-<section class="slide" data-sec="s2">
+<!-- 10 · איך מנסחים -->
+<section class="slide" data-sec="s2" data-title="איך מנסחים, ואיך לא" data-part="שלב 2">
   <div class="kick" data-a="start">משימת ההשפעה</div>
-  <div class="row" style="margin-top:40px;align-items:center;gap:80px">
+  <h2 class="h2" data-a="up" style="--d:120">איך מנסחים, ואיך לא</h2>
+  <div class="tmpl" data-a="up" style="--d:400">
+    <span>לעצב / לחזק / לערער</span> בקרב <span>קהל</span> את התפיסה ש<span>...</span>, עד <span>מועד</span>, כדי <span>המטרה של הדרג הפוקד</span>
+  </div>
+  <style>.tmpl{margin-top:34px;font-size:36px;line-height:1.7;background:rgba(10,14,12,.9);border:1.5px solid var(--line);padding:18px 30px}.tmpl span{color:var(--amber);border-bottom:2px dashed var(--amber);padding:0 6px}</style>
+  <div class="row" style="margin-top:30px;gap:30px">
+    <div class="card grow" data-a="start" style="--d:900"><div class="n">כך</div>
+      <p style="font-size:30px;line-height:1.5;color:var(--ink)">״לעצב בקרב צעירים במחוז מסוים את התפיסה שהצטרפות לארגון פוגעת במשפחה, עד סוף השנה, כדי לצמצם את הגיוס לארגון.״</p></div>
+    <div class="card gray grow" data-a="start" style="--d:1300"><div class="n">לא כך</div>
+      <div class="nots">
+        <div><s>״להפיק קמפיין ברשתות״</s><span>מוצר, לא אפקט</span></div>
+        <div><s>״להגביר מודעות״</s><span>לא מדיד, ולא קשור למטרה</span></div>
+        <div><s>״להפריך כל טענה של היריב״</s><span>תגובה, לא משימה</span></div>
+        <div><s>״לשכנע את כולם בכל הנושאים״</s><span>כמה משימות, בלי קהל</span></div>
+      </div></div>
+  </div>
+  <style>.nots div{display:flex;justify-content:space-between;gap:20px;font-size:27px;padding:8px 0;border-bottom:1px solid var(--line)}.nots s{color:var(--mute);text-decoration-color:var(--red);text-decoration-thickness:3px}.nots span{color:var(--soft);font-size:24px}</style>
+  <div class="src">הדוגמאות כלליות, לא ממבצע אמיתי</div>
+  <aside class="notes">תבנית לניסוח: פועל של אפקט, לעצב, לחזק או לערער, בקרב מי, את התפיסה ש..., עד מתי, וכדי מה. החלק האחרון הוא הקשר למטרה של הדרג הפוקד, ובלעדיו אין משימה. דוגמה: לעצב בקרב צעירים במחוז מסוים את התפיסה שהצטרפות לארגון פוגעת במשפחה, עד סוף השנה, כדי לצמצם את הגיוס לארגון. ומה לא: ״להפיק קמפיין ברשתות״ זה מוצר ולא אפקט. ״להגביר מודעות״ לא מדיד ולא קשור למטרה. ״להפריך כל טענה של היריב״ זו תגובה, לא משימה. ו״לשכנע את כולם בכל הנושאים״ אלה כמה משימות, בלי קהל.</aside>
+</section>
+
+<!-- 11 · המדידה מתחילה כאן -->
+<section class="slide" data-sec="s2" data-title="המדידה מתחילה כאן" data-part="שלב 2">
+  <div class="kick" data-a="start">משימת ההשפעה</div>
+  <div class="row" style="margin-top:30px;align-items:center;gap:70px">
     <div class="grow">
-      <h2 class="h2" style="font-size:170px;line-height:.92"><span class="mask"><span data-a="rise" style="display:block;--d:200">״הערכה טובה</span></span><span class="mask"><span data-a="rise" class="amber" style="display:block;--d:450">מתחילה בתכנון״</span></span></h2>
-      <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:54px">
-        <span class="tag" data-a="up" style="--d:1100"><b>1</b>מטרה ברורה ומדידה</span>
-        <span class="tag" data-a="up" style="--d:1300"><b>2</b>תיאוריה של שינוי</span>
-        <span class="tag" data-a="up" style="--d:1500"><b>3</b>נקודת פתיחה</span>
+      <h2 class="h2" style="font-size:160px;line-height:.92"><span class="mask"><span data-a="rise" style="display:block;--d:200">״הערכה טובה</span></span><span class="mask"><span data-a="rise" class="amber" style="display:block;--d:450">מתחילה בתכנון״</span></span></h2>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:40px">
+        <span class="tag" data-a="up" style="--d:1000"><b>1</b>מטרה ברורה ומדידה</span>
+        <span class="tag" data-a="up" style="--d:1150"><b>2</b>נקודת פתיחה</span>
+        <span class="tag" data-a="up" style="--d:1300"><b>3</b>איך נראה שינוי</span>
       </div>
     </div>
-    <div style="width:520px;border-right:2px solid var(--line2);padding-right:50px;--d:1800" class="stat" data-a="fade">
-      <div class="v"><span class="num count-up" data-pre="$" data-to="250" data-suf="M+" data-d="1900">$250M+</span></div>
-      <div class="l">בשנה, על מאמצי השפעה של משרד ההגנה האמריקאי. ולא ברור מה עבד.</div>
+    <div style="width:640px;--d:1500" class="card" data-a="start">
+      <div class="n">קמפיין Truth · ארה״ב</div>
+      <h3 style="font-size:34px">איך יודעים שזה עבד?</h3>
+      <p>המדידה תוכננה מראש: סקר ארצי שנתי של בני נוער, נקודת פתיחה מלפני הקמפיין, וכמות החשיפה לקמפיין בכל אחד מ-210 אזורי שידור. יותר חשיפה, פחות עישון.</p>
+      <div class="stat" style="margin-top:14px"><div class="v" style="font-size:120px"><span class="num">300,000</span></div><div class="l">מעשנים צעירים פחות ב-2002</div></div>
     </div>
   </div>
-  <div class="src"><b>מקור:</b> RAND, Paul, Yeats, Clarke &amp; Matthews, Assessing and Evaluating DoD Efforts to Inform, Influence, and Persuade, 2015</div>
-  <aside class="notes">משרד ההגנה האמריקאי מוציא יותר מ-250 מיליון דולר בשנה על מאמצי השפעה, ומתקשה לדעת מה עבד. המסקנה של ראנד: אם לא הגדרתם כבר במשימה מה ייחשב הצלחה ומה המצב היום, לא תוכלו למדוד בשלב 7.</aside>
+  <div class="src"><b>מקורות:</b> RAND, Paul ועוד, 2015 · Farrelly ועוד, AJPH, 2005</div>
+  <aside class="notes">ראנד ניסחה את זה במשפט אחד: הערכה טובה מתחילה בתכנון. צריך מטרה ברורה ומדידה, נקודת פתיחה, והגדרה של איך נראה שינוי. זוכרים את קמפיין Truth מההתחלה? הסיבה שאנחנו יודעים שהוא עבד היא שהמדידה תוכננה מראש: סקר ארצי שנתי של בני נוער, נקודת פתיחה משנים שלפני הקמפיין, וכמות החשיפה לקמפיין בכל אחד מ-210 אזורי שידור. איפה שהייתה יותר חשיפה, היה פחות עישון. בלי זה, לא היינו יודעים על 300 אלף המעשנים הצעירים שלא התחילו לעשן.</aside>
 </section>
 
-<!-- 11 · שלב 3 -->
-<section class="slide gate" data-sec="s3">
+<!-- 12 · שלב 3 -->
+<section class="slide gate" data-sec="s3" data-title="שלב 3: צי״ח לקמ״ן" data-part="שלב 3">
   <div class="gnum" data-a="fade" style="--d:100">03</div>
   <div class="of" data-a="start">שלב 03 מתוך 07</div>
   <h2 class="h1"><span class="mask"><span data-a="rise" style="display:block;--d:200">צי״ח לקמ״ן</span></span></h2>
@@ -228,11 +249,11 @@
     <span class="tag" data-a="up" style="--d:1500">טאבו</span><span class="tag" data-a="up" style="--d:1650">מסורות</span><span class="tag" data-a="up" style="--d:1800">דמויות נערצות</span><span class="tag" data-a="up" style="--d:1950">מיתוסים</span><span class="tag" data-a="up" style="--d:2100">עמדות עכשוויות</span>
   </div>
   <div class="src"><b>מקור:</b> JP 3-13.2, פרק 7</div>
-  <aside class="notes">בדוקטרינה האמריקאית, כבר בשלב התכנון מגדירים דרישות מידע ומבקשים אותן דרך גורמי המודיעין. צרכים של ההשפעה יכולים להפוך לדרישות מודיעין בעדיפות עליונה. ויש מידע שהמודיעין הצבאי בדרך כלל לא מחזיק: טאבו, מסורות, דמויות נערצות, מיתוסים ועמדות עכשוויות.</aside>
+  <aside class="notes">בדוקטרינה האמריקאית, כבר בשלב התכנון מגדירים דרישות מידע ומבקשים אותן דרך גורמי המודיעין. צרכים של ההשפעה יכולים להפוך לדרישות מודיעין בעדיפות עליונה. ויש מידע שהמודיעין הצבאי בדרך כלל לא מחזיק: טאבו, מסורות, דמויות נערצות, מיתוסים ועמדות עכשוויות. את זה צריך לבקש במפורש.</aside>
 </section>
 
-<!-- 12 · מה שואלים -->
-<section class="slide" data-sec="s3">
+<!-- 13 · מה שואלים -->
+<section class="slide" data-sec="s3" data-title="מה שואלים" data-part="שלב 3">
   <div class="kick" data-a="start">צי״ח לקמ״ן</div>
   <h2 class="h2" data-a="up" style="--d:120">מה שואלים</h2>
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:50px">
@@ -245,11 +266,11 @@
   </div>
   <p class="body" data-a="up" style="--d:1600;margin-top:36px;font-size:27px;color:var(--mute)">ניתוח קהל יעד: ״מחקר שיטתי של אנשים, כדי להבין עד כמה הם נגישים, פגיעים ורגישים להשפעה על התנהגות ועמדות.״</p>
   <div class="src"><b>מקור:</b> NATO AJP-3.10.1</div>
-  <aside class="notes">אלה הרכיבים של ניתוח קהל יעד בדוקטרינה של נאט״ו, ובעצם זו רשימת הצי״ח. נאט״ו מגדירה ניתוח קהל יעד כ״מחקר שיטתי של אנשים, כדי להבין עד כמה הם נגישים, פגיעים ורגישים להשפעה על התנהגות ועמדות.״</aside>
+  <aside class="notes">אלה הרכיבים של ניתוח קהל יעד בדוקטרינה של נאט״ו, ובעצם זו רשימת הצי״ח. על כל אחד מהם שואלים את הקמ״ן שאלה ממוקדת.</aside>
 </section>
 
-<!-- 13 · צי"ח חלש, צי"ח טוב -->
-<section class="slide" data-sec="s3">
+<!-- 14 · צי"ח חלש, צי"ח טוב -->
+<section class="slide" data-sec="s3" data-title="צי״ח חלש, צי״ח טוב" data-part="שלב 3">
   <div class="kick" data-a="start">צי״ח לקמ״ן</div>
   <h2 class="h2" data-a="up" style="--d:120">צי״ח חלש, צי״ח טוב</h2>
   <div class="vs" style="margin-top:50px">
@@ -260,98 +281,132 @@
   <style>.vs>div{display:grid;grid-template-columns:1fr 1.5fr;gap:50px;padding:26px 0;border-bottom:1px solid var(--line);font-size:38px;line-height:1.35}
   .vs .hd{font-family:'Plex Mono',monospace;font-size:24px;font-weight:600;border-bottom:2px solid var(--line2);padding:0 0 14px}.vs>div:not(.hd) span:first-child{color:var(--mute)}
   .vs>div:not(.hd) span:last-child{border-right:5px solid var(--amber);padding-right:24px}</style>
-  <p class="body" data-a="up" style="--d:1800;margin-top:40px;font-size:29px">ניתוח קהל היעד הוא ״אבן הפינה״, וגם התחום שנמצא שוב ושוב לא מספק.</p>
-  <div class="src"><b>מקור:</b> Spitaletta, Seese &amp; McCulloh, Johns Hopkins APL, בערך 2017 · הדוגמאות כלליות</div>
-  <aside class="notes">צי״ח טוב ממוקד, עונה על שאלה שתשנה החלטה בתכנון, ואפשר לאסוף עליו מידע. חוקרים מהמעבדה לפיזיקה שימושית של ג׳ונס הופקינס כתבו שניתוח קהל היעד הוא ״אבן הפינה״, ובאותה נשימה התחום שנמצא שוב ושוב לא מספק.</aside>
+  <p class="body" data-a="up" style="--d:1800;margin-top:40px;font-size:30px">צי״ח טוב ממוקד, עונה על שאלה שתשנה החלטה בתכנון, ואפשר לאסוף עליו מידע.</p>
+  <div class="src">הדוגמאות כלליות</div>
+  <aside class="notes">צי״ח טוב ממוקד, עונה על שאלה שתשנה החלטה בתכנון, ואפשר לאסוף עליו מידע. ״מה דעת הקהל״ זו לא שאלה שאפשר לתכנן לפיה. ״במי הקהל סומך ומי מפיץ״ כבר אומרת לנו דרך מי לעבור.</aside>
 </section>
 
-<!-- 14 · שלב 4 -->
-<section class="slide gate" data-sec="s4">
+<!-- 15 · שלב 4 -->
+<section class="slide gate" data-sec="s4" data-title="שלב 4: איסוף ומחקר" data-part="שלב 4">
   <div class="gnum" data-a="fade" style="--d:100">04</div>
   <div class="of" data-a="start">שלב 04 מתוך 07 · כאן מתחיל המעגל</div>
   <h2 class="h1"><span class="mask"><span data-a="rise" style="display:block;--d:200">איסוף ומחקר</span></span></h2>
-  <p class="lead" data-a="up" style="--d:700;margin-top:26px;max-width:1040px">הכול מגיע דרך הקמ״ן: מודיעין, סקרים, קבוצות מיקוד וניטור שיח. צוות ההשפעה מנתח.</p>
-  <div class="tiers" style="margin-top:56px">
-    <div data-a="start" style="--d:1300;margin-right:0"><b>דרג 1</b>מחקר מדעי בשטח</div>
-    <div data-a="start" style="--d:1550;margin-right:90px;opacity:.85"><b>דרג 2</b>מגע ישיר עם הקהל, בלי שיטה מדעית</div>
-    <div data-a="start" style="--d:1800;margin-right:180px"><b>דרג 3</b>מחקר משני ואינטרנט: ״מידע שהוא הנחה״</div>
+  <p class="lead" data-a="up" style="--d:700;margin-top:26px;max-width:1040px">הכול מגיע דרך הקמ״ן, וצוות ההשפעה מנתח</p>
+  <div class="tools5" style="margin-top:50px">
+    <div data-a="start" style="--d:1100"><b>01</b>כלי מחקר ציבור: סקרים וקבוצות מיקוד</div>
+    <div data-a="start" style="--d:1250"><b>02</b>פרופילאות</div>
+    <div data-a="start" style="--d:1400"><b>03</b>ניטור רשתי</div>
+    <div data-a="start" style="--d:1550"><b>04</b>ניתוח מידע יומינטי וסיגינטי</div>
+    <div data-a="start" style="--d:1700"><b>05</b>תשתית ידע בנושא תרבות ושפה</div>
   </div>
-  <style>.tiers{display:flex;flex-direction:column;gap:12px;max-width:1050px}.tiers div{display:flex;gap:24px;align-items:baseline;font-size:31px;padding:14px 24px;background:rgba(18,25,21,.9);border:1.5px solid var(--line);border-right:6px solid var(--amber)}
-  .tiers div:nth-child(2){border-right-color:#B88536}.tiers div:nth-child(3){border-right-color:#6B5A3A;color:var(--mute)}.tiers b{font-family:'Plex Mono',monospace;font-size:22px;color:var(--amber);font-weight:600;flex:none}</style>
-  <div class="src"><b>מקור:</b> NATO AJP-3.10.1, שלוש רמות של ניתוח קהל יעד</div>
-  <aside class="notes">זה השלב הראשון במעגל, ולכאן חוזרים אחרי כל סבב מדידה. נאט״ו מדרגת את המידע על הקהל לשלוש רמות: מחקר מדעי בשטח, מגע ישיר עם הקהל בלי שיטה מדעית, ומחקר משני או מהאינטרנט, שהוא ״מידע שהוא הנחה״. כדאי לסמן בתכנון מה נשען על מה.</aside>
+  <style>.tools5{display:grid;grid-template-columns:1fr 1fr;gap:14px 30px;max-width:1120px}.tools5 div{display:flex;gap:22px;align-items:baseline;font-size:33px;padding:16px 24px;background:rgba(18,25,21,.9);border:1.5px solid var(--line);border-right:6px solid var(--amber)}
+  .tools5 b{font-family:'Plex Mono',monospace;font-size:22px;color:var(--amber);font-weight:600;flex:none}</style>
+  <aside class="notes">זה השלב הראשון במעגל, ולכאן חוזרים אחרי כל סבב מדידה. כל האיסוף עובר דרך הקמ״ן: כלי מחקר ציבור כמו סקרים וקבוצות מיקוד, פרופילאות, ניטור רשתי, ניתוח מידע יומינטי וסיגינטי, ותשתית ידע על התרבות והשפה של הקהל. צוות ההשפעה לא אוסף, הוא מנתח: מה מניע את הקהל, ומה היריב עושה. שתי דוגמאות לכל אחד.</aside>
 </section>
 
-<!-- 15 · התובנה -->
-<section class="slide" data-sec="s4">
-  <div class="kick" data-a="start">איסוף ומחקר · התובנה</div>
-  <h2 class="h2" data-a="up" style="--d:120">התובנה</h2>
-  <p class="lead" data-a="up" style="--d:300;margin-top:12px;font-size:34px;color:var(--mute)">קולומביה: משרד ההגנה מול ה-FARC</p>
-  <div class="row" style="margin-top:46px;gap:70px;align-items:flex-start">
-    <div style="width:380px;--d:500" class="stat" data-a="scale">
-      <div class="v" style="font-size:240px"><span class="num count-up" data-pre="~" data-to="60" data-d="600">~60</span></div>
-      <div class="l">ראיונות עם עריקים, לפני שהתחילו לכתוב מסר אחד</div>
-    </div>
-    <div class="log grow" data-a="fade" style="--d:700">
-      <div><i>01</i><span class="type" data-d="1200">״הם אסירים של הארגון שלהם, כמו החטופים שהם מחזיקים״</span></div>
-      <div><i>02</i><span class="type" data-d="3600">הפחד שלהם: לא למות, אלא להידחות</span></div>
-      <div><i>03</i><span class="type" data-d="5200">שיא העריקות: בחג המולד</span></div>
-    </div>
+<!-- 16 · התובנה: קולומביה -->
+<section class="slide" data-sec="s4" data-title="התובנה: קולומביה" data-part="שלב 4">
+  <div class="kick" data-a="start">איסוף ומחקר · התובנה על הקהל</div>
+  <h2 class="h2" data-a="up" style="--d:120">התובנה: קולומביה</h2>
+  <div class="ctx" style="margin-top:36px">
+    <div data-a="up" style="--d:350"><b>הבעיה</b>ארגון הגרילה FARC: אלפי לוחמים בג׳ונגל, עשרות שנים של מלחמה</div>
+    <div data-a="up" style="--d:550"><b>המשימה</b>משרד ההגנה הקולומביאני רוצה שלוחמים יערקו ויחזרו הביתה</div>
+    <div data-a="up" style="--d:750"><b>המחקר</b>לפני שכותבים מסר אחד: ראיונות עם כ-60 עריקים</div>
   </div>
-  <style>.log{background:rgba(10,14,12,.9);border:1.5px solid var(--line);padding:16px 34px}.log div{display:flex;gap:24px;align-items:baseline;font-size:40px;line-height:1.35;padding:20px 0;border-bottom:1px dashed var(--line)}.log div:last-child{border:0}.log i{font-style:normal;font-family:'Plex Mono',monospace;color:var(--amber);font-size:22px;font-weight:600}</style>
-  <div class="src"><b>מקור:</b> חוסה מיגל סוקולוף, הרצאת TED, 2014. אלה דברי הסוכנות עצמה</div>
-  <aside class="notes">הסוכנות שעבדה עם משרד ההגנה הקולומביאני לא התחילה ברעיון יצירתי. היא ביקשה גישה לעריקים, דיברה עם כ-60 מהם, והגיעה למסקנה שצריך ״לדבר עם האדם, ולא עם הלוחם״. מכאן נולדו מבצעי חג המולד. לתוצאות שלהם נחזור בשלב 7.</aside>
+  <style>.ctx{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.ctx div{background:rgba(18,25,21,.92);border:1.5px solid var(--line);border-right:6px solid var(--line2);padding:20px 26px;font-size:28px;line-height:1.4}.ctx b{display:block;font-family:'Plex Mono',monospace;font-size:22px;color:var(--mute);font-weight:600;margin-bottom:4px}
+  .ctx div:last-child{border-right-color:var(--amber)}.ctx div:last-child b{color:var(--amber)}</style>
+  <div class="mono amber" data-a="fade" style="--d:1000;font-size:24px;margin-top:30px">מה גילו</div>
+  <div class="log" data-a="fade" style="--d:1000;margin-top:10px">
+    <div><i>01</i><span class="type" data-d="1300">״הם אסירים של הארגון שלהם, כמו החטופים שהם מחזיקים״</span></div>
+    <div><i>02</i><span class="type" data-d="3600">הפחד שלהם: לא למות, אלא שלא יקבלו אותם בחזרה</span></div>
+    <div><i>03</i><span class="type" data-d="5300">שיא העריקות: בחג המולד, כשהגעגוע הביתה הכי חזק</span></div>
+  </div>
+  <style>.log{background:rgba(10,14,12,.9);border:1.5px solid var(--line);padding:8px 34px}.log div{display:flex;gap:24px;align-items:baseline;font-size:36px;line-height:1.35;padding:16px 0;border-bottom:1px dashed var(--line)}.log div:last-child{border:0}.log i{font-style:normal;font-family:'Plex Mono',monospace;color:var(--amber);font-size:22px;font-weight:600}</style>
+  <div class="src"><b>מקור:</b> חוסה מיגל סוקולוף, מנהל הסוכנות שעבדה עם משרד ההגנה הקולומביאני, הרצאת TED, 2014</div>
+  <aside class="notes">הרקע: ארגון הגרילה FARC נלחם בממשלת קולומביה עשרות שנים, עם אלפי לוחמים בג׳ונגל. משרד ההגנה רצה שלוחמים יערקו, יניחו את הנשק ויחזרו הביתה. הסוכנות שעבדה איתו לא התחילה ברעיון יצירתי. היא ביקשה גישה לעריקים שכבר יצאו, ודיברה עם כ-60 מהם. שלושה דברים עלו: הלוחמים הם בעצמם אסירים של הארגון; מה שעוצר אותם הוא לא הפחד למות, אלא הפחד שלא יקבלו אותם בחזרה; והם עורקים יותר בחג המולד, כשהגעגוע הביתה הכי חזק. המסקנה שלהם: צריך לדבר עם האדם, ולא עם הלוחם. זו תובנה. בשקופית הבאה נראה מה עשו איתה.</aside>
 </section>
 
-<!-- 16 · צינור השקר -->
-<section class="slide" data-sec="s4">
-  <div class="kick" data-a="start">איסוף ומחקר · היריב</div>
-  <h2 class="h2" data-a="up" style="--d:120">היריב: קודם מנתחים</h2>
-  <p class="lead" data-a="up" style="--d:300;margin-top:12px;font-size:34px;color:var(--mute)">״צינור השקר״ הרוסי, לפי ראנד</p>
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:44px">
-    <div class="card" data-a="up" style="--d:500"><div class="n">01</div><h3>כמות גדולה</h3><p>בהרבה ערוצים</p></div>
-    <div class="card" data-a="up" style="--d:700"><div class="n">02</div><h3>מהיר ורציף</h3><p>וחוזר על עצמו</p></div>
-    <div class="card" data-a="up" style="--d:900"><div class="n">03</div><h3>בלי מחויבות</h3><p>למציאות</p></div>
-    <div class="card" data-a="up" style="--d:1100"><div class="n">04</div><h3>בלי מחויבות</h3><p>לעקביות</p></div>
+<!-- 17 · מהתובנה לקמפיין -->
+<section class="slide" data-sec="s4" data-title="מהתובנה לקמפיין" data-part="שלב 4">
+  <div class="kick" data-a="start">איסוף ומחקר · התובנה על הקהל</div>
+  <h2 class="h2" data-a="up" style="--d:120">מהתובנה לקמפיין</h2>
+  <p class="lead" data-a="up" style="--d:300;margin-top:12px;font-size:34px">מסר אחד לאורך שנים: ״חזור הביתה, מחכים לך״</p>
+  <div class="yrs" style="margin-top:44px">
+    <div data-a="up" style="--d:500"><em>2010</em><h3>עצי חג מולד בג׳ונגל</h3><p>עצים ענקיים על נתיבי התנועה של הלוחמים, שנדלקים כשעוברים לידם. על השלט: ״אם חג המולד יכול להגיע לג׳ונגל, גם אתה יכול לחזור הביתה.״</p></div>
+    <div data-a="up" style="--d:800"><em>2011</em><h3>״נהרות של אור״</h3><p>הנהרות הם הכבישים של הג׳ונגל. אלפי כדורים מוארים, עם מכתבים ומתנות מהמשפחות, נשלחו במורד הנהרות.</p></div>
+    <div data-a="up" style="--d:1100"><em>2013</em><h3>״הקול של אמא״</h3><p>האמהות מסרו תמונות של הלוחמים כילדים, עם המשפט: ״לפני שהיית לוחם, היית הבן שלי.״</p></div>
   </div>
-  <div class="quote" data-a="up" style="--d:1700;margin-top:56px;font-size:46px;max-width:1500px">״אל תצפו לנצח צינור כיבוי של שקר עם אקדח מים של אמת״</div>
+  <style>.yrs{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}.yrs>div{background:rgba(18,25,21,.92);border:1.5px solid var(--line);border-top:6px solid var(--amber);padding:24px 28px}.yrs em{font-style:normal;font-family:'Plex Mono',monospace;color:var(--amber);font-size:26px;font-weight:600}
+  .yrs h3{font-size:38px;margin:6px 0 10px}.yrs p{font-size:26px;line-height:1.45;color:var(--soft);margin:0}</style>
+  <div class="row" data-a="up" style="--d:1700;margin-top:34px;gap:40px;align-items:baseline">
+    <div class="stat"><div class="v" style="font-size:110px"><span class="num count-up" data-to="331" data-d="1800">331</span></div></div>
+    <p class="body" style="font-size:30px">לוחמים ערקו בחודש של המבצע הראשון, כ-5% מהלוחמים. כך לפי הסוכנות.</p>
+  </div>
+  <div class="src"><b>מקורות:</b> סוקולוף, TED, 2014 (נתוני הסוכנות) · PRI The World, דצמבר 2013</div>
+  <aside class="notes">מכאן נולד קמפיין שחזר כל חג מולד. ב-2010 הציבו עצי חג מולד ענקיים על נתיבי התנועה של הלוחמים בג׳ונגל, עם חיישני תנועה שמדליקים אותם, ושלט: אם חג המולד יכול להגיע לג׳ונגל, גם אתה יכול לחזור הביתה. לפי הסוכנות, 331 לוחמים ערקו באותו חודש, בערך 5% מהלוחמים. ב-2011, כשהבינו שהנהרות הם הכבישים של הג׳ונגל, שלחו במורד הנהרות אלפי כדורים מוארים עם מכתבים ומתנות מהמשפחות. ב-2013 האמהות מסרו תמונות של הבנים שלהן כילדים: לפני שהיית לוחם, היית הבן שלי. שימו לב שכל השנים זה אותו מסר, שנבנה על אותה תובנה: מחכים לך בבית.</aside>
+</section>
+
+<!-- 18 · ניתוח היריב: רוסיה -->
+<section class="slide" data-sec="s4" data-title="ניתוח היריב: רוסיה" data-part="שלב 4">
+  <div class="kick" data-a="start">איסוף ומחקר · ניתוח היריב</div>
+  <h2 class="h2" data-a="up" style="--d:120">ניתוח היריב: התעמולה הרוסית</h2>
+  <div class="row" style="margin-top:46px;gap:40px;align-items:stretch">
+    <div class="col grow" style="gap:0">
+      <div class="mono" data-a="fade" style="--d:300;font-size:24px;color:var(--mute);margin-bottom:12px">מה ראנד מצאה: ״צינור כיבוי של שקר״</div>
+      <div class="rows" style="font-size:33px">
+        <div data-a="start" style="--d:500"><b>01</b>כמות גדולה, בהרבה ערוצים</div>
+        <div data-a="start" style="--d:700"><b>02</b>מהיר, רציף, וחוזר על עצמו</div>
+        <div data-a="start" style="--d:900"><b>03</b>בלי מחויבות לאמת</div>
+        <div data-a="start" style="--d:1100"><b>04</b>בלי מחויבות לעקביות</div>
+      </div>
+    </div>
+    <svg width="90" height="300" class="dash-draw" style="--d:1400;align-self:center"><path d="M80 150 H10" stroke="#F2A93B" stroke-width="4" marker-end="url(#ah)"/></svg>
+    <div class="col grow" style="gap:0">
+      <div class="mono amber" data-a="fade" style="--d:1500;font-size:24px;margin-bottom:12px">מה זה אומר למי שמתכנן מולה</div>
+      <div class="rows" style="font-size:33px">
+        <div data-a="start" style="--d:1700"><b>01</b>לא מפריכים כל טענה. אי אפשר לעמוד בקצב</div>
+        <div data-a="start" style="--d:1900"><b>02</b>מזהירים את הקהל מראש, לפני שהטענה מגיעה</div>
+        <div data-a="start" style="--d:2100"><b>03</b>מתחרים עם נרטיב משלנו, ופועלים נגד האפקט שהיריב רוצה</div>
+      </div>
+    </div>
+  </div>
   <div class="src"><b>מקור:</b> RAND, Paul &amp; Matthews, The Russian "Firehose of Falsehood" Propaganda Model, 2016</div>
-  <aside class="notes">ראנד לא ממליצה להפריך כל טענה. ההמלצות: להזהיר את הקהל מראש, להתמקד בקהל ולא בצינור, ולפעול נגד האפקט שהיריב רוצה ולא נגד הטענה עצמה.</aside>
+  <aside class="notes">ניתוח היריב שואל איך הוא עובד, כדי שנדע איך לתכנן מולו. ראנד ניתחה את התעמולה הרוסית וקראה לה צינור כיבוי של שקר: הרבה מאוד תוכן, בהרבה ערוצים, מהר ובלי הפסקה, בלי מחויבות לאמת ואפילו בלי מחויבות לעקביות. המסקנה למתכנן: אי אפשר להפריך כל טענה, כי היריב מהיר יותר. במקום זה מזהירים את הקהל מראש, ומתחרים על תשומת הלב עם נרטיב משלנו. ובלשון של ראנד: אל תצפו לנצח צינור כיבוי של שקר עם אקדח מים של אמת.</aside>
 </section>
 
-<!-- 17 · דאעש -->
-<section class="slide" data-sec="s4">
-  <div class="kick" data-a="start">איסוף ומחקר · היריב</div>
-  <h2 class="h2" data-a="up" style="--d:120">הניתוח משנה את מה שמפיקים</h2>
-  <p class="lead" data-a="up" style="--d:300;margin-top:12px;font-size:34px;color:var(--mute)">דאעש, חודש אחד ב-2015: <span class="num">1,146</span> פריטי תעמולה</p>
-  <div class="bars" style="margin-top:50px">
-    <div><span>אוטופיה</span><div class="meter"><i style="--w:100%;--d:500"></i></div><b class="num">53%</b></div>
-    <div><span>מלחמה</span><div class="meter"><i style="--w:70.6%;--d:700;background:#B88536"></i></div><b class="num">37%</b></div>
-    <div><span>קורבנות</span><div class="meter"><i style="--w:13%;--d:900;background:#6B5A3A"></i></div><b class="num">7%</b></div>
-    <div class="hl"><span>אכזריות</span><div class="meter"><i style="--w:4.1%;--d:1100;background:var(--red)"></i></div><b class="num red">2%</b><em data-a="start" style="--d:2200">על זה המערב התמקד</em></div>
+<!-- 19 · ניתוח היריב: דאעש -->
+<section class="slide" data-sec="s4" data-title="ניתוח היריב: דאעש" data-part="שלב 4">
+  <div class="kick" data-a="start">איסוף ומחקר · ניתוח היריב</div>
+  <h2 class="h2" data-a="up" style="--d:120">ניתוח היריב: מה באמת מושך לדאעש</h2>
+  <div class="think" style="margin-top:46px">
+    <div data-a="up" style="--d:400"><em>מה חשבו</em><h3>שהתעמולה שלהם בנויה על אכזריות</h3><p>ולכן הקמפיינים נגדם הראו כמה הם אכזריים</p></div>
+    <div data-a="up" style="--d:900" class="on"><em>מה הנתונים הראו</em><h3>חודש של תעמולה: 1,146 פריטים</h3>
+      <div class="bars2"><span>חיים טובים ושייכות</span><i style="--w:100%"></i><b class="num">53%</b><span>אכזריות</span><i style="--w:4%;background:var(--red)"></i><b class="num red">2%</b></div></div>
+    <div data-a="up" style="--d:1400"><em>מה עושים עם זה</em><h3>מציעים חלופה</h3><p>לא עוד סרטון על אכזריות, אלא תשובה אחרת לצורך בשייכות ובמשמעות</p></div>
   </div>
-  <style>.bars>div{display:grid;grid-template-columns:220px 1fr 120px 300px;gap:26px;align-items:center;padding:14px 0}.bars span{font-size:38px;font-weight:600}.bars b{font-family:'Plex Mono',monospace;font-size:34px;color:var(--amber);font-weight:600}
-  .bars .meter{height:44px;background:rgba(39,50,43,.6)}.bars em{font-style:normal;font-size:26px;color:var(--red);font-weight:600;border:2px solid var(--red);padding:6px 16px}</style>
-  <p class="body" data-a="up" style="--d:2600;margin-top:30px">המסקנה של החוקר: <b class="amber">נרטיב חלופי, לא נרטיב נגדי.</b></p>
+  <style>.think{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:22px}.think>div{background:rgba(18,25,21,.92);border:1.5px solid var(--line);border-top:6px solid var(--line2);padding:24px 28px}.think>div.on{border-top-color:var(--amber)}
+  .think em{font-style:normal;font-family:'Plex Mono',monospace;font-size:22px;color:var(--mute);font-weight:600}.think .on em{color:var(--amber)}.think h3{font-size:36px;margin:8px 0 12px;line-height:1.2}.think p{font-size:27px;color:var(--soft);margin:0;line-height:1.45}
+  .bars2{display:grid;grid-template-columns:auto 1fr auto;gap:12px 16px;align-items:center;margin-top:8px}.bars2 span{font-size:24px}.bars2 i{display:block;height:24px;width:var(--w);background:var(--amber)}.bars2 b{font-family:'Plex Mono',monospace;font-size:26px;color:var(--amber)}</style>
   <div class="src"><b>מקורות:</b> Charlie Winter, Documenting the Virtual "Caliphate", Quilliam, 2015 · Rita Katz, TIME, 2014</div>
-  <aside class="notes">מחקר שספר את התעמולה של דאעש מצא שהיא מוכרת בעיקר חיים טובים, ולא אכזריות. באותה תקופה מחלקת המדינה האמריקאית הפיקה סרטון שמתמקד באכזריות, וספגה ביקורת שהוא רק נותן לג׳יהאדיסטים במה. המסקנה של החוקר: צריך נרטיב חלופי, לא נרטיב נגדי.</aside>
+  <aside class="notes">דוגמה שנייה לניתוח יריב. בתחילת הדרך המערב הניח שדאעש מגייס בעזרת אכזריות, ולכן הקמפיינים נגדו הראו את האכזריות. חוקר בשם צ׳רלי וינטר ספר את כל התעמולה של דאעש במשך חודש, 1,146 פריטים, ומצא שיותר ממחציתם הציגו חיים טובים: קהילה, שירותים, שייכות. אכזריות הייתה רק 2%. כלומר, הצעירים נמשכו לשייכות ולמשמעות, לא לאלימות. המסקנה שלו: לא נרטיב נגדי, אלא נרטיב חלופי, שנותן תשובה אחרת לאותו צורך. זה בדיוק מה שניתוח יריב טוב עושה: הוא משנה את מה שמפיקים.</aside>
 </section>
 
-<!-- 18 · שלב 5 -->
-<section class="slide gate" data-sec="s5">
+<!-- · שלב 5 -->
+<section class="slide gate" data-sec="s5" data-title="שלב 5: תכנון" data-part="שלב 5">
   <div class="gnum" data-a="fade" style="--d:100">05</div>
   <div class="of" data-a="start">שלב 05 מתוך 07 · הלב של התהליך</div>
   <h2 class="h1"><span class="mask"><span data-a="rise" style="display:block;--d:200">תכנון</span></span></h2>
-  <div class="rows" style="margin-top:56px;max-width:1000px;font-size:46px">
+  <div class="rows" style="margin-top:50px;max-width:1000px;font-size:44px">
     <div data-a="start" style="--d:800"><b>א</b>קהל יעד והישגים מול כל קהל</div>
-    <div data-a="start" style="--d:1050"><b>ב</b>נרטיב ומסרים</div>
-    <div data-a="start" style="--d:1300"><b>ג</b>שיטת פעולה</div>
+    <div data-a="start" style="--d:1000"><b>ב</b>נרטיב ומסרים</div>
+    <div data-a="start" style="--d:1200"><b>ג</b>שיטת פעולה</div>
+    <div data-a="start" style="--d:1400"><b>ד</b>הגדרת מדדים</div>
   </div>
-  <aside class="notes">זה הלב של התהליך, והחלק הארוך ביותר בהרצאה.</aside>
+  <aside class="notes">זה הלב של התהליך, והחלק הארוך ביותר בהרצאה. ארבעה תתי-שלבים: למי ומה רוצים להשיג אצל כל קהל, מה הנרטיב והמסרים, באיזו שיטה פועלים, ואיך נמדוד.</aside>
 </section>
 
-<!-- 19 · איך מפלחים -->
-<section class="slide" data-sec="s5">
+<!-- · איך מפלחים -->
+<section class="slide" data-sec="s5" data-title="א. איך מפלחים" data-part="שלב 5א">
   <div class="kick" data-a="start">תכנון · א. קהל יעד</div>
   <h2 class="h2" data-a="up" style="--d:120">איך מפלחים</h2>
   <div class="row" style="margin-top:40px;gap:60px;align-items:center">
@@ -363,69 +418,77 @@
     </div>
     <svg width="460" height="460" viewBox="0 0 460 460" data-a="scale" style="--d:600" id="crowd"></svg>
   </div>
-  <aside class="notes">כל ציר עונה על שאלה אחרת. העמדה אומרת במי כדאי להשקיע, תפקיד ההשפעה אומר דרך מי, הזהות אומרת באיזו שפה, והדמוגרפיה אומרת איפה למצוא אותם.</aside>
+  <aside class="notes">ארבעה צירים לפילוח, וכל ציר עונה על שאלה אחרת. העמדה אומרת במי כדאי להשקיע. תפקיד ההשפעה אומר דרך מי לעבור. הזהות והתרבות אומרות באיזו שפה לדבר. והדמוגרפיה אומרת איפה למצוא אותם. המטרה היא לא לדבר אל כולם, אלא למצוא את הקהל הנכון.</aside>
 </section>
 
-<!-- 20 · במי שווה להשקיע -->
-<section class="slide" data-sec="s5">
+<!-- · קהל מצומצם, הישג גדול -->
+<section class="slide" data-sec="s5" data-title="קהל מצומצם, הישג גדול" data-part="שלב 5א">
   <div class="kick" data-a="start">תכנון · א. קהל יעד</div>
-  <h2 class="h2" data-a="up" style="--d:120">במי שווה להשקיע</h2>
-  <p class="lead" data-a="up" style="--d:300;margin-top:14px;font-size:36px">אובמה 2012: לכל בוחר ציון מ-0 עד 10. עד כמה שיחה אחת תזיז אותו?</p>
-  <svg width="1700" height="330" viewBox="0 0 1700 330" style="margin-top:40px" id="scale10"></svg>
-  <div class="row" style="margin-top:10px;gap:60px;align-items:flex-end">
-    <p class="body grow" data-a="up" style="--d:2300;font-size:34px">הבדיקה בשטח: <b class="amber">חלק מה״מתלבטים״ בכלל לא זזו.</b> את ההנחה בדקו בניסויים, ולא הסתפקו בה.</p>
-    <div class="stat" data-a="fade" style="--d:2600"><div class="v" style="font-size:110px"><span class="num count-up" data-to="54" data-d="2700">54</span></div><div class="l">אנשים בצוות האנליטי</div></div>
+  <h2 class="h2" data-a="up" style="--d:120">קהל מצומצם, הישג גדול</h2>
+  <p class="lead" data-a="up" style="--d:300;margin-top:12px;font-size:34px;color:var(--mute)">טקסס, 1986: הכבישים מלאים בזבל</p>
+  <div class="row" style="margin-top:40px;gap:50px;align-items:center">
+    <div class="col grow" style="gap:0">
+      <div class="rows" style="font-size:31px">
+        <div data-a="start" style="--d:500"><b>קהל</b>לא ״כל הנהגים״, אלא צעירים בני 18 עד 24 עם טנדרים, שזורקים הכי הרבה</div>
+        <div data-a="start" style="--d:800"><b>תובנה</b>״בבקשה לא ללכלך״ לא מזיז אותם. גאווה טקסנית ומרדנות כן</div>
+        <div data-a="start" style="--d:1100"><b>מסר</b><span class="ltr" style="font-family:'Karantina';font-weight:700;font-size:48px;color:var(--amber)">DON'T MESS WITH TEXAS</span>, בפי כוכבים טקסנים</div>
+      </div>
+    </div>
+    <div class="stat" data-a="scale" style="--d:1500;width:460px;text-align:center">
+      <div class="v" style="font-size:260px"><span class="num count-up" data-pre="−" data-to="72" data-suf="%" data-d="1600">−72%</span></div>
+      <div class="l">זבל בצידי הכבישים, עד 1990</div>
+    </div>
   </div>
-  <div class="src"><b>מקור:</b> Sasha Issenberg, MIT Technology Review, דצמבר 2012</div>
-  <aside class="notes">הקמפיין של אובמה לא הסתפק בהנחה ש״המתלבטים״ הם הקהל. הוא בנה מודל ובדק אותו בניסויים. בניסוי משנת 2006 התברר שמי שקיבל ציון באמצע כמעט לא זז. בצוות האנליטי עבדו 54 אנשים.</aside>
+  <div class="src"><b>מקורות:</b> Smithsonian, 2017 · מחקר שהזמין משרד התחבורה של טקסס, UT Austin, 2026 · הנתון הוא של משרד התחבורה של טקסס</div>
+  <aside class="notes">דוגמה לאבחנה נכונה של קהל מצומצם. טקסס, אמצע שנות השמונים: הכבישים מלאים בזבל, וקמפיינים של ״בבקשה לא ללכלך״ לא עובדים. המחקר הראה שמי שזורק הכי הרבה הם צעירים, בערך בני 18 עד 24, נהגי טנדרים, שבדיוק המסר המנומס הזה לא מזיז אותם. מה כן מזיז אותם: גאווה טקסנית ומרדנות. אז במקום ״אל תלכלכו״, הסיסמה הייתה Don't Mess with Texas, אל תתעסקו עם טקסס, בפי כוכבים טקסנים. לפי משרד התחבורה של טקסס, עד 1990 כמות הזבל בצידי הכבישים ירדה ב-72%. והסיסמה הפכה לסלוגן של המדינה כולה. קהל מצומצם, שאובחן נכון, הביא שינוי ענק.</aside>
 </section>
 
-<!-- 21 · דרך מי משפיעים -->
-<section class="slide" data-sec="s5">
+<!-- · דרך מי משפיעים -->
+<section class="slide" data-sec="s5" data-title="דרך מי משפיעים" data-part="שלב 5א">
   <div class="kick" data-a="start">תכנון · א. קהל יעד</div>
   <h2 class="h2" data-a="up" style="--d:120">דרך מי משפיעים</h2>
-  <div class="row" style="margin-top:40px;gap:70px;align-items:center">
-    <div class="col grow" style="gap:30px">
-      <div class="row" style="gap:50px">
-        <div class="stat" data-a="up" style="--d:400"><div class="v" style="font-size:120px"><span class="num count-up" data-to="56" data-d="500">56</span></div><div class="l">בתי ספר</div></div>
-        <div class="stat" data-a="up" style="--d:600"><div class="v" style="font-size:120px"><span class="num count-up" data-to="24191" data-sep data-d="700">24,191</span></div><div class="l">תלמידים</div></div>
-        <div class="stat" data-a="up" style="--d:800"><div class="v" style="font-size:120px"><span class="num count-up" data-pre="−" data-to="25" data-suf="%" data-d="900">−25%</span></div><div class="l">דיווחים על סכסוכים, בשנה</div></div>
+  <p class="lead" data-a="up" style="--d:300;margin-top:12px;font-size:34px;color:var(--mute)">ניסוי ב-56 חטיבות ביניים בניו ג׳רזי, 24,191 תלמידים</p>
+  <div class="row" style="margin-top:34px;gap:60px;align-items:center">
+    <div class="col grow" style="gap:0">
+      <div class="rows" style="font-size:29px">
+        <div data-a="start" style="--d:500"><b>01</b>בכל בית ספר נבחרו כ-26 תלמידים, ביניהם תלמידים שכולם מסתכלים עליהם</div>
+        <div data-a="start" style="--d:800"><b>02</b>הם יצאו בגלוי נגד סכסוכים: סיסמאות, פוסטרים עם התמונות שלהם, וצמידים כתומים לחברים שנהגו יפה</div>
+        <div data-a="start" style="--d:1100"><b>03</b>דיווחי המשמעת על סכסוכים ירדו בשנה ב-30%</div>
+        <div data-a="start" style="--d:1400"><b>04</b>הירידה הייתה חזקה יותר כשהשליחים היו מי שכולם מסתכלים עליהם</div>
       </div>
-      <p class="body" data-a="up" style="--d:1500">קבוצה קטנה של תלמידים יצאה בגלוי נגד סכסוכים. <b class="amber">האפקט היה חזק יותר כשהשליחים היו מי שכולם מסתכלים עליהם.</b></p>
     </div>
-    <svg width="560" height="560" viewBox="0 0 560 560" id="school"></svg>
+    <svg width="520" height="520" viewBox="0 0 560 560" id="school"></svg>
   </div>
   <div class="src"><b>מקורות:</b> Paluck, Shepherd &amp; Aronow, PNAS, 2016 · Katz &amp; Lazarsfeld, Personal Influence, 1955</div>
-  <aside class="notes">כבר בשנות החמישים תיארו את ״הזרימה בשני שלבים״: מהתקשורת למובילי הדעה, ומהם לציבור. הניסוי הזה מראה שזה עובד גם על התנהגות, ושחשוב לבחור נכון את מי שמשפיעים דרכו.</aside>
+  <aside class="notes">איך בוחרים דרך מי להשפיע. ניסוי גדול בחטיבות ביניים בניו ג׳רזי, 56 בתי ספר ויותר מ-24 אלף תלמידים. בחצי מבתי הספר נבחרו כ-26 תלמידים, וביניהם היו תלמידים שכולם מסתכלים עליהם, כאלה שהרבה תלמידים ציינו כמי שהם מבלים איתם. התלמידים האלה יצאו בגלוי נגד סכסוכים: המציאו סיסמאות, תלו פוסטרים עם התמונות שלהם, וחילקו צמידים כתומים לחברים שראו נוהגים יפה. בתוך שנה, דיווחי המשמעת על סכסוכים ירדו ב-30%. והירידה הייתה חזקה יותר בבתי ספר שבהם השליחים היו התלמידים שכולם מסתכלים עליהם. זה מה שתיארו כבר בשנות החמישים כ״זרימה בשני שלבים״: ההשפעה עוברת דרך מובילי הדעה.</aside>
 </section>
 
-<!-- 22 · הישגים מול כל קהל -->
-<section class="slide" data-sec="s5">
-  <div class="kick" data-a="start">תכנון · א. הישגים</div>
+<!-- · הישגים מול כל קהל -->
+<section class="slide" data-sec="s5" data-title="הישגים מול כל קהל" data-part="שלב 5א">
+  <div class="kick" data-a="start">תכנון · א. הישגים מול כל קהל</div>
   <h2 class="h2" data-a="up" style="--d:120">הישגים מול כל קהל</h2>
-  <div class="tbl" style="margin-top:50px">
-    <div class="th" data-a="fade" style="--d:300"><span>קהל</span><span>הישג בתודעה</span><span>הישג בהתנהגות</span><span>איך נדע</span></div>
-    <div data-a="wipe" style="--d:700"><span>צעירים בני 18 עד 25 שמתלבטים</span><span>ההצטרפות נתפסת כבגידה במשפחה</span><span>פחות פניות להצטרפות</span><span>סקר, ונתוני הצטרפות</span></div>
-    <div class="empty" data-a="fade" style="--d:1300"><span></span><span></span><span></span><span></span></div>
-    <div class="empty" data-a="fade" style="--d:1500"><span></span><span></span><span></span><span></span></div>
+  <p class="lead" data-a="up" style="--d:300;margin-top:12px;font-size:32px;color:var(--mute)">משימה לדוגמה: לצמצם את הגיוס של צעירים לארגון</p>
+  <div class="tbl" style="margin-top:34px">
+    <div class="th" data-a="fade" style="--d:400"><span>קהל</span><span>תודעה רצויה</span><span>מדד</span><span>אופן המדידה</span></div>
+    <div data-a="wipe" style="--d:700"><span>צעירים בני 18 עד 25 שמתלבטים</span><span>״ההצטרפות היא בגידה במשפחה״</span><span>פניות להצטרפות</span><span>נתוני הצטרפות, וסקר</span></div>
+    <div data-a="wipe" style="--d:1100"><span>הורים</span><span>״יש לי תפקיד בעצירת הבן שלי״</span><span>הורים שמדברים על הנושא עם הילדים</span><span>סקר</span></div>
+    <div data-a="wipe" style="--d:1500"><span>מובילי דעה בקהילה</span><span>״ההצטרפות פוגעת בקהילה שלנו״</span><span>אמירות פומביות נגד ההצטרפות</span><span>ניטור שיח</span></div>
   </div>
-  <style>.tbl>div{display:grid;grid-template-columns:1.1fr 1.2fr 1fr .9fr;gap:20px;padding:22px 0;border-bottom:1px solid var(--line);font-size:32px;line-height:1.3}
-  .tbl .th{font-family:'Plex Mono',monospace;font-size:24px;color:var(--amber);font-weight:600;border-bottom:2px solid var(--line2);padding-top:0}
-  .tbl .th span{font-family:'Heebo';font-size:28px}.tbl .empty span{height:44px;border:2px dashed var(--line2)}</style>
-  <p class="body" data-a="up" style="--d:1900;margin-top:36px">לכל קהל הישג משלו: קהל אחד צריך לשנות עמדה, וקהל אחר רק לעשות משהו.</p>
+  <style>.tbl>div{display:grid;grid-template-columns:1.1fr 1.3fr 1fr .9fr;gap:22px;padding:20px 0;border-bottom:1px solid var(--line);font-size:30px;line-height:1.3}
+  .tbl .th{font-size:26px;color:var(--amber);font-weight:600;border-bottom:2px solid var(--line2);padding-top:0}.tbl>div:not(.th) span:first-child{font-weight:700}.tbl>div:not(.th) span:nth-child(2){color:var(--amber)}</style>
   <div class="src">הדוגמה כללית, לא ממבצע אמיתי</div>
-  <aside class="notes">לכל קהל הישג משלו. קהל אחד צריך לשנות עמדה, וקהל אחר רק לעשות משהו. טבלה כזו תעזור בסדנה.</aside>
+  <aside class="notes">לכל קהל מגדירים תודעה רצויה, מדד, ואופן מדידה. דוגמה: המשימה היא לצמצם את הגיוס של צעירים לארגון. לצעירים שמתלבטים, התודעה הרצויה היא שההצטרפות היא בגידה במשפחה, והמדד הוא מספר הפניות להצטרפות. להורים, התודעה הרצויה היא שיש להם תפקיד בעצירת הבן, והמדד הוא כמה הורים מדברים על זה עם הילדים. למובילי דעה בקהילה, התודעה הרצויה היא שההצטרפות פוגעת בקהילה, והמדד הוא אמירות פומביות נגד ההצטרפות. שלושה קהלים, שלושה הישגים שונים, ומשימה אחת.</aside>
 </section>
 
-<!-- 23 · נרטיב ומסרים -->
-<section class="slide" data-sec="s5">
+<!-- · נרטיב ומסרים -->
+<section class="slide" data-sec="s5" data-title="ב. נרטיב ומסרים" data-part="שלב 5ב">
   <div class="kick" data-a="start">תכנון · ב. נרטיב ומסרים</div>
   <h2 class="h2" data-a="up" style="--d:120">נרטיב ומסרים</h2>
   <div class="row" style="margin-top:40px;gap:80px;align-items:center">
     <div class="col grow" style="gap:28px">
-      <div class="card" data-a="start" style="--d:400"><div class="n">נרטיב</div><h3>הסיפור הגדול, שנותן משמעות למציאות</h3></div>
-      <div class="card gray" data-a="start" style="--d:700"><div class="n">מסרים</div><h3>מה אומרים לכל קהל, בתוך הסיפור</h3></div>
-      <p class="body" data-a="up" style="--d:1400;font-size:33px">מי ששקוע בסיפור <b class="amber">מאמין לו יותר</b>, ומוצא בו פחות ״זיופים״.</p>
+      <div class="card" data-a="start" style="--d:400"><div class="n">נרטיב</div><h3>הסיפור הגדול, שנותן משמעות למציאות. אחד לכל הקהלים</h3></div>
+      <div class="card gray" data-a="start" style="--d:700"><div class="n">מסרים</div><h3>מה אומרים לכל קהל, בתוך הסיפור. שונים מקהל לקהל</h3></div>
+      <p class="lead" data-a="up" style="--d:1400">הנרטיב לא משתנה בין הקהלים. המסרים כן.</p>
     </div>
     <svg width="560" height="560" viewBox="0 0 560 560">
       <circle class="draw" style="--d:500" cx="280" cy="280" r="260" fill="rgba(242,169,59,.05)" stroke="#F2A93B" stroke-width="3"/>
@@ -435,36 +498,95 @@
       <g data-a="scale" style="--d:1500"><circle cx="280" cy="440" r="70" fill="#121915" stroke="#8E9F94" stroke-width="2.5"/><text x="280" y="450" text-anchor="middle" fill="#C3CEC6" font-family="Heebo" font-size="26">מסר לקהל ג</text></g>
     </svg>
   </div>
-  <div class="src"><b>מקור:</b> Green &amp; Brock, Journal of Personality and Social Psychology, 2000</div>
-  <aside class="notes">ארבעה ניסויים הראו שככל שהקורא ״נסחף״ לתוך הסיפור, הוא מאמץ יותר מהאמונות שבו. וזה כמעט לא משנה אם אמרו לו שהסיפור אמיתי או בדיוני.</aside>
+  <aside class="notes">הנרטיב הוא הסיפור הגדול שנותן משמעות למציאות, והוא אחד לכל הקהלים. המסרים הם מה שאומרים לכל קהל בתוך הסיפור, והם שונים מקהל לקהל. הנרטיב לא משתנה, המסרים כן. נראה כמה נרטיבים מוכרים, ואז איך מפרקים נרטיב למסרים.</aside>
 </section>
 
-<!-- 24 · שלוש מילים -->
-<section class="slide" data-sec="s5">
+<!-- · נרטיבים מוכרים -->
+<section class="slide" data-sec="s5" data-title="נרטיבים מוכרים" data-part="שלב 5ב">
   <div class="kick" data-a="start">תכנון · ב. נרטיב ומסרים</div>
-  <div style="margin-top:60px;direction:ltr;text-align:left;font-family:'Karantina',sans-serif;font-weight:700;font-size:270px;line-height:.86;letter-spacing:.01em">
-    <span class="mask"><span data-a="rise" style="display:block;--d:200">TAKE</span></span>
-    <span class="mask"><span data-a="rise" class="amber" style="display:block;--d:450">BACK</span></span>
-    <span class="mask"><span data-a="rise" style="display:block;--d:700">CONTROL</span></span>
+  <h2 class="h2" data-a="up" style="--d:120">נרטיבים מוכרים</h2>
+  <div class="narr" style="margin-top:40px">
+    <div data-a="up" style="--d:400"><b>MAKE AMERICA GREAT AGAIN</b><em>ארה״ב · רייגן 1980, טראמפ 2016</em><p>היינו גדולים, ונחזור להיות</p></div>
+    <div data-a="up" style="--d:650"><b>YES WE CAN</b><em>ארה״ב · אובמה 2008</em><p>ביחד אפשר לשנות. מתוך ״Sí, se puede״ של פועלי החקלאות, 1972</p></div>
+    <div data-a="up" style="--d:900"><b>TAKE BACK CONTROL</b><em>בריטניה · ברקזיט 2016</em><p>איבדנו שליטה, ונחזיר אותה</p></div>
+    <div data-a="up" style="--d:1150"><b>נאט״ו מכתרת את רוסיה</b><em>רוסיה · פוטין, מינכן 2007</em><p>מאיימים עלינו מבחוץ, ואנחנו רק מתגוננים</p></div>
   </div>
-  <div style="position:absolute;right:110px;top:330px;width:820px">
-    <div class="mono amber" data-a="fade" style="--d:1100;font-size:26px">ברקזיט · 2016</div>
-    <div class="quote" data-a="start" style="--d:1500;margin-top:30px;font-size:42px">״׳בחזרה׳ נוגע ביצר עמוק: אנחנו שונאים לאבד דברים, במיוחד שליטה״<small>דומיניק קאמינגס, מנהל הקמפיין</small></div>
-    <p class="body" data-a="up" style="--d:2300;margin-top:40px;font-size:30px">נרטיב שלם בשלוש מילים, שנשען על השנאה שלנו להפסיד.</p>
-  </div>
-  <div class="src"><b>מקורות:</b> Dominic Cummings, בלוג, ינואר 2017 · UK Statistics Authority, מאי 2016</div>
-  <aside class="notes">נרטיב שלם בשלוש מילים, שנשען על השנאה שלנו להפסיד. לצד הסיסמה, הקמפיין השתמש בטענה ש-350 מיליון ליש״ט בשבוע הולכים לאיחוד האירופי. רשות הסטטיסטיקה הבריטית קבעה שהשימוש במספר הזה מטעה, וקאמינגס עצמו כתב שבלעדיו כנראה לא היו מנצחים.</aside>
+  <style>.narr{display:grid;grid-template-columns:1fr 1fr;gap:22px}.narr>div{background:rgba(18,25,21,.92);border:1.5px solid var(--line);border-right:6px solid var(--amber);padding:22px 30px}
+  .narr b{display:block;font-family:'Karantina',sans-serif;font-weight:700;font-size:64px;line-height:.95;color:var(--ink)}.narr em{display:block;font-style:normal;font-family:'Plex Mono',monospace;font-size:21px;color:var(--mute);margin-top:8px}.narr p{font-size:28px;color:var(--amber);margin:8px 0 0}</style>
+  <p class="lead" data-a="up" style="--d:1700;margin-top:30px">אותו מבנה: מי אנחנו, מה איבדנו או מה מאיים עלינו, ומה נעשה.</p>
+  <div class="src"><b>מקורות:</b> Reagan Library, 1980 · Obama, 2012 · Putin, Munich Security Conference, 2007</div>
+  <aside class="notes">ארבעה נרטיבים מוכרים מהעולם. Make America Great Again: היינו גדולים ונחזור להיות. רייגן השתמש בה כבר ב-1980, וטראמפ החזיר אותה ב-2016. Yes We Can של אובמה ב-2008: ביחד אפשר לשנות, והיא בכלל מגיעה מסיסמה של פועלי החקלאות בשנות השבעים. Take Back Control של ברקזיט: איבדנו שליטה ונחזיר אותה. והנרטיב הרוסי שנאט״ו מכתרת את רוסיה, שפוטין ניסח כבר בנאום במינכן ב-2007: מאיימים עלינו מבחוץ, ואנחנו רק מתגוננים. שימו לב שהמבנה חוזר: מי אנחנו, מה איבדנו או מה מאיים עלינו, ומה נעשה. ועכשיו, איך מפרקים נרטיב כזה למסרים.</aside>
 </section>
 
-<!-- 25 · עקביות וחזרה -->
-<section class="slide" data-sec="s5">
+<!-- · מנרטיב למסרים: ברקזיט -->
+<section class="slide" data-sec="s5" data-title="מנרטיב למסרים: ברקזיט" data-part="שלב 5ב">
   <div class="kick" data-a="start">תכנון · ב. נרטיב ומסרים</div>
-  <h2 class="h2" data-a="up" style="--d:120">עקביות וחזרה</h2>
+  <h2 class="h2" data-a="up" style="--d:120">מנרטיב למסרים: ברקזיט</h2>
+  <div class="tree" style="margin-top:36px">
+    <div class="root" data-a="scale" style="--d:400"><b>TAKE BACK CONTROL</b><span>הנרטיב: איבדנו שליטה, ונחזיר אותה</span></div>
+    <div class="kids">
+      <div data-a="up" style="--d:900"><em>שליטה בכסף</em><h3>״350 מיליון ליש״ט בשבוע למערכת הבריאות״</h3><p>למי שדואג לשירותי הבריאות</p></div>
+      <div data-a="up" style="--d:1150"><em>שליטה בגבולות</em><h3>הגירה, ו״טורקיה מצטרפת לאיחוד״</h3><p>למי שמודאג מהגירה</p></div>
+      <div data-a="up" style="--d:1400"><em>שליטה בחוקים</em><h3>״האיחוד ייאסור את הקומקום שלנו״, רווחת בעלי חיים</h3><p>למי שאכפת לו מנושא אחד</p></div>
+    </div>
+  </div>
+  <style>.tree .root{text-align:center;background:rgba(242,169,59,.08);border:2px solid var(--amber);padding:18px;margin:0 auto 26px;width:900px}.tree .root b{display:block;font-family:'Karantina',sans-serif;font-size:76px;line-height:.9;direction:ltr}.tree .root span{font-size:28px;color:var(--soft)}
+  .kids{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.kids>div{background:rgba(18,25,21,.92);border:1.5px solid var(--line);border-top:5px solid var(--amber);padding:22px 26px}.kids em{font-style:normal;font-family:'Plex Mono',monospace;color:var(--amber);font-size:22px;font-weight:600}
+  .kids h3{font-size:31px;line-height:1.3;margin:8px 0 10px}.kids p{font-size:25px;color:var(--mute);margin:0}</style>
+  <p class="body" data-a="up" style="--d:1900;margin-top:26px;font-size:28px">כאלף ומאתיים מודעות שונות בפייסבוק, כולן בתוך אותו סיפור.</p>
+  <div class="src"><b>מקורות:</b> המודעות שפרסמה ועדת הפרלמנט הבריטי, יולי 2018 · Channel 4 · Cummings, 2017 · הנושאים מתוך המודעות; החלוקה לקהלים להמחשה</div>
+  <aside class="notes">כך מפרקים נרטיב למסרים. קמפיין ברקזיט נשען על נרטיב אחד: איבדנו שליטה ונחזיר אותה. אבל המסרים היו שונים לקהלים שונים. שליטה בכסף: 350 מיליון ליש״ט בשבוע למערכת הבריאות, למי שדואג לשירותי הבריאות. שליטה בגבולות: הגירה, ו״טורקיה מצטרפת לאיחוד״, למי שמודאג מהגירה. שליטה בחוקים: האיחוד ייאסור את הקומקום שלנו, או רווחת בעלי חיים, למי שאכפת לו מנושא אחד. הפרלמנט הבריטי פרסם ב-2018 את המודעות, ולפי ספירה של ערוץ 4 היו כאלף ומאתיים מודעות שונות. כולן בתוך אותו סיפור.</aside>
+</section>
+
+<!-- · מנרטיב למסרים: אוקראינה -->
+<section class="slide" data-sec="s5" data-title="מנרטיב למסרים: אוקראינה" data-part="שלב 5ב">
+  <div class="kick" data-a="start">תכנון · ב. נרטיב ומסרים</div>
+  <h2 class="h2" data-a="up" style="--d:120">מנרטיב למסרים: אוקראינה</h2>
+  <p class="lead" data-a="up" style="--d:300;margin-top:12px;font-size:34px">הנרטיב: <b class="amber">המאבק שלנו הוא המאבק שלכם</b>. מרץ 2022, נאום לכל פרלמנט, עם ההיסטוריה שלו</p>
+  <div class="ukr" style="margin-top:34px">
+    <div data-a="up" style="--d:600"><em>הקונגרס האמריקאי</em><p>״זכרו את פרל הארבור. זכרו את 11 בספטמבר.״ ״יש לי חלום? יש לי צורך: להגן על השמיים שלנו.״</p></div>
+    <div data-a="up" style="--d:850"><em>הפרלמנט הבריטי</em><p>צ׳רצ׳יל: ״נילחם ביערות, בשדות, בחופים, ברחובות.״</p></div>
+    <div data-a="up" style="--d:1100"><em>הבונדסטאג הגרמני</em><p>״חומה חדשה עוברת באירופה.״ ובדומה לרייגן: ״הפילו את החומה הזו.״</p></div>
+    <div data-a="up" style="--d:1350" class="ru"><em>החיילים הרוסים</em><p>קו חם בשם ״אני רוצה לחיות״, להיכנע ולשרוד. לפי אוקראינה: יותר מ-40 אלף פניות</p></div>
+  </div>
+  <style>.ukr{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}.ukr>div{background:rgba(18,25,21,.92);border:1.5px solid var(--line);border-top:5px solid var(--amber);padding:22px 24px;min-height:300px}.ukr>div.ru{border-top-color:var(--red)}
+  .ukr em{font-style:normal;font-family:'Plex Mono',monospace;color:var(--amber);font-size:22px;font-weight:600}.ukr .ru em{color:var(--red)}.ukr p{font-size:28px;line-height:1.45;margin:10px 0 0}</style>
+  <div class="src"><b>מקורות:</b> נאום בקונגרס, 16.3.2022 (UCSB) · AP, 8.3.2022 · RFE/RL, 17.3.2022 · מטה התיאום לטיפול בשבויים, אוקטובר 2024 (נתוני אוקראינה)</div>
+  <aside class="notes">דוגמה שנייה, מהמלחמה באוקראינה. הנרטיב: המאבק שלנו הוא המאבק שלכם. במרץ 2022 זלנסקי נאם בפני פרלמנט אחרי פרלמנט, ובכל אחד השתמש בהיסטוריה של המדינה עצמה. בקונגרס: זכרו את פרל הארבור, זכרו את 11 בספטמבר, ובמקום ״יש לי חלום״ של מרטין לותר קינג, ״יש לי צורך: להגן על השמיים שלנו״. בבריטניה: צ׳רצ׳יל, נילחם ביערות, בשדות, בחופים וברחובות. בגרמניה: חומה חדשה עוברת באירופה, הפילו אותה, כמו שרייגן אמר על חומת ברלין. ולקהל הרביעי, החיילים הרוסים, מסר אחר לגמרי: קו חם בשם ״אני רוצה לחיות״, להיכנע ולשרוד. לפי אוקראינה, עד אוקטובר 2024 היו יותר מ-40 אלף פניות. נרטיב אחד, ומסר שונה לכל קהל.</aside>
+</section>
+
+<!-- · שיטת פעולה: שיטות וטכניקות -->
+<section class="slide" data-sec="s5" data-title="ג. שיטת פעולה: שיטות וטכניקות" data-part="שלב 5ג">
+  <div class="kick" data-a="start">תכנון · ג. שיטת פעולה</div>
+  <h2 class="h2" data-a="up" style="--d:120">שיטות וטכניקות</h2>
+  <p class="lead" data-a="up" style="--d:300;margin-top:12px;font-size:34px">השיטה קובעת איך הקמפיין בנוי. הטכניקה קובעת איך המסר עובד על הקהל.</p>
+  <div class="mono amber" data-a="fade" style="--d:500;font-size:24px;margin-top:34px">שיטות</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:12px">
+    <div class="card" data-a="up" style="--d:600"><div class="n">01</div><h3>ערוצים וכלים</h3><p>רשתות, תקשורת, פעולות בשטח</p></div>
+    <div class="card" data-a="up" style="--d:750"><div class="n">02</div><h3>שליחים</h3><p>מי אומר את המסר</p></div>
+    <div class="card" data-a="up" style="--d:900"><div class="n">03</div><h3>ייחוס</h3><p>גלוי, סמוי או חשאי</p></div>
+    <div class="card" data-a="up" style="--d:1050"><div class="n">04</div><h3>תבנית המערכה</h3><p>איך הקמפיין מתפתח בזמן</p></div>
+  </div>
+  <div class="mono amber" data-a="fade" style="--d:1300;font-size:24px;margin-top:34px">טכניקות</div>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:12px">
+    <span class="tag" data-a="up" style="--d:1400;font-size:31px">חזרה ועקביות</span>
+    <span class="tag" data-a="up" style="--d:1500;font-size:31px">מסגור</span>
+    <span class="tag" data-a="up" style="--d:1600;font-size:31px">הוכחה חברתית</span>
+    <span class="tag" data-a="up" style="--d:1700;font-size:31px">סמכות</span>
+    <span class="tag" data-a="up" style="--d:1800;font-size:31px">דחיפות</span>
+  </div>
+  <aside class="notes">עכשיו נדבר על שיטות ועל טכניקות. השיטה קובעת איך הקמפיין בנוי: באילו ערוצים, דרך אילו שליחים, באיזה ייחוס, ובאיזו תבנית לאורך זמן. הטכניקה קובעת איך המסר עצמו עובד על הקהל: חזרה ועקביות, מסגור, הוכחה חברתית, סמכות ודחיפות. נתחיל בטכניקה אחת שעובדת כמעט תמיד, ואז נעבור לשיטות.</aside>
+</section>
+
+<!-- · טכניקה: חזרה ועקביות -->
+<section class="slide" data-sec="s5" data-title="טכניקה: חזרה ועקביות" data-part="שלב 5ג">
+  <div class="kick" data-a="start">תכנון · ג. שיטת פעולה · טכניקה</div>
+  <h2 class="h2" data-a="up" style="--d:120">חזרה ועקביות</h2>
   <div class="row" style="margin-top:44px;gap:70px;align-items:center">
     <div class="rows grow" style="font-size:38px">
-      <div data-a="start" style="--d:400"><b>01</b>כל חזרה מעלה את האמינות, גם של טענה שקרית</div>
-      <div data-a="start" style="--d:700"><b>02</b>הקפיצה הגדולה: בפעם השנייה</div>
-      <div data-a="start" style="--d:1000"><b>03</b>וידע מוקדם לא מגן</div>
+      <div data-a="start" style="--d:400"><b>01</b>כל חזרה מעלה את האמינות של אמירה</div>
+      <div data-a="start" style="--d:700"><b>02</b>הקפיצה הגדולה: כבר בפעם השנייה</div>
+      <div data-a="start" style="--d:1000"><b>03</b>זה עובד גם על מי שיודע את התשובה</div>
     </div>
     <svg width="720" height="460" viewBox="0 0 720 460">
       <g stroke="#27322B" stroke-width="1.5"><line x1="60" y1="20" x2="60" y2="400"/><line x1="60" y1="400" x2="700" y2="400"/></g>
@@ -475,123 +597,116 @@
       <g data-a="start" style="--d:1700"><line x1="160" y1="222" x2="250" y2="90" stroke="#F2A93B" stroke-width="2"/><text x="260" y="84" fill="#F2A93B" font-family="Heebo" font-weight="700" font-size="28">החזרה השנייה</text></g>
     </svg>
   </div>
+  <p class="lead" data-a="up" style="--d:2200;margin-top:30px">למתכנן: נרטיב אחד, עקבי, שחוזר לאורך זמן ובכל הערוצים.</p>
   <div class="src"><b>מקורות:</b> Hasher, Goldstein &amp; Toppino, 1977 · Fazio ועוד, 2015 · Hassan &amp; Barber, 2021</div>
-  <aside class="notes">אפקט ״האמת המדומה״ ידוע מ-1977. מחקר מ-2015 הראה שהוא עובד גם כשהמשתתפים יודעים את התשובה הנכונה, ומחקר מ-2021 מצא שעיקר הקפיצה קורה כבר בחזרה השנייה. בשביל המתכנן זה אומר: נרטיב אחד, עקבי, לאורך זמן. אם נבחר פתיח א׳, כאן מזכירים שזו הטכניקה החמישית שהקול הפעיל.</aside>
+  <aside class="notes">הטכניקה הראשונה: חזרה ועקביות. מחקרים מאז 1977 מראים שכל חזרה על אמירה מעלה את האמינות שלה. הקפיצה הגדולה קורה כבר בפעם השנייה. וזה עובד גם על אנשים שיודעים את התשובה הנכונה. למתכנן זה אומר: נרטיב אחד, עקבי, שחוזר לאורך זמן ובכל הערוצים. אם בחרנו בפתיח הקולי א׳, כאן מזכירים: זו הטכניקה האחרונה שהקול הפעיל עליכם, ״תקשיבו עד הסוף, תקשיבו עד הסוף״.</aside>
 </section>
 
-<!-- 26 · שיטת פעולה -->
-<section class="slide" data-sec="s5">
-  <div class="kick" data-a="start">תכנון · ג. שיטת פעולה</div>
-  <h2 class="h2" data-a="up" style="--d:120">שיטת פעולה</h2>
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:60px">
-    <div class="card" data-a="up" style="--d:400;min-height:330px"><div class="n">01</div><h3>ערוצים וכלים</h3><p>רשתות, תקשורת מסורתית, ופעולות בשטח</p></div>
-    <div class="card" data-a="up" style="--d:600;min-height:330px"><div class="n">02</div><h3>שליחים ומשפיענים</h3><p>מי אומר את המסר</p></div>
-    <div class="card" data-a="up" style="--d:800;min-height:330px"><div class="n">03</div><h3>ייחוס</h3><p>גלוי, אפור או סמוי</p></div>
-    <div class="card" data-a="up" style="--d:1000;min-height:330px"><div class="n">04</div><h3>תזמון ותבנית מערכה</h3><p>נבחרת לפי המשימה</p></div>
+<!-- · שליחים -->
+<section class="slide" data-sec="s5" data-title="שליחים: מי אומר את המסר" data-part="שלב 5ג">
+  <div class="kick" data-a="start">תכנון · ג. שיטת פעולה · שיטה</div>
+  <h2 class="h2" data-a="up" style="--d:120">שליחים: מי אומר את המסר</h2>
+  <div class="row" style="margin-top:44px;gap:60px;align-items:center">
+    <div class="photo" data-a="scale" style="--d:400">
+      <div class="ph"><svg viewBox="0 0 60 70" width="150" height="175"><circle cx="30" cy="22" r="13" fill="#3A4A40"/><path d="M4 70c0-16 11-28 26-28s26 12 26 28z" fill="#3A4A40"/></svg></div>
+      <p>״לפני שהיית לוחם,<br>היית הבן שלי.״</p>
+      <small class="mono">קולומביה · 2013</small>
+    </div>
+    <div class="col grow" style="gap:24px">
+      <p class="lead" data-a="start" style="--d:800">משרד ההגנה הקולומביאני לא דיבר בשם עצמו. הוא נתן לאמהות של הלוחמים לדבר.</p>
+      <div class="rows" style="font-size:32px">
+        <div data-a="start" style="--d:1200"><b>01</b>שליח שהקהל סומך עליו, יותר ממי שמשלם על הקמפיין</div>
+        <div data-a="start" style="--d:1450"><b>02</b>שליח קרוב לקהל, בשפה ובזהות</div>
+        <div data-a="start" style="--d:1700"><b>03</b>שליח שהמסר שלו טבעי לו</div>
+      </div>
+    </div>
   </div>
-  <p class="lead" data-a="up" style="--d:1600;margin-top:56px">גם מעשה הוא מסר.</p>
-  <aside class="notes">הערוצים כוללים גם פעולות בשטח, כי גם מעשה הוא מסר. את תבנית המערכה בוחרים לפי המשימה.</aside>
+  <style>.photo{width:420px;flex:none;background:#E7EDE7;color:#0C100E;padding:24px 24px 28px;transform:rotate(2deg);box-shadow:0 20px 50px rgba(0,0,0,.5)}.photo .ph{height:300px;background:#C9D3CC;display:grid;place-items:end center;overflow:hidden}
+  .photo p{font-size:36px;font-weight:800;line-height:1.25;margin:18px 0 6px;font-family:'Heebo'}.photo small{font-size:20px;color:#56655B}</style>
+  <div class="src"><b>מקורות:</b> PRI The World, דצמבר 2013 · סוקולוף, TED, 2014</div>
+  <aside class="notes">שליחים: מי אומר את המסר. בקמפיין הקולומביאני משרד ההגנה לא דיבר בשם עצמו. הוא אסף מהאמהות תמונות של הלוחמים כשהיו ילדים, עם המשפט: לפני שהיית לוחם, היית הבן שלי. אף לוחם לא יחשוד באמא שלו שהיא תעמולה של הממשלה. שלושה כללים לבחירת שליח: שהקהל סומך עליו יותר ממי שמשלם על הקמפיין; שהוא קרוב לקהל, בשפה ובזהות; ושהמסר טבעי לו. ולהמחשה מהצד השני: כשמחלקת המדינה האמריקאית ניסתה להתווכח ישירות עם דאעש, הבכירים שלה הודו בעצמם: אנחנו לא השליח הכי אמין. הם עברו לעבוד דרך שותפים מקומיים.</aside>
 </section>
 
-<!-- 27 · שליחים -->
-<section class="slide" data-sec="s5">
-  <div class="kick" data-a="start">תכנון · ג. שיטת פעולה</div>
-  <h2 class="h2" data-a="up" style="--d:120">שליחים</h2>
-  <p class="lead" data-a="up" style="--d:300;margin-top:12px;font-size:34px">סרטונים קצרים של רופאים ואחיות בפייסבוק, לפני החגים</p>
-  <div class="row" style="margin-top:40px;gap:60px">
-    <div class="stat" data-a="up" style="--d:500"><div class="v" style="font-size:130px"><span class="num count-up" data-to="820" data-d="600">820</span></div><div class="l">מחוזות בארה״ב</div></div>
-    <div class="stat" data-a="up" style="--d:700"><div class="v" style="font-size:130px"><span class="num count-up" data-to="35" data-suf="M" data-d="800">35M</span></div><div class="l">משתמשים, בשני חגים</div></div>
-    <div class="stat" data-a="up" style="--d:900"><div class="v" style="font-size:130px"><span class="num count-up" data-pre="−" data-to="3.5" data-dec="1" data-suf="%" data-d="1000">−3.5%</span></div><div class="l">הדבקות. וגם פחות נסיעות</div></div>
-  </div>
-  <div class="row" style="margin-top:50px;gap:24px">
-    <div class="card gray grow" data-a="start" style="--d:1600"><div class="n">אינדונזיה</div><p>ציוצים על חיסונים בשם סלבס קיבלו הרבה יותר לייקים. ציון המקור דווקא הקטין את ההפצה.</p></div>
-    <div class="card grow" data-a="start" style="--d:1900"><div class="n">קולומביה</div><p>השליחות: האמהות של הלוחמים. ״לפני שהיית לוחם, היית הבן שלי.״</p></div>
-  </div>
-  <div class="src"><b>מקורות:</b> Breza ועוד, Nature Medicine, 2021 · Alatas ועוד, NBER, 2019 · PRI The World, דצמבר 2013</div>
-  <aside class="notes">הסרטונים הגיעו לכ-12 מיליון משתמשים בחג ההודיה ולכ-23 מיליון בחג המולד. מי שאומר את המסר משנה. באינדונזיה, ציוצים על חיסונים שנכתבו בשם סלבס קיבלו הרבה יותר לייקים, ודווקא ציון המקור הקטין את ההפצה. ובקולומביה השליחות היו האמהות של הלוחמים: ״לפני שהיית לוחם, היית הבן שלי.״ אם נבחר פתיח א׳, כאן חוזרת ״ההוכחה החברתית״.</aside>
-</section>
-
-<!-- 28 · ייחוס -->
-<section class="slide" data-sec="s5">
-  <div class="kick" data-a="start">תכנון · ג. שיטת פעולה</div>
+<!-- · ייחוס -->
+<section class="slide" data-sec="s5" data-title="ייחוס: גלוי, סמוי, חשאי" data-part="שלב 5ג">
+  <div class="kick" data-a="start">תכנון · ג. שיטת פעולה · שיטה</div>
   <h2 class="h2" data-a="up" style="--d:120">ייחוס: מי חתום על המסר</h2>
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:56px;border:1.5px solid var(--line)">
-    <div class="att" data-a="fade" style="--d:400;background:#E7EDE7;color:#0C100E"><b>לבן</b><span>המקור גלוי, ומאשר</span></div>
-    <div class="att" data-a="fade" style="--d:700;background:#56655B"><b>אפור</b><span>המקור לא מזוהה</span></div>
-    <div class="att" data-a="fade" style="--d:1000;background:#050706"><b>שחור</b><span>המסר מתחזה למקור אחר</span></div>
+    <div class="att" data-a="fade" style="--d:400;background:#E7EDE7;color:#0C100E"><b>גלוי</b><span>מזוהה עם הגורם שמעביר את המסר</span></div>
+    <div class="att" data-a="fade" style="--d:700;background:#3D4A42"><b>סמוי</b><span>לא מזוהה עם הגורם שמעביר: בלי זהות, או עם זהות שאינה נכונה</span></div>
+    <div class="att" data-a="fade" style="--d:1000;background:#050706"><b>חשאי</b><span>מזוהה, אבל מתבצע בדרך שאינה ידועה לכולם</span></div>
   </div>
-  <style>.att{padding:46px 44px;min-height:290px}.att b{display:block;font-family:'Karantina',sans-serif;font-size:110px;line-height:.9;font-weight:700}.att span{display:block;font-size:34px;margin-top:16px;font-weight:500}</style>
-  <div class="row" style="margin-top:46px;gap:60px;align-items:baseline">
-    <div class="quote" data-a="start" style="--d:1500;font-size:42px">״אפור ושחור תמיד סמויים״</div>
-    <p class="body grow" data-a="up" style="--d:1900;font-size:30px">שקר שנחשף פוגע באמינות המקור <b class="amber">״באופן בלתי הפיך״</b>.</p>
-  </div>
-  <div class="src"><b>מקורות:</b> US Army FM 3-05.30, Psychological Operations, 2005 · JP 3-13.2</div>
-  <aside class="notes">זו החלטה תכנונית, כמו כל החלטה אחרת. גלוי בונה אמינות לאורך זמן. סמוי מאפשר להגיע לקהל שלא מקשיב לנו, במחיר של סיכון חשיפה. הדוקטרינה האמריקאית מזהירה ששקר שנחשף פוגע באמינות המקור ״באופן בלתי הפיך״, ומציינת שרוב הפעילות היא גלויה. אם נבחר פתיח א׳, כאן חוזר ״הנתון בלי מקור״.</aside>
+  <style>.att{padding:46px 44px;min-height:330px}.att b{display:block;font-family:'Karantina',sans-serif;font-size:120px;line-height:.9;font-weight:700}.att span{display:block;font-size:33px;margin-top:18px;font-weight:500;line-height:1.35}</style>
+  <p class="lead" data-a="up" style="--d:1600;margin-top:44px">זו החלטה תכנונית: כל בחירה משנה את האמינות, את הגישה לקהל ואת הסיכון.</p>
+  <aside class="notes">שיטה שנייה: הייחוס, כלומר מי חתום על המסר. גלוי: המסר מזוהה עם הגורם שמעביר אותו. סמוי: המסר לא מזוהה עם הגורם שמעביר, או בלי זהות בכלל, או עם זהות שאינה נכונה. חשאי: הגורם מזוהה, אבל הפעולה מתבצעת בדרך שאינה ידועה לכולם. זו החלטה תכנונית כמו כל החלטה אחרת. כל בחירה משנה את האמינות של המסר, את היכולת להגיע לקהל שלא מקשיב לנו, ואת הסיכון.</aside>
 </section>
 
-<!-- 29 · רוסיה 2016 -->
-<section class="slide" data-sec="s5">
-  <div class="kick" data-a="start">ייחוס · סמוי בפועל</div>
-  <h2 class="h2" data-a="up" style="--d:120">רוסיה, 2016</h2>
-  <p class="lead" data-a="up" style="--d:300;margin-top:12px;font-size:34px;color:var(--mute)">סוכנות חקר האינטרנט</p>
-  <div class="row" style="margin-top:34px;gap:70px;align-items:center">
-    <div class="col grow" style="gap:26px">
-      <div class="stat" data-a="up" style="--d:500"><div class="v" style="font-size:150px"><span class="num count-up" data-to="126000000" data-sep data-d="600" data-dur="2200">126,000,000</span></div><div class="l">אמריקאים, לכל היותר, נחשפו. בכ-1.25 מיליון דולר בחודש</div></div>
-      <p class="body" data-a="up" style="--d:2600;font-size:36px"><b class="amber">1% מהמשתמשים קיבלו 70% מהחשיפות.</b><br>ולא נמצא קשר לשינוי בעמדות או בהצבעה.</p>
+<!-- · סמוי: כשזה עובד -->
+<section class="slide" data-sec="s5" data-title="סמוי: כשזה עובד" data-part="שלב 5ג">
+  <div class="kick" data-a="start">תכנון · ג. שיטת פעולה · ייחוס</div>
+  <h2 class="h2" data-a="up" style="--d:120">סמוי: כשזה עובד</h2>
+  <div class="row" style="margin-top:44px;gap:28px;align-items:stretch">
+    <div class="case2 grow" data-a="up" style="--d:400">
+      <em>ברית המועצות · 1983 עד 1987</em>
+      <h3>״מבצע אינפקציה״</h3>
+      <p>הק.ג.ב. שתל בעיתון הודי מכתב אנונימי: האיידס פותח במעבדה של צבא ארה״ב. הסיפור התגלגל מעיתון לעיתון, עד שהופיע ב-80 מדינות וב-25 שפות, עד 1987.</p>
+      <div class="hit"><b>~50%</b><span>מהאפרו-אמריקאים בסקר מ-2005 האמינו שהאיידס נוצר בידי אדם</span></div>
     </div>
-    <div data-a="fade" style="--d:2000">
-      <div id="waffle" style="display:grid;grid-template-columns:repeat(10,44px);gap:8px;direction:ltr"></div>
-      <div class="mono" style="font-size:20px;color:var(--mute);margin-top:14px;text-align:center">100 משתמשים · ריבוע אחד = 70% מהחשיפות</div>
+    <div class="case2 grow" data-a="up" style="--d:800">
+      <em>רומניה · 2024</em>
+      <h3>רשת סמויה בטיקטוק</h3>
+      <p>מועמד שקיבל כ-5% בסקרים זכה לדחיפה מרשת של כ-25 אלף חשבונות טיקטוק, שהתעוררו שבועיים לפני הבחירות.</p>
+      <div class="hit"><b>22.9%</b><span>ומקום ראשון בסיבוב הראשון. בית המשפט החוקתי ביטל אחר כך את הבחירות</span></div>
     </div>
   </div>
-  <div class="src"><b>מקורות:</b> ועדת המודיעין של הסנאט האמריקאי, כרך 2, 2019 · Eady ועוד, Nature Communications, 2023</div>
-  <aside class="notes">המבצע הסמוי המפורסם ביותר היה גדול מאוד, אבל רוב החשיפות הגיעו לאנשים שכבר היו בצד שלו. התוכן של התקשורת והפוליטיקאים האמריקאים היה גדול ממנו בהרבה. כשמתכננים פעולה סמויה, השאלה היא לא כמה ייחשפו, אלא את מי היא תזיז.</aside>
+  <style>.case2{background:rgba(18,25,21,.92);border:1.5px solid var(--line);border-right:6px solid var(--amber);padding:28px 34px}.case2 em{font-style:normal;font-family:'Plex Mono',monospace;font-size:22px;color:var(--mute)}
+  .case2 h3{font-size:46px;margin:8px 0 12px}.case2 p{font-size:28px;line-height:1.5;color:var(--soft);margin:0}.case2 .hit{display:flex;gap:22px;align-items:baseline;margin-top:22px;border-top:1px solid var(--line);padding-top:18px}
+  .case2 .hit b{font-family:'Karantina',sans-serif;font-size:96px;line-height:.85;color:var(--amber);font-weight:700;direction:ltr;unicode-bidi:isolate}.case2 .hit span{font-size:26px;color:var(--soft);line-height:1.35}</style>
+  <div class="src"><b>מקורות:</b> Thomas Boghardt, Studies in Intelligence, 2009 · המודיעין הרומני, דצמבר 2024 · ועדת הבחירות המרכזית, 2024 · AP</div>
+  <aside class="notes">שתי דוגמאות שבהן פעולה סמויה הצליחה. הראשונה היסטורית: ב-1983 הק.ג.ב. שתל בעיתון הודי מכתב אנונימי של ״מדען אמריקאי״, שטען שהאיידס פותח בניסויים של ארה״ב. הסיפור התגלגל מעיתון לעיתון, ועד 1987 הופיע ב-80 מדינות וב-25 שפות. ב-2005, כמחצית מהאפרו-אמריקאים בסקר אחד האמינו שהאיידס נוצר בידי אדם. לא הכול בגלל המבצע, אבל הוא שתל סיפור שחי עשרות שנים. הסוד: המקור שנראה לעין לא היה ברית המועצות. הדוגמה השנייה עכשווית: ברומניה ב-2024, מועמד שקיבל כ-5% בסקרים זכה לדחיפה מרשת של כ-25 אלף חשבונות טיקטוק שהתעוררו שבועיים לפני הבחירות, וסיים ראשון עם כמעט 23%. זה נראה כמו תמיכה ספונטנית של אנשים. בית המשפט החוקתי ביטל את הבחירות, אבל התוצאה מראה כמה זה יכול לעבוד.</aside>
 </section>
 
-<!-- 30 · עוד ארבעה מקרים -->
-<section class="slide" data-sec="s5">
-  <div class="kick" data-a="start">ייחוס · סמוי בפועל</div>
-  <h2 class="h2" data-a="up" style="--d:120">עוד ארבעה מקרים</h2>
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:44px">
-    <div class="case" data-a="up" style="--d:300"><div class="n">רוסיה</div><h3>דופלגנגר</h3><p>אתרי חדשות משובטים. 32 דומיינים נתפסו ב-2024</p><i data-a="stamp" style="--d:1400">נחשף</i></div>
-    <div class="case" data-a="up" style="--d:450"><div class="n">סין</div><h3>ספאמופלאז׳</h3><p>״המבצע הסמוי הגדול בעולם״. כמעט בלי מעורבות אמיתית</p><i data-a="stamp" style="--d:1600">נחשף</i></div>
-    <div class="case" data-a="up" style="--d:600"><div class="n">רומניה 2024</div><h3>טיקטוק</h3><p>כ-25 אלף חשבונות. הסיבוב הראשון של הבחירות בוטל</p><i data-a="stamp" style="--d:1800">נחשף</i></div>
-    <div class="case" data-a="up" style="--d:750"><div class="n">ארה״ב</div><h3>הפיליפינים</h3><p>קמפיין סמוי נגד החיסון הסיני. נחשף ב-2024</p><i data-a="stamp" style="--d:2000">נחשף</i></div>
-  </div>
-  <style>.case{position:relative;background:rgba(18,25,21,.92);border:1.5px solid var(--line);padding:28px 28px 34px;min-height:330px}.case .n{font-family:'Plex Mono',monospace;color:var(--mute);font-size:22px}
-  .case h3{font-size:40px;margin:8px 0 10px}.case p{font-size:26px;line-height:1.45;color:var(--soft);margin:0}.case i{position:absolute;left:22px;bottom:20px;font-style:normal;border:3px solid var(--amber);color:var(--amber);font-weight:800;font-size:26px;padding:4px 14px}</style>
-  <div class="breakout" data-a="up" style="--d:2400">
-    <div class="mono" style="font-size:22px;color:var(--mute);margin-bottom:10px">״סולם הפריצה״ של בן נימו: עד כמה רחוק המבצע הגיע</div>
-    <div class="bk"><span class="on">1</span><span class="on">2</span><span>3</span><span>4</span><span>5</span><span class="top">6</span></div>
-    <div class="bkl"><span>רוב המבצעים שנחשפו</span><span style="text-align:left">רומניה: תגובה של מקבלי החלטות</span></div>
-  </div>
-  <style>.breakout{margin-top:40px}.bk{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}.bk span{font-family:'Plex Mono',monospace;font-size:26px;font-weight:600;text-align:center;padding:10px;background:var(--line);color:var(--mute)}
-  .bk .on{background:var(--amber);color:#0C100E}.bk .top{background:var(--red);color:#0C100E}.bkl{display:flex;justify-content:space-between;font-size:24px;color:var(--soft);margin-top:10px}</style>
-  <div class="src"><b>מקורות:</b> EU DisinfoLab, 2022 · משרד המשפטים האמריקאי, 2024 · Meta, 2023 · Graphika, 2024 · המודיעין הרומני, 2024 · Reuters, 2024 · Ben Nimmo, Brookings, 2020</div>
-  <aside class="notes">״סולם הפריצה״ של בן נימו מדרג מבצעים לפי כמה רחוק הם הגיעו: מפלטפורמה אחת וקהילה אחת, ועד תגובה של מקבלי החלטות. רוב המבצעים הסמויים שנחשפו נשארו בדרגות הנמוכות. היוצא מן הכלל הוא רומניה, שם בית המשפט החוקתי ביטל את הסיבוב הראשון.</aside>
-</section>
-
-<!-- 31 · תזמון ותבנית מערכה -->
-<section class="slide" data-sec="s5">
-  <div class="kick" data-a="start">תכנון · ג. שיטת פעולה</div>
-  <h2 class="h2" data-a="up" style="--d:120">תזמון ותבנית מערכה</h2>
-  <div class="tm" style="margin-top:40px">
-    <div data-a="start" style="--d:400"><div><b>שלבים עם אבני דרך</b><span>קולומביה: מבצע בכל חג מולד, שנה אחרי שנה</span></div>
-      <svg width="760" height="110" viewBox="0 0 760 110"><path class="draw" style="--d:700" d="M0 100 H150 V75 H310 V50 H470 V25 H630 V5 H760" fill="none" stroke="#F2A93B" stroke-width="4"/></svg></div>
-    <div data-a="start" style="--d:700"><div><b>נוכחות קבועה עם שיאים</b><span>זלנסקי: נאום כל ערב, ו״סיבוב״ בפרלמנטים של העולם</span></div>
-      <svg width="760" height="110" viewBox="0 0 760 110"><path class="draw" style="--d:1000" d="M0 80 H120 L140 15 L160 80 H330 L350 25 L370 80 H520 L540 10 L560 80 H760" fill="none" stroke="#F2A93B" stroke-width="4"/></svg></div>
-    <div data-a="start" style="--d:1000"><div><b>תגובה לאירועים</b><span>יחידת התגובה המהירה של ממשלת בריטניה: עד 70 אירועים בשבוע</span></div>
+<!-- · תבנית המערכה -->
+<section class="slide" data-sec="s5" data-title="תבנית המערכה" data-part="שלב 5ג">
+  <div class="kick" data-a="start">תכנון · ג. שיטת פעולה · שיטה</div>
+  <h2 class="h2" data-a="up" style="--d:120">תבנית המערכה</h2>
+  <p class="lead" data-a="up" style="--d:300;margin-top:12px;font-size:34px">שלוש אפשרויות לבנות קמפיין לאורך זמן. בוחרים לפי המשימה, ולפעמים משלבים.</p>
+  <div class="tm" style="margin-top:30px">
+    <div data-a="start" style="--d:500"><div><b>קמפיין מתפתח</b><span>קולומביה: כל חג מולד מבצע חדש, על אותה תובנה</span></div>
+      <svg width="760" height="110" viewBox="0 0 760 110"><path class="draw" style="--d:800" d="M0 100 H150 V75 H310 V50 H470 V25 H630 V5 H760" fill="none" stroke="#F2A93B" stroke-width="4"/></svg></div>
+    <div data-a="start" style="--d:800"><div><b>שיאים</b><span>זלנסקי: נאום כל ערב, ושיאים כמו ״סיבוב״ הנאומים בפרלמנטים של העולם</span></div>
+      <svg width="760" height="110" viewBox="0 0 760 110"><path class="draw" style="--d:1100" d="M0 80 H120 L140 15 L160 80 H330 L350 25 L370 80 H520 L540 10 L560 80 H760" fill="none" stroke="#F2A93B" stroke-width="4"/></svg></div>
+    <div data-a="start" style="--d:1100"><div><b>ניצול הזדמנויות והקשר</b><span>מגיבים לאירועים ומחברים אליהם את המסר. בממשלת בריטניה: עד 70 אירועים בשבוע</span></div>
       <svg width="760" height="110" viewBox="0 0 760 110"><line x1="0" y1="80" x2="760" y2="80" stroke="#27322B" stroke-width="2"/>
-        <g fill="#F2A93B" data-a="fade" style="--d:1400"><circle cx="40" cy="80" r="9"/><circle cx="95" cy="80" r="9"/><circle cx="230" cy="80" r="9"/><circle cx="260" cy="80" r="9"/><circle cx="410" cy="80" r="9"/><circle cx="470" cy="80" r="9"/><circle cx="500" cy="80" r="9"/><circle cx="640" cy="80" r="9"/><circle cx="715" cy="80" r="9"/></g></svg></div>
+        <g fill="#F2A93B" data-a="fade" style="--d:1500"><circle cx="40" cy="80" r="9"/><circle cx="95" cy="80" r="9"/><circle cx="230" cy="80" r="9"/><circle cx="260" cy="80" r="9"/><circle cx="410" cy="80" r="9"/><circle cx="470" cy="80" r="9"/><circle cx="500" cy="80" r="9"/><circle cx="640" cy="80" r="9"/><circle cx="715" cy="80" r="9"/></g></svg></div>
   </div>
-  <style>.tm>div{display:grid;grid-template-columns:1fr 760px;gap:50px;align-items:center;padding:24px 0;border-bottom:1px solid var(--line)}.tm b{display:block;font-size:40px;font-weight:700}.tm span{display:block;font-size:27px;color:var(--soft);margin-top:6px}</style>
-  <p class="body" data-a="up" style="--d:1900;margin-top:30px">אין תבנית אחת נכונה. בוחרים לפי המשימה, ולפעמים משלבים.</p>
-  <div class="src"><b>מקורות:</b> Wikipedia, מבצעי חג המולד בקולומביה · Reuters, מרץ 2022 · GOV.UK, מרץ 2020</div>
-  <aside class="notes">אין תבנית אחת נכונה. בוחרים לפי המשימה, ולפעמים משלבים. אם נבחר פתיח א׳, כאן חוזרת ״הדחיפות״.</aside>
+  <style>.tm>div{display:grid;grid-template-columns:1fr 760px;gap:50px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)}.tm b{display:block;font-size:40px;font-weight:700}.tm span{display:block;font-size:27px;color:var(--soft);margin-top:6px}</style>
+  <div class="src"><b>מקורות:</b> סוקולוף, TED, 2014 · Reuters, מרץ 2022 · GOV.UK, מרץ 2020</div>
+  <aside class="notes">שיטה אחרונה: תבנית המערכה, כלומר איך הקמפיין בנוי לאורך זמן. שלוש אפשרויות. קמפיין מתפתח: כמו בקולומביה, כל שנה מבצע חדש שנבנה על אותה תובנה ומעמיק אותה. שיאים: נוכחות קבועה, עם שיאים מתוכננים. זלנסקי נאם כל ערב, ובשבועות הראשונים של המלחמה עשה ״סיבוב״ של נאומים בפרלמנטים של העולם. ניצול הזדמנויות והקשר: מגיבים לאירועים ומחברים אליהם את המסר. יחידת התגובה המהירה של ממשלת בריטניה טיפלה בעד 70 אירועים בשבוע. בוחרים לפי המשימה, ולפעמים משלבים.</aside>
 </section>
 
-<!-- 32 · שלב 6 -->
-<section class="slide gate" data-sec="s6">
+<!-- · ד. הגדרת מדדים -->
+<section class="slide" data-sec="s5" data-title="ד. הגדרת מדדים" data-part="שלב 5ד">
+  <div class="kick" data-a="start">תכנון · ד. הגדרת מדדים</div>
+  <h2 class="h2" data-a="up" style="--d:120">הגדרת מדדים</h2>
+  <p class="lead" data-a="up" style="--d:300;margin-top:12px;font-size:34px">מגדירים כבר בתכנון מה נמדוד, איך, ומתי. אחרת אין מול מה לבדוק.</p>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:40px">
+    <div class="card gray" data-a="up" style="--d:500;min-height:300px"><div class="n">ביצוע</div><h3>מה עשינו</h3><p>פרסומים, חשיפות, פעולות בשטח</p></div>
+    <div class="card" data-a="up" style="--d:700;min-height:300px"><div class="n">תודעה</div><h3>מה הקהל חושב</h3><p>עמדות ותפיסות. סקרים וקבוצות מיקוד</p></div>
+    <div class="card" data-a="up" style="--d:900;min-height:300px"><div class="n">התנהגות</div><h3>מה הקהל עושה</h3><p>נתונים מהשטח</p></div>
+    <div class="card" data-a="up" style="--d:1100;min-height:300px"><div class="n">תפוצה</div><h3>כמה רחוק זה הגיע</h3><p>מקהילה אחת, דרך התקשורת, ועד תגובה של מקבלי החלטות</p></div>
+  </div>
+  <div class="row" style="margin-top:34px;gap:24px">
+    <span class="tag" data-a="up" style="--d:1500;font-size:30px"><b>1</b>נקודת פתיחה: מודדים לפני שמתחילים</span>
+    <span class="tag" data-a="up" style="--d:1700;font-size:30px"><b>2</b>מועדי מדידה קבועים</span>
+    <span class="tag" data-a="up" style="--d:1900;font-size:30px"><b>3</b>סף לתיקון: מה ייחשב שלא עובד</span>
+  </div>
+  <div class="src"><b>מקורות:</b> RAND, Paul ועוד, 2015 · Ben Nimmo, The Breakout Scale, Brookings, 2020</div>
+  <aside class="notes">תת-השלב האחרון בתכנון: הגדרת מדדים. מגדירים כבר עכשיו מה נמדוד, איך ומתי, אחרת בשלב 7 לא יהיה מול מה לבדוק. ארבעה סוגי מדדים: ביצוע, מה עשינו. תודעה, מה הקהל חושב, בסקרים ובקבוצות מיקוד. התנהגות, מה הקהל עושה, מנתונים מהשטח. ותפוצה, כמה רחוק המסר הגיע. לתפוצה יש סולם מוכר של בן נימו: מפלטפורמה אחת וקהילה אחת, דרך התקשורת המרכזית, ועד תגובה של מקבלי החלטות. ושלושה דברים שקובעים מראש: נקודת פתיחה, מודדים לפני שמתחילים; מועדי מדידה קבועים; וסף לתיקון, מה ייחשב שלא עובד ויחייב שינוי.</aside>
+</section>
+
+<!-- · שלב 6 -->
+<section class="slide gate" data-sec="s6" data-title="שלב 6: ביצוע" data-part="שלב 6">
   <div class="gnum" data-a="fade" style="--d:100">06</div>
   <div class="of" data-a="start">שלב 06 מתוך 07</div>
   <h2 class="h1"><span class="mask"><span data-a="rise" style="display:block;--d:200">ביצוע</span></span></h2>
@@ -600,34 +715,46 @@
     <div data-a="start" style="--d:1050"><b>ב</b>הפצת התוכן ומימוש הפעילות</div>
   </div>
   <p class="lead" data-a="up" style="--d:1600;margin-top:50px;max-width:1000px">התכנון נגמר. עכשיו כל החלטה הופכת לתוצר ולפעולה.</p>
-  <aside class="notes">התכנון נגמר, ועכשיו כל החלטה הופכת לתוצר ולפעולה.</aside>
+  <aside class="notes">התכנון נגמר, ועכשיו כל החלטה הופכת לתוצר ולפעולה. שני חלקים: הפקת התוכן, והפצה ומימוש של הפעילות בשטח.</aside>
 </section>
 
-<!-- 33 · בודקים לפני שמפיצים -->
-<section class="slide" data-sec="s6">
+<!-- · סוגי תוכן -->
+<section class="slide" data-sec="s6" data-title="הפקה: סוגי תוכן" data-part="שלב 6א">
   <div class="kick" data-a="start">ביצוע · א. הפקת התוכן</div>
-  <h2 class="h2" data-a="up" style="--d:120">בודקים לפני שמפיצים</h2>
-  <div class="row" style="margin-top:44px;gap:70px;align-items:flex-end">
-    <div class="ads">
-      <div data-a="up" style="--d:400"><em class="mono num">+50%</em><i style="height:300px"></i><span>גרסה א</span></div>
-      <div data-a="up" style="--d:600"><em class="mono">ממוצע</em><i style="height:200px;background:#B88536"></i><span>גרסה ב</span></div>
-      <div data-a="up" style="--d:800"><em class="mono num">−50%</em><i style="height:100px;background:#6B5A3A"></i><span>גרסה ג</span></div>
+  <h2 class="h2" data-a="up" style="--d:120">ארבעה סוגי תוכן</h2>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:50px">
+    <div class="card" data-a="up" style="--d:400;min-height:360px"><div class="n">01</div><h3>טקסט</h3><p>מהיר, זול ומדויק. כותרת, פוסט, כרוז, הודעה.</p><p style="margin-top:14px;color:var(--amber)">כשהמסר צריך להיות מדויק</p></div>
+    <div class="card" data-a="up" style="--d:600;min-height:360px"><div class="n">02</div><h3>תמונה</h3><p>נקלטת בשנייה ועוברת שפות. מם, אינפוגרפיקה, צילום.</p><p style="margin-top:14px;color:var(--amber)">כשיש שנייה אחת לתפוס את העין</p></div>
+    <div class="card" data-a="up" style="--d:800;min-height:360px"><div class="n">03</div><h3>וידאו</h3><p>סיפור ורגש. הכי משותף ברשתות.</p><p style="margin-top:14px;color:var(--amber)">כשצריך לספר סיפור</p></div>
+    <div class="card" data-a="up" style="--d:1000;min-height:360px"><div class="n">04</div><h3>קול</h3><p>אינטימי ואמין. רדיו, פודקאסט, הקלטה, שיחה.</p><p style="margin-top:14px;color:var(--amber)">כשצריך קרבה ואמון</p></div>
+  </div>
+  <p class="lead" data-a="up" style="--d:1600;margin-top:44px">את סוג התוכן בוחרים לפי הקהל והערוץ, לא לפי מה שקל להפיק. ובודקים כמה גרסאות לפני שמפיצים.</p>
+  <aside class="notes">ארבעה סוגי תוכן, ולכל אחד תפקיד. טקסט מהיר, זול ומדויק. תמונה נקלטת בשנייה ועוברת שפות. וידאו מספר סיפור ומעורר רגש, והוא הכי משותף ברשתות. קול הוא אינטימי ונתפס כאמין. בוחרים לפי הקהל והערוץ, לא לפי מה שקל להפיק. ועוד כלל: בודקים כמה גרסאות לפני שמפיצים. מחקר על 617 מודעות פוליטיות מצא שגם מומחים לא יודעים לנחש מראש איזו גרסה תעבוד.</aside>
+</section>
+
+<!-- · דיפ פייק -->
+<section class="slide" data-sec="s6" data-title="הפקה: מה הבינה המלאכותית משנה" data-part="שלב 6א">
+  <div class="kick" data-a="start">ביצוע · א. הפקת התוכן</div>
+  <h2 class="h2" data-a="up" style="--d:120">כל אחד יכול להפיק כל דבר</h2>
+  <p class="lead" data-a="up" style="--d:300;margin-top:12px;font-size:34px">טקסט, תמונה, וידאו וקול שנראים ונשמעים אמיתיים, בכל שפה, בדקות</p>
+  <div class="row" style="margin-top:40px;gap:28px">
+    <div class="col grow" style="gap:18px">
+      <div class="mono amber" data-a="fade" style="--d:500;font-size:24px">הזדמנות</div>
+      <div class="card" data-a="start" style="--d:700"><div class="n">פקיסטן, 2023</div><p>אימראן חאן, מהכלא, ״נשא נאום״ בקול שנוצר בבינה מלאכותית מתוך הרשימות שלו. הנאום סומן ככזה.</p></div>
+      <div class="card" data-a="start" style="--d:1000"><div class="n">הודו, 2024</div><p>המפלגות הוציאו כ-50 מיליון דולר על תוכן מורשה: קולות משובטים, ונאומים מתורגמים לשפות האזוריות.</p></div>
     </div>
-    <div class="rows grow" style="font-size:36px">
-      <div data-a="start" style="--d:1100"><b>01</b>אותו מסר, גרסאות שונות: פער של עד חצי לכל כיוון</div>
-      <div data-a="start" style="--d:1400"><b>02</b>אי אפשר לדעת מראש איזו גרסה תעבוד</div>
-      <div data-a="start" style="--d:1700"><b>03</b>ההמלצה: יותר מ-10% מהתקציב לבדיקות</div>
+    <div class="col grow" style="gap:18px">
+      <div class="mono red" data-a="fade" style="--d:1300;font-size:24px">סיכון</div>
+      <div class="card" data-a="start" style="--d:1500;border-right-color:var(--red)"><div class="n" style="color:var(--red)">סלובקיה, 2023</div><p>הקלטה מזויפת של מועמד שמדבר על זיוף בחירות, יומיים לפני הבחירות, בזמן השקט שלפני ההצבעה.</p></div>
+      <div class="card" data-a="start" style="--d:1800;border-right-color:var(--red)"><div class="n" style="color:var(--red)">ארה״ב, 2024</div><p>שיחות מוקלטות בקול מזויף של ביידן אמרו לבוחרים לא להצביע בפריימריז. היועץ שהזמין אותן נקנס ב-6 מיליון דולר.</p></div>
     </div>
   </div>
-  <style>.ads{display:flex;gap:26px;align-items:flex-end;width:560px}.ads>div{flex:1;display:flex;flex-direction:column;align-items:center;gap:12px}.ads i{display:block;width:100%;background:var(--amber)}
-  .ads span{font-size:26px;color:var(--soft)}.ads em{font-style:normal;font-size:24px;color:var(--amber);font-weight:600}</style>
-  <p class="body" data-a="up" style="--d:2200;margin-top:36px;font-size:28px;color:var(--mute)"><span class="num">617</span> מודעות · <span class="num">51</span> קמפיינים · יותר מחצי מיליון משתתפים</p>
-  <div class="src"><b>מקורות:</b> Hewitt, Broockman, Coppock ועוד, American Political Science Review, 2024 · FM 3-05.30, פרק 6</div>
-  <aside class="notes">מחקר על 617 מודעות מ-51 קמפיינים, עם יותר מחצי מיליון משתתפים, מצא שהתיאוריות המקובלות כמעט לא חוזות איזו מודעה תשכנע. גם הדוקטרינה האמריקאית קובעת שכל תוצר ״מתורגם, נבדק מראש, משתנה לפי התוצאות, ורק אז מופק.״</aside>
+  <div class="src"><b>מקורות:</b> Al Jazeera, דצמבר 2023 · Shukla &amp; Schneier, The Conversation, 2024 · HKS Misinformation Review, 2024 · NHPR, ספטמבר 2024</div>
+  <aside class="notes">הבינה המלאכותית שינתה את ההפקה. היום כל אחד יכול להפיק טקסט, תמונה, וידאו וקול שנראים ונשמעים אמיתיים, בכל שפה ובתוך דקות. זו הזדמנות: אימראן חאן ״נשא נאום״ מהכלא בקול שנוצר בבינה מלאכותית, ובהודו המפלגות השקיעו כ-50 מיליון דולר בתוכן מורשה, כמו נאומים מתורגמים לשפות האזוריות. וזה סיכון: בסלובקיה הופצה הקלטה מזויפת של מועמד יומיים לפני הבחירות, ובארה״ב שיחות בקול מזויף של ביידן אמרו לבוחרים לא להצביע. זה משנה גם את מה שאנחנו יכולים להפיק, וגם את מה שהיריב יכול להפיק מולנו.</aside>
 </section>
 
-<!-- 34 · גם מעשה הוא מסר -->
-<section class="slide" data-sec="s6">
+<!-- · גם מעשה הוא מסר -->
+<section class="slide" data-sec="s6" data-title="גם מעשה הוא מסר" data-part="שלב 6ב">
   <div class="kick" data-a="start">ביצוע · ב. מימוש הפעילות</div>
   <h2 class="h2" data-a="up" style="--d:120">גם מעשה הוא מסר</h2>
   <div class="row" style="margin-top:30px;gap:90px;align-items:center">
@@ -644,29 +771,11 @@
   <style>.phone{width:360px;height:640px;border:3px solid var(--line2);border-radius:44px;background:linear-gradient(180deg,#151D18,#0A0E0C);position:relative;display:grid;place-items:center;flex:none}
   .phone p{font-size:52px;font-weight:800;line-height:1.2;text-align:center;margin:0}.phone .rec{position:absolute;top:34px;left:34px;font-size:20px;color:var(--red);display:flex;gap:8px;align-items:center}.phone .rec i{width:12px;height:12px;border-radius:50%;background:var(--red)}</style>
   <div class="src"><b>מקורות:</b> AFP, דרך The Moscow Times, פברואר 2022 · NATO AJP-10, 2023</div>
-  <aside class="notes">הסרטון הפריך את הטענה שזלנסקי ברח, בלי להתווכח איתה. נאט״ו קובעת שהנרטיב וכוונת המפקד צריכים להניע את התכנון של כל הפעולות, כדי למנוע ״פער בין האמירה לעשייה״. כל פעולה בשטח משדרת מסר, ולכן מתכננים אותה כחלק מהקמפיין.</aside>
+  <aside class="notes">בימים הראשונים של המלחמה רוסיה הפיצה שזלנסקי ברח. הוא לא התווכח עם הטענה, אלא צילם סלפי מחוץ למשרדו: אני כאן, לא נניח את הנשק. המעשה הפריך את הטענה. נאט״ו קובעת שהנרטיב וכוונת המפקד צריכים להניע את התכנון של כל הפעולות, כדי למנוע פער בין האמירה לעשייה. כל פעולה בשטח משדרת מסר, ולכן מתכננים אותה כחלק מהקמפיין.</aside>
 </section>
 
-<!-- 35 · מפיצים איפה שהקהל נמצא -->
-<section class="slide" data-sec="s6">
-  <div class="kick" data-a="start">ביצוע · ב. הפצת התוכן</div>
-  <h2 class="h2" data-a="up" style="--d:120">מפיצים איפה שהקהל נמצא</h2>
-  <p class="lead" data-a="up" style="--d:300;margin-top:12px;font-size:34px;color:var(--mute)">קולומביה, 2011: ״נהרות של אור״</p>
-  <svg style="position:absolute;left:0;top:430px" width="1920" height="420" viewBox="0 0 1920 420">
-    <path id="river" class="draw" style="--d:500" d="M1920 120 C1650 40 1500 300 1220 230 S 760 60 520 200 S 160 380 0 300" fill="none" stroke="#1E3A40" stroke-width="56" stroke-linecap="round"/>
-    <path d="M1920 120 C1650 40 1500 300 1220 230 S 760 60 520 200 S 160 380 0 300" fill="none" stroke="#2C5560" stroke-width="2" opacity=".8"/>
-  </svg>
-  <div class="lights" style="position:absolute;left:0;top:430px;width:1920px;height:420px"></div>
-  <div style="position:absolute;right:110px;bottom:150px;width:880px">
-    <p class="lead" data-a="up" style="--d:1500">הנהרות הם ״הכבישים של הג׳ונגל״.</p>
-    <p class="body" data-a="up" style="--d:1900;margin-top:12px">אלפי כדורים מוארים, עם מכתבים ומתנות מהמשפחות, נשלחו במורד הנהרות.</p>
-  </div>
-  <div class="src"><b>מקור:</b> חוסה מיגל סוקולוף, TED, 2014. לפי הסוכנות: יותר מ-6,000 הודעות</div>
-  <aside class="notes">התובנה, שהפחד הוא להידחות, קבעה את המסר. המחקר על הקהל קבע את דרך ההפצה. זה ביצוע שנשען על כל השלבים שלפניו.</aside>
-</section>
-
-<!-- 36 · שלב 7 -->
-<section class="slide gate" data-sec="s7">
+<!-- · שלב 7 -->
+<section class="slide gate" data-sec="s7" data-title="שלב 7: מדידה, הערכה ותיקון" data-part="שלב 7">
   <div class="gnum" data-a="fade" style="--d:100">07</div>
   <div class="of" data-a="start">שלב 07 מתוך 07 · ומשם חוזרים לשלב 04</div>
   <h2 class="h1" style="font-size:170px"><span class="mask"><span data-a="rise" style="display:block;--d:200">מדידה, הערכה ותיקון</span></span></h2>
@@ -676,11 +785,11 @@
     <span class="tag" data-a="up" style="--d:1300;font-size:36px;padding:14px 28px"><b>3</b>מה משנים</span>
   </div>
   <p class="lead" data-a="up" style="--d:1800;margin-top:50px;max-width:1000px">המדידה לא בודקת אם עבדנו, אלא אם הקהל השתנה.</p>
-  <aside class="notes">המדידה לא בודקת אם עבדנו, אלא אם הקהל השתנה. ובשביל זה צריך את מה שהגדרנו כבר בשלב 2.</aside>
+  <aside class="notes">המדידה לא בודקת אם עבדנו, אלא אם הקהל השתנה. בשביל זה צריך את מה שהגדרנו בתכנון: המדדים ונקודת הפתיחה.</aside>
 </section>
 
-<!-- 37 · עשינו, או השתנה? -->
-<section class="slide" data-sec="s7">
+<!-- · עשינו, או השתנה? -->
+<section class="slide" data-sec="s7" data-title="עשינו, או השתנה?" data-part="שלב 7">
   <div class="kick" data-a="start">מדידה, הערכה ותיקון</div>
   <h2 class="h2" data-a="up" style="--d:120">עשינו, או השתנה?</h2>
   <div class="row" style="margin-top:44px;gap:30px;align-items:center">
@@ -692,30 +801,13 @@
     <div class="grow" data-a="up" style="--d:1300;border-top:3px solid var(--line2);padding-top:16px"><b style="font-size:36px">כשל ביצוע</b><p class="body" style="font-size:28px">לא הפקנו את מה שתכננו. מתקנים את הביצוע</p></div>
     <div class="grow" data-a="up" style="--d:1600;border-top:3px solid var(--amber);padding-top:16px"><b style="font-size:36px">כשל תיאוריה</b><p class="body" style="font-size:28px">הפקנו, והקהל לא זז. חוזרים לתובנה</p></div>
   </div>
-  <div class="mono" data-a="up" style="--d:2200;margin-top:34px;font-size:22px;color:var(--mute);line-height:1.6">מגבלות המדידה: 66% מהקישורים לאתרים פופולריים בטוויטר הגיעו מחשבונות חשודים כבוטים · בסקר פתוח באינטרנט, 12% מהצעירים טענו שיש להם רישיון להפעיל צוללת גרעינית</div>
-  <div class="src"><b>מקורות:</b> RAND, Paul ועוד, Handbook for Practitioners, 2015 · Pew Research Center, 2018 ו-2024</div>
-  <aside class="notes">ראנד מבחינה בין שני סוגי כישלון. בכשל ביצוע מתקנים את הביצוע. בכשל תיאוריה חוזרים לתובנה, ומשנים את ההנחה על מה יזיז את הקהל. ראנד גם מזהירה לא לסגור מאמץ מבטיח על סמך מדד אחד, וממליצה להקצות להערכה כ-5% מהמשאבים. וכל ערוצי המדידה מוגבלים. ברשתות: 66% מהקישורים לאתרים פופולריים בטוויטר הגיעו מחשבונות שחשודים כבוטים. בסקרים פתוחים באינטרנט: 12% מהצעירים טענו שיש להם רישיון להפעיל צוללת גרעינית. ומה שמבצע מדווח על עצמו לא מקבלים כמו שהוא.</aside>
+  <p class="body" data-a="up" style="--d:2100;margin-top:34px;font-size:30px"><b class="amber">מגבלת המדידה:</b> לא כל מה שרואים ברשת משקף את הקהל, ולא כל שינוי נובע מהקמפיין. לכן מודדים בכמה כלים, ומשווים לנקודת הפתיחה.</p>
+  <div class="src"><b>מקור:</b> RAND, Paul ועוד, Handbook for Practitioners, 2015</div>
+  <aside class="notes">שני סוגי מדדים: מדד ביצוע אומר מה עשינו, כמה פרסמנו וכמה נחשפו. מדד אפקט אומר מה השתנה בקהל. ראנד מבחינה בין שני סוגי כישלון: בכשל ביצוע לא הפקנו את מה שתכננו, ומתקנים את הביצוע. בכשל תיאוריה הפקנו, והקהל לא זז, ואז חוזרים לתובנה ומשנים את ההנחה. ומגבלה שחשוב לזכור: לא כל מה שרואים ברשת משקף את הקהל, ולא כל שינוי נובע מהקמפיין. לכן מודדים בכמה כלים, ומשווים לנקודת הפתיחה.</aside>
 </section>
 
-<!-- 38 · הבדיקה החיצונית -->
-<section class="slide" data-sec="s7">
-  <div class="kick" data-a="start">מדידה, הערכה ותיקון</div>
-  <h2 class="h2" data-a="up" style="--d:120">הבדיקה החיצונית: קולומביה</h2>
-  <div class="chk3" style="margin-top:50px">
-    <div data-a="start" style="--d:400"><em>הסוכנות</em><b class="num count-up" data-to="331" data-d="500">331</b><span>עריקים בחג המולד הראשון</span></div>
-    <div data-a="start" style="--d:1200"><em>מחקר עצמאי</em><b class="num red">0</b><span>לא נמצא קשר בין מבצעי חג המולד לבין היקף העריקות. על בסיס יותר מ-19,000 עריקים</span></div>
-    <div data-a="start" style="--d:2000"><em>מחקר נוסף</em><b class="num count-up" data-to="1000" data-sep data-suf="+" data-d="2100">1,000+</b><span>עריקים בזכות מסרים משפחתיים ששודרו במשחקי כדורגל, אחרי הפסד מפתיע</span></div>
-  </div>
-  <style>.chk3>div{display:grid;grid-template-columns:230px 260px 1fr;gap:34px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)}
-  .chk3 em{font-style:normal;font-family:'Plex Mono',monospace;font-size:22px;color:var(--mute);border:1.5px solid var(--line2);padding:6px 14px;justify-self:start}
-  .chk3 b{font-family:'Karantina',sans-serif;font-size:120px;line-height:.85;color:var(--amber);font-weight:700}.chk3 b.red{color:var(--red)}.chk3 span{font-size:31px;line-height:1.35}</style>
-  <p class="body" data-a="up" style="--d:2800;margin-top:30px">לא סומכים על המדידה של מי שהפיק את הקמפיין, ובודקים גם את התובנה וגם את התזמון.</p>
-  <div class="src"><b>מקורות:</b> סוקולוף, TED, 2014 · Nussio &amp; Ugarriza, International Security, 2021 · Aparicio, Jetter &amp; Parsons, IZA, 2023 (מאמר עבודה)</div>
-  <aside class="notes">הקמפיין הזה זכה בפרסים בכל העולם, ובכל זאת הבדיקה העצמאית לא מצאה שהוא הזיז את המספרים. מחקר אחר דווקא מצא אפקט, אבל רק למסרים משפחתיים, ורק כשהם הגיעו ברגע רגשי. הלקח למתכנן: לא סומכים על המדידה של מי שהפיק את הקמפיין, ובודקים את התובנה ואת התזמון.</aside>
-</section>
-
-<!-- 39 · תיקון -->
-<section class="slide" data-sec="s7">
+<!-- · תיקון -->
+<section class="slide" data-sec="s7" data-title="תיקון, ומתי חוזרים למעלה" data-part="שלב 7">
   <div class="kick" data-a="start">מדידה, הערכה ותיקון</div>
   <h2 class="h2" data-a="up" style="--d:120">תיקון, ומתי חוזרים למעלה</h2>
   <div class="row" style="margin-top:40px;gap:70px;align-items:center">
@@ -730,82 +822,118 @@
       <path class="dash-draw" style="--d:1600" d="M290 470 C 520 520, 560 60, 470 10" fill="none" stroke="#F2A93B" stroke-width="2.5" stroke-dasharray="8 8" marker-end="url(#ah)"/>
       <text x="470" y="0" fill="#F2A93B" font-family="Plex Mono" font-size="22" text-anchor="end" class="dash-draw" style="--d:1800">01</text>
     </svg>
-    <div class="col grow" style="gap:26px">
+    <div class="col grow" style="gap:22px">
       <div class="card" data-a="start" style="--d:600"><div class="n">כל סבב</div><h3>חוזרים לשלב 04</h3><p>אוספים שוב, ומתקנים קהל, מסר, שליח, ערוץ או תזמון</p></div>
-      <div class="card gray" data-a="start" style="--d:1000"><div class="n">בנקודות קבועות</div><h3>הערכת מצב מול מקבל ההחלטות</h3><p>שם מחליטים על המשימה עצמה</p></div>
-      <div class="mono" data-a="up" style="--d:1600;font-size:22px;color:var(--mute);line-height:1.7">אובמה 2012: בדקו בניסויים מי זז, והעבירו תקציבים תוך כדי · Think Again Turn Away: ״אנחנו לא השליח הכי אמין״, הוחלף ב-2016 · דופלגנגר: 12 אתרים חלופיים בתוך יממה</div>
+      <div class="card gray" data-a="start" style="--d:1000"><div class="n">בנקודות קבועות</div><h3>הערכת מצב מול מקבל ההחלטות</h3><p>שם מחליטים אם להמשיך, לשנות או לסיים</p></div>
+      <div class="card gray" data-a="start" style="--d:1400"><div class="n">כשהמצב משתנה</div><h3>שינוי משמעותי בהערכת המצב</h3><p>יכול לשנות גם את המשימה עצמה, בלי לחכות לנקודה הקבועה</p></div>
     </div>
   </div>
-  <div class="src"><b>מקורות:</b> MIT Technology Review, 2012 · New York Times, יולי 2016 · צו נשיאותי 13721, 2016 · DFRLab, אוקטובר 2024</div>
-  <aside class="notes">הקמפיין של אובמה ב-2012 בדק בניסויים מי באמת זז, והעביר תקציבים כבר תוך כדי הקמפיין. לעומתו, Think Again Turn Away, הקמפיין של מחלקת המדינה האמריקאית נגד דאעש, נכשל. ״אנחנו לא השליח הכי אמין,״ אמר אחד הבכירים. ב-2016 החליפו אותו במרכז חדש שעובד דרך שותפים מקומיים, והמדידה נכתבה כבר בצו שהקים אותו. וגם היריב מתקן: יממה אחרי שארה״ב תפסה את הדומיינים של דופלגנגר, הופיעו 12 אתרים חלופיים.</aside>
+  <aside class="notes">אחרי כל סבב מדידה חוזרים לשלב 4: אוספים שוב, ומתקנים את מה שלא עבד, קהל, מסר, שליח, ערוץ או תזמון. את המשימה עצמה לא משנים לבד. חוזרים למקבל ההחלטות בנקודות קבועות של הערכת מצב, ושם מחליטים אם להמשיך, לשנות או לסיים. ואם יש שינוי משמעותי בהערכת המצב, הוא יכול לשנות גם את המשימה, בלי לחכות לנקודה הקבועה.</aside>
 </section>
 
-<!-- 40 · AI: מה השתנה -->
-<section class="slide gate" data-sec="ai">
+<!-- · AI: העולם משתנה -->
+<section class="slide gate" data-sec="ai" data-title="בינה מלאכותית: העולם הזה משתנה" data-part="בינה מלאכותית">
   <div class="gnum" data-a="fade" style="--d:100;font-size:520px">AI</div>
   <div class="of" data-a="start">אחרי המודל</div>
-  <h2 class="h1" style="font-size:170px"><span class="mask"><span data-a="rise" style="display:block;--d:200">בינה מלאכותית</span></span></h2>
-  <div class="col" style="margin-top:44px;gap:20px;max-width:1080px">
-    <div class="quote" data-a="start" style="--d:800;font-size:34px">״כל אחת מהרשתות שפירקנו השתמשה בבינה מלאכותית יוצרת״<small>Meta · 2026</small></div>
-    <div class="quote" data-a="start" style="--d:1200;font-size:34px">אבל בבחירות 2024: פחות מ-1% מהמידע הכוזב שנבדק<small>Meta · דצמבר 2024</small></div>
-    <div class="quote" data-a="start" style="--d:1600;font-size:34px">״אף אחד מהניסיונות לא יצר יכולת פורצת דרך״<small>Google · 2026</small></div>
+  <h2 class="h1" style="font-size:150px"><span class="mask"><span data-a="rise" style="display:block;--d:200">כל העולם הזה</span></span><span class="mask"><span data-a="rise" class="amber" style="display:block;--d:450">הולך להשתנות</span></span></h2>
+  <div class="rows" style="margin-top:44px;max-width:1080px;font-size:34px">
+    <div data-a="start" style="--d:1000"><b>01</b>תוכן: כל אחד מפיק טקסט, תמונה, וידאו וקול, בכל שפה, בדקות</div>
+    <div data-a="start" style="--d:1250"><b>02</b>שיחה: מיליוני שיחות אישיות עם הקהל, במקביל</div>
+    <div data-a="start" style="--d:1500"><b>03</b>מידע: הצ׳טבוטים הופכים למקור המידע של הקהל</div>
   </div>
-  <div class="src"><b>מקורות:</b> Meta, Adversarial Threat Report, 2026 · Meta, דצמבר 2024 · Google Threat Intelligence Group, פברואר 2026</div>
-  <aside class="notes">הבינה המלאכותית הפכה לכלי עבודה רגיל של מבצעי השפעה: תרגום, תגובות, תסריטים, ואפילו דוחות פנימיים. היא חוסכת זמן וכסף. אבל לפי הדוחות של החברות עצמן, היא עוד לא שינתה את התוצאה.</aside>
+  <aside class="notes">ועכשיו, מה שמשנה את כל מה שדיברנו עליו. כל העולם הזה הולך להשתנות. שלושה דברים כבר השתנו: כל אחד יכול להפיק תוכן מכל סוג, בכל שפה, בתוך דקות. אפשר לנהל מיליוני שיחות אישיות עם הקהל במקביל. והצ׳טבוטים הופכים למקור המידע של הקהל, כלומר הם בעצמם זירה. נראה איפה זה סיכון ואיפה זו הזדמנות.</aside>
 </section>
 
-<!-- 41 · מה קובע את התפוצה -->
-<section class="slide" data-sec="ai">
+<!-- · סיכון והזדמנות -->
+<section class="slide" data-sec="ai" data-title="סיכון והזדמנות" data-part="בינה מלאכותית">
   <div class="kick" data-a="start">בינה מלאכותית</div>
-  <h2 class="h2" data-a="up" style="--d:120">מה קובע את התפוצה</h2>
-  <p class="lead" data-a="up" style="--d:300;margin-top:12px;font-size:34px">רוסיה, 2026: שבעה פוסטים מאותה הנחיה לבינה מלאכותית</p>
-  <div class="row" style="margin-top:46px;gap:80px;align-items:flex-end">
-    <div class="stat" data-a="up" style="--d:600"><div class="v" style="font-size:230px"><span class="num count-up" data-to="150000" data-sep data-suf="+" data-d="700">150,000+</span></div><div class="l">צפיות לפוסט אחד</div></div>
-    <div class="stat" data-a="up" style="--d:1000"><div class="v" style="font-size:230px;color:var(--mute)"><span class="num count-up" data-to="57" data-d="1100">57</span></div><div class="l">צפיות לפוסט אחר</div></div>
+  <h2 class="h2" data-a="up" style="--d:120">איפה ההזדמנות, ואיפה הסיכון</h2>
+  <div class="row" style="margin-top:46px;gap:40px">
+    <div class="grow">
+      <div class="mono amber" data-a="fade" style="--d:300;font-size:26px;margin-bottom:10px">הזדמנות</div>
+      <div class="rows" style="font-size:31px">
+        <div data-a="start" style="--d:500"><b>01</b>ניתוח קהל בהיקף ובמהירות שלא היו קודם</div>
+        <div data-a="start" style="--d:700"><b>02</b>גרסאות רבות של תוכן, בכל שפה ובכל פורמט</div>
+        <div data-a="start" style="--d:900"><b>03</b>בדיקה מקדימה של רעיונות ומסרים, מהר</div>
+        <div data-a="start" style="--d:1100"><b>04</b>ניטור בזמן אמת, ותיקון תוך כדי</div>
+        <div data-a="start" style="--d:1300"><b>05</b>שיחה אישית עם הקהל, בהיקף גדול</div>
+      </div>
+    </div>
+    <div class="grow">
+      <div class="mono red" data-a="fade" style="--d:1500;font-size:26px;margin-bottom:10px">סיכון</div>
+      <div class="rows rr" style="font-size:31px">
+        <div data-a="start" style="--d:1700"><b>01</b>היריב מפיק יותר, מהר יותר וזול יותר</div>
+        <div data-a="start" style="--d:1900"><b>02</b>זיופים שקשה לזהות, ושחיקת האמון בכל תוכן</div>
+        <div data-a="start" style="--d:2100"><b>03</b>הצפת הצ׳טבוטים בנרטיבים של היריב</div>
+        <div data-a="start" style="--d:2300"><b>04</b>טעויות: מודל משכנע יותר נוטה להיות פחות מדויק</div>
+      </div>
+    </div>
   </div>
-  <p class="lead" data-a="up" style="--d:2200;margin-top:40px">ההבדל: <b class="amber">כמה עוקבים היו לחשבון שפרסם.</b></p>
-  <p class="body" data-a="up" style="--d:2700;margin-top:14px;font-size:28px;color:var(--mute)">המבצע הראשון שהגיע לרמה 5 בסולם הפריצה: מכון מחקר מזויף, עובדים מקומיים ותקשורת מרכזית. הבינה המלאכותית כתבה בו בעיקר דוחות פנימיים.</p>
-  <div class="src"><b>מקורות:</b> OpenAI, פברואר 2026 (Fish Food) · OpenAI, אוקטובר 2026 (Dark Clark)</div>
-  <aside class="notes">מה שקובע את ההצלחה הוא לא התוכן שהבינה המלאכותית מייצרת, אלא הרשת, השליח וההפצה, כלומר השלבים שדיברנו עליהם. המבצע הראשון ש-OpenAI עצרה ברמה 5 בסולם הפריצה נשען על מכון מחקר מזויף, על עובדים מקומיים שלא ידעו למי הם עובדים ועל פרסום בתקשורת המרכזית. הבינה המלאכותית כתבה בו בעיקר דוחות פנימיים. לפי OpenAI הוא ״דמה מאוד למבצעי השפעה מורכבים מהתקופה שלפני הבינה המלאכותית.״</aside>
+  <style>.rr>div>b{color:var(--red)!important}</style>
+  <div class="src"><b>מקורות:</b> Meta ו-OpenAI, דוחות איומים, 2024 עד 2026 · NewsGuard, 2025 · Hackenburg, Tappin ועוד, Science, 2025</div>
+  <aside class="notes">ההזדמנות: אפשר לנתח קהל בהיקף ובמהירות שלא היו קודם, להפיק גרסאות רבות בכל שפה, לבדוק רעיונות מהר, לנטר בזמן אמת, ולנהל שיחה אישית עם הקהל בהיקף גדול. הסיכון: היריב מקבל את אותם כלים, ומפיק יותר, מהר וזול. זיופים קשים לזיהוי, והאמון בכל תוכן נשחק. רשתות כמו ״פרבדה״ הרוסית מציפות את האינטרנט בכתבות, כנראה כדי שהצ׳טבוטים יחזרו על הנרטיבים שלהן. ומחקר גדול מצא שככל שמודל משכנע יותר, הוא נוטה להיות פחות מדויק. כלומר, צריך לבדוק את מה שהוא מייצר.</aside>
 </section>
 
-<!-- 42 · המחקר: היא משכנעת -->
-<section class="slide" data-sec="ai">
+<!-- · הבינה המלאכותית משכנעת -->
+<section class="slide" data-sec="ai" data-title="הבינה המלאכותית משכנעת" data-part="בינה מלאכותית">
   <div class="kick" data-a="start">בינה מלאכותית</div>
-  <h2 class="h2" data-a="up" style="--d:120">המחקר: היא משכנעת</h2>
-  <p class="lead" data-a="up" style="--d:300;margin-top:12px;font-size:32px;color:var(--mute)">כ-<span class="num">77,000</span> משתתפים · <span class="num">19</span> מודלים · <span class="num">707</span> נושאים</p>
-  <div class="mt" style="margin-top:40px">
-    <div><span>אימון ממוקד</span><div class="meter"><i style="--w:100%;--d:500"></i></div><b>עד +51%</b></div>
-    <div><span>ניסוח ההנחיה</span><div class="meter"><i style="--w:53%;--d:700"></i></div><b>עד +27%</b></div>
-    <div><span>התאמה אישית</span><div class="meter"><i style="--w:2%;--d:900;background:var(--red)"></i></div><b class="red">פחות מנקודה</b></div>
-    <div><span>נשאר אחרי חודש</span><div class="meter"><i style="--w:40%;--d:1100;background:#B88536"></i></div><b>כ-40%</b></div>
+  <h2 class="h2" data-a="up" style="--d:120">שיחה עם צ׳טבוט משכנעת</h2>
+  <div class="row" style="margin-top:50px;gap:50px;align-items:stretch">
+    <div class="card grow" data-a="up" style="--d:400;padding:34px 38px">
+      <div class="n">בחירות 2024, ארה״ב</div>
+      <div class="stat" style="margin-top:10px"><div class="v" style="font-size:170px">פי 4</div></div>
+      <p style="font-size:30px;margin-top:10px">שיחה קצרה עם צ׳טבוט בעד מועמדת אחת הזיזה מצביעים של המועמד השני, בערך פי ארבעה ממודעות טלוויזיה</p>
+    </div>
+    <div class="card grow" data-a="up" style="--d:800;padding:34px 38px">
+      <div class="n">תיאוריות קונספירציה</div>
+      <div class="stat" style="margin-top:10px"><div class="v" style="font-size:170px"><span class="num count-up" data-pre="−" data-to="20" data-suf="%" data-d="900">−20%</span></div></div>
+      <p style="font-size:30px;margin-top:10px">שיחה עם צ׳טבוט הורידה את האמונה בקונספירציה, והאפקט החזיק לפחות חודשיים</p>
+    </div>
   </div>
-  <style>.mt>div{display:grid;grid-template-columns:300px 1fr 260px;gap:30px;align-items:center;padding:12px 0}.mt span{font-size:34px;font-weight:600}.mt .meter{height:34px}.mt b{font-size:32px;color:var(--amber)}.mt b.red{color:var(--red)}</style>
-  <p class="body" data-a="up" style="--d:1800;margin-top:26px">מה שמשכנע: הרבה טענות עובדתיות. <b class="amber">וככל שהמודל משכנע יותר, הוא פחות מדויק.</b></p>
-  <p class="body" data-a="up" style="--d:2200;margin-top:10px;font-size:27px;color:var(--mute)">בבחירות 2024 בארה״ב, שיחה עם צ׳טבוט הזיזה מצביעים בערך פי ארבעה ממודעות טלוויזיה · ושיחות עם צ׳טבוט הורידו אמונה בקונספירציות ב-20%</p>
-  <div class="src"><b>מקורות:</b> Hackenburg, Tappin ועוד, Science, דצמבר 2025 · Rand, Pennycook ועוד, Nature, דצמבר 2025 · Costello, Pennycook &amp; Rand, Science, 2024</div>
-  <aside class="notes">זה המחקר הגדול ביותר עד היום, של מכון בטיחות הבינה המלאכותית הבריטי עם אוקספורד ומוסדות נוספים. כ-40% מהאפקט נשאר אחרי חודש. מחקר מקביל ב-Nature מצא שבבחירות 2024 בארה״ב, שיחה עם צ׳טבוט הזיזה מצביעים בערך פי ארבעה ממודעות טלוויזיה. וזה עובד גם בכיוון ההפוך: שיחות עם צ׳טבוט הורידו אמונה בתיאוריות קונספירציה ב-20%, לפחות לחודשיים.</aside>
+  <p class="lead" data-a="up" style="--d:1500;margin-top:40px">מה משכנע: הרבה עובדות בשיחה. לא התאמה אישית.</p>
+  <div class="src"><b>מקורות:</b> Rand, Pennycook ועוד, Nature, דצמבר 2025 · Costello, Pennycook &amp; Rand, Science, 2024 · Hackenburg, Tappin ועוד, Science, דצמבר 2025 (כ-77,000 משתתפים)</div>
+  <aside class="notes">הבינה המלאכותית לא רק מפיקה תוכן, היא גם משכנעת בשיחה. בניסוי בזמן הבחירות לנשיאות ארה״ב ב-2024, שיחה קצרה עם צ׳טבוט שהציג טיעונים בעד מועמדת אחת הזיזה מצביעים של המועמד השני, בערך פי ארבעה מהאפקט של מודעות טלוויזיה שנבדקו בבחירות קודמות. בניסוי אחר, שיחה עם צ׳טבוט הורידה אמונה בתיאוריות קונספירציה ב-20%, והאפקט החזיק לפחות חודשיים. והמחקר הגדול ביותר עד היום, על כ-77,000 משתתפים, מצא שמה שמשכנע הוא הרבה עובדות בשיחה, ולא התאמה אישית לאדם. זה כלי השפעה חדש, וחזק.</aside>
 </section>
 
-<!-- 43 · כלי למתכנן, וקהל חדש -->
-<section class="slide" data-sec="ai">
+<!-- · בכל שלב של המודל -->
+<section class="slide" data-sec="ai" data-title="הבינה המלאכותית בכל שלב" data-part="בינה מלאכותית">
   <div class="kick" data-a="start">בינה מלאכותית</div>
-  <h2 class="h2" data-a="up" style="--d:120">כלי למתכנן, וקהל חדש</h2>
-  <div class="ai7" data-a="fade" style="--d:300">
-    <div><b>04</b>ניתוח קהל<i>AI</i></div><div><b>05</b>תכנון</div><div><b>06</b>כתיבת גרסאות<i>AI</i></div><div><b>06</b>בדיקה מקדימה<i>AI</i></div><div><b>07</b>ניטור<i>AI</i></div>
+  <h2 class="h2" data-a="up" style="--d:120">בכל שלב של המודל</h2>
+  <div class="ai4" style="margin-top:46px">
+    <div data-a="up" style="--d:400"><b>04</b><h3>איסוף ומחקר</h3><p>ניתוח של כמויות גדולות של שיח ומידע, בכל שפה</p></div>
+    <div data-a="up" style="--d:600"><b>05</b><h3>תכנון</h3><p>בדיקה ראשונית של רעיונות על ״קהל סינתטי״. לא במקום קהל אמיתי</p></div>
+    <div data-a="up" style="--d:800"><b>06</b><h3>ביצוע</h3><p>הפקת גרסאות בכל שפה ובכל פורמט, ושיחה עם הקהל</p></div>
+    <div data-a="up" style="--d:1000"><b>07</b><h3>מדידה</h3><p>ניטור בזמן אמת, וזיהוי מוקדם של שינוי</p></div>
   </div>
-  <style>.ai7{display:flex;gap:14px;margin-top:44px}.ai7 div{flex:1;position:relative;background:rgba(18,25,21,.92);border:1.5px solid var(--line);border-right:6px solid var(--amber);padding:20px 22px;font-size:30px;font-weight:600}
-  .ai7 b{display:block;font-family:'Plex Mono',monospace;color:var(--amber);font-size:22px}.ai7 i{position:absolute;top:14px;left:14px;font-style:normal;font-family:'Plex Mono',monospace;font-size:18px;color:#0C100E;background:var(--amber);padding:2px 8px;font-weight:600}</style>
-  <div class="row" style="margin-top:36px;gap:28px">
-    <div class="card gray grow" data-a="up" style="--d:900"><div class="n">קהל סינתטי</div><h3>טוב לבדיקה ראשונית, לא במקום הקהל</h3><p>הממוצע קרוב לאמיתי, אבל הפיזור יוצא חצי, וכמעט מחצית מהקשרים יוצאים שונים מהסקר</p></div>
-    <div class="card grow" data-a="up" style="--d:1300"><div class="n">קהל חדש</div><h3>הצ׳טבוטים עצמם</h3><p>רשת ״פרבדה״ מפרסמת מיליוני כתבות בשנה, כנראה בשביל הצ׳טבוטים. בדיקה אחת: הם חזרו על הנרטיבים שלה ב-33% מהמקרים. בדיקה אחרת: 5%</p></div>
-  </div>
-  <div class="src"><b>מקורות:</b> Argyle ועוד, Political Analysis, 2023 · Bisbee ועוד, Political Analysis, 2024 · NewsGuard, מרץ 2025 · Alyukov ועוד, HKS Misinformation Review, 2025</div>
-  <aside class="notes">אפשר לדמות סקר בעזרת מודל שפה, ובממוצע הוא מתקרב לתוצאה האמיתית. אבל הפיזור יוצא חצי מהאמיתי, וכמעט מחצית מהקשרים שנמדדו יצאו שונים מהסקר. כלומר: טוב לבדיקה ראשונית, לא במקום הקהל. ועוד שינוי: רשת ״פרבדה״ הרוסית מפרסמת מיליוני כתבות בשנה, כנראה כדי להשפיע על הצ׳טבוטים ולא על בני אדם. בדיקה אחת מצאה שצ׳טבוטים חזרו על הנרטיבים שלה ב-33% מהמקרים. בדיקה אחרת מצאה רק 5%, וייחסה את זה למחסור במקורות אמינים. כך או כך, מי שמתכנן השפעה היום צריך לחשוב גם על מה שהצ׳טבוטים יגידו לקהל.</aside>
+  <style>.ai4{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}.ai4>div{position:relative;background:rgba(18,25,21,.92);border:1.5px solid var(--line);border-right:6px solid var(--amber);padding:26px 28px;min-height:330px}
+  .ai4 b{font-family:'Plex Mono',monospace;color:var(--amber);font-size:24px}.ai4 h3{font-size:38px;margin:6px 0 12px}.ai4 p{font-size:27px;line-height:1.45;color:var(--soft);margin:0}</style>
+  <div class="card gray" data-a="up" style="--d:1500;margin-top:30px"><div class="n">וקהל חדש</div><p style="font-size:30px">הצ׳טבוטים עצמם. מה שהם עונים לקהל על הנושא שלכם הוא חלק משדה הקרב.</p></div>
+  <div class="src"><b>מקורות:</b> Argyle ועוד, Political Analysis, 2023 · Bisbee ועוד, Political Analysis, 2024 · NewsGuard, 2025</div>
+  <aside class="notes">איפה זה נכנס במודל. באיסוף ובמחקר: ניתוח של כמויות גדולות של שיח ומידע, בכל שפה. בתכנון: אפשר לבדוק רעיונות על ״קהל סינתטי״, מודל שפה שמדמה קהל. מחקרים מראים שבממוצע הוא קרוב לתוצאה אמיתית, אבל מפספס את הפיזור ואת ההבדלים בין קבוצות, ולכן זה רק לבדיקה ראשונית. בביצוע: הפקת גרסאות בכל שפה ובכל פורמט, ואפילו שיחה עם הקהל. במדידה: ניטור בזמן אמת. ויש קהל חדש: הצ׳טבוטים עצמם. מה שהם עונים לקהל על הנושא שלכם הוא חלק משדה הקרב.</aside>
 </section>
 
-<!-- 44 · לסדנה -->
-<section class="slide" data-sec="end">
+<!-- · מפת הנחיות -->
+<section class="slide" data-sec="end" data-title="מפת הנחיות לתכנון קמפיין" data-part="סיכום">
+  <div class="kick" data-a="start">סיכום</div>
+  <h2 class="h2" data-a="up" style="--d:120;font-size:110px">מפת הנחיות לתכנון קמפיין</h2>
+  <div class="map7" style="margin-top:30px">
+    <div class="th" data-a="fade" style="--d:300"><span>שלב</span><span>שאלת המפתח</span><span>התוצר</span></div>
+    <div data-a="start" style="--d:450"><span><b>01</b>הנחיית מנהלים</span><span>מה מקבל ההחלטות רוצה להשיג, ובאילו מגבלות?</span><span>הנחיה ברורה</span></div>
+    <div data-a="start" style="--d:600"><span><b>02</b>משימת ההשפעה</span><span>איזה אפקט בתודעה ישרת את המטרה?</span><span>משפט משימה מאושר</span></div>
+    <div data-a="start" style="--d:750"><span><b>03</b>צי״ח לקמ״ן</span><span>מה חייבים לדעת כדי לתכנן?</span><span>רשימת צי״ח</span></div>
+    <div data-a="start" style="--d:900"><span><b>04</b>איסוף ומחקר</span><span>מה מניע את הקהל, ומה עושה היריב?</span><span>תובנה וניתוח יריב</span></div>
+    <div data-a="start" style="--d:1050"><span><b>05</b>תכנון</span><span>למי, מה אומרים, איך, ואיך נמדוד?</span><span>קהלים והישגים · נרטיב ומסרים · שיטת פעולה · מדדים</span></div>
+    <div data-a="start" style="--d:1200"><span><b>06</b>ביצוע</span><span>מה מפיקים, ואיפה ומתי מפיצים?</span><span>תוצרים ופעילות</span></div>
+    <div data-a="start" style="--d:1350"><span><b>07</b>מדידה, הערכה ותיקון</span><span>מה השתנה בקהל, ומה משנים?</span><span>תיקון, וחזרה לשלב 04</span></div>
+  </div>
+  <style>.map7>div{display:grid;grid-template-columns:400px 1fr 560px;gap:30px;align-items:baseline;padding:13px 0;border-bottom:1px solid var(--line);font-size:28px;line-height:1.3}
+  .map7 .th{font-family:'Plex Mono',monospace;font-size:22px;color:var(--amber);border-bottom:2px solid var(--line2);padding-top:0}.map7 .th span{font-family:'Heebo';font-weight:600}
+  .map7>div:not(.th) span:first-child{font-weight:700}.map7 b{font-family:'Plex Mono',monospace;color:var(--amber);font-size:22px;margin-left:14px}.map7>div:not(.th) span:last-child{color:var(--soft)}</style>
+  <aside class="notes">לסיכום, מפה אחת לכל התהליך. בכל שלב יש שאלת מפתח אחת, ותוצר אחד שצריך לצאת ממנו. ההנחיה: מה מקבל ההחלטות רוצה. המשימה: איזה אפקט בתודעה ישרת את המטרה. הצי״ח: מה חייבים לדעת. האיסוף והמחקר: מה מניע את הקהל ומה עושה היריב. התכנון: למי, מה אומרים, איך, ואיך נמדוד. הביצוע: מה מפיקים ואיפה מפיצים. והמדידה: מה השתנה ומה משנים, ומשם חוזרים לאיסוף. עם המפה הזו יוצאים לסדנה.</aside>
+</section>
+
+<!-- · שאלות -->
+<section class="slide" data-sec="end" data-title="שאלות, ולסדנה" data-part="סיום">
   <div class="kick" data-a="start">סיכום</div>
   <h2 class="h2" data-a="up" style="--d:120">תהליך מבצעי להשפעה</h2>
   <div class="model">
@@ -825,7 +953,7 @@
     <div class="h1" style="font-size:170px" >שאלות</div>
     <div class="mono amber" style="font-size:24px;margin-top:10px">ואחר כך: לסדנה</div>
   </div>
-  <aside class="notes">סיכום של משפט אחד לכל שלב, ומעבר לשאלות (רבע שעה). אחר כך הסדנה, שבה מתכננים לפי המודל.</aside>
+  <aside class="notes">רבע שעה לשאלות, ואחר כך הסדנה, שבה מתכננים קמפיין לפי המודל.</aside>
 </section>
 
 </div></div>
