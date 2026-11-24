@@ -82,4 +82,10 @@
       L.appendChild(b);
     }
   }
+  // Texas · all drivers as dots; the narrow target audience lit and framed
+  const tx = document.querySelector('#texas .dots');
+  if (tx) for (let c = 0; c < 15; c++) for (let r = 0; r < 6; r++) {
+    el('circle', { cx: 750 - c * 48, cy: 76 + r * 42, r: 8, fill: '#56655B' }, tx);
+    if (c < 3) el('circle', { cx: 750 - c * 48, cy: 76 + r * 42, r: 10, fill: '#F2A93B', 'data-a': 'fade', style: '--d:' + (600 + r * 60) }, tx);
+  }
 })();

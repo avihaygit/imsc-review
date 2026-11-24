@@ -121,7 +121,7 @@
     if (tx === null) return; const dx = e.changedTouches[0].clientX - tx; tx = null;
     if (Math.abs(dx) > 40) (dx < 0 ? next() : prev()); else next();
   });
-  addEventListener('click', e => { if (e.target.closest('a,button,audio')) return; if (!('ontouchstart' in window)) next(); });
+  addEventListener('click', e => { if (e.target.closest('a,button,audio,.vid .frame')) return; if (!('ontouchstart' in window)) next(); });
   addEventListener('contextmenu', e => { e.preventDefault(); prev(); });
 
   /* ---------- waveform (opening) ---------- */
@@ -162,6 +162,22 @@
     s.addEventListener('slideenter', () => { if (hint) hint.style.opacity = ''; });
     s.addEventListener('slideleave', () => a.pause());
   });
+
+  /* embedded video: an iframe[data-yt] loads and plays on its step (or on a click on its poster), and stops when the slide is left */
+  slides.forEach(s => {
+    const f = s.querySelector('iframe[data-yt]');
+    if (!f) return;
+    const st = +((f.closest('[data-step]') || { dataset: { step: 1 } }).dataset.step);
+    const on = () => { if (!STATIC) f.src = 'https://www.youtube-nocookie.com/embed/' + f.dataset.yt + '?autoplay=1&rel=0&playsinline=1'; };
+    const off = () => f.removeAttribute('src');
+    s.addEventListener('slidestep', e => { if (e.detail.step === st) on(); });
+    s.addEventListener('slideenter', off);
+    s.addEventListener('slideleave', off);
+    const poster = f.parentElement.querySelector('img');
+    if (poster) poster.addEventListener('click', on);
+  });
+  /* a click inside a video takes keyboard focus; hand it back so the clicker keeps working */
+  addEventListener('blur', () => setTimeout(() => { const a = document.activeElement; if (a && a.tagName === 'IFRAME') a.blur(); }, 0));
 
   addEventListener('hashchange', () => { const n = parseInt(location.hash.slice(1), 10); if (Number.isFinite(n) && n - 1 !== cur) show(n - 1); });
   const h = parseInt((location.hash || '').replace('#', ''), 10);
