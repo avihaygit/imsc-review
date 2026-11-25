@@ -123,7 +123,8 @@ function addShapeItem(pres, s, sh, k) {
     d.shapes.forEach((sh, k) => addShapeItem(pres, s, sh, k + 1));
     for (const im of d.images) {
       if (/ytimg|youtube/.test(im.src) && posterData) {
-        s.addMedia({ type: 'online', link: 'https://www.youtube.com/embed/IHzWOe7K0hY', x: IN(im.x), y: IN(im.y), w: IN(im.w), h: IN(im.h), cover: posterData });
+        // a still frame, not an embedded video: the deck has no motion; a click opens the video in the browser
+        s.addImage({ data: posterData, x: IN(im.x), y: IN(im.y), w: IN(im.w), h: IN(im.h), hyperlink: { url: 'https://youtu.be/IHzWOe7K0hY', tooltip: 'אני יצאתי בחמש · יוטיוב' }, altText: 'תמונה מהסרטון ״אני יצאתי בחמש״', objectName: 'תמונה מהסרטון' });
       } else {
         s.addImage({ path: im.src.replace(/^https?:\/\/localhost:\d+\//, ''), x: IN(im.x), y: IN(im.y), w: IN(im.w), h: IN(im.h) });
       }
@@ -132,7 +133,7 @@ function addShapeItem(pres, s, sh, k) {
     const head = d.texts.findIndex(t => t.head);
     d.texts.forEach((t, k) => { const r = runs(t); if (r.length) s.addText(r, Object.assign(textBox(t), { objectName: k === head ? 'כותרת השקופית' : 'טקסט ' + (k + 1) })); });
     let notes = d.notes || '';
-    if (d.variant === 'video') notes = 'הסרטון ״אני יצאתי בחמש״ (הכל מאבא). לחיצה על המסגרת מפעילה אותו, בתנאי שיש אינטרנט. הקישור: https://youtu.be/IHzWOe7K0hY';
+    if (d.variant === 'video') notes = 'הסרטון ״אני יצאתי בחמש״ (הכל מאבא). הוא לא מוטמע במצגת: לחיצה על התמונה או על הקישור פותחת אותו ביוטיוב. הקישור: https://youtu.be/IHzWOe7K0hY';
     if (notes) s.addNotes(notes);
   }
   await pres.writeFile({ fileName: outFile });
