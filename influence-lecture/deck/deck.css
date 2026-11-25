@@ -137,4 +137,4 @@ canvas.wave{position:absolute;inset:0;width:100%;height:100%}
 
 /* static (screenshots): no motion */
 .static .scan,.static .radar-sweep,.static .flow{animation:none}
-.static [data-a],.static .draw,.static .dash-draw,.static .meter i,.static .strike::after,.static .slide{transition:none!important}
+.static #hud,.static [data-a],.static .draw,.static .dash-draw,.static .meter i,.static .strike::after,.static .slide{transition:none!important}
